@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginUIViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,14 @@
     // Override point for customization after application launch.
     // UINavigationController *pushNav = [[UINavigationController alloc] initWithRootViewController:controller];
     //[self.window.rootViewController presentViewController:pushNav animated:NO completion:nil];
-    [self initWindow];
+    if (!self.window) {
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    }
+  //  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    LoginUIViewController *con =  [[LoginUIViewController alloc] init];
+    self.window.rootViewController = con;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -51,7 +59,7 @@
 
 - (void)initWindow{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window makeKeyWindow];
+    self.window.backgroundColor = [UIColor whiteColor];
 }
 
 @end

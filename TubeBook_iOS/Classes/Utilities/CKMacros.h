@@ -42,6 +42,8 @@
 #define HEXACOLOR(hexValue, alphaValue) [UIColor colorWithRed:((CGFloat)((hexValue & 0xFF0000) >> 16))/255.0 green:((CGFloat)((hexValue & 0xFF00) >> 8))/255.0 blue:((CGFloat)(hexValue & 0xFF))/255.0 alpha:(alphaValue)]
 #endif
 
+#define kTEXTCOLOR HEXCOLOR(0x47525E)
+
 @interface CKMacros : NSObject
 
 @end
