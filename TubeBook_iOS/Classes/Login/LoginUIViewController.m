@@ -28,6 +28,9 @@
         make.top.mas_equalTo(22);
         make.height.mas_equalTo(40);
     }];
+    [view setFieldBlock:^(NSString *text) {
+        NSLog(@"%@",text);
+    }];
     
 }
 

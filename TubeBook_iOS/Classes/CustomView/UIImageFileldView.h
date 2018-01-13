@@ -14,6 +14,8 @@
 
 @end
 
+typedef void (^ fieldChangeBlock)(NSString *text);
+
 @interface UIImageFileldView : UIView
 
 @property (nonatomic, strong) UIImageView *rightImage;
@@ -21,9 +23,11 @@
 @property (nonatomic, strong) UIButton *clearButton;
 @property (nonatomic, strong) UIButton *seeButton;
 @property (nonatomic, weak) id<UIImageFileldViewDelegate> delegate;
+@property (nonatomic, copy) fieldChangeBlock fieldBlock;
 
 - (instancetype)initUIImageFileldView:( NSString * _Nonnull )imagePath placeholder:(NSString *_Nonnull)placeholder isSecret:(BOOL)isSecret ;
 - (instancetype _Nonnull )initWithFrame:(CGRect)frame rightImage:( NSString * _Nonnull )imagePath placeholder:(NSString *_Nonnull)placeholder isSecret:(BOOL)isSecret;
 
+- (void)setFieldChangeBlock:(fieldChangeBlock _Nullable )fieldBlock;
 
 @end

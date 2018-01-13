@@ -116,7 +116,13 @@
     
     [[_field rac_textSignal] subscribeNext:^(NSString * _Nullable x) {
         @strongify(self);
-        [_delegate fieldChange:x];
+        if (_fieldBlock) {
+            NSLog(@"block");
+            _fieldBlock(x);
+        }
+        if (_delegate) {
+            [_delegate fieldChange:x];
+        }
         if (x.length>0) {
             _clearButton.hidden = NO;
             if (_isSecret) {
@@ -181,6 +187,10 @@
         _seeButton.hidden = YES;
     }
     return _seeButton;
+}
+
+- (void)setFieldChangeBlock:(fieldChangeBlock _Nullable )fieldBlock{
+    _fieldBlock = fieldBlock;
 }
 
 @end
