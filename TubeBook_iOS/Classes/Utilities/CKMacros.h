@@ -35,6 +35,14 @@
 
 #define Font(x) [UIFont systemFontOfSize:x]
 
+#define CKFontLarge [UIFont systemFontOfSize: 17]
+#define CKTextViewFont [UIFont systemFontOfSize: 16]
+#define CKFontMedium [UIFont systemFontOfSize: 15]
+#define CKFontSmall [UIFont systemFontOfSize: 14]
+#define CKFontSmaller [UIFont systemFontOfSize:12]
+#define CKFontSmallest [UIFont systemFontOfSize:10]
+#define CKTextFullScreenFont [UIFont systemFontOfSize:27]
+
 #ifndef RGBCOLOR
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
