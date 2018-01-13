@@ -30,7 +30,7 @@
 #endif
 
 #ifndef CK_HEIGHT
-#define CK_HEIGHT(H) SCREEN_HEIGHT/IPHONE_6_6S_7_SCREEN_HEIGHT*h
+#define CK_HEIGHT(h) SCREEN_HEIGHT/IPHONE_6_6S_7_SCREEN_HEIGHT*h
 #endif
 
 #define Font(x) [UIFont systemFontOfSize:x]
