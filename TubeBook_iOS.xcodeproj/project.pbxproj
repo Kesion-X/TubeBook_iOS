@@ -1,0 +1,666 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C136505200A2C4200674726 /* CKMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C136504200A2C4200674726 /* CKMacros.m */; };
+		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
+		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
+		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
+		3CA3BF80200923C500793F3D /* TubeBook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF7F200923C500793F3D /* TubeBook_iOSTests.m */; };
+		3CA3BF8B200923C500793F3D /* TubeBook_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF8A200923C500793F3D /* TubeBook_iOSUITests.m */; };
+		EDE84E122D529A6CB978A674 /* libPods-TubeBook_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3CA3BF7C200923C500793F3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CA3BF5B200923C400793F3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CA3BF62200923C400793F3D;
+			remoteInfo = TubeBook_iOS;
+		};
+		3CA3BF87200923C500793F3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CA3BF5B200923C400793F3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CA3BF62200923C400793F3D;
+			remoteInfo = TubeBook_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1EA01C83617FF5AE12BB0DE8 /* Pods-TubeBook_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeBook_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TubeBook_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C136503200A2C4200674726 /* CKMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMacros.h; sourceTree = "<group>"; };
+		3C136504200A2C4200674726 /* CKMacros.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMacros.m; sourceTree = "<group>"; };
+		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3CA3BF6F200923C400793F3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3CA3BF74200923C500793F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CA3BF75200923C500793F3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3CA3BF7B200923C500793F3D /* TubeBook_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TubeBook_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CA3BF7F200923C500793F3D /* TubeBook_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeBook_iOSTests.m; sourceTree = "<group>"; };
+		3CA3BF81200923C500793F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CA3BF86200923C500793F3D /* TubeBook_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TubeBook_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CA3BF8A200923C500793F3D /* TubeBook_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeBook_iOSUITests.m; sourceTree = "<group>"; };
+		3CA3BF8C200923C500793F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeBook_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CA3BF60200923C400793F3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE84E122D529A6CB978A674 /* libPods-TubeBook_iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CA3BF78200923C500793F3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CA3BF83200923C500793F3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CA3BF5A200923C400793F3D = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF65200923C400793F3D /* TubeBook_iOS */,
+				3CA3BF7E200923C500793F3D /* TubeBook_iOSTests */,
+				3CA3BF89200923C500793F3D /* TubeBook_iOSUITests */,
+				3CA3BF64200923C400793F3D /* Products */,
+				ABA9B973E6F5F5AE91CC7331 /* Pods */,
+				8D18D2C767E3A1DF7BF531C7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3CA3BF64200923C400793F3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF63200923C400793F3D /* TubeBook_iOS.app */,
+				3CA3BF7B200923C500793F3D /* TubeBook_iOSTests.xctest */,
+				3CA3BF86200923C500793F3D /* TubeBook_iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CA3BF65200923C400793F3D /* TubeBook_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF66200923C400793F3D /* AppDelegate.h */,
+				3CA3BF67200923C400793F3D /* AppDelegate.m */,
+				3CA3BF98200924A600793F3D /* Classes */,
+				3CA3BF6F200923C400793F3D /* Assets.xcassets */,
+				3CA3BF99200924EC00793F3D /* Supporting Files */,
+			);
+			path = TubeBook_iOS;
+			sourceTree = "<group>";
+		};
+		3CA3BF7E200923C500793F3D /* TubeBook_iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF7F200923C500793F3D /* TubeBook_iOSTests.m */,
+				3CA3BF81200923C500793F3D /* Info.plist */,
+			);
+			path = TubeBook_iOSTests;
+			sourceTree = "<group>";
+		};
+		3CA3BF89200923C500793F3D /* TubeBook_iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF8A200923C500793F3D /* TubeBook_iOSUITests.m */,
+				3CA3BF8C200923C500793F3D /* Info.plist */,
+			);
+			path = TubeBook_iOSUITests;
+			sourceTree = "<group>";
+		};
+		3CA3BF98200924A600793F3D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF9E2009283B00793F3D /* Core */,
+				3CA3BF9D2009259800793F3D /* Register */,
+				3CA3BF9C2009259000793F3D /* Login */,
+				3CA3BF9B2009257A00793F3D /* Utilities */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3CA3BF99200924EC00793F3D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3CA3BF9A2009251600793F3D /* Image */,
+				3CA3BF75200923C500793F3D /* main.m */,
+				3CA3BF74200923C500793F3D /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3CA3BF9A2009251600793F3D /* Image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		3CA3BF9B2009257A00793F3D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3C136503200A2C4200674726 /* CKMacros.h */,
+				3C136504200A2C4200674726 /* CKMacros.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3CA3BF9C2009259000793F3D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3CA3BF9D2009259800793F3D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		3CA3BF9E2009283B00793F3D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8D18D2C767E3A1DF7BF531C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABA9B973E6F5F5AE91CC7331 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */,
+				1EA01C83617FF5AE12BB0DE8 /* Pods-TubeBook_iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CA3BF62200923C400793F3D /* TubeBook_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CA3BF8F200923C500793F3D /* Build configuration list for PBXNativeTarget "TubeBook_iOS" */;
+			buildPhases = (
+				ECDD0F50CA20ED7C6701EC6D /* [CP] Check Pods Manifest.lock */,
+				3CA3BF5F200923C400793F3D /* Sources */,
+				3CA3BF60200923C400793F3D /* Frameworks */,
+				3CA3BF61200923C400793F3D /* Resources */,
+				EDC3C6C947C4FE9BC431A837 /* [CP] Embed Pods Frameworks */,
+				095D1349EFBABB199D120E03 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TubeBook_iOS;
+			productName = TubeBook_iOS;
+			productReference = 3CA3BF63200923C400793F3D /* TubeBook_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3CA3BF7A200923C500793F3D /* TubeBook_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CA3BF92200923C500793F3D /* Build configuration list for PBXNativeTarget "TubeBook_iOSTests" */;
+			buildPhases = (
+				3CA3BF77200923C500793F3D /* Sources */,
+				3CA3BF78200923C500793F3D /* Frameworks */,
+				3CA3BF79200923C500793F3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CA3BF7D200923C500793F3D /* PBXTargetDependency */,
+			);
+			name = TubeBook_iOSTests;
+			productName = TubeBook_iOSTests;
+			productReference = 3CA3BF7B200923C500793F3D /* TubeBook_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CA3BF85200923C500793F3D /* TubeBook_iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CA3BF95200923C500793F3D /* Build configuration list for PBXNativeTarget "TubeBook_iOSUITests" */;
+			buildPhases = (
+				3CA3BF82200923C500793F3D /* Sources */,
+				3CA3BF83200923C500793F3D /* Frameworks */,
+				3CA3BF84200923C500793F3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CA3BF88200923C500793F3D /* PBXTargetDependency */,
+			);
+			name = TubeBook_iOSUITests;
+			productName = TubeBook_iOSUITests;
+			productReference = 3CA3BF86200923C500793F3D /* TubeBook_iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CA3BF5B200923C400793F3D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "柯建芳";
+				TargetAttributes = {
+					3CA3BF62200923C400793F3D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					3CA3BF7A200923C500793F3D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3CA3BF62200923C400793F3D;
+					};
+					3CA3BF85200923C500793F3D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3CA3BF62200923C400793F3D;
+					};
+				};
+			};
+			buildConfigurationList = 3CA3BF5E200923C400793F3D /* Build configuration list for PBXProject "TubeBook_iOS" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3CA3BF5A200923C400793F3D;
+			productRefGroup = 3CA3BF64200923C400793F3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CA3BF62200923C400793F3D /* TubeBook_iOS */,
+				3CA3BF7A200923C500793F3D /* TubeBook_iOSTests */,
+				3CA3BF85200923C500793F3D /* TubeBook_iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CA3BF61200923C400793F3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CA3BF79200923C500793F3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CA3BF84200923C500793F3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		095D1349EFBABB199D120E03 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECDD0F50CA20ED7C6701EC6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TubeBook_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDC3C6C947C4FE9BC431A837 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CA3BF5F200923C400793F3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
+				3CA3BF76200923C500793F3D /* main.m in Sources */,
+				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CA3BF77200923C500793F3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CA3BF80200923C500793F3D /* TubeBook_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CA3BF82200923C500793F3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CA3BF8B200923C500793F3D /* TubeBook_iOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3CA3BF7D200923C500793F3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CA3BF62200923C400793F3D /* TubeBook_iOS */;
+			targetProxy = 3CA3BF7C200923C500793F3D /* PBXContainerItemProxy */;
+		};
+		3CA3BF88200923C500793F3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CA3BF62200923C400793F3D /* TubeBook_iOS */;
+			targetProxy = 3CA3BF87200923C500793F3D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3CA3BF8D200923C500793F3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3CA3BF8E200923C500793F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CA3BF90200923C500793F3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3G6Y674Y5K;
+				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3CA3BF91200923C500793F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EA01C83617FF5AE12BB0DE8 /* Pods-TubeBook_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3G6Y674Y5K;
+				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3CA3BF93200923C500793F3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3G6Y674Y5K;
+				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TubeBook_iOS.app/TubeBook_iOS";
+			};
+			name = Debug;
+		};
+		3CA3BF94200923C500793F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3G6Y674Y5K;
+				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TubeBook_iOS.app/TubeBook_iOS";
+			};
+			name = Release;
+		};
+		3CA3BF96200923C500793F3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3G6Y674Y5K;
+				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TubeBook_iOS;
+			};
+			name = Debug;
+		};
+		3CA3BF97200923C500793F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3G6Y674Y5K;
+				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TubeBook_iOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CA3BF5E200923C400793F3D /* Build configuration list for PBXProject "TubeBook_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CA3BF8D200923C500793F3D /* Debug */,
+				3CA3BF8E200923C500793F3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CA3BF8F200923C500793F3D /* Build configuration list for PBXNativeTarget "TubeBook_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CA3BF90200923C500793F3D /* Debug */,
+				3CA3BF91200923C500793F3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CA3BF92200923C500793F3D /* Build configuration list for PBXNativeTarget "TubeBook_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CA3BF93200923C500793F3D /* Debug */,
+				3CA3BF94200923C500793F3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CA3BF95200923C500793F3D /* Build configuration list for PBXNativeTarget "TubeBook_iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CA3BF96200923C500793F3D /* Debug */,
+				3CA3BF97200923C500793F3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3CA3BF5B200923C400793F3D /* Project object */;
+}
