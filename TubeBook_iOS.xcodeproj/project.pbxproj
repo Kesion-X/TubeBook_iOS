@@ -18,6 +18,9 @@
 		3C136527200A867200674726 /* icon_lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C136525200A867200674726 /* icon_lock@3x.png */; };
 		3C136528200A867200674726 /* icon_lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C136526200A867200674726 /* icon_lock@2x.png */; };
 		3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C136529200A86C400674726 /* LoginUIViewController.m */; };
+		3C195E0E200B3E92000A938C /* icon_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195E0C200B3E92000A938C /* icon_user@2x.png */; };
+		3C195E0F200B3E92000A938C /* icon_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195E0D200B3E92000A938C /* icon_user@3x.png */; };
+		3C195E12200B3FDE000A938C /* UITubeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E11200B3FDE000A938C /* UITubeButton.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -60,6 +63,10 @@
 		3C136525200A867200674726 /* icon_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_lock@3x.png"; sourceTree = "<group>"; };
 		3C136526200A867200674726 /* icon_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_lock@2x.png"; sourceTree = "<group>"; };
 		3C136529200A86C400674726 /* LoginUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUIViewController.m; sourceTree = "<group>"; };
+		3C195E0C200B3E92000A938C /* icon_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_user@2x.png"; sourceTree = "<group>"; };
+		3C195E0D200B3E92000A938C /* icon_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_user@3x.png"; sourceTree = "<group>"; };
+		3C195E10200B3FDE000A938C /* UITubeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITubeButton.h; sourceTree = "<group>"; };
+		3C195E11200B3FDE000A938C /* UITubeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITubeButton.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +113,8 @@
 			children = (
 				3C13650A200A4D9E00674726 /* UIImageFieldView.h */,
 				3C13650B200A4D9E00674726 /* UIImageFieldView.m */,
+				3C195E10200B3FDE000A938C /* UITubeButton.h */,
+				3C195E11200B3FDE000A938C /* UITubeButton.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -195,6 +204,8 @@
 				3C13651F200A605A00674726 /* icon_open_see@3x.png */,
 				3C136519200A5F6C00674726 /* icon_delect@2x.png */,
 				3C13651A200A5F6C00674726 /* icon_delect@3x.png */,
+				3C195E0C200B3E92000A938C /* icon_user@2x.png */,
+				3C195E0D200B3E92000A938C /* icon_user@3x.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -359,7 +370,9 @@
 			files = (
 				3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */,
 				3C136524200A605A00674726 /* icon_close_see@2x.png in Resources */,
+				3C195E0E200B3E92000A938C /* icon_user@2x.png in Resources */,
 				3C13651B200A5F6C00674726 /* icon_delect@2x.png in Resources */,
+				3C195E0F200B3E92000A938C /* icon_user@3x.png in Resources */,
 				3C136521200A605A00674726 /* icon_open_see@2x.png in Resources */,
 				3C136528200A867200674726 /* icon_lock@2x.png in Resources */,
 				3C136527200A867200674726 /* icon_lock@3x.png in Resources */,
@@ -446,6 +459,7 @@
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
 				3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */,
 				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,
+				3C195E12200B3FDE000A938C /* UITubeButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

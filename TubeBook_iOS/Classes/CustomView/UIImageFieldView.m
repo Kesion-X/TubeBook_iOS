@@ -72,7 +72,7 @@
 - (void)addConstraint
 {
     [self.rightImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(8);
+        make.left.equalTo(self).offset(8);
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(24);
         make.centerY.mas_equalTo(self);
