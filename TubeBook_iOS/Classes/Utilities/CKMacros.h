@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #ifndef SCREEN_WIDTH
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -34,6 +35,8 @@
 #endif
 
 #define Font(x) [UIFont systemFontOfSize:x]
+#define FontBold(x)  [UIFont fontWithName:@"Helvetica-Bold" size:x]
+#define FontOblique(x)  [UIFont fontWithName:@"Helvetica-Oblique" size:x]
 
 #define CKFontLarge [UIFont systemFontOfSize: 17]
 #define CKTextViewFont [UIFont systemFontOfSize: 16]
@@ -51,7 +54,18 @@
 #endif
 
 #define kTEXTCOLOR HEXCOLOR(0x47525E)
+#define kTEXT_ALPHA_COLOR HEXACOLOR(0x47525E,0.8)
+#define kTUBEBOOK_THEME_NORMAL_COLOR HEXCOLOR(0xe74c3c)
+#define kTUBEBOOK_THEME_ALPHA_COLOR HEXACOLOR(0xe74c3c,0.8)
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define IOS8 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")
+#define IOS7 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")
+#define IOS6 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")
+
 
 @interface CKMacros : NSObject
+
++ (UIImage *)createImageWithColor:(UIColor*)color;
 
 @end

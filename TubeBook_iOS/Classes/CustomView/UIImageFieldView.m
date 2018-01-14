@@ -1,17 +1,17 @@
 //
-//  UIImageFileldView.m
+//  UIImageFieldView.m
 //  TubeBook_iOS
 //
 //  Created by 柯建芳 on 2018/1/13.
 //  Copyright © 2018年 柯建芳. All rights reserved.
 //
 
-#import "UIImageFileldView.h"
+#import "UIImageFieldView.h"
 #import "CKMacros.h"
 #import "Masonry.h"
 #import "ReactiveObjC.h"
 
-@interface UIImageFileldView()
+@interface UIImageFieldView ()
 
 @property (nonatomic) BOOL isSecret;
 @property (nonatomic) BOOL isClose;
@@ -20,9 +20,9 @@
 
 @end
 
-@implementation UIImageFileldView
+@implementation UIImageFieldView
 
-- (instancetype)initUIImageFileldView:( NSString * _Nonnull )imagePath placeholder:(NSString *)placeholder isSecret:(BOOL)isSecret
+- (instancetype)initUIImageFieldView:( NSString * _Nonnull )imagePath placeholder:(NSString *)placeholder isSecret:(BOOL)isSecret
 {
     self = [super init];
     if (self) {
@@ -72,7 +72,7 @@
 - (void)addConstraint
 {
     [self.rightImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(8);
+        make.left.equalTo(self).offset(8);
         make.height.mas_equalTo(24);
         make.width.mas_equalTo(24);
         make.centerY.mas_equalTo(self);
@@ -117,7 +117,6 @@
     [[_field rac_textSignal] subscribeNext:^(NSString * _Nullable x) {
         @strongify(self);
         if (_fieldBlock) {
-            NSLog(@"block");
             _fieldBlock(x);
         }
         if (_delegate) {
