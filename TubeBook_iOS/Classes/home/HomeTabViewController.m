@@ -14,6 +14,15 @@
 
 @implementation HomeTabViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+       // self.tabBarItem = [UITabBarItem alloc] initWithTitle:@"主页" image:<#(nullable UIImage *)#> selectedImage:<#(nullable UIImage *)#>
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

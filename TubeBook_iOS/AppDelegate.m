@@ -8,6 +8,11 @@
 
 #import "AppDelegate.h"
 #import "LoginUIViewController.h"
+#import "HomeTabViewController.h"
+#import "DescoverTabViewController.h"
+#import "MessageTabViewController.h"
+#import "MyselfTabViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -18,17 +23,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    //[self.window.rootViewController presentViewController:pushNav animated:NO completion:nil];
     if (!self.window) {
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
-  //  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     LoginUIViewController *con =  [[LoginUIViewController alloc] init];
-     UINavigationController *pushNav = [[UINavigationController alloc] initWithRootViewController:con];
+    UINavigationController *pushNav = [[UINavigationController alloc] initWithRootViewController:con];
     [pushNav.navigationBar setHidden:YES];
     self.window.rootViewController = pushNav;
+    
+    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
