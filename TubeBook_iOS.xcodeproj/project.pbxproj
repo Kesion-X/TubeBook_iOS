@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C136505200A2C4200674726 /* CKMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C136504200A2C4200674726 /* CKMacros.m */; };
-		3C13650C200A4D9E00674726 /* UIImageFileldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C13650B200A4D9E00674726 /* UIImageFileldView.m */; };
+		3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C13650B200A4D9E00674726 /* UIImageFieldView.m */; };
 		3C13651B200A5F6C00674726 /* icon_delect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C136519200A5F6C00674726 /* icon_delect@2x.png */; };
 		3C13651C200A5F6C00674726 /* icon_delect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C13651A200A5F6C00674726 /* icon_delect@3x.png */; };
 		3C136521200A605A00674726 /* icon_open_see@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C13651D200A605A00674726 /* icon_open_see@2x.png */; };
@@ -49,8 +49,8 @@
 		3C136503200A2C4200674726 /* CKMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMacros.h; sourceTree = "<group>"; };
 		3C136504200A2C4200674726 /* CKMacros.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMacros.m; sourceTree = "<group>"; };
 		3C136506200A4B7B00674726 /* LoginUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginUIViewController.h; sourceTree = "<group>"; };
-		3C13650A200A4D9E00674726 /* UIImageFileldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageFileldView.h; sourceTree = "<group>"; };
-		3C13650B200A4D9E00674726 /* UIImageFileldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageFileldView.m; sourceTree = "<group>"; };
+		3C13650A200A4D9E00674726 /* UIImageFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageFieldView.h; sourceTree = "<group>"; };
+		3C13650B200A4D9E00674726 /* UIImageFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageFieldView.m; sourceTree = "<group>"; };
 		3C136519200A5F6C00674726 /* icon_delect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_delect@2x.png"; path = "../../../../../界面设计/login_icon/icon_delect@2x.png"; sourceTree = "<group>"; };
 		3C13651A200A5F6C00674726 /* icon_delect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_delect@3x.png"; path = "../../../../../界面设计/login_icon/icon_delect@3x.png"; sourceTree = "<group>"; };
 		3C13651D200A605A00674726 /* icon_open_see@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_open_see@2x.png"; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 		3C136509200A4C2700674726 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				3C13650A200A4D9E00674726 /* UIImageFileldView.h */,
-				3C13650B200A4D9E00674726 /* UIImageFileldView.m */,
+				3C13650A200A4D9E00674726 /* UIImageFieldView.h */,
+				3C13650B200A4D9E00674726 /* UIImageFieldView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C13650C200A4D9E00674726 /* UIImageFileldView.m in Sources */,
+				3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
 				3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */,

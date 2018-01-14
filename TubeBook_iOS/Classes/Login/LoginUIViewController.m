@@ -7,10 +7,12 @@
 //
 
 #import "LoginUIViewController.h"
-#import "UIImageFileldView.h"
+#import "UIImageFieldView.h"
 #import "Masonry.h"
 
 @interface LoginUIViewController ()
+
+@property (nonatomic, strong) UIImageFieldView *accountFileld;
 
 @end
 
@@ -20,7 +22,8 @@
     [super viewDidLoad];
    // UIImageFileldView *view = [[UIImageFileldView alloc] initWithFrame:CGRectMake(8, 22, [UIScreen mainScreen].bounds.size.width-16, 80) rightImage:@"icon_lock" isSecret:YES];
     self.view.backgroundColor = [UIColor yellowColor];
-    UIImageFileldView *view = [[UIImageFileldView alloc] initUIImageFileldView:@"icon_lock" placeholder:@"请输入密码" isSecret:NO];
+
+    UIImageFieldView *view = [[UIImageFieldView alloc] initUIImageFieldView:@"icon_lock" placeholder:@"请输入密码" isSecret:NO];
     [self.view addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(8);
