@@ -11,6 +11,8 @@
 #import "Masonry.h"
 #import "UITubeButton.h"
 #import "CKMacros.h"
+#import "ReactiveObjC.h"
+#import "RegisterViewController.h"
 
 @interface LoginUIViewController ()
 
@@ -136,7 +138,16 @@
 
 - (void)loadData
 {
-  //  NSLog(@"width %f",[self.titleLabel.text sizeWithFont:self.titleLabel.font].width);
+    [self.accountField setFieldBlock:^(NSString *text) {
+        
+    }];
+    [self.passField setFieldBlock:^(NSString *text) {
+        
+    }];
+    [[self.registerButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
+        [self.navigationController pushViewController:registerViewController animated:YES];
+    }];
 }
 
 #pragma -mark get

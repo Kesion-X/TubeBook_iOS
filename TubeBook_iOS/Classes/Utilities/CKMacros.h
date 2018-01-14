@@ -58,6 +58,12 @@
 #define kTUBEBOOK_THEME_NORMAL_COLOR HEXCOLOR(0xe74c3c)
 #define kTUBEBOOK_THEME_ALPHA_COLOR HEXACOLOR(0xe74c3c,0.8)
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define IOS8 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")
+#define IOS7 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")
+#define IOS6 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")
+
+
 @interface CKMacros : NSObject
 
 + (UIImage *)createImageWithColor:(UIColor*)color;
