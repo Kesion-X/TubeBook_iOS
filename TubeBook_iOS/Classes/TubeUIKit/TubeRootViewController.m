@@ -7,6 +7,8 @@
 //
 
 #import "TubeRootViewController.h"
+#import "CKMacros.h"
+#import "ReactiveObjC.h"
 
 @interface TubeRootViewController ()
 
@@ -14,24 +16,40 @@
 
 @implementation TubeRootViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)dealloc
+{
+    self.delegate = nil;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
+{
+    self = [super initWithRootViewController:rootViewController];
+    _rootViewController = rootViewController;
+    [self.navigationBar setBarTintColor:HEXCOLOR(0xf8f8f8)];
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                 NSFontAttributeName : [UIFont systemFontOfSize:18]
+                                                 }];
+    [self.navigationBar setTranslucent:NO];
+    @weakify(self);
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self);
+        [self.navigationBar setNeedsLayout];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.navigationBar layoutIfNeeded];
+        }];
+    }];
+    return self;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (!viewController.view.backgroundColor) { // 未设置背景色，则使用默认背景色#ffffff
+        viewController.view.backgroundColor = HEXCOLOR(0xffffff);
+    }
 }
-*/
+
+
 
 @end

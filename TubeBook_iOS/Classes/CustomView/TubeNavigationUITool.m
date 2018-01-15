@@ -34,10 +34,10 @@
     }
 #endif
     delta -= 4;
-    customButton.contentEdgeInsets = UIEdgeInsetsMake(0, delta, 0, -delta);
+    customButton.contentEdgeInsets = UIEdgeInsetsMake(0, delta/2, 0, -delta/2);
     [customButton setImage:iconImage forState:UIControlStateNormal];
     [customButton setImage:iconImage forState:UIControlStateHighlighted];
-    customButton.frame = CGRectMake(0.0f, 0.0f, 65, 44.0f);
+    customButton.frame = CGRectMake(0.0f, 0.0f, 65, 32.0f);
     [customButton setTitleColor:color forState:UIControlStateNormal];
     customButton.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
     customButton.titleLabel.font = Font(17);
@@ -49,7 +49,6 @@
     [customButton addTarget:target
                      action:action
            forControlEvents:UIControlEventTouchUpInside];
-    
     return [[UIBarButtonItem alloc] initWithCustomView:customButton];
 }
 

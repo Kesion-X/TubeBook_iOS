@@ -262,6 +262,13 @@
 			path = TubeUIKit;
 			sourceTree = "<group>";
 		};
+		3C195E5E200CBC62000A938C /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		3CA3BF5A200923C400793F3D = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +324,7 @@
 		3CA3BF98200924A600793F3D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3C195E5E200CBC62000A938C /* Category */,
 				3C195E57200BD0E1000A938C /* TubeUIKit */,
 				3C195E56200BCD5B000A938C /* Home */,
 				3C195E49200BC648000A938C /* Myself */,
@@ -792,6 +800,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3G6Y674Y5K;
 				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -808,6 +817,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3G6Y674Y5K;
 				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kesion.TubeBook-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
