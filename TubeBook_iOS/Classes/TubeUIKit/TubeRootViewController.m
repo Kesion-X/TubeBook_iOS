@@ -25,10 +25,11 @@
 {
     self = [super initWithRootViewController:rootViewController];
     _rootViewController = rootViewController;
-    [self.navigationBar setBarTintColor:HEXCOLOR(0xf8f8f8)];
+    [self.navigationBar setBarTintColor:HEXCOLOR(0xf8f9f9)];//默认导航背景颜色
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
                                                  NSFontAttributeName : [UIFont systemFontOfSize:18]
                                                  }];
+    [self.navigationBar setTintColor:HEXCOLOR(0xf8f9f9)];
     [self.navigationBar setTranslucent:NO];
     @weakify(self);
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification object:nil] subscribeNext:^(id x) {

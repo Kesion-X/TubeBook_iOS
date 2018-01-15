@@ -10,6 +10,6 @@
 
 @interface TubeRootViewController : UINavigationController <UINavigationControllerDelegate>
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
-
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController;
 
 @end
