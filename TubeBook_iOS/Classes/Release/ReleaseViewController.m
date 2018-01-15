@@ -1,44 +1,33 @@
 //
-//  HomeTabViewController.m
+//  ReleaseViewController.m
 //  TubeBook_iOS
 //
-//  Created by 柯建芳 on 2018/1/15.
+//  Created by 柯建芳 on 2018/1/16.
 //  Copyright © 2018年 柯建芳. All rights reserved.
 //
 
-#import "HomeTabViewController.h"
-#import "TubeNavigationUITool.h"
-#import "CKMacros.h"
+#import "ReleaseViewController.h"
 
-@interface HomeTabViewController ()
+@interface ReleaseViewController ()
 
 @end
 
-@implementation HomeTabViewController
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-       // self.tabBarItem = [UITabBarItem alloc] initWithTitle:@"主页" image:<#(nullable UIImage *)#> selectedImage:<#(nullable UIImage *)#>
-    }
-    return self;
-}
+@implementation ReleaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.navigationItem.titleView = [TubeNavigationUITool itemTitleWithLableTitle:@"主页" titleColoe:kTUBEBOOK_THEME_NORMAL_COLOR];
+    [self.view setBackgroundColor:[UIColor blueColor]];
     // Do any additional setup after loading the view.
     UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(32, 64, 80, 42)];
-    [bt setTitle:@"主页" forState:UIControlStateNormal];
+    [bt setTitle:@"back" forState:UIControlStateNormal];
     [bt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [bt addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bt];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (IBAction)click:(id)sender
 {
-    self.navigationItem.titleView = [TubeNavigationUITool itemTitleWithLableTitle:@"主页" titleColoe:kTUBEBOOK_THEME_NORMAL_COLOR];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
