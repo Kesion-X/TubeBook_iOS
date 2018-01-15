@@ -11,8 +11,12 @@
 #import "TubeBundleImageTool.h"
 #import "CKMacros.h"
 #import "UIView+TubeFrameMargin.h"
+#import "UIImage+ScaleToSize.h"
+#import "ReleaseViewController.h"
 
 @interface TubeMainTabBarController ()
+
+@property (nonatomic, strong) ReleaseViewController *releaseViewController;
 
 @end
 
@@ -24,6 +28,7 @@
     if (self) {
         self.viewControllers = [NSArray arrayWithObjects:self.homeTabViewController,
                                 self.descoverTabViewController,
+                                self.releaseTabViewController,
                                 self.messageTabViewController,
                                 self.myselfTabViewController,nil];
          self.delegate = self;
@@ -88,6 +93,13 @@
     [super setSelectedIndex:selectedIndex];
 }
 
+- (void)saveTabbarSetting:(NSString *)Appid showSign:(BOOL)bsign
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:(bsign ? Appid : nil) forKey:@"tabbarAppID"];
+    [userDefaults synchronize];
+}
+
 #pragma mark - get
 - (UIViewController *)homeTabViewController
 {
@@ -141,6 +153,26 @@
     return _myselfTabViewController;
 }
 
+- (UIViewController *)releaseTabViewController
+{
+    if (!_releaseTabViewController) {
+        _releaseTabViewController = [[MessageTabViewController alloc] init];
+        _releaseTabViewController.title = @"发布";
+        _releaseTabViewController.tabBarItem.title = @"";
+        _releaseTabViewController.tabBarItem.image = [[UIImage imageNamed:@"icon_add@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        _releaseTabViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(6 , 0, -6 , 0);
+    }
+    return _releaseTabViewController;
+}
+
+- (UIViewController *)releaseViewController
+{
+    if (!_releaseViewController) {
+        _releaseViewController = [[ReleaseViewController alloc] init];
+    }
+    return _releaseViewController;
+}
 #pragma mark - private
 - (void)configureViewController:(UIViewController *)viewController
                           title:(NSString *)title
@@ -153,9 +185,10 @@
     viewController.tabBarItem.selectedImage = [[TubeBundleImageTool imageFromMainBundleNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     CGFloat delta = TUBE_FOOTER_BAR_HEIGHT;
+    NSLog(@"delta %f",delta);
     viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -4 - delta);
     delta /= 2;
-    viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(3 - delta, 0, -3 + delta, 0);
+    viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-3 - delta, 0, 3 + delta, 0);
     
     [viewController.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        HEXCOLOR(0xbfbfbf),
@@ -174,12 +207,17 @@
 #pragma mark - UITabBarControllerDelegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+    
+    if (viewController==self.releaseTabViewController) {
+        [self presentViewController:self.releaseViewController animated:YES completion:nil];
+        return NO;
+    }
     return YES;
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    
+
 }
 
 @end
