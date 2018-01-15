@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TubeRootViewController : UINavigationController
+@interface TubeRootViewController : UINavigationController <UINavigationControllerDelegate>
+@property (nonatomic, strong, readonly) UIViewController *rootViewController;
+
 
 @end

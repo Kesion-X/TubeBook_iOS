@@ -123,7 +123,7 @@
 {
     [UIApplication sharedApplication].statusBarHidden = YES;
     [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController.navigationBar setBarTintColor:HEXCOLOR(0xffffff)];
+    [self.navigationController.navigationBar setBarTintColor:HEXCOLOR(0xf8f8f8)];
     [self.navigationController.navigationBar setTranslucent:NO];
     UINavigationBar *bar = self.navigationController.navigationBar;
     NSLog(@"%f",bar.bounds.size.height);
