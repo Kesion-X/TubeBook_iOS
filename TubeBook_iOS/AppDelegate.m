@@ -12,7 +12,8 @@
 #import "DescoverTabViewController.h"
 #import "MessageTabViewController.h"
 #import "MyselfTabViewController.h"
-
+#import "TubeMainTabBarController.h"
+#import "TubeRootViewController.h"
 
 @interface AppDelegate ()
 
@@ -29,8 +30,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     LoginUIViewController *con =  [[LoginUIViewController alloc] init];
     UINavigationController *pushNav = [[UINavigationController alloc] initWithRootViewController:con];
-    [pushNav.navigationBar setHidden:YES];
-    self.window.rootViewController = pushNav;
+    TubeRootViewController *rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+   // [pushNav.navigationBar setHidden:YES];
+    self.window.rootViewController = rootViewController;
     
     
     
