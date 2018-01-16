@@ -57,6 +57,9 @@
 		3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E78200D1DC8000A938C /* ReleaseTabViewController.m */; };
 		3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E7B200D2681000A938C /* UIImage+ScaleToSize.m */; };
 		3C195E7F200D2B28000A938C /* ReleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E7E200D2B28000A938C /* ReleaseViewController.m */; };
+		3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E81200DA45A000A938C /* UIIndicatorView.m */; };
+		3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E84200DACAF000A938C /* NSString+StringKit.m */; };
+		3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -153,6 +156,12 @@
 		3C195E7B200D2681000A938C /* UIImage+ScaleToSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ScaleToSize.m"; sourceTree = "<group>"; };
 		3C195E7D200D2B28000A938C /* ReleaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReleaseViewController.h; sourceTree = "<group>"; };
 		3C195E7E200D2B28000A938C /* ReleaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleaseViewController.m; sourceTree = "<group>"; };
+		3C195E80200DA45A000A938C /* UIIndicatorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIIndicatorView.h; sourceTree = "<group>"; };
+		3C195E81200DA45A000A938C /* UIIndicatorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIIndicatorView.m; sourceTree = "<group>"; };
+		3C195E83200DACAF000A938C /* NSString+StringKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+StringKit.h"; sourceTree = "<group>"; };
+		3C195E84200DACAF000A938C /* NSString+StringKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringKit.m"; sourceTree = "<group>"; };
+		3C195E89200E2196000A938C /* UINavigationBar+CustomHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomHeight.h"; sourceTree = "<group>"; };
+		3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomHeight.m"; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -205,6 +214,8 @@
 				3C195E17200B900C000A938C /* TubeNavigationUITool.m */,
 				3C195E1D200B9C1E000A938C /* UIRectangleView.h */,
 				3C195E1E200B9C1E000A938C /* UIRectangleView.m */,
+				3C195E80200DA45A000A938C /* UIIndicatorView.h */,
+				3C195E81200DA45A000A938C /* UIIndicatorView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -295,6 +306,10 @@
 				3C195E6F200D0BE4000A938C /* UIView+TubeFrameMargin.m */,
 				3C195E7A200D2681000A938C /* UIImage+ScaleToSize.h */,
 				3C195E7B200D2681000A938C /* UIImage+ScaleToSize.m */,
+				3C195E83200DACAF000A938C /* NSString+StringKit.h */,
+				3C195E84200DACAF000A938C /* NSString+StringKit.m */,
+				3C195E89200E2196000A938C /* UINavigationBar+CustomHeight.h */,
+				3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -693,10 +708,13 @@
 				3C195E4C200BC692000A938C /* MyselfTabViewController.m in Sources */,
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
+				3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */,
+				3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */,
 				3C195E15200B7F97000A938C /* RegisterViewController.m in Sources */,
 				3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */,
 				3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */,
 				3C195E18200B900C000A938C /* TubeNavigationUITool.m in Sources */,
+				3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */,
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,
 				3C195E6A200CF3C9000A938C /* TubeBundleImageTool.m in Sources */,
 				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,

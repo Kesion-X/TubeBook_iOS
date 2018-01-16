@@ -9,8 +9,13 @@
 #import "HomeTabViewController.h"
 #import "TubeNavigationUITool.h"
 #import "CKMacros.h"
+#import "UIIndicatorView.h"
+#import "Masonry.h"
+#import "UINavigationBar+CustomHeight.h"
 
 @interface HomeTabViewController ()
+
+@property (nonatomic, strong) UIIndicatorView *indicatorView;
 
 @end
 
@@ -29,31 +34,76 @@
     [super viewDidLoad];
      self.navigationItem.titleView = [TubeNavigationUITool itemTitleWithLableTitle:@"主页" titleColoe:kTUBEBOOK_THEME_NORMAL_COLOR];
     // Do any additional setup after loading the view.
-    UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(32, 64, 80, 42)];
+    UIButton *bt = [[UIButton alloc] init];
     [bt setTitle:@"主页" forState:UIControlStateNormal];
+    [bt setBackgroundColor:[UIColor blueColor]];
+    NSMutableDictionary *attrDict = [NSMutableDictionary dictionary];
+    attrDict[NSFontAttributeName] = bt.titleLabel.font;
+    //attrDict[NSFontAttributeName] = self.bt
+    bt.frame = CGRectMake(60, 72, [@"主页" sizeWithAttributes:attrDict].width+8*2, [@"主页" sizeWithAttributes:attrDict].height+4*2);
     [bt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [bt addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bt];
+    
+    
+    _indicatorView = [[UIIndicatorView alloc] initUIIndicatorView:[UIColor blackColor] font:Font(14)];
+    [self.view addSubview:_indicatorView];
+    [_indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(0);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.height.mas_equalTo([_indicatorView getUIHeight]);
+    }];
+   // [_indicatorView setBackgroundColor:[UIColor grayColor]];
+     [_indicatorView addIndicatorItemByString:@"konA"];
+     [_indicatorView addIndicatorItemByString:@"kesionWEWE"];
+     [_indicatorView addIndicatorItemByString:@"konEQWW"];
+     [_indicatorView addIndicatorItemByString:@"kesion"];
+    [_indicatorView addIndicatorItemByString:@"kesionWEWE"];
+    [_indicatorView addIndicatorItemByString:@"koEQEEQEQWW"];
+    [_indicatorView addIndicatorItemByString:@"kesion"];
+    [_indicatorView addIndicatorItemByString:@"konA"];
+    [_indicatorView addIndicatorItemByString:@"kesionWEWE"];
+}
+
+- (IBAction)click:(id)sender
+{
+    [_indicatorView addIndicatorItemByString:@"kesDWDWion"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.navigationItem.titleView = [TubeNavigationUITool itemTitleWithLableTitle:@"主页" titleColoe:kTUBEBOOK_THEME_NORMAL_COLOR];
+    if (self.navigationController.navigationBar.isHidden) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    
+    self.tabBarController.navigationItem.titleView = [TubeNavigationUITool itemTitleWithLableTitle:@"主页" titleColoe:kTUBEBOOK_THEME_NORMAL_COLOR];
+    NSLog(@"%@",self.navigationItem);
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
 }
-*/
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+
 
 @end
