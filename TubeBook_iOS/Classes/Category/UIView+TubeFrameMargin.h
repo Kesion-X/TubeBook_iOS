@@ -16,6 +16,8 @@
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, assign) CGSize size;
 @property (nonatomic, assign) CGPoint origin;
+@property (nonatomic) CGFloat left;
+@property (nonatomic) CGFloat centerY;
 @property (nonatomic, assign, readonly) CGFloat bottomFromSuperView;
 
 @end

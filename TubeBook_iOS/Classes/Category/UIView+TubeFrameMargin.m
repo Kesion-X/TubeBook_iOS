@@ -77,6 +77,18 @@
     self.frame = frame;
 }
 
+- (void)setLeft:(CGFloat)left
+{
+    CGRect frame = self.frame;
+    frame.origin.x = left;
+    self.frame = frame;
+}
+
+- (void)setCenterY:(CGFloat)centerY
+{
+    self.centerY = centerY;
+}
+
 - (CGPoint)origin
 {
     return self.frame.origin;

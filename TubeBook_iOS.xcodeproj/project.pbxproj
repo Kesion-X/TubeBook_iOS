@@ -60,6 +60,9 @@
 		3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E81200DA45A000A938C /* UIIndicatorView.m */; };
 		3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E84200DACAF000A938C /* NSString+StringKit.m */; };
 		3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */; };
+		3C195E8E200E4A5F000A938C /* CKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E8D200E4A5F000A938C /* CKTextView.m */; };
+		3C195E91200E4AF3000A938C /* ChatKitSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E90200E4AF3000A938C /* ChatKitSetting.m */; };
+		3C195E94200E4C7B000A938C /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E93200E4C7B000A938C /* UIView+Layout.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -162,6 +165,12 @@
 		3C195E84200DACAF000A938C /* NSString+StringKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringKit.m"; sourceTree = "<group>"; };
 		3C195E89200E2196000A938C /* UINavigationBar+CustomHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomHeight.h"; sourceTree = "<group>"; };
 		3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomHeight.m"; sourceTree = "<group>"; };
+		3C195E8C200E4A5F000A938C /* CKTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKTextView.h; sourceTree = "<group>"; };
+		3C195E8D200E4A5F000A938C /* CKTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKTextView.m; sourceTree = "<group>"; };
+		3C195E8F200E4AF3000A938C /* ChatKitSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatKitSetting.h; sourceTree = "<group>"; };
+		3C195E90200E4AF3000A938C /* ChatKitSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatKitSetting.m; sourceTree = "<group>"; };
+		3C195E92200E4C7B000A938C /* UIView+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		3C195E93200E4C7B000A938C /* UIView+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -216,6 +225,8 @@
 				3C195E1E200B9C1E000A938C /* UIRectangleView.m */,
 				3C195E80200DA45A000A938C /* UIIndicatorView.h */,
 				3C195E81200DA45A000A938C /* UIIndicatorView.m */,
+				3C195E8C200E4A5F000A938C /* CKTextView.h */,
+				3C195E8D200E4A5F000A938C /* CKTextView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -310,6 +321,8 @@
 				3C195E84200DACAF000A938C /* NSString+StringKit.m */,
 				3C195E89200E2196000A938C /* UINavigationBar+CustomHeight.h */,
 				3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */,
+				3C195E92200E4C7B000A938C /* UIView+Layout.h */,
+				3C195E93200E4C7B000A938C /* UIView+Layout.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -436,6 +449,8 @@
 			children = (
 				3C136503200A2C4200674726 /* CKMacros.h */,
 				3C136504200A2C4200674726 /* CKMacros.m */,
+				3C195E8F200E4AF3000A938C /* ChatKitSetting.h */,
+				3C195E90200E4AF3000A938C /* ChatKitSetting.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -712,15 +727,18 @@
 				3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */,
 				3C195E15200B7F97000A938C /* RegisterViewController.m in Sources */,
 				3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */,
+				3C195E8E200E4A5F000A938C /* CKTextView.m in Sources */,
 				3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */,
 				3C195E18200B900C000A938C /* TubeNavigationUITool.m in Sources */,
 				3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */,
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,
+				3C195E94200E4C7B000A938C /* UIView+Layout.m in Sources */,
 				3C195E6A200CF3C9000A938C /* TubeBundleImageTool.m in Sources */,
 				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,
 				3C195E12200B3FDE000A938C /* UITubeButton.m in Sources */,
 				3C195E52200BC6B2000A938C /* DescoverTabViewController.m in Sources */,
 				3C195E7F200D2B28000A938C /* ReleaseViewController.m in Sources */,
+				3C195E91200E4AF3000A938C /* ChatKitSetting.m in Sources */,
 				3C195E67200CF019000A938C /* TubeMainTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
