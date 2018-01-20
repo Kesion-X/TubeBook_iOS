@@ -11,12 +11,12 @@
 #import "UIIndicatorView.h"
 #include "UITubeSearchView.h"
 
-@interface UITubeNavigationView : UIView
+@interface UITubeHomeNavigationView : UIView
 
 @property(nonatomic ,strong) UIButton *addNewAttention;
 @property(nonatomic, strong) UIIndicatorView *indicatorView;
 @property(nonatomic, strong) UITubeSearchView *searchView;
 
-- (instancetype)initUITubeNavigationView;
+- (instancetype)initUITubeHomeNavigationView;
 
 @end
