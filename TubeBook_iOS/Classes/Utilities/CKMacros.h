@@ -57,7 +57,8 @@
 #define kTEXT_ALPHA_COLOR HEXACOLOR(0x47525E,0.8)
 #define kTUBEBOOK_THEME_NORMAL_COLOR HEXCOLOR(0xe74c3c)
 #define kTUBEBOOK_THEME_ALPHA_COLOR HEXACOLOR(0xe74c3c,0.8)
-#define kTAB_TEXT_COLOR HEXACOLOR(0xbfbfbf)
+#define kTAB_TEXT_COLOR HEXCOLOR(0xbfbfbf)
+#define kNAVIGATION_COLOR HEXCOLOR(0xf8f9f9)
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define IOS8 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")

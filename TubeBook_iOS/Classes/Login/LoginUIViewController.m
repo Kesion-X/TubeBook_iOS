@@ -38,6 +38,7 @@
     [self addSubViews];
     [self addConstraint];
     [self loadData];
+    
 }
 
 #pragma -mark private

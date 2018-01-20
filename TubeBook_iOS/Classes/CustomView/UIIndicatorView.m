@@ -10,6 +10,7 @@
 #import "NSString+StringKit.h"
 #import "NSString+StringKit.h"
 #import "CKMacros.h"
+#import "UIView+TubeFrameMargin.h"
 
 #define kINDICATOR_MARGIN_TB 8
 #define kINDICATOR_MARGIN_LR 8
@@ -41,33 +42,25 @@
 {
     self = [super init];
     if (self) {
+        self.showsHorizontalScrollIndicator = FALSE;
         self.indicatorColor = indicatorColor;
         self.leftPointDraw = kINDICATOR_MARGIN_LR;
         self.topPointDraw = kINDICATOR_MARGIN_TB;
         self.contentFont = font;
-        self.currentIndicator = -1;
         self.itemArrays = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (instancetype) initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        frame.size.height =  [NSString getSizeWithAttributes:@"K" font:self.contentFont].height+kITEM_MARGIN_TB*2+kINDICATOR_MARGIN_TB*2;
-        self.frame = frame;//设定高度为item控件高度+边距
+        self.height = [NSString getSizeWithAttributes:@"K" font:self.contentFont].height+kITEM_MARGIN_TB*2+kINDICATOR_MARGIN_TB*2;//设定高度为item控件高度+边距
         [self setBackgroundColor:[UIColor whiteColor]];
         [self initIndicator];
     }
     return self;
 }
 
+
 - (void)initIndicator
 {
     _indicatorView = [[UIView alloc] init];
-    [_indicatorView setBackgroundColor:kTUBEBOOK_THEME_NORMAL_COLOR];
-    _indicatorView.layer.cornerRadius = [NSString getSizeWithAttributes:@"K" font:self.contentFont].height;
+    [_indicatorView setBackgroundColor:self.indicatorColor];
+    _indicatorView.layer.cornerRadius = (8+[NSString getSizeWithAttributes:@"K" font:self.contentFont].height)/2;
     _indicatorView.layer.masksToBounds = YES;
     [self addSubview:self.indicatorView];
 }
@@ -76,6 +69,7 @@
 {
     UIButton *button = [[UIButton alloc] init];
     [button setTitle:item forState:UIControlStateNormal];
+    button.titleLabel.font = self.contentFont;
     [button setTitleColor:kTEXTCOLOR forState:UIControlStateNormal];
     button.frame = CGRectMake(self.leftPointDraw, self.topPointDraw, [NSString getSizeWithAttributes:item font:self.contentFont].width+kITEM_MARGIN_LR*2, [NSString getSizeWithAttributes:item font:self.contentFont].height+kITEM_MARGIN_TB*2);
     [super addSubview:button];
@@ -91,18 +85,26 @@
 - (IBAction)click:(id)sender
 {
     UIButton *bt =  sender;
-    self.indicatorView.frame = bt.frame;
-    self.currentIndicator = bt.tag;
-    [self updateItemTitleColor];
-    [self autoScrollerRight];
-    [self autoScrollerLeft];
+    if (self.currentIndicator != bt.tag) {
+        self.currentIndicator = bt.tag;
+        self.indicatorView.frame = bt.frame;
+        [self updateItemTitleColor];
+        [self autoScrollerRight];
+        [self autoScrollerLeft];
+    }
 }
+
+
 
 - (void)autoScrollerRight
 {
     UIView *currentBt = [_itemArrays objectAtIndex:self.currentIndicator];
     if (currentBt.frame.size.width > (self.frame.size.width + self.contentOffset.x - (currentBt.frame.origin.x + currentBt.frame.size.width))) {
-        if (self.currentIndicator!=_itemArrays.count-1) {
+        if (self.currentIndicator == _itemArrays.count-1) {
+            CGFloat offsetRight = (currentBt.frame.origin.x + currentBt.frame.size.width) - (self.frame.size.width + self.contentOffset.x);
+              [self setContentOffset:CGPointMake(self.contentOffset.x+offsetRight, 0) animated:YES];
+        }
+        if (self.currentIndicator != _itemArrays.count-1) {
             currentBt = [_itemArrays objectAtIndex:++self.currentIndicator];
             CGFloat offsetRight = currentBt.frame.origin.x+currentBt.frame.size.width - (self.contentOffset.x+self.frame.size.width);
             
@@ -115,7 +117,11 @@
 {
     UIView *currentBt = [_itemArrays objectAtIndex:self.currentIndicator];
     if (currentBt.frame.size.width > (currentBt.frame.origin.x - self.contentOffset.x)) {
-        if (self.currentIndicator!=0) {
+        if (self.currentIndicator == 0) {
+            CGFloat offsetLeft = self.contentOffset.x - currentBt.frame.origin.x;
+            [self setContentOffset:CGPointMake(self.contentOffset.x-offsetLeft, 0) animated:YES];
+        }
+        if (self.currentIndicator != 0) {
              currentBt = [_itemArrays objectAtIndex:--self.currentIndicator];
             CGFloat offsetLeft = self.contentOffset.x - currentBt.frame.origin.x;
             [self setContentOffset:CGPointMake(self.contentOffset.x-offsetLeft, 0) animated:YES];
@@ -136,12 +142,23 @@
 - (void)updateItemTitleColor
 {
     for (UIButton *bt in _itemArrays) {
-        if ([_itemArrays objectAtIndex:self.currentIndicator]==bt) {
+        if ([_itemArrays objectAtIndex:self.currentIndicator] == bt) {
             [bt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }else{
             [bt setTitleColor:kTEXTCOLOR forState:UIControlStateNormal];
         }
     }
+}
+
+- (void)setShowIndicatorItem:(NSUInteger)index
+{
+    self.currentIndicator = index;
+    UIButton *bt =  [self.itemArrays objectAtIndex:index];
+    self.indicatorView.frame = bt.frame;
+    self.currentIndicator = bt.tag;
+    [self updateItemTitleColor];
+    [self autoScrollerRight];
+    [self autoScrollerLeft];
 }
 
 @end

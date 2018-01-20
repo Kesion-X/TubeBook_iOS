@@ -13,5 +13,6 @@
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor font:(UIFont *)font;
 - (void)addIndicatorItemByString:(NSString *)item;
 - (CGFloat)getUIHeight;
+- (void)setShowIndicatorItem:(NSUInteger)index;
 
 @end

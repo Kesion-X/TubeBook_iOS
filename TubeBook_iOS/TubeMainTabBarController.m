@@ -143,7 +143,7 @@
 - (UIViewController *)myselfTabViewController
 {
     if (!_myselfTabViewController) {
-        _myselfTabViewController = [[MessageTabViewController alloc] init];
+        _myselfTabViewController = [[MyselfTabViewController alloc] init];
         _myselfTabViewController.title = @"我的";
         [self configureViewController:_myselfTabViewController
                                 title:@"我的"

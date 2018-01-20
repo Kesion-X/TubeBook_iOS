@@ -24,11 +24,11 @@
 - (instancetype)init
 {
     self = [super init];
+    
     if (self) {
+        
         self.font = [UIFont systemFontOfSize:17];
-        if (self.showPlaceholderText) {
-            [self addSubviewsAndConstraints];
-        }
+        [self addSubviewsAndConstraints];
         self.enablesReturnKeyAutomatically = YES;
     }
     return self;
@@ -37,12 +37,12 @@
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if (self.overrideNextResponder) {
+  
         if ([NSStringFromSelector(action) hasPrefix:@"ck_menuAction_"]) {
             return YES;
         }
         return NO;
     }
-    
     return [super canPerformAction:action withSender:sender];
 }
 
@@ -56,7 +56,7 @@
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
     NSString *selString = NSStringFromSelector(anInvocation.selector);
-    if ([self.overrideNextResponder respondsToSelector:@selector(resolve:)]) {
+    if ([self respondsToSelector:@selector(resolve:)]) {
         anInvocation.target = self.overrideNextResponder;
         NSInteger menuType = [[selString stringByReplacingOccurrencesOfString:@"ck_menuAction_" withString:@""] intValue];
         [anInvocation setArgument:&menuType atIndex:2];
@@ -100,13 +100,7 @@
 - (NSString *)stringFromAtrributedtext:(NSAttributedString *)attibuteText
 {
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithAttributedString:attibuteText];
-    [attributeString enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, attributeString.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
-        if (value && [value isKindOfClass:NSClassFromString(@"DXAtAttachment")]) {
-            NSString *name = [value valueForKey:@"name"];
-            NSString *fullString = [NSString stringWithFormat:@"@%@ ",name];
-            [attributeString replaceCharactersInRange:range withString:fullString];
-        }
-    }];
+
     return attributeString.string;
 }
 
