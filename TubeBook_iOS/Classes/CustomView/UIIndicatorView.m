@@ -115,7 +115,6 @@
             UIView *currentV =  [self.itemArrays objectAtIndex:self.currentIndicator];
             UIView *leftV = [self.itemArrays objectAtIndex:self.currentIndicator-1];
             CGFloat offsetX = leftV.frame.size.width * scale;
-            NSLog(@"leftx %f %f %f",offsetX,currentV.frame.size.width,currentIndicatorOfferX);
             CGFloat scaleWidth = (leftV.frame.size.width - currentV.frame.size.width) *scale;
             self.indicatorView.frame = CGRectMake(currentIndicatorOfferX - offsetX, self.indicatorView.frame.origin.y, currentIndicatorWidth + scaleWidth, self.indicatorView.frame.size.height);
         }
