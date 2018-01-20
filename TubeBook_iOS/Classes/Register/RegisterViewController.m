@@ -126,7 +126,6 @@
     [self.navigationController.navigationBar setBarTintColor:HEXCOLOR(0xf8f9f9)];
     [self.navigationController.navigationBar setTranslucent:NO];
     UINavigationBar *bar = self.navigationController.navigationBar;
-    NSLog(@"%f",bar.bounds.size.height);
     self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:kTEXTCOLOR target:self action:@selector(pop)];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = [TubeNavigationUITool itemTitleWithLableTitle:@"账号注册" titleColoe:kTUBEBOOK_THEME_NORMAL_COLOR];

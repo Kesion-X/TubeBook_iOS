@@ -143,7 +143,7 @@
 - (UIViewController *)myselfTabViewController
 {
     if (!_myselfTabViewController) {
-        _myselfTabViewController = [[MessageTabViewController alloc] init];
+        _myselfTabViewController = [[MyselfTabViewController alloc] init];
         _myselfTabViewController.title = @"我的";
         [self configureViewController:_myselfTabViewController
                                 title:@"我的"
@@ -185,7 +185,6 @@
     viewController.tabBarItem.selectedImage = [[TubeBundleImageTool imageFromMainBundleNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     CGFloat delta = TUBE_FOOTER_BAR_HEIGHT;
-    NSLog(@"delta %f",delta);
     viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -4 - delta);
     delta /= 2;
     viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(-3 - delta, 0, 3 + delta, 0);
