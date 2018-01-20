@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeTabViewController : UIPageViewController
+@interface HomeTabViewController : UIViewController
+
+@property (nonatomic, strong) NSMutableArray *arrayControllers;
+@property (nonatomic, strong) UIPageViewController *pageViewController;
 
 @end

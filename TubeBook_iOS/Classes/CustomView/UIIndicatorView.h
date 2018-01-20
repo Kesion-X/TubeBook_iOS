@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UIIndicatorViewDelegate <NSObject>
+
+@optional
+- (void) indicatorChange:(NSUInteger)index;
+
+@end
+
 @interface UIIndicatorView : UIScrollView
+
+@property (nonatomic, strong) id<UIIndicatorViewDelegate> delegate;
 
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor font:(UIFont *)font;
 - (void)addIndicatorItemByString:(NSString *)item;
 - (CGFloat)getUIHeight;
 - (void)setShowIndicatorItem:(NSUInteger)index;
-
+- (void)changeIndicatorViewSize:(BOOL)isRight scale:(CGFloat)scale;
 @end

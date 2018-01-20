@@ -67,9 +67,14 @@
 		3C195FAE201320D7000A938C /* UITubeSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FAD201320D7000A938C /* UITubeSearchView.m */; };
 		3C195FB5201323D5000A938C /* icon_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195FB3201323D5000A938C /* icon_search@2x.png */; };
 		3C195FB6201323D5000A938C /* icon_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195FB4201323D5000A938C /* icon_search@3x.png */; };
-		3C195FBA20133C03000A938C /* UITubeNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FB920133C03000A938C /* UITubeNavigationView.m */; };
+		3C195FBA20133C03000A938C /* UITubeHomeNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FB920133C03000A938C /* UITubeHomeNavigationView.m */; };
 		3C195FBD20134DFF000A938C /* icon_add_ attention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195FBB20134DFF000A938C /* icon_add_ attention@2x.png */; };
 		3C195FBE20134DFF000A938C /* icon_add_ attention@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195FBC20134DFF000A938C /* icon_add_ attention@3x.png */; };
+		3C195FC720137AFA000A938C /* NewestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FC620137AFA000A938C /* NewestViewController.m */; };
+		3C195FCA20137B0D000A938C /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FC920137B0D000A938C /* RecommendViewController.m */; };
+		3C195FCD20137B1A000A938C /* AuthorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FCC20137B1A000A938C /* AuthorViewController.m */; };
+		3C195FD020137B25000A938C /* SerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FCF20137B25000A938C /* SerialViewController.m */; };
+		3C195FD320137B31000A938C /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FD220137B31000A938C /* TopicViewController.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -184,10 +189,20 @@
 		3C195FAD201320D7000A938C /* UITubeSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITubeSearchView.m; sourceTree = "<group>"; };
 		3C195FB3201323D5000A938C /* icon_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search@2x.png"; sourceTree = "<group>"; };
 		3C195FB4201323D5000A938C /* icon_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search@3x.png"; sourceTree = "<group>"; };
-		3C195FB820133C03000A938C /* UITubeNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITubeNavigationView.h; sourceTree = "<group>"; };
-		3C195FB920133C03000A938C /* UITubeNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITubeNavigationView.m; sourceTree = "<group>"; };
+		3C195FB820133C03000A938C /* UITubeHomeNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITubeHomeNavigationView.h; sourceTree = "<group>"; };
+		3C195FB920133C03000A938C /* UITubeHomeNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITubeHomeNavigationView.m; sourceTree = "<group>"; };
 		3C195FBB20134DFF000A938C /* icon_add_ attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_ attention@2x.png"; sourceTree = "<group>"; };
 		3C195FBC20134DFF000A938C /* icon_add_ attention@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_ attention@3x.png"; sourceTree = "<group>"; };
+		3C195FC520137AFA000A938C /* NewestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewestViewController.h; sourceTree = "<group>"; };
+		3C195FC620137AFA000A938C /* NewestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewestViewController.m; sourceTree = "<group>"; };
+		3C195FC820137B0D000A938C /* RecommendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
+		3C195FC920137B0D000A938C /* RecommendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendViewController.m; sourceTree = "<group>"; };
+		3C195FCB20137B1A000A938C /* AuthorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthorViewController.h; sourceTree = "<group>"; };
+		3C195FCC20137B1A000A938C /* AuthorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthorViewController.m; sourceTree = "<group>"; };
+		3C195FCE20137B25000A938C /* SerialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialViewController.h; sourceTree = "<group>"; };
+		3C195FCF20137B25000A938C /* SerialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerialViewController.m; sourceTree = "<group>"; };
+		3C195FD120137B31000A938C /* TopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicViewController.h; sourceTree = "<group>"; };
+		3C195FD220137B31000A938C /* TopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -320,8 +335,8 @@
 			children = (
 				3C195E53200BC6C0000A938C /* HomeTabViewController.h */,
 				3C195E54200BC6C0000A938C /* HomeTabViewController.m */,
-				3C195FB820133C03000A938C /* UITubeNavigationView.h */,
-				3C195FB920133C03000A938C /* UITubeNavigationView.m */,
+				3C195FB820133C03000A938C /* UITubeHomeNavigationView.h */,
+				3C195FB920133C03000A938C /* UITubeHomeNavigationView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -363,6 +378,51 @@
 				3C195E7E200D2B28000A938C /* ReleaseViewController.m */,
 			);
 			path = Release;
+			sourceTree = "<group>";
+		};
+		3C195FBF20137121000A938C /* Newest */ = {
+			isa = PBXGroup;
+			children = (
+				3C195FC520137AFA000A938C /* NewestViewController.h */,
+				3C195FC620137AFA000A938C /* NewestViewController.m */,
+			);
+			path = Newest;
+			sourceTree = "<group>";
+		};
+		3C195FC020137161000A938C /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				3C195FC820137B0D000A938C /* RecommendViewController.h */,
+				3C195FC920137B0D000A938C /* RecommendViewController.m */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		3C195FC12013717B000A938C /* Author */ = {
+			isa = PBXGroup;
+			children = (
+				3C195FCB20137B1A000A938C /* AuthorViewController.h */,
+				3C195FCC20137B1A000A938C /* AuthorViewController.m */,
+			);
+			path = Author;
+			sourceTree = "<group>";
+		};
+		3C195FC3201371B4000A938C /* Serial */ = {
+			isa = PBXGroup;
+			children = (
+				3C195FCE20137B25000A938C /* SerialViewController.h */,
+				3C195FCF20137B25000A938C /* SerialViewController.m */,
+			);
+			path = Serial;
+			sourceTree = "<group>";
+		};
+		3C195FC4201371D1000A938C /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				3C195FD120137B31000A938C /* TopicViewController.h */,
+				3C195FD220137B31000A938C /* TopicViewController.m */,
+			);
+			path = Topic;
 			sourceTree = "<group>";
 		};
 		3CA3BF5A200923C400793F3D = {
@@ -422,17 +482,22 @@
 		3CA3BF98200924A600793F3D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3C195E75200D1D35000A938C /* Release */,
+				3C195FC4201371D1000A938C /* Topic */,
+				3C195FC3201371B4000A938C /* Serial */,
+				3C195FC12013717B000A938C /* Author */,
+				3C195FC020137161000A938C /* Recommend */,
+				3C195FBF20137121000A938C /* Newest */,
 				3C195E5E200CBC62000A938C /* Category */,
-				3C195E57200BD0E1000A938C /* TubeUIKit */,
+				3CA3BF9E2009283B00793F3D /* Core */,
+				3C136509200A4C2700674726 /* CustomView */,
+				3C195E47200BC617000A938C /* Descover */,
 				3C195E56200BCD5B000A938C /* Home */,
+				3CA3BF9C2009259000793F3D /* Login */,
 				3C195E49200BC648000A938C /* Myself */,
 				3C195E48200BC63D000A938C /* Message */,
-				3C195E47200BC617000A938C /* Descover */,
-				3C136509200A4C2700674726 /* CustomView */,
-				3CA3BF9E2009283B00793F3D /* Core */,
+				3C195E75200D1D35000A938C /* Release */,
 				3CA3BF9D2009259800793F3D /* Register */,
-				3CA3BF9C2009259000793F3D /* Login */,
+				3C195E57200BD0E1000A938C /* TubeUIKit */,
 				3CA3BF9B2009257A00793F3D /* Utilities */,
 			);
 			path = Classes;
@@ -745,20 +810,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C195FD320137B31000A938C /* TopicViewController.m in Sources */,
 				3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */,
 				3C195E70200D0BE4000A938C /* UIView+TubeFrameMargin.m in Sources */,
+				3C195FCA20137B0D000A938C /* RecommendViewController.m in Sources */,
+				3C195FCD20137B1A000A938C /* AuthorViewController.m in Sources */,
 				3C195E4F200BC6A2000A938C /* MessageTabViewController.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
-				3C195FBA20133C03000A938C /* UITubeNavigationView.m in Sources */,
+				3C195FBA20133C03000A938C /* UITubeHomeNavigationView.m in Sources */,
 				3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */,
 				3C195E4C200BC692000A938C /* MyselfTabViewController.m in Sources */,
+				3C195FD020137B25000A938C /* SerialViewController.m in Sources */,
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
 				3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */,
 				3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */,
 				3C195E15200B7F97000A938C /* RegisterViewController.m in Sources */,
 				3C195FAE201320D7000A938C /* UITubeSearchView.m in Sources */,
+				3C195FC720137AFA000A938C /* NewestViewController.m in Sources */,
 				3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */,
 				3C195E8E200E4A5F000A938C /* CKTextView.m in Sources */,
 				3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */,

@@ -1,15 +1,15 @@
 //
-//  UITubeNavigationView.m
+//  UITubeHomeNavigationView.m
 //  TubeBook_iOS
 //
 //  Created by 柯建芳 on 2018/1/20.
 //  Copyright © 2018年 柯建芳. All rights reserved.
 //
 
-#import "UITubeNavigationView.h"
+#import "UITubeHomeNavigationView.h"
 #import "Masonry.h"
 
-@implementation UITubeNavigationView
+@implementation UITubeHomeNavigationView
 
 - (instancetype)init
 {
@@ -21,7 +21,7 @@
     return self;
 }
 
-- (instancetype)initUITubeNavigationView
+- (instancetype)initUITubeHomeNavigationView
 {
     self = [super init];
     if (self) {
@@ -58,16 +58,16 @@
         make.right.equalTo(self).offset(-8);
         make.height.mas_equalTo([self.indicatorView getUIHeight]);
     }];
-    [_indicatorView addIndicatorItemByString:@"最新"];
+    [_indicatorView addIndicatorItemByString:@"Tube最新内容"];
     [_indicatorView addIndicatorItemByString:@"推荐"];
+    [_indicatorView addIndicatorItemByString:@"关注专题"];
+    [_indicatorView addIndicatorItemByString:@"关注连载"];
     [_indicatorView addIndicatorItemByString:@"关注作者"];
-    [_indicatorView addIndicatorItemByString:@"专题"];
-    [_indicatorView addIndicatorItemByString:@"连载"];
-    [_indicatorView addIndicatorItemByString:@"关注话题"];
+
     [self.indicatorView setShowIndicatorItem:0];
     
     UIView *bottomInterspace = [[UIView alloc] init];
-    [bottomInterspace setBackgroundColor:kTAB_TEXT_COLOR];
+    [bottomInterspace setBackgroundColor:HEXCOLOR(0xdddddd)];
     [self addSubview:bottomInterspace];
     [bottomInterspace mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self).offset(0.5);

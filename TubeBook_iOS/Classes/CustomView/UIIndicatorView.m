@@ -37,7 +37,10 @@
 @end
 
 @implementation UIIndicatorView
-
+{
+    CGFloat currentIndicatorOfferX;
+    CGFloat currentIndicatorWidth;
+}
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor font:(UIFont *)font;
 {
     self = [super init];
@@ -87,14 +90,37 @@
     UIButton *bt =  sender;
     if (self.currentIndicator != bt.tag) {
         self.currentIndicator = bt.tag;
-        self.indicatorView.frame = bt.frame;
+        self.indicatorView.frame = CGRectMake(bt.frame.origin.x, bt.frame.origin.y, bt.frame.size.width, bt.frame.size.height);
         [self updateItemTitleColor];
         [self autoScrollerRight];
         [self autoScrollerLeft];
+        if (self.delegate) {
+            [self.delegate indicatorChange:bt.tag];
+        }
     }
 }
 
-
+- (void)changeIndicatorViewSize:(BOOL)isRight scale:(CGFloat)scale;
+{
+    if (isRight) {
+        if (self.currentIndicator!=self.itemArrays.count-1) {
+            UIView *currentV =  [self.itemArrays objectAtIndex:self.currentIndicator];
+            UIView *rightV = [self.itemArrays objectAtIndex:self.currentIndicator+1];
+            CGFloat offsetX = currentV.frame.size.width * scale;
+            CGFloat scaleWidth = (rightV.frame.size.width - currentV.frame.size.width) *scale;
+            self.indicatorView.frame = CGRectMake(currentIndicatorOfferX + offsetX, self.indicatorView.frame.origin.y, currentIndicatorWidth + scaleWidth, self.indicatorView.frame.size.height);
+        }
+    }else{
+        if (self.currentIndicator!=0) {
+            UIView *currentV =  [self.itemArrays objectAtIndex:self.currentIndicator];
+            UIView *leftV = [self.itemArrays objectAtIndex:self.currentIndicator-1];
+            CGFloat offsetX = leftV.frame.size.width * scale;
+            NSLog(@"leftx %f %f %f",offsetX,currentV.frame.size.width,currentIndicatorOfferX);
+            CGFloat scaleWidth = (leftV.frame.size.width - currentV.frame.size.width) *scale;
+            self.indicatorView.frame = CGRectMake(currentIndicatorOfferX - offsetX, self.indicatorView.frame.origin.y, currentIndicatorWidth + scaleWidth, self.indicatorView.frame.size.height);
+        }
+    }
+}
 
 - (void)autoScrollerRight
 {
@@ -105,7 +131,7 @@
               [self setContentOffset:CGPointMake(self.contentOffset.x+offsetRight, 0) animated:YES];
         }
         if (self.currentIndicator != _itemArrays.count-1) {
-            currentBt = [_itemArrays objectAtIndex:++self.currentIndicator];
+            currentBt = [_itemArrays objectAtIndex:self.currentIndicator+1];
             CGFloat offsetRight = currentBt.frame.origin.x+currentBt.frame.size.width - (self.contentOffset.x+self.frame.size.width);
             
             [self setContentOffset:CGPointMake(self.contentOffset.x+offsetRight, 0) animated:YES];
@@ -122,7 +148,7 @@
             [self setContentOffset:CGPointMake(self.contentOffset.x-offsetLeft, 0) animated:YES];
         }
         if (self.currentIndicator != 0) {
-             currentBt = [_itemArrays objectAtIndex:--self.currentIndicator];
+             currentBt = [_itemArrays objectAtIndex:self.currentIndicator-1];
             CGFloat offsetLeft = self.contentOffset.x - currentBt.frame.origin.x;
             [self setContentOffset:CGPointMake(self.contentOffset.x-offsetLeft, 0) animated:YES];
         }
@@ -143,7 +169,7 @@
 {
     for (UIButton *bt in _itemArrays) {
         if ([_itemArrays objectAtIndex:self.currentIndicator] == bt) {
-            [bt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [bt setTitleColor:HEXCOLOR(0xdddddd) forState:UIControlStateNormal];
         }else{
             [bt setTitleColor:kTEXTCOLOR forState:UIControlStateNormal];
         }
@@ -154,11 +180,18 @@
 {
     self.currentIndicator = index;
     UIButton *bt =  [self.itemArrays objectAtIndex:index];
-    self.indicatorView.frame = bt.frame;
+    self.indicatorView.frame = CGRectMake(bt.frame.origin.x, bt.frame.origin.y, bt.frame.size.width, bt.frame.size.height);
     self.currentIndicator = bt.tag;
     [self updateItemTitleColor];
     [self autoScrollerRight];
     [self autoScrollerLeft];
+}
+
+- (void)setCurrentIndicator:(NSUInteger)currentIndicator{
+    _currentIndicator = currentIndicator;
+    UIView *v = [self.itemArrays objectAtIndex:self.currentIndicator];
+    currentIndicatorOfferX = v.frame.origin.x;
+    currentIndicatorWidth = v.frame.size.width;
 }
 
 @end
