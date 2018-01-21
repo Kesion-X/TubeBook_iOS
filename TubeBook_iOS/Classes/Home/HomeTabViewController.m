@@ -93,6 +93,7 @@
     self.scrollerView = [self findScrollView];
     self.scrollerView.delegate = self;
     self.scrollerView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+
 }
 
 - (void)configNavigation
@@ -150,8 +151,18 @@
         preOffsetX = x;
         //向右偏移
         if (offsetDistance>0) {
+            if (self.tubeNavigationView.indicatorView.currentIndicator==self.tubeNavigationView.indicatorView.itemArrays.count-1) {
+                self.scrollerView.bounces = NO;
+            }else{
+                self.scrollerView.bounces = YES;
+            }
             [self.tubeNavigationView.indicatorView changeIndicatorViewSize:YES scale:(offsetDistance)/SCREEN_WIDTH];
         } else {//向左偏移
+            if (self.tubeNavigationView.indicatorView.currentIndicator==0) {
+                self.scrollerView.bounces = NO;
+            }else{
+                self.scrollerView.bounces = YES;
+            }
             [self.tubeNavigationView.indicatorView changeIndicatorViewSize:NO scale:(-offsetDistance)/SCREEN_WIDTH];
         }
     }
