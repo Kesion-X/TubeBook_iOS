@@ -24,15 +24,13 @@
 
 @property (nonatomic) CGFloat leftPointDraw;
 @property (nonatomic) CGFloat topPointDraw;
-@property (nonatomic, strong) UIView *indicatorView;
-@property (nonatomic, strong) UIColor *indicatorColor;//滑块背景
+
 @property (nonatomic) CGFloat indicatorWidth;//滑块宽度，滑动时indicator 宽度可能发生改变
 @property (nonatomic) CGFloat indicatorHeight;//滑块高度
-@property (nonatomic) NSUInteger currentIndicator;//当前滑块位置
 
 @property (nonatomic) NSUInteger contentHeight;//内容高度 item_height+tb_margin*2
 @property (nonatomic) UIFont *contentFont;//内容字体
-@property (nonatomic,strong) NSMutableArray *itemArrays;
+
 
 @end
 

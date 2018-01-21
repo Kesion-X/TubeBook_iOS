@@ -17,6 +17,11 @@
 
 @interface UIIndicatorView : UIScrollView
 
+@property (nonatomic, strong) UIView *indicatorView;
+@property (nonatomic, strong) UIColor *indicatorColor;//滑块背景
+@property (nonatomic) NSUInteger currentIndicator;//当前滑块位置
+@property (nonatomic,strong) NSMutableArray *itemArrays;
+
 @property (nonatomic, strong) id<UIIndicatorViewDelegate> delegate;
 
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor font:(UIFont *)font;

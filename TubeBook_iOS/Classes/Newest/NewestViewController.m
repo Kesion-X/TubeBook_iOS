@@ -7,8 +7,12 @@
 //
 
 #import "NewestViewController.h"
+#import "UIRefreshTableView.h"
+#import "Masonry.h"
 
 @interface NewestViewController ()
+
+@property(nonatomic, strong)UIRefreshTableView *refreshTableView;
 
 @end
 
@@ -16,12 +20,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor blueColor]];
-    NSLog(@"new load");
+    [self addViewAndConstraint];
+}
+
+- (void)addViewAndConstraint
+{
+    [self.view addSubview:self.refreshTableView];
+    [self.refreshTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.right.equalTo(self.view);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     NSLog(@"new appear");
 }
+
+#pragma mark - get
+
+- (UIRefreshTableView *)refreshTableView
+{
+    if (!_refreshTableView) {
+        _refreshTableView = [[UIRefreshTableView alloc] init];
+    }
+    return _refreshTableView;
+}
+
 
 @end
