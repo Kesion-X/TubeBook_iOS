@@ -60,6 +60,8 @@
 #define kTAB_TEXT_COLOR HEXCOLOR(0xbfbfbf)
 #define kNAVIGATION_COLOR HEXCOLOR(0xf8f9f9)
 
+#define kCELL_MARGIN 16
+
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define IOS8 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")
 #define IOS7 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")

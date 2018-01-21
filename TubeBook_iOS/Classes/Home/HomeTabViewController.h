@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSMutableArray *arrayControllers;
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 
+- (CGFloat)getUIHeight;
+
 @end
