@@ -70,7 +70,7 @@
     [bottomInterspace setBackgroundColor:HEXCOLOR(0xdddddd)];
     [self addSubview:bottomInterspace];
     [bottomInterspace mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).offset(0.5);
+        make.bottom.equalTo(self).offset(-0.5);
         make.left.equalTo(self);
         make.right.equalTo(self);
         make.height.mas_equalTo(0.5);
