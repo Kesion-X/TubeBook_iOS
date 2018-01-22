@@ -19,7 +19,9 @@
 @property(nonatomic, strong) UILabel *titleLable;
 @property(nonatomic, strong) UILabel *descriptionLable;
 
+- (instancetype)initUIHomeCellItemContentView:(BOOL)isHaveImage;
 - (instancetype)initUIHomeCellItemContentView:(NSString *)contentUrl title:(NSString *)title contentDescription:(NSString *)contentDescription isHaveImage:(BOOL)isHaveImage;
 - (CGFloat)getUIHeight;
++ (CGFloat)getUIHeight:(BOOL)isHaveImage;
 
 @end

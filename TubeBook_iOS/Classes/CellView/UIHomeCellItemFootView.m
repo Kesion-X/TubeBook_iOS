@@ -9,8 +9,19 @@
 #import "UIHomeCellItemFootView.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#define ICOM_SIZE 18
 
 @implementation UIHomeCellItemFootView
+
+- (instancetype)initUIHomeCellItemFootView:(UserState)userState
+{
+    self = [super init];
+    if (self) {
+        self.userState = userState;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
 
 - (instancetype)initUIHomeCellItemFootView:(NSString *)pulibshUserName commentCount:(NSUInteger)commentCount likeCount:(NSUInteger)likeCount
 {
@@ -26,7 +37,7 @@
 
 - (void)addViewAndConstraint
 {
-    if (self.pulibshUserName) {
+    if (self.userState == UserLikeArticle) {
         [self addSubview:self.pulibshUserNameLable];
         [self addSubview:self.commentCountLable];
         [self addSubview:self.likeCountLable];
@@ -102,9 +113,8 @@
         }];
         [shareI mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(shareL.mas_left).offset(-4);
-            make.top.equalTo(self);
-            make.width.mas_equalTo(24);
-            make.height.mas_equalTo(24);
+            make.width.mas_equalTo(ICOM_SIZE);
+            make.height.mas_equalTo(ICOM_SIZE);
             make.centerY.equalTo(self);
         }];
         [self.likeCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -114,9 +124,8 @@
         }];
         [likeI mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.likeCountLable.mas_left).offset(-4);
-            make.top.equalTo(self);
-            make.width.mas_equalTo(24);
-            make.height.mas_equalTo(24);
+            make.width.mas_equalTo(ICOM_SIZE);
+            make.height.mas_equalTo(ICOM_SIZE);
             make.centerY.equalTo(self);
         }];
         [self.commentCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,17 +135,21 @@
         }];
         [commentI mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.commentCountLable.mas_left).offset(-4);
-            make.top.equalTo(self);
-            make.width.mas_equalTo(24);
-            make.height.mas_equalTo(24);
+            make.width.mas_equalTo(ICOM_SIZE);
+            make.height.mas_equalTo(ICOM_SIZE);
             make.centerY.equalTo(self);
         }];
     }
 }
 
-- (NSUInteger)getUIHeight
+- (CGFloat)getUIHeight;
 {
-    return 24;
+    return 26;
+}
+
++ (CGFloat)getUIHeight:(UserState)userState
+{
+    return 26;
 }
 
 #pragma mark - get
@@ -146,6 +159,7 @@
         _pulibshUserNameLable = [[UILabel alloc] init];
         _pulibshUserNameLable.textColor = HEXCOLOR(0x0099cc);
         _pulibshUserNameLable.font = Font(14);
+        _pulibshUserNameLable.text = @"pulibsh user";
     }
     return _pulibshUserNameLable;
 }

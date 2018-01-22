@@ -9,6 +9,7 @@
 #import "UIRefreshTableView.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import "NSString+StringKit.h"
 
 @interface UIRefreshTableView () <UIScrollViewDelegate>
 
@@ -38,24 +39,42 @@
 - (void)addViewAndConstraint
 {
     [self addSubview:self.refreshHeadView];
-//    [self.refreshHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(self.mas_top).offset(-16);
-//        make.left.equalTo(self);
-//        make.right.equalTo(self);
-//        make.height.mas_equalTo(self.refreshHeadView.triggerHeight);
+    [self addSubview:self.loadMoreIndicatorView];
+//    [self.loadMoreIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self).offset(-8);
+//        make.centerX.equalTo(self);
+//        make.width.mas_equalTo(24);
+//        make.height.mas_equalTo(24);
 //    }];
-    //[self.refreshHeadView setBackgroundColor:[UIColor blueColor]];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.refreshHeadView listenerScrollViewAndChangeState:scrollView refreshState:^(RefreshState state) {
-        if (state==RefreshStateStateLoading) {
-            if (self.refreshOrLoadDelegate) {
-                [self.refreshOrLoadDelegate refreshData];
-            }
+//    [self.refreshHeadView listenerScrollViewAndChangeState:scrollView refreshState:^(RefreshState state) {
+//        if (state==RefreshStateStateLoading) {
+//            if (self.refreshOrLoadDelegate) {
+//                [self.refreshOrLoadDelegate refreshData];
+//            }
+//        }
+//    }];
+}
+
+- (void)showLoadMoreIndicatorView:(UIScrollView *)scrollView loadData:(loadData)loadData;
+{
+    if (((scrollView.contentOffset.y + scrollView.frame.size.height) - (scrollView.contentSize.height)) > 8){
+        if (![self.loadMoreIndicatorView isAnimating]) {
+            [self.loadMoreIndicatorView startAnimating];
+            self.loadMoreIndicatorView.hidden = NO;
+            self.loadMoreIndicatorView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2, scrollView.contentSize.height-30, 25, 25);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.5 animations:^{
+                    loadData();
+                    self.loadMoreIndicatorView.hidden = YES;
+                    [self.loadMoreIndicatorView stopAnimating];
+                }];
+            });
         }
-    }];
+    }
 }
 
 
@@ -66,6 +85,15 @@
         _refreshHeadView = [[UIRefreshHeadView alloc] initWithFrame:CGRectMake(0, -56, SCREEN_WIDTH, 56)];
     }
     return _refreshHeadView;
+}
+
+- (UIActivityIndicatorView *)loadMoreIndicatorView
+{
+    if (!_loadMoreIndicatorView) {
+        _loadMoreIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _loadMoreIndicatorView.hidden = YES;
+    }
+    return _loadMoreIndicatorView;
 }
 
 @end
@@ -97,7 +125,7 @@
 
     [centerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(24);
-        make.width.mas_equalTo(24+8+100);
+        make.width.mas_equalTo(24+8+[NSString getSizeWithAttributes:@"加载更多" font:self.descriptionLabel.font].width);
         make.centerX.equalTo(self);
         make.centerY.equalTo(self);
     }];
@@ -186,7 +214,6 @@
             self.descriptionLabel.text = @"松开刷新";
             break;
         case RefreshStateStateLoading:
-                        NSLog(@"RefreshStateStateLoading");
             if (self.activityIndicatorView.hidden) {
                 self.activityIndicatorView.hidden = NO;
             }
@@ -231,5 +258,6 @@
     }
     return _activityIndicatorView;
 }
+
 
 @end

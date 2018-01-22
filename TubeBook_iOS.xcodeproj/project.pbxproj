@@ -90,6 +90,16 @@
 		3C195FF82014E0E0000A938C /* icon_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195FF62014E0E0000A938C /* icon_more@2x.png */; };
 		3C195FF92014E0E0000A938C /* icon_more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195FF72014E0E0000A938C /* icon_more@3x.png */; };
 		3C195FFC2014EFAE000A938C /* UINormalArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FFB2014EFAE000A938C /* UINormalArticleCell.m */; };
+		3C19600020159288000A938C /* CKDataType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195FFF20159288000A938C /* CKDataType.m */; };
+		3C196003201592A0000A938C /* CKContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C196002201592A0000A938C /* CKContent.m */; };
+		3C1960062015958C000A938C /* CKTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960052015958C000A938C /* CKTableCell.m */; };
+		3C1960092015C2E0000A938C /* NormalArticleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960082015C2E0000A938C /* NormalArticleContent.m */; };
+		3C19600C2015D676000A938C /* UIHomeCellTopicOrSerialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19600B2015D676000A938C /* UIHomeCellTopicOrSerialView.m */; };
+		3C19600F2015DCBF000A938C /* UITagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19600E2015DCBF000A938C /* UITagView.m */; };
+		3C1960122015F1E8000A938C /* TopicArticleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960112015F1E8000A938C /* TopicArticleContent.m */; };
+		3C1960152015F20D000A938C /* SerialArticleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960142015F20D000A938C /* SerialArticleContent.m */; };
+		3C19601B2015F2FA000A938C /* UISerialArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19601A2015F2FA000A938C /* UISerialArticleCell.m */; };
+		3C19601E20160673000A938C /* UITopicArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19601D20160673000A938C /* UITopicArticleCell.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -238,6 +248,26 @@
 		3C195FF72014E0E0000A938C /* icon_more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_more@3x.png"; sourceTree = "<group>"; };
 		3C195FFA2014EFAE000A938C /* UINormalArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINormalArticleCell.h; sourceTree = "<group>"; };
 		3C195FFB2014EFAE000A938C /* UINormalArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UINormalArticleCell.m; sourceTree = "<group>"; };
+		3C195FFE20159288000A938C /* CKDataType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKDataType.h; sourceTree = "<group>"; };
+		3C195FFF20159288000A938C /* CKDataType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKDataType.m; sourceTree = "<group>"; };
+		3C196001201592A0000A938C /* CKContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKContent.h; sourceTree = "<group>"; };
+		3C196002201592A0000A938C /* CKContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKContent.m; sourceTree = "<group>"; };
+		3C1960042015958C000A938C /* CKTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKTableCell.h; sourceTree = "<group>"; };
+		3C1960052015958C000A938C /* CKTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKTableCell.m; sourceTree = "<group>"; };
+		3C1960072015C2E0000A938C /* NormalArticleContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalArticleContent.h; sourceTree = "<group>"; };
+		3C1960082015C2E0000A938C /* NormalArticleContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalArticleContent.m; sourceTree = "<group>"; };
+		3C19600A2015D676000A938C /* UIHomeCellTopicOrSerialView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHomeCellTopicOrSerialView.h; sourceTree = "<group>"; };
+		3C19600B2015D676000A938C /* UIHomeCellTopicOrSerialView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIHomeCellTopicOrSerialView.m; sourceTree = "<group>"; };
+		3C19600D2015DCBF000A938C /* UITagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITagView.h; sourceTree = "<group>"; };
+		3C19600E2015DCBF000A938C /* UITagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITagView.m; sourceTree = "<group>"; };
+		3C1960102015F1E8000A938C /* TopicArticleContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicArticleContent.h; sourceTree = "<group>"; };
+		3C1960112015F1E8000A938C /* TopicArticleContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicArticleContent.m; sourceTree = "<group>"; };
+		3C1960132015F20D000A938C /* SerialArticleContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialArticleContent.h; sourceTree = "<group>"; };
+		3C1960142015F20D000A938C /* SerialArticleContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerialArticleContent.m; sourceTree = "<group>"; };
+		3C1960192015F2FA000A938C /* UISerialArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISerialArticleCell.h; sourceTree = "<group>"; };
+		3C19601A2015F2FA000A938C /* UISerialArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISerialArticleCell.m; sourceTree = "<group>"; };
+		3C19601C20160673000A938C /* UITopicArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITopicArticleCell.h; sourceTree = "<group>"; };
+		3C19601D20160673000A938C /* UITopicArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITopicArticleCell.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -300,6 +330,8 @@
 				3C195FAD201320D7000A938C /* UITubeSearchView.m */,
 				3C195FD420146871000A938C /* UIRefreshTableView.h */,
 				3C195FD520146871000A938C /* UIRefreshTableView.m */,
+				3C19600D2015DCBF000A938C /* UITagView.h */,
+				3C19600E2015DCBF000A938C /* UITagView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -482,16 +514,42 @@
 		3C195FDC2014A14D000A938C /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				3C195FFD2015926C000A938C /* Model */,
 				3C195FDD2014A227000A938C /* UIHomeCellItemHeadView.h */,
 				3C195FDE2014A227000A938C /* UIHomeCellItemHeadView.m */,
 				3C195FE42014CCC9000A938C /* UIHomeCellItemContentView.h */,
 				3C195FE52014CCC9000A938C /* UIHomeCellItemContentView.m */,
 				3C195FE72014D3A4000A938C /* UIHomeCellItemFootView.h */,
 				3C195FE82014D3A4000A938C /* UIHomeCellItemFootView.m */,
+				3C19600A2015D676000A938C /* UIHomeCellTopicOrSerialView.h */,
+				3C19600B2015D676000A938C /* UIHomeCellTopicOrSerialView.m */,
 				3C195FFA2014EFAE000A938C /* UINormalArticleCell.h */,
 				3C195FFB2014EFAE000A938C /* UINormalArticleCell.m */,
+				3C1960042015958C000A938C /* CKTableCell.h */,
+				3C1960052015958C000A938C /* CKTableCell.m */,
+				3C1960192015F2FA000A938C /* UISerialArticleCell.h */,
+				3C19601A2015F2FA000A938C /* UISerialArticleCell.m */,
+				3C19601C20160673000A938C /* UITopicArticleCell.h */,
+				3C19601D20160673000A938C /* UITopicArticleCell.m */,
 			);
 			path = CellView;
+			sourceTree = "<group>";
+		};
+		3C195FFD2015926C000A938C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C195FFE20159288000A938C /* CKDataType.h */,
+				3C195FFF20159288000A938C /* CKDataType.m */,
+				3C196001201592A0000A938C /* CKContent.h */,
+				3C196002201592A0000A938C /* CKContent.m */,
+				3C1960072015C2E0000A938C /* NormalArticleContent.h */,
+				3C1960082015C2E0000A938C /* NormalArticleContent.m */,
+				3C1960102015F1E8000A938C /* TopicArticleContent.h */,
+				3C1960112015F1E8000A938C /* TopicArticleContent.m */,
+				3C1960132015F20D000A938C /* SerialArticleContent.h */,
+				3C1960142015F20D000A938C /* SerialArticleContent.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3CA3BF5A200923C400793F3D = {
@@ -892,12 +950,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C195FD320137B31000A938C /* TopicViewController.m in Sources */,
+				3C19600020159288000A938C /* CKDataType.m in Sources */,
 				3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */,
+				3C1960092015C2E0000A938C /* NormalArticleContent.m in Sources */,
+				3C19601E20160673000A938C /* UITopicArticleCell.m in Sources */,
 				3C195FE92014D3A4000A938C /* UIHomeCellItemFootView.m in Sources */,
 				3C195E70200D0BE4000A938C /* UIView+TubeFrameMargin.m in Sources */,
 				3C195FCA20137B0D000A938C /* RecommendViewController.m in Sources */,
 				3C195FCD20137B1A000A938C /* AuthorViewController.m in Sources */,
 				3C195E4F200BC6A2000A938C /* MessageTabViewController.m in Sources */,
+				3C19601B2015F2FA000A938C /* UISerialArticleCell.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
 				3C195FBA20133C03000A938C /* UITubeHomeNavigationView.m in Sources */,
@@ -907,11 +969,15 @@
 				3C195FD020137B25000A938C /* SerialViewController.m in Sources */,
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
+				3C1960122015F1E8000A938C /* TopicArticleContent.m in Sources */,
+				3C19600C2015D676000A938C /* UIHomeCellTopicOrSerialView.m in Sources */,
+				3C1960152015F20D000A938C /* SerialArticleContent.m in Sources */,
 				3C195FDF2014A227000A938C /* UIHomeCellItemHeadView.m in Sources */,
 				3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */,
 				3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */,
 				3C195E15200B7F97000A938C /* RegisterViewController.m in Sources */,
 				3C195FAE201320D7000A938C /* UITubeSearchView.m in Sources */,
+				3C196003201592A0000A938C /* CKContent.m in Sources */,
 				3C195FC720137AFA000A938C /* NewestViewController.m in Sources */,
 				3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */,
 				3C195E8E200E4A5F000A938C /* CKTextView.m in Sources */,
@@ -928,7 +994,9 @@
 				3C195E52200BC6B2000A938C /* DescoverTabViewController.m in Sources */,
 				3C195EC0200F2C16000A938C /* TubeToolBar.m in Sources */,
 				3C195E7F200D2B28000A938C /* ReleaseViewController.m in Sources */,
+				3C19600F2015DCBF000A938C /* UITagView.m in Sources */,
 				3C195E91200E4AF3000A938C /* ChatKitSetting.m in Sources */,
+				3C1960062015958C000A938C /* CKTableCell.m in Sources */,
 				3C195E67200CF019000A938C /* TubeMainTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

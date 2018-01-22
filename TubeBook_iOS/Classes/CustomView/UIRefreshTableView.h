@@ -37,10 +37,14 @@ typedef void(^refreshState)(RefreshState state);
 
 @end
 
+typedef void(^loadData)(void);
+
 @interface UIRefreshTableView : UITableView
 
 @property(nonatomic, strong) UIRefreshHeadView *refreshHeadView;
+@property(nonatomic, strong) UIActivityIndicatorView *loadMoreIndicatorView;
 @property(nonatomic, strong) id<UIRefreshOrLoadTableViewDelegate> refreshOrLoadDelegate;
+- (void)showLoadMoreIndicatorView:(UIScrollView *)scrollView loadData:(loadData)loadData;
 
 @end
 

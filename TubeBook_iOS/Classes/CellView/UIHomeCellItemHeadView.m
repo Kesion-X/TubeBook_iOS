@@ -25,6 +25,16 @@
     return self;
 }
 
+- (instancetype)initUIHomeCellItemHeadView:(UserState)userState;
+{
+    self = [super init];
+    if (self) {
+        self.userState = userState;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
+
 - (instancetype)initUIHomeCellItemHeadView:(NSString *)avatarUrl username:(NSString *)username time:(NSString *)time islike:(BOOL)islike
 {
     self = [super init];
@@ -73,9 +83,19 @@
         make.height.mas_equalTo(32);
         make.centerY.equalTo(self);
     }];
+    if (self.userState == UserLikeArticle) {
+        self.likeOrPublishLable.text = @"喜欢了文章";
+    } else {
+        self.likeOrPublishLable.text = @"发表了文章";
+    }
 }
 
 - (CGFloat)getUIHeight
+{
+    return 40;
+}
+
++ (CGFloat)getUIHeight:(UserState)userState
 {
     return 40;
 }

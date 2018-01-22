@@ -12,6 +12,16 @@
 
 @implementation UIHomeCellItemContentView
 
+- (instancetype)initUIHomeCellItemContentView:(BOOL)isHaveImage
+{
+    self = [super init];
+    if (self) {
+        self.isHaveImage = isHaveImage;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
+
 - (instancetype)initUIHomeCellItemContentView:(NSString *)contentUrl title:(NSString *)title contentDescription:(NSString *)contentDescription isHaveImage:(BOOL)isHaveImage;
 {
     self = [super init];
@@ -39,7 +49,6 @@
             make.top.equalTo(self).offset(4);
             make.height.mas_equalTo(88);
         }];
-        [self.contentImageView setBackgroundColor:[UIColor grayColor]];
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentImageView.mas_bottom).offset(8);
             make.left.mas_equalTo(self).offset(kCELL_MARGIN+8);
@@ -66,13 +75,19 @@
         }];
     
     }
-    
-    [self.descriptionLable setBackgroundColor:[UIColor yellowColor]];
 }
 
 - (CGFloat)getUIHeight
 {
     if (self.isHaveImage) {
+        return 156;
+    }
+    return 60;
+}
+
++ (CGFloat)getUIHeight:(BOOL)isHaveImage
+{
+    if (isHaveImage) {
         return 156;
     }
     return 60;
@@ -85,6 +100,7 @@
         _contentImageView = [[UIImageView alloc] init];
         _contentImageView.layer.borderColor = kTAB_TEXT_COLOR.CGColor;
         _contentImageView.layer.borderWidth = 0.5f;
+        _contentImageView.backgroundColor = HEXCOLOR(0xf8f8f8);
     }
     return _contentImageView;
 }

@@ -7,18 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CKDataType.h"
 
 @interface UIHomeCellItemFootView : UIView
 
 @property(nonatomic, strong) NSString *pulibshUserName;
 @property(nonatomic) NSUInteger commentCount;
 @property(nonatomic) NSUInteger likeCount;
+@property(nonatomic) UserState userState;
 
 @property(nonatomic, strong) UILabel *pulibshUserNameLable;
 @property(nonatomic, strong) UILabel *commentCountLable;
 @property(nonatomic, strong) UILabel *likeCountLable;
 
+- (instancetype)initUIHomeCellItemFootView:(UserState)userState;
 - (instancetype)initUIHomeCellItemFootView:(NSString *)pulibshUserName commentCount:(NSUInteger)commentCount likeCount:(NSUInteger)likeCount;
-- (NSUInteger)getUIHeight;
+- (CGFloat)getUIHeight;
++ (CGFloat)getUIHeight:(UserState)userState;
 
 @end
