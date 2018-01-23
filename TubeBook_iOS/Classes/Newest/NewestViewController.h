@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TubeRefreshTableViewController.h"
 
-@interface NewestViewController : UIViewController
+@interface NewestViewController : TubeRefreshTableViewController
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "SerialViewController.h"
+#import "SerialTagContent.h"
+#import "UISerialTableCell.h"
 
-@interface SerialViewController ()
+@interface SerialViewController () <RefreshTableViewControllerDelegate>
 
 @end
 
@@ -16,7 +18,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.refreshTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.refreshTableViewControllerDelegate = self;
+    [self registerCell:[UISerialTableCell class] forKeyContent:[SerialTagContent class]];
+    for (int i=0; i<10; ++i) {
+        [self.contentData addObject:[[SerialTagContent alloc] init]];
+    }
+}
+
+- (void)refreshData
+{
+    NSLog(@"refreshData");
+}
+
+- (void)loadMoreData
+{
+    NSLog(@"loadMoreData");
 }
 
 @end

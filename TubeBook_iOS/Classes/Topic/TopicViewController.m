@@ -7,8 +7,10 @@
 //
 
 #import "TopicViewController.h"
+#import "TopicTagContent.h"
+#import "UITopicTableCell.h"
 
-@interface TopicViewController ()
+@interface TopicViewController () <RefreshTableViewControllerDelegate>
 
 @end
 
@@ -16,7 +18,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.refreshTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.refreshTableViewControllerDelegate = self;
+    [self registerCell:[UITopicTableCell class] forKeyContent:[TopicTagContent class]];
+    for (int i=0; i<10; ++i) {
+        [self.contentData addObject:[[TopicTagContent alloc] init]];
+    }
+}
+
+- (void)refreshData
+{
+    NSLog(@"refreshData");
+}
+
+- (void)loadMoreData
+{
+    NSLog(@"loadMoreData");
 }
 
 @end
