@@ -7,8 +7,11 @@
 //
 
 #import "AuthorViewController.h"
+#import "UserContent.h"
+#import "UIUserTableCell.h"
 
-@interface AuthorViewController ()
+
+@interface AuthorViewController () <RefreshTableViewControllerDelegate>
 
 @end
 
@@ -16,8 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
+    self.refreshTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.refreshTableViewControllerDelegate = self;
+    [self registerCell:[UIUserTableCell class] forKeyContent:[UserContent class]];
+    for (int i=0; i<10; ++i) {
+        [self.contentData addObject:[[UserContent alloc] init]];
+    }
 }
+
+- (void)refreshData
+{
+    NSLog(@"refreshData");
+}
+
+- (void)loadMoreData
+{
+    NSLog(@"loadMoreData");
+}
+
 
 @end

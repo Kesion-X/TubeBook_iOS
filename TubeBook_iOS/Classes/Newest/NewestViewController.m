@@ -21,11 +21,7 @@
 #import "TopicArticleContent.h"
 #import "UITopicArticleCell.h"
 
-@interface NewestViewController () <UITableViewDelegate, UITableViewDataSource>
-
-@property(nonatomic, strong) UIRefreshTableView *refreshTableView;
-@property(nonatomic, strong) NSMutableArray *contentData;
-@property(nonatomic, strong) NSMutableDictionary *classMap;
+@interface NewestViewController () <RefreshTableViewControllerDelegate>
 
 @end
 
@@ -33,16 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addViewAndConstraint];
-    [self configTable];
-   
-}
-
-- (void)configTable
-{
-    self.refreshTableView.delegate = self;
-    self.refreshTableView.dataSource = self;
-  
+    self.refreshTableViewControllerDelegate = self;
     [self registerCell:[UINormalArticleCell class] forKeyContent:[NormalArticleContent class]];
     [self registerCell:[UISerialArticleCell class] forKeyContent:[SerialArticleContent class]];
     [self registerCell:[UITopicArticleCell class] forKeyContent:[TopicArticleContent class]];
@@ -60,91 +47,17 @@
         content3.dataType.isHaveImage = i%2;
         [self.contentData addObject:content3];
     }
+   
 }
 
-- (void)addViewAndConstraint
+- (void)refreshData
 {
-    [self.view addSubview:self.refreshTableView];
-    [self.refreshTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.equalTo(self.view);
-    }];
+    NSLog(@"refreshData");
 }
 
-- (void)registerCell:(Class)cellClass forKeyContent:(Class)contentClass
+- (void)loadMoreData
 {
-    self.classMap[NSStringFromClass(contentClass)] = NSStringFromClass(cellClass);
+   NSLog(@"loadMoreData");
 }
-
-#pragma mark - UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CKContent *content = self.contentData[indexPath.row];
-    NSString *cellClassName = self.classMap[NSStringFromClass([content class])];
-    Class cellClass = NSClassFromString(cellClassName);
-    return [cellClass getCellHeight:content];
-}
-
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.contentData.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CKContent *content = self.contentData[indexPath.row];
-    NSString *cellClassName = self.classMap[NSStringFromClass([content class])];
-    Class cellClass = NSClassFromString(cellClassName);
-    NSString *cellId = [cellClass getDequeueId:content.dataType];
-    CKTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[cellClass alloc] initWithDateType:content.dataType];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    return cell;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //下拉刷新
-    [self.refreshTableView.refreshHeadView listenerScrollViewAndChangeState:scrollView refreshState:^(RefreshState state) {
-        if (state==RefreshStateStateLoading) {
-           
-        }
-    }];
-    
-    //加载更多
-    [self.refreshTableView showLoadMoreIndicatorView:scrollView loadData:^{
- 
-    }];
-}
-
-#pragma mark - get
-
-- (UIRefreshTableView *)refreshTableView
-{
-    if (!_refreshTableView) {
-        _refreshTableView = [[UIRefreshTableView alloc] init];
-    }
-    return _refreshTableView;
-}
-
-- (NSMutableArray *)contentData
-{
-    if (!_contentData) {
-        _contentData = [[NSMutableArray alloc] init];
-    }
-    return _contentData;
-}
-
-- (NSMutableDictionary *)classMap
-{
-    if (!_classMap) {
-        _classMap = [[NSMutableDictionary alloc] init];
-    }
-    return _classMap;
-}
-
-
 
 @end

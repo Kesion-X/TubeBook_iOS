@@ -14,9 +14,11 @@
 
 @property(nonatomic, strong) CKContent *content;
 
+//需要实现
 - (instancetype)initWithDateType:(CKDataType *)type;
 - (CGFloat)getCellHeight;
 + (CGFloat)getCellHeight:(CKContent *)content;
+
 + (NSString *)getDequeueId:(CKDataType *)type;
 
 @end

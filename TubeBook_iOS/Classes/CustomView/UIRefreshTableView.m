@@ -61,13 +61,13 @@
 
 - (void)showLoadMoreIndicatorView:(UIScrollView *)scrollView loadData:(loadData)loadData;
 {
-    if (((scrollView.contentOffset.y + scrollView.frame.size.height) - (scrollView.contentSize.height)) > 8){
-        if (![self.loadMoreIndicatorView isAnimating]) {
+    if (((scrollView.contentOffset.y + scrollView.frame.size.height) - (scrollView.contentSize.height)) > 72){
+        if (self.loadMoreIndicatorView.hidden) {
             [self.loadMoreIndicatorView startAnimating];
             self.loadMoreIndicatorView.hidden = NO;
             self.loadMoreIndicatorView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2, scrollView.contentSize.height-30, 25, 25);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [UIView animateWithDuration:0.5 animations:^{
+                [UIView animateWithDuration:0.1 animations:^{
                     loadData();
                     self.loadMoreIndicatorView.hidden = YES;
                     [self.loadMoreIndicatorView stopAnimating];

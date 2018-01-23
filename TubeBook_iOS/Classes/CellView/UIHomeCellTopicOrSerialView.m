@@ -42,13 +42,21 @@
     [self addSubview:self.titleLable];
     [self addSubview:self.articleTagLable];
     [self addSubview:self.kindView];
-    
-    [self.tagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(8);
-        make.left.equalTo(self).offset(8);
-        make.height.mas_equalTo(48);
-        make.width.mas_equalTo(32);
-    }];
+    if (self.kind == TopicArticle) {
+        [self.tagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(8);
+            make.left.equalTo(self).offset(8);
+            make.height.mas_equalTo(48);
+            make.width.mas_equalTo(48);
+        }];
+    }else{
+        [self.tagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(8);
+            make.left.equalTo(self).offset(8);
+            make.height.mas_equalTo(48);
+            make.width.mas_equalTo(32);
+        }];
+    }
     [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.tagImageView.mas_right).offset(8);
         make.top.equalTo(self).offset(12);
