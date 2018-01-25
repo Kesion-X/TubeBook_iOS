@@ -117,6 +117,8 @@
 		3C19604B2019C8A1000A938C /* DescoverRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19604A2019C8A1000A938C /* DescoverRecommendViewController.m */; };
 		3C19604E2019D864000A938C /* CycleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19604D2019D864000A938C /* CycleContent.m */; };
 		3C1960512019D8E0000A938C /* CycleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960502019D8E0000A938C /* CycleTableCell.m */; };
+		3C196054201A1884000A938C /* DescoverRecommendContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C196053201A1884000A938C /* DescoverRecommendContent.m */; };
+		3C196057201A1E72000A938C /* UIDescoverRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C196056201A1E72000A938C /* UIDescoverRecommendCell.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -316,6 +318,10 @@
 		3C19604D2019D864000A938C /* CycleContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleContent.m; sourceTree = "<group>"; };
 		3C19604F2019D8E0000A938C /* CycleTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CycleTableCell.h; sourceTree = "<group>"; };
 		3C1960502019D8E0000A938C /* CycleTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleTableCell.m; sourceTree = "<group>"; };
+		3C196052201A1884000A938C /* DescoverRecommendContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescoverRecommendContent.h; sourceTree = "<group>"; };
+		3C196053201A1884000A938C /* DescoverRecommendContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverRecommendContent.m; sourceTree = "<group>"; };
+		3C196055201A1E72000A938C /* UIDescoverRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDescoverRecommendCell.h; sourceTree = "<group>"; };
+		3C196056201A1E72000A938C /* UIDescoverRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIDescoverRecommendCell.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -598,6 +604,8 @@
 				3C1960362017801D000A938C /* UIUserTableCell.m */,
 				3C19604F2019D8E0000A938C /* CycleTableCell.h */,
 				3C1960502019D8E0000A938C /* CycleTableCell.m */,
+				3C196055201A1E72000A938C /* UIDescoverRecommendCell.h */,
+				3C196056201A1E72000A938C /* UIDescoverRecommendCell.m */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -623,6 +631,8 @@
 				3C19603320177FE3000A938C /* UserContent.m */,
 				3C19604C2019D864000A938C /* CycleContent.h */,
 				3C19604D2019D864000A938C /* CycleContent.m */,
+				3C196052201A1884000A938C /* DescoverRecommendContent.h */,
+				3C196053201A1884000A938C /* DescoverRecommendContent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1092,6 +1102,7 @@
 				3C195E15200B7F97000A938C /* RegisterViewController.m in Sources */,
 				3C195FAE201320D7000A938C /* UITubeSearchView.m in Sources */,
 				3C19602120162EFF000A938C /* UITopicTableCell.m in Sources */,
+				3C196054201A1884000A938C /* DescoverRecommendContent.m in Sources */,
 				3C196003201592A0000A938C /* CKContent.m in Sources */,
 				3C195FC720137AFA000A938C /* NewestViewController.m in Sources */,
 				3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */,
@@ -1111,6 +1122,7 @@
 				3C195E12200B3FDE000A938C /* UITubeButton.m in Sources */,
 				3C1960452019C86A000A938C /* DescoverTopicViewController.m in Sources */,
 				3C195E52200BC6B2000A938C /* DescoverTabViewController.m in Sources */,
+				3C196057201A1E72000A938C /* UIDescoverRecommendCell.m in Sources */,
 				3C195EC0200F2C16000A938C /* TubeToolBar.m in Sources */,
 				3C195E7F200D2B28000A938C /* ReleaseViewController.m in Sources */,
 				3C19600F2015DCBF000A938C /* UITagView.m in Sources */,

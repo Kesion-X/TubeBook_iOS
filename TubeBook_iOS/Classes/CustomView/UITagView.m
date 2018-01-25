@@ -32,9 +32,9 @@
         size = [NSString getSizeWithAttributes:tagText font:self.tagLable.font];
         [self.tagLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(4);
-            make.left.equalTo(self).offset(4);
+            make.left.equalTo(self).offset(8);
             make.bottom.equalTo(self).offset(-4);
-            make.right.equalTo(self).offset(-4);
+            make.right.equalTo(self).offset(-8);
         }];
         
     }
@@ -49,7 +49,7 @@
 
 - (CGFloat)getUIWidht
 {
-    return size.width+4*2;
+    return size.width+8*2;
 }
 
 #pragma mark - get
@@ -58,6 +58,7 @@
     if(!_tagLable) {
         _tagLable = [[UILabel alloc] init];
         _tagLable.font = Font(9);
+        _tagLable.lineBreakMode = NSLineBreakByCharWrapping;
         _tagLable.textColor = self.color;
         _tagLable.text = self.tagText;
     }

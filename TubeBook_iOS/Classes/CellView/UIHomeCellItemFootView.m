@@ -18,6 +18,18 @@
     self = [super init];
     if (self) {
         self.userState = userState;
+        self.footCellStyle = UIFootCellNormalStyle;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
+
+- (instancetype)initUIHomeCellItemFootView:(UserState)userState footCellStyle:(UIFootCellStyle)footCellStyle
+{
+    self = [super init];
+    if (self) {
+        self.userState = userState;
+        self.footCellStyle = footCellStyle;
         [self addViewAndConstraint];
     }
     return self;
@@ -30,6 +42,23 @@
         self.pulibshUserName = pulibshUserName;
         self.commentCount = commentCount;
         self.likeCount = likeCount;
+        self.footCellStyle = UIFootCellNormalStyle;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
+
+- (instancetype)initUIHomeCellItemFootView:(NSString *)tagName
+                              commentCount:(NSUInteger)commentCount
+                                 likeCount:(NSUInteger)likeCount
+                             footCellStyle:(UIFootCellStyle)footCellStyle;
+{
+    self = [super init];
+    if (self) {
+        self.tagName = tagName;
+        self.commentCount = commentCount;
+        self.likeCount = likeCount;
+        self.footCellStyle = footCellStyle;
         [self addViewAndConstraint];
     }
     return self;
@@ -37,109 +66,149 @@
 
 - (void)addViewAndConstraint
 {
-    if (self.userState == UserLikeArticle) {
-        [self addSubview:self.pulibshUserNameLable];
-        [self addSubview:self.commentCountLable];
-        [self addSubview:self.likeCountLable];
-        UILabel *commitL = [[UILabel alloc] init];
-        commitL.textColor = HEXCOLOR(0xCDCDCD);
-        commitL.font = Font(14);
-        commitL.text = @"评论";
-        UILabel *likeL = [[UILabel alloc] init];
-        likeL.textColor = HEXCOLOR(0xCDCDCD);
-        likeL.font = Font(14);
-        likeL.text = @"喜欢";
-        UIView *v = [[UIView alloc] init];
-        v.layer.cornerRadius = 2;
-        v.layer.masksToBounds = YES;
-        [v setBackgroundColor:HEXCOLOR(0xf5f5f5)];
-        [self addSubview:commitL];
-        [self addSubview:likeL];
-        [self addSubview:v];
-        
-        [self.pulibshUserNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(kCELL_MARGIN);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [likeL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-kCELL_MARGIN);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [self.likeCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(likeL.mas_left).offset(-4);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [v mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.likeCountLable.mas_left).offset(-4);
-            make.centerY.equalTo(self);
-            make.width.mas_equalTo(4);
-            make.height.mas_equalTo(4);
-        }];
-        [commitL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(v.mas_left).offset(-4);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [self.commentCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(commitL.mas_left).offset(-4);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
+    if (self.footCellStyle == UIFootCellNormalStyle) {
+        if (self.userState == UserLikeArticle) {
+            [self addSubview:self.pulibshUserNameLable];
+            [self addSubview:self.commentCountLable];
+            [self addSubview:self.likeCountLable];
+            UILabel *commitL = [[UILabel alloc] init];
+            commitL.textColor = HEXCOLOR(0xCDCDCD);
+            commitL.font = Font(14);
+            commitL.text = @"评论";
+            UILabel *likeL = [[UILabel alloc] init];
+            likeL.textColor = HEXCOLOR(0xCDCDCD);
+            likeL.font = Font(14);
+            likeL.text = @"喜欢";
+            UIView *v = [[UIView alloc] init];
+            v.layer.cornerRadius = 2;
+            v.layer.masksToBounds = YES;
+            [v setBackgroundColor:HEXCOLOR(0xf5f5f5)];
+            [self addSubview:commitL];
+            [self addSubview:likeL];
+            [self addSubview:v];
+            
+            [self.pulibshUserNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self).offset(kCELL_MARGIN);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [likeL mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self).offset(-kCELL_MARGIN);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [self.likeCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(likeL.mas_left).offset(-4);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [v mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.likeCountLable.mas_left).offset(-4);
+                make.centerY.equalTo(self);
+                make.width.mas_equalTo(4);
+                make.height.mas_equalTo(4);
+            }];
+            [commitL mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(v.mas_left).offset(-4);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [self.commentCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(commitL.mas_left).offset(-4);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+        } else {
+            [self addSubview:self.commentCountLable];
+            [self addSubview:self.likeCountLable];
+            UILabel *shareL = [[UILabel alloc] init];
+            shareL.textColor = HEXCOLOR(0xCDCDCD);
+            shareL.font = Font(14);
+            shareL.text = @"分享";
+            UIImageView *shareI = [[UIImageView alloc] init];
+            [shareI setImage:[UIImage imageNamed:@"icon_share"]];
+            UIImageView *likeI = [[UIImageView alloc] init];
+            [likeI setImage:[UIImage imageNamed:@"icon_like"]];
+            UIImageView *commentI = [[UIImageView alloc] init];
+            [commentI setImage:[UIImage imageNamed:@"icon_comment"]];
+            [self addSubview:shareL];
+            [self addSubview:shareI];
+            [self addSubview:likeI];
+            [self addSubview:commentI];
+            
+            [shareL mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self).offset(-kCELL_MARGIN);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [shareI mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(shareL.mas_left).offset(-4);
+                make.width.mas_equalTo(ICOM_SIZE);
+                make.height.mas_equalTo(ICOM_SIZE);
+                make.centerY.equalTo(self);
+            }];
+            [self.likeCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(shareI.mas_left).offset(-4);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [likeI mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.likeCountLable.mas_left).offset(-4);
+                make.width.mas_equalTo(ICOM_SIZE);
+                make.height.mas_equalTo(ICOM_SIZE);
+                make.centerY.equalTo(self);
+            }];
+            [self.commentCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(likeI.mas_left).offset(-4);
+                make.top.equalTo(self).offset(4);
+                make.bottom.equalTo(self).offset(-4);
+            }];
+            [commentI mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.commentCountLable.mas_left).offset(-4);
+                make.width.mas_equalTo(ICOM_SIZE);
+                make.height.mas_equalTo(ICOM_SIZE);
+                make.centerY.equalTo(self);
+            }];
+        }
     } else {
+        self.tagView = [[UITagView alloc] initUITagView:self.tagName color:kTAG_COLOR];
+        [self addSubview:self.tagView];
+        [self.tagView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo([self.tagView getUIWidht]);
+            make.height.mas_equalTo([self.tagView getUIHeight]);
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(kCELL_MARGIN);
+        }];
         [self addSubview:self.commentCountLable];
         [self addSubview:self.likeCountLable];
-        UILabel *shareL = [[UILabel alloc] init];
-        shareL.textColor = HEXCOLOR(0xCDCDCD);
-        shareL.font = Font(14);
-        shareL.text = @"分享";
-        UIImageView *shareI = [[UIImageView alloc] init];
-        [shareI setImage:[UIImage imageNamed:@"icon_share"]];
         UIImageView *likeI = [[UIImageView alloc] init];
         [likeI setImage:[UIImage imageNamed:@"icon_like"]];
         UIImageView *commentI = [[UIImageView alloc] init];
         [commentI setImage:[UIImage imageNamed:@"icon_comment"]];
-        [self addSubview:shareL];
-        [self addSubview:shareI];
         [self addSubview:likeI];
         [self addSubview:commentI];
-        
-        [shareL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self).offset(-kCELL_MARGIN);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [shareI mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(shareL.mas_left).offset(-4);
+        [commentI mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.tagView.mas_right).offset(kCELL_MARGIN);
+            make.centerY.equalTo(self);
             make.width.mas_equalTo(ICOM_SIZE);
             make.height.mas_equalTo(ICOM_SIZE);
+        }];
+        [self.commentCountLable mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(commentI.mas_right).offset(8);
             make.centerY.equalTo(self);
         }];
-        [self.likeCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(shareI.mas_left).offset(-4);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [likeI mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.likeCountLable.mas_left).offset(-4);
-            make.width.mas_equalTo(ICOM_SIZE);
-            make.height.mas_equalTo(ICOM_SIZE);
+        [likeI mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.commentCountLable.mas_right).offset(kCELL_MARGIN);
             make.centerY.equalTo(self);
-        }];
-        [self.commentCountLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(likeI.mas_left).offset(-4);
-            make.top.equalTo(self).offset(4);
-            make.bottom.equalTo(self).offset(-4);
-        }];
-        [commentI mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.commentCountLable.mas_left).offset(-4);
             make.width.mas_equalTo(ICOM_SIZE);
             make.height.mas_equalTo(ICOM_SIZE);
+        }];
+        [self.likeCountLable mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(commentI.mas_right).offset(8);
             make.centerY.equalTo(self);
         }];
     }
+
 }
 
 - (CGFloat)getUIHeight;
@@ -185,5 +254,14 @@
     }
     return _likeCountLable;
 }
+
+- (NSString *)tagName
+{
+    if (!_tagName) {
+        _tagName = @"tag";
+    }
+    return _tagName;
+}
+
 
 @end

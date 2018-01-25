@@ -19,6 +19,13 @@
     [self configTable];
 }
 
+- (void)refreshLayout
+{
+    [self.refreshTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.equalTo(self.view);
+    }];
+}
+
 - (void)configTable
 {
     self.refreshTableView.delegate = self;
