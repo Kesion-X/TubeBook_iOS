@@ -1,88 +1,52 @@
 //
-//  HomeTabViewController.m
+//  TubePageViewController.m
 //  TubeBook_iOS
 //
-//  Created by 柯建芳 on 2018/1/15.
+//  Created by 柯建芳 on 2018/1/25.
 //  Copyright © 2018年 柯建芳. All rights reserved.
 //
 
-#import "HomeTabViewController.h"
-#import "TubeNavigationUITool.h"
-#import "CKMacros.h"
+#import "TubePageViewController.h"
 #import "UIIndicatorView.h"
-#import "Masonry.h"
-#import "UINavigationBar+CustomHeight.h"
-#import "UITubeSearchView.h"
-#import "UITubeHomeNavigationView.h"
-#include "NewestViewController.h"
-#include "RecommendViewController.h"
-#include "AuthorViewController.h"
-#include "SerialViewController.h"
-#include "TopicViewController.h"
+#import "CKMacros.h"
 
-@interface HomeTabViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIIndicatorViewDelegate, UIScrollViewDelegate>
+@interface TubePageViewController () <UIPageViewControllerDelegate,UIPageViewControllerDataSource, UIScrollViewDelegate, UIIndicatorViewDelegate>
 
-@property (nonatomic, strong) UITubeHomeNavigationView *tubeNavigationView;
 @property (nonatomic, strong) UIScrollView *scrollerView;
 
 @end
 
-@implementation HomeTabViewController
+@implementation TubePageViewController
 {
     CGFloat preOffsetX;
     CGFloat offsetDistance;
 }
+
 - (void)dealloc
 {
     self.pageViewController.delegate = nil;
     self.pageViewController.dataSource = nil;
-    self.tubeNavigationView.indicatorView.delegate = nil;
     self.scrollerView.delegate = nil;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
+    self.indicatorView.delegate = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addSubviewAndConConstraints];
-    [self configPageView];
     [self initOffset];
-
 }
 
-- (void)initOffset
+- (void)configIndicator:(UIIndicatorView *)indicator
 {
-    preOffsetX = [UIScreen mainScreen].bounds.size.width;
-    offsetDistance = 0;
+    self.indicatorView = indicator;
+    self.indicatorView.delegate = self;
 }
 
-- (void)addSubviewAndConConstraints
+- (void)configPageView:(CGRect)frame arrayControllers:(NSMutableArray *)arrayControllers
 {
-    self.tubeNavigationView = [[UITubeHomeNavigationView alloc] init];
-    [self.view addSubview:self.tubeNavigationView];
-    [self.tubeNavigationView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@20);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.height.mas_equalTo([self.tubeNavigationView.searchView getUITubeSearchViewHeight]+[self.tubeNavigationView.indicatorView getUIHeight]+12);
-    }];
-    self.tubeNavigationView.indicatorView.delegate = self;
-}
-
-- (void)configPageView
-{
-    self.pageViewController.delegate = self;
+    self.arrayControllers = arrayControllers;
     self.pageViewController.dataSource = self;
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    CGFloat y = self.tubeNavigationView.frame.origin.y+self.tubeNavigationView.frame.size.height;
-    self.pageViewController.view.frame = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - y);
+    self.pageViewController.delegate = self;
+    self.pageViewController.view.frame = frame;
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     NSArray *array = [NSArray arrayWithObjects:[self.arrayControllers objectAtIndex:0], nil];
@@ -92,34 +56,13 @@
                                      completion:nil];
     self.scrollerView = [self findScrollView];
     self.scrollerView.delegate = self;
-    self.scrollerView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-
 }
 
-- (void)configNavigation
-{
-    if (!self.navigationController.navigationBar.isHidden) {
-        self.navigationController.navigationBar.hidden = YES;
-        [self.tabBarController.navigationController setNavigationBarHidden:YES animated:NO];
-    }
-}
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)initOffset
 {
-    [self configNavigation];
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];//刷新布局
-    [self.tubeNavigationView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@20);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.height.mas_equalTo([self.tubeNavigationView.searchView getUITubeSearchViewHeight]+[self.tubeNavigationView.indicatorView getUIHeight]+12);
-    }];
-    CGFloat y = self.tubeNavigationView.frame.origin.y+self.tubeNavigationView.frame.size.height;
-    self.pageViewController.view.frame = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - y);
-    [self initOffset];
-
-    
+    preOffsetX = [UIScreen mainScreen].bounds.size.width;
+    offsetDistance = 0;
 }
 
 - (NSUInteger)getCurrentPageIndex:(UIViewController *)controller
@@ -134,7 +77,8 @@
     return i;
 }
 
--(UIScrollView *)findScrollView{
+-(UIScrollView *)findScrollView
+{
     UIScrollView* scrollView;
     for(id subview in _pageViewController.view.subviews){
         if([subview isKindOfClass:UIScrollView.class]){
@@ -143,6 +87,7 @@
         }}
     return scrollView;
 }
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -155,22 +100,22 @@
         preOffsetX = x;
         //向右偏移
         if (offsetDistance>0) {
-            if (self.tubeNavigationView.indicatorView.currentIndicator==self.tubeNavigationView.indicatorView.itemArrays.count-1) {
+            if (self.indicatorView.currentIndicator==self.indicatorView.itemArrays.count-1) {
                 self.scrollerView.bounces = NO;
             }else{
                 self.scrollerView.bounces = YES;
             }
-            [self.tubeNavigationView.indicatorView changeIndicatorViewSize:YES scale:(offsetDistance)/SCREEN_WIDTH];
+            [self.indicatorView changeIndicatorViewSize:YES scale:(offsetDistance)/SCREEN_WIDTH];
         } else {//向左偏移
-            if (self.tubeNavigationView.indicatorView.currentIndicator==0) {
+            if (self.indicatorView.currentIndicator==0) {
                 self.scrollerView.bounces = NO;
             }else{
                 self.scrollerView.bounces = YES;
             }
-            [self.tubeNavigationView.indicatorView changeIndicatorViewSize:NO scale:(-offsetDistance)/SCREEN_WIDTH];
+            [self.indicatorView changeIndicatorViewSize:NO scale:(-offsetDistance)/SCREEN_WIDTH];
         }
     }
-
+    
 }
 
 #pragma mark - UIIndicatorViewDelegate
@@ -186,15 +131,17 @@
 }
 
 #pragma mark - UIPageViewControllerDelegate
-
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
-
+    
     if (completed) {
-        [self.tubeNavigationView.indicatorView setShowIndicatorItem:[self getCurrentPageIndex:pageViewController.viewControllers[0]]];
-        NSLog(@"page class:%@ %lu ",[previousViewControllers description], [self getCurrentPageIndex:pageViewController.viewControllers[0]]);
+        if (self.indicatorView) {
+            [self.indicatorView setShowIndicatorItem:[self getCurrentPageIndex:pageViewController.viewControllers[0]]];
+        }
+
         [self initOffset];
     }
 }
+
 #pragma mark - UIPageViewControllerDataSource
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
@@ -233,11 +180,6 @@
 {
     if (!_arrayControllers) {
         _arrayControllers = [[NSMutableArray alloc] init];
-        [_arrayControllers addObject:[[NewestViewController alloc] init]];
-        [_arrayControllers addObject:[[RecommendViewController alloc] init]];
-        [_arrayControllers addObject:[[TopicViewController alloc] init]];
-        [_arrayControllers addObject:[[SerialViewController alloc] init]];
-        [_arrayControllers addObject:[[AuthorViewController alloc] init]];
     }
     return _arrayControllers;
 }

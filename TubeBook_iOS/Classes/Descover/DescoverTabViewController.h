@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TubePageViewController.h"
 
-@interface DescoverTabViewController : UIViewController
+@interface DescoverTabViewController : TubePageViewController
 
 @end

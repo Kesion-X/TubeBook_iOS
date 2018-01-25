@@ -25,7 +25,8 @@
 {
     self = [super initWithRootViewController:rootViewController];
     _rootViewController = rootViewController;
-    [self.navigationBar setBarTintColor:HEXCOLOR(0xf8f9f9)];//默认导航背景颜色
+   // [self.navigationBar setBarTintColor:HEXCOLOR(0xf8f9f9)];//默认导航背景颜色
+    [self.navigationBar setBarTintColor:HEXCOLOR(0xffffff)];
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
                                                  NSFontAttributeName : [UIFont systemFontOfSize:18]
                                                  }];
