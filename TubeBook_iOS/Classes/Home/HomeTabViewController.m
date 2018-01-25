@@ -99,27 +99,18 @@
 - (void)configNavigation
 {
     if (!self.navigationController.navigationBar.isHidden) {
-        self.navigationController.navigationBar.hidden = YES;
         [self.tabBarController.navigationController setNavigationBarHidden:YES animated:NO];
     }
+    self.tabBarController.navigationItem.title = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.titleView = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self configNavigation];
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];//刷新布局
-    [self.tubeNavigationView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@20);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.height.mas_equalTo([self.tubeNavigationView.searchView getUITubeSearchViewHeight]+[self.tubeNavigationView.indicatorView getUIHeight]+12);
-    }];
-    CGFloat y = self.tubeNavigationView.frame.origin.y+self.tubeNavigationView.frame.size.height;
-    self.pageViewController.view.frame = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - y);
-    [self initOffset];
-
-    
+    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
 }
 
 - (NSUInteger)getCurrentPageIndex:(UIViewController *)controller

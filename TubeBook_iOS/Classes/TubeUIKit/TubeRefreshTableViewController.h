@@ -28,5 +28,5 @@
 @property(nonatomic, strong) id<RefreshTableViewControllerDelegate> refreshTableViewControllerDelegate;
 
 - (void)registerCell:(Class)cellClass forKeyContent:(Class)contentClass;
-
+- (void)refreshLayout;
 @end

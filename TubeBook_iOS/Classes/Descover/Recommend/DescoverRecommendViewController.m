@@ -10,6 +10,8 @@
 #import "SDCycleScrollView.h"
 #import "CycleContent.h"
 #import "CycleTableCell.h"
+#import "DescoverRecommendContent.h"
+#import "UIDescoverRecommendCell.h"
 
 @interface DescoverRecommendViewController () <RefreshTableViewControllerDelegate>
 
@@ -21,8 +23,13 @@
     [super viewDidLoad];
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[CycleTableCell class] forKeyContent:[CycleContent class]];
-    for (int i=0; i<1; ++i) {
-        [self.contentData addObject:[[CycleContent alloc] init]];
+    [self registerCell:[UIDescoverRecommendCell class] forKeyContent:[DescoverRecommendContent class]];
+    [self.contentData addObject:[[CycleContent alloc] init]];
+    for (int i=0; i<10; ++i) {
+        CKContent *content = [[DescoverRecommendContent alloc] init];
+        content.dataType.userState = i%2;
+        content.dataType.isHaveImage = i%2;
+        [self.contentData addObject:content];
     }
 }
 

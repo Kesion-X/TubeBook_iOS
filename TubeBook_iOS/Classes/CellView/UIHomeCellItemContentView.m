@@ -17,6 +17,18 @@
     self = [super init];
     if (self) {
         self.isHaveImage = isHaveImage;
+        self.contentCellStyle = UIContentCellNormalStyle;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
+
+- (instancetype)initUIHomeCellItemContentView:(BOOL)isHaveImage contentCellStyle:(UIContentCellStyle)contentCellStyle
+{
+    self = [super init];
+    if (self) {
+        self.isHaveImage = isHaveImage;
+        self.contentCellStyle = contentCellStyle;
         [self addViewAndConstraint];
     }
     return self;
@@ -30,6 +42,21 @@
         self.title = title;
         self.contentDescription = contentDescription;
         self.isHaveImage = isHaveImage;
+        self.contentCellStyle = UIContentCellNormalStyle;
+        [self addViewAndConstraint];
+    }
+    return self;
+}
+
+- (instancetype)initUIHomeCellItemContentView:(NSString *)contentUrl title:(NSString *)title contentDescription:(NSString *)contentDescription isHaveImage:(BOOL)isHaveImage contentCellStyle:(UIContentCellStyle)contentCellStyle
+{
+    self = [super init];
+    if (self) {
+        self.contentUrl = contentUrl;
+        self.title = title;
+        self.contentDescription = contentDescription;
+        self.isHaveImage = isHaveImage;
+        self.contentCellStyle = contentCellStyle;
         [self addViewAndConstraint];
     }
     return self;
@@ -43,24 +70,45 @@
     [self addSubview:self.titleLable];
     [self addSubview:self.descriptionLable];
     if (self.isHaveImage) {
-        [self.contentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self).offset(kCELL_MARGIN);
-            make.right.mas_equalTo(self).offset(-kCELL_MARGIN);
-            make.top.equalTo(self).offset(4);
-            make.height.mas_equalTo(88);
-        }];
-        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentImageView.mas_bottom).offset(8);
-            make.left.mas_equalTo(self).offset(kCELL_MARGIN+8);
-            make.right.mas_equalTo(self).offset(-kCELL_MARGIN);
-            make.height.mas_equalTo(16);
-        }];
-        [self.descriptionLable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLable.mas_bottom).offset(4);
-            make.left.mas_equalTo(self).offset(kCELL_MARGIN);
-            make.right.mas_equalTo(self).offset(-kCELL_MARGIN);
-            make.height.mas_equalTo(32);
-        }];
+        if (self.contentCellStyle == UIContentCellNormalStyle) {
+            [self.contentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self).offset(kCELL_MARGIN);
+                make.right.mas_equalTo(self).offset(-kCELL_MARGIN);
+                make.top.equalTo(self).offset(4);
+                make.height.mas_equalTo(88);
+            }];
+            [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.contentImageView.mas_bottom).offset(8);
+                make.left.mas_equalTo(self).offset(kCELL_MARGIN+8);
+                make.right.mas_equalTo(self).offset(-kCELL_MARGIN);
+                make.height.mas_equalTo(16);
+            }];
+            [self.descriptionLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleLable.mas_bottom).offset(4);
+                make.left.mas_equalTo(self).offset(kCELL_MARGIN);
+                make.right.mas_equalTo(self).offset(-kCELL_MARGIN);
+                make.height.mas_equalTo(32);
+            }];
+        } else {
+            [self.contentImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self).offset(-kCELL_MARGIN);
+                make.top.equalTo(self);
+                make.width.mas_equalTo(64);
+                make.height.mas_equalTo(64);
+            }];
+            [self.titleLable mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self).offset(4);
+                make.left.equalTo(self).offset(kCELL_MARGIN);
+                make.right.equalTo(self.contentImageView.mas_left).offset(-kCELL_MARGIN);
+                make.height.mas_equalTo(16);
+            }];
+            [self.descriptionLable mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleLable.mas_bottom).offset(4);
+                make.left.equalTo(self).offset(kCELL_MARGIN);
+                make.right.equalTo(self.contentImageView.mas_left).offset(-kCELL_MARGIN);
+                make.height.mas_equalTo(32);
+            }];
+        }
     } else {
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(8);
@@ -80,7 +128,11 @@
 - (CGFloat)getUIHeight
 {
     if (self.isHaveImage) {
-        return 156;
+        if (self.contentCellStyle == UIContentCellNormalStyle) {
+            return 156;
+        } else {
+            return 64;
+        }
     }
     return 60;
 }
@@ -89,6 +141,18 @@
 {
     if (isHaveImage) {
         return 156;
+    }
+    return 60;
+}
+
++ (CGFloat)getUIHeight:(BOOL)isHaveImage contentStyle:(UIContentCellStyle)contentStyle
+{
+    if (isHaveImage) {
+        if (contentStyle == UIContentCellNormalStyle) {
+            return 156;
+        } else {
+            return 64;
+        }
     }
     return 60;
 }

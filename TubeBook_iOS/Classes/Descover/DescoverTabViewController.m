@@ -32,23 +32,23 @@
     [super viewDidLoad];
     [self createIndicator];
     [self configIndicator:self.indicator];
-    [self configPageView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) arrayControllers:[NSMutableArray arrayWithObjects:self.descoverRecommendViewController, self.descoverTopicViewController, self.descoverSerialViewController, nil]];
+    [self configPageView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) arrayControllers:[NSMutableArray arrayWithObjects:self.descoverRecommendViewController,self.descoverSerialViewController, self.descoverTopicViewController,  nil]];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self configNavigation];
-    [self configIndicator:self.indicator];//刷新布局
-    [self configPageView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) arrayControllers:[NSMutableArray arrayWithObjects:self.descoverRecommendViewController, self.descoverTopicViewController, self.descoverSerialViewController, nil]];//刷新布局
+    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-49);
 }
 
 - (void)configNavigation
 {
     if (self.navigationController.navigationBar.isHidden) {
-        self.navigationController.navigationBar.hidden = NO;
-        [self.tabBarController.navigationController setNavigationBarHidden:NO animated:NO];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
+    self.tabBarController.navigationItem.titleView = self.indicator;
 }
 
 - (void)createIndicator
@@ -56,7 +56,7 @@
     if (!self.indicator) {
         self.indicator = [[UIIndicatorView alloc] initUIIndicatorView:kTUBEBOOK_THEME_NORMAL_COLOR
                                                                 style:UIIndicatorViewLineStyle
-                                                               arrays:[NSMutableArray arrayWithObjects:@"推荐",@"专题",@"连载", nil]
+                                                               arrays:[NSMutableArray arrayWithObjects:@"推荐",@"连载",@"专题", nil]
                                                                  font:Font(18)
                                                       textNormalColor:kTEXTCOLOR
                                                        textLightColor:kTUBEBOOK_THEME_NORMAL_COLOR
