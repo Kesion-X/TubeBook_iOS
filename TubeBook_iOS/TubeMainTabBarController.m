@@ -91,6 +91,8 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
     [super setSelectedIndex:selectedIndex];
+//    [self.tabBarController.navigationController setNavigationBarHidden:selectedIndex == 0];
+//    [self.navigationController setNavigationBarHidden:selectedIndex == 0];
 }
 
 - (void)saveTabbarSetting:(NSString *)Appid showSign:(BOOL)bsign
@@ -206,7 +208,6 @@
 #pragma mark - UITabBarControllerDelegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    
     if (viewController==self.releaseTabViewController) {
         [self presentViewController:self.releaseViewController animated:YES completion:nil];
         return NO;
