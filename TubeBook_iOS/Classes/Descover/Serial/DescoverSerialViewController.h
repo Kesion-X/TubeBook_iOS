@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TubeRefreshCollectionViewController.h"
 
-@interface DescoverSerialViewController : UIViewController
+@interface DescoverSerialViewController : TubeRefreshCollectionViewController
 
 @end

@@ -20,5 +20,6 @@
 
 + (CGRect)sizeWithAttributesCGRect:(UIFont *)font;
 + (CGSize)getSizeWithAttributes:(NSString *)content font:(UIFont *)font;
++ (CGSize)getSizeWithAttributes:(NSString *)content width:(CGFloat)width font:(UIFont *)font;
 
 @end
