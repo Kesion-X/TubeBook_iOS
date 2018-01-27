@@ -7,8 +7,10 @@
 //
 
 #import "DescoverSerialViewController.h"
+#import "DescoverSerialContent.h"
+#import "SerialCollectionViewCell.h"
 
-@interface DescoverSerialViewController ()
+@interface DescoverSerialViewController () <RefreshTableViewControllerDelegate>
 
 @end
 
@@ -16,22 +18,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.refreshTableViewControllerDelegate = self;
+    [self registerCell:[SerialCollectionViewCell class] forKeyContent:[DescoverSerialContent class]];
+    [self registerClass:[SerialCollectionViewCell class] forCellWithReuseIdentifier:[SerialCollectionViewCell getDequeueId:nil]];
+    DescoverSerialContent *c = [[DescoverSerialContent alloc] init];
+    c.serialTitle = @"KEKKKEKKEEEKKEKEKKbkwabdkjwadbkawbdkjawbdkjbawkdjbawkdadnwaldnlwawdaw";
+    [self.contentData addObject:c];
+    for (int i=0; i<10; ++i) {
+        DescoverSerialContent *c = [[DescoverSerialContent alloc] init];
+        c.serialTitle = @"adnwaldnlwawdaw";
+        [self.contentData addObject:c];
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.collectionView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-49);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)refreshData
+{
+    NSLog(@"refreshData");
 }
-*/
+
+- (void)loadMoreData
+{
+    NSLog(@"loadMoreData");
+}
 
 @end

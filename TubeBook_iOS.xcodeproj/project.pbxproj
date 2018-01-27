@@ -119,6 +119,11 @@
 		3C1960512019D8E0000A938C /* CycleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960502019D8E0000A938C /* CycleTableCell.m */; };
 		3C196054201A1884000A938C /* DescoverRecommendContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C196053201A1884000A938C /* DescoverRecommendContent.m */; };
 		3C196057201A1E72000A938C /* UIDescoverRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C196056201A1E72000A938C /* UIDescoverRecommendCell.m */; };
+		3C19605A201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C196059201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m */; };
+		3C19605D201AD43D000A938C /* TubeRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C19605C201AD43D000A938C /* TubeRefreshCollectionViewController.m */; };
+		3C1960B7201B78E2000A938C /* CKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960B6201B78E2000A938C /* CKCollectionViewCell.m */; };
+		3C1960BA201C9278000A938C /* SerialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960B9201C9278000A938C /* SerialCollectionViewCell.m */; };
+		3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960BC201C99D6000A938C /* DescoverSerialContent.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -322,6 +327,16 @@
 		3C196053201A1884000A938C /* DescoverRecommendContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverRecommendContent.m; sourceTree = "<group>"; };
 		3C196055201A1E72000A938C /* UIDescoverRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDescoverRecommendCell.h; sourceTree = "<group>"; };
 		3C196056201A1E72000A938C /* UIDescoverRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIDescoverRecommendCell.m; sourceTree = "<group>"; };
+		3C196058201AD0CE000A938C /* UIWaterfallCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWaterfallCollectionViewLayout.h; sourceTree = "<group>"; };
+		3C196059201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIWaterfallCollectionViewLayout.m; sourceTree = "<group>"; };
+		3C19605B201AD43D000A938C /* TubeRefreshCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeRefreshCollectionViewController.h; sourceTree = "<group>"; };
+		3C19605C201AD43D000A938C /* TubeRefreshCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeRefreshCollectionViewController.m; sourceTree = "<group>"; };
+		3C1960B5201B78E2000A938C /* CKCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKCollectionViewCell.h; sourceTree = "<group>"; };
+		3C1960B6201B78E2000A938C /* CKCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKCollectionViewCell.m; sourceTree = "<group>"; };
+		3C1960B8201C9278000A938C /* SerialCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialCollectionViewCell.h; sourceTree = "<group>"; };
+		3C1960B9201C9278000A938C /* SerialCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerialCollectionViewCell.m; sourceTree = "<group>"; };
+		3C1960BB201C99D6000A938C /* DescoverSerialContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescoverSerialContent.h; sourceTree = "<group>"; };
+		3C1960BC201C99D6000A938C /* DescoverSerialContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverSerialContent.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -388,6 +403,8 @@
 				3C19600E2015DCBF000A938C /* UITagView.m */,
 				3C1960382018BCE5000A938C /* UIRingScrollView.h */,
 				3C1960392018BCE5000A938C /* UIRingScrollView.m */,
+				3C196058201AD0CE000A938C /* UIWaterfallCollectionViewLayout.h */,
+				3C196059201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -480,6 +497,8 @@
 				3C19602A2017507B000A938C /* TubeRefreshTableViewController.m */,
 				3C19603D2019BFCD000A938C /* TubePageViewController.h */,
 				3C19603E2019BFCD000A938C /* TubePageViewController.m */,
+				3C19605B201AD43D000A938C /* TubeRefreshCollectionViewController.h */,
+				3C19605C201AD43D000A938C /* TubeRefreshCollectionViewController.m */,
 			);
 			path = TubeUIKit;
 			sourceTree = "<group>";
@@ -606,6 +625,10 @@
 				3C1960502019D8E0000A938C /* CycleTableCell.m */,
 				3C196055201A1E72000A938C /* UIDescoverRecommendCell.h */,
 				3C196056201A1E72000A938C /* UIDescoverRecommendCell.m */,
+				3C1960B5201B78E2000A938C /* CKCollectionViewCell.h */,
+				3C1960B6201B78E2000A938C /* CKCollectionViewCell.m */,
+				3C1960B8201C9278000A938C /* SerialCollectionViewCell.h */,
+				3C1960B9201C9278000A938C /* SerialCollectionViewCell.m */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -633,6 +656,8 @@
 				3C19604D2019D864000A938C /* CycleContent.m */,
 				3C196052201A1884000A938C /* DescoverRecommendContent.h */,
 				3C196053201A1884000A938C /* DescoverRecommendContent.m */,
+				3C1960BB201C99D6000A938C /* DescoverSerialContent.h */,
+				3C1960BC201C99D6000A938C /* DescoverSerialContent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1067,6 +1092,7 @@
 			files = (
 				3C19602E20175DDD000A938C /* UISerialTableCell.m in Sources */,
 				3C19603F2019BFCD000A938C /* TubePageViewController.m in Sources */,
+				3C19605D201AD43D000A938C /* TubeRefreshCollectionViewController.m in Sources */,
 				3C195FD320137B31000A938C /* TopicViewController.m in Sources */,
 				3C19600020159288000A938C /* CKDataType.m in Sources */,
 				3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */,
@@ -1078,6 +1104,7 @@
 				3C195FCD20137B1A000A938C /* AuthorViewController.m in Sources */,
 				3C195E4F200BC6A2000A938C /* MessageTabViewController.m in Sources */,
 				3C19601B2015F2FA000A938C /* UISerialArticleCell.m in Sources */,
+				3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
 				3C195FBA20133C03000A938C /* UITubeHomeNavigationView.m in Sources */,
@@ -1090,6 +1117,7 @@
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
 				3C1960122015F1E8000A938C /* TopicArticleContent.m in Sources */,
+				3C19605A201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m in Sources */,
 				3C19600C2015D676000A938C /* UIHomeCellTopicOrSerialView.m in Sources */,
 				3C19602820174A74000A938C /* TopicTagContent.m in Sources */,
 				3C1960482019C88A000A938C /* DescoverSerialViewController.m in Sources */,
@@ -1110,6 +1138,7 @@
 				3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */,
 				3C19603A2018BCE5000A938C /* UIRingScrollView.m in Sources */,
 				3C195E18200B900C000A938C /* TubeNavigationUITool.m in Sources */,
+				3C1960BA201C9278000A938C /* SerialCollectionViewCell.m in Sources */,
 				3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */,
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,
 				3C19604E2019D864000A938C /* CycleContent.m in Sources */,
@@ -1117,6 +1146,7 @@
 				3C195FD620146871000A938C /* UIRefreshTableView.m in Sources */,
 				3C195E6A200CF3C9000A938C /* TubeBundleImageTool.m in Sources */,
 				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,
+				3C1960B7201B78E2000A938C /* CKCollectionViewCell.m in Sources */,
 				3C19602B2017507B000A938C /* TubeRefreshTableViewController.m in Sources */,
 				3C195FFC2014EFAE000A938C /* UINormalArticleCell.m in Sources */,
 				3C195E12200B3FDE000A938C /* UITubeButton.m in Sources */,
