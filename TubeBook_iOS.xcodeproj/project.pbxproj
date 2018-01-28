@@ -124,6 +124,9 @@
 		3C1960B7201B78E2000A938C /* CKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960B6201B78E2000A938C /* CKCollectionViewCell.m */; };
 		3C1960BA201C9278000A938C /* SerialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960B9201C9278000A938C /* SerialCollectionViewCell.m */; };
 		3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960BC201C99D6000A938C /* DescoverSerialContent.m */; };
+		3C1960C0201E064C000A938C /* TubeLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960BF201E064C000A938C /* TubeLink.m */; };
+		3C1960C3201E0C26000A938C /* TubeAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960C2201E0C26000A938C /* TubeAddress.m */; };
+		3C1960C6201E1D7D000A938C /* TubeLinkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960C5201E1D7D000A938C /* TubeLinkManager.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
@@ -337,6 +340,12 @@
 		3C1960B9201C9278000A938C /* SerialCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerialCollectionViewCell.m; sourceTree = "<group>"; };
 		3C1960BB201C99D6000A938C /* DescoverSerialContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescoverSerialContent.h; sourceTree = "<group>"; };
 		3C1960BC201C99D6000A938C /* DescoverSerialContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverSerialContent.m; sourceTree = "<group>"; };
+		3C1960BE201E064C000A938C /* TubeLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeLink.h; sourceTree = "<group>"; };
+		3C1960BF201E064C000A938C /* TubeLink.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeLink.m; sourceTree = "<group>"; };
+		3C1960C1201E0C26000A938C /* TubeAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeAddress.h; sourceTree = "<group>"; };
+		3C1960C2201E0C26000A938C /* TubeAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeAddress.m; sourceTree = "<group>"; };
+		3C1960C4201E1D7D000A938C /* TubeLinkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeLinkManager.h; sourceTree = "<group>"; };
+		3C1960C5201E1D7D000A938C /* TubeLinkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeLinkManager.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -835,6 +844,12 @@
 		3CA3BF9E2009283B00793F3D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3C1960BE201E064C000A938C /* TubeLink.h */,
+				3C1960BF201E064C000A938C /* TubeLink.m */,
+				3C1960C1201E0C26000A938C /* TubeAddress.h */,
+				3C1960C2201E0C26000A938C /* TubeAddress.m */,
+				3C1960C4201E1D7D000A938C /* TubeLinkManager.h */,
+				3C1960C5201E1D7D000A938C /* TubeLinkManager.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1104,9 +1119,11 @@
 				3C195FCD20137B1A000A938C /* AuthorViewController.m in Sources */,
 				3C195E4F200BC6A2000A938C /* MessageTabViewController.m in Sources */,
 				3C19601B2015F2FA000A938C /* UISerialArticleCell.m in Sources */,
+				3C1960C0201E064C000A938C /* TubeLink.m in Sources */,
 				3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
+				3C1960C6201E1D7D000A938C /* TubeLinkManager.m in Sources */,
 				3C195FBA20133C03000A938C /* UITubeHomeNavigationView.m in Sources */,
 				3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */,
 				3C195E4C200BC692000A938C /* MyselfTabViewController.m in Sources */,
@@ -1143,6 +1160,7 @@
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,
 				3C19604E2019D864000A938C /* CycleContent.m in Sources */,
 				3C195E94200E4C7B000A938C /* UIView+Layout.m in Sources */,
+				3C1960C3201E0C26000A938C /* TubeAddress.m in Sources */,
 				3C195FD620146871000A938C /* UIRefreshTableView.m in Sources */,
 				3C195E6A200CF3C9000A938C /* TubeBundleImageTool.m in Sources */,
 				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,
