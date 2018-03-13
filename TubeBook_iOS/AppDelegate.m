@@ -14,6 +14,7 @@
 #import "MyselfTabViewController.h"
 #import "TubeMainTabBarController.h"
 #import "TubeRootViewController.h"
+#import "TubeSDK.h"
 
 @interface AppDelegate ()
 
@@ -24,20 +25,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    if (!self.window) {
+   if (!self.window) {
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
     self.window.backgroundColor = [UIColor whiteColor];
-    LoginUIViewController *con =  [[LoginUIViewController alloc] init];
-    UINavigationController *pushNav = [[UINavigationController alloc] initWithRootViewController:con];
-    TubeRootViewController *rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
-   // [pushNav.navigationBar setHidden:YES];
+
+    UIViewController *rootViewController = [self getRootViewController];
+    
     self.window.rootViewController = rootViewController;
-    
-    
-    
     [self.window makeKeyAndVisible];
+    [[TubeSDK sharedInstance] connect];
     return YES;
+}
+    
+- (UIViewController *)getRootViewController{
+   UIViewController *root = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+    
+    //root = [[UINavigationController alloc] initWithRootViewController:[[LoginUIViewController alloc] init]];
+    return root;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

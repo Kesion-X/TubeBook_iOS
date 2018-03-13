@@ -6,5 +6,6 @@ pod 'AFNetworking','~> 3.1.0'
 pod 'Masonry','~> 1.1.0'
 pod 'CocoaAsyncSocket','~> 7.6.2'
 pod 'SDCycleScrollView','~> 1.75'
+pod 'LCActionSheet','~> 3.4.0'
 end
 

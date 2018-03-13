@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C09897320510E1600352F27 /* ReleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C09897120510E1600352F27 /* ReleaseViewController.m */; };
+		3C0989762051319500352F27 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0989752051319500352F27 /* UIImage+Extension.m */; };
+		3C0989792051378300352F27 /* UITubeNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0989782051378300352F27 /* UITubeNavigationView.m */; };
+		3C09897F205524AC00352F27 /* TimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C09897E205524AC00352F27 /* TimeUtil.m */; };
+		3C098982205524F100352F27 /* UploadImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C098981205524F100352F27 /* UploadImageUtil.m */; };
+		3C09898520562AF900352F27 /* UserInfoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C09898420562AF900352F27 /* UserInfoUtil.m */; };
+		3C0989882056652600352F27 /* TagCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0989872056652600352F27 /* TagCollectionView.m */; };
 		3C136505200A2C4200674726 /* CKMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C136504200A2C4200674726 /* CKMacros.m */; };
 		3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C13650B200A4D9E00674726 /* UIImageFieldView.m */; };
 		3C13651B200A5F6C00674726 /* icon_delect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C136519200A5F6C00674726 /* icon_delect@2x.png */; };
@@ -56,7 +63,6 @@
 		3C195E74200D1D08000A938C /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195E72200D1D08000A938C /* icon_add@2x.png */; };
 		3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E78200D1DC8000A938C /* ReleaseTabViewController.m */; };
 		3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E7B200D2681000A938C /* UIImage+ScaleToSize.m */; };
-		3C195E7F200D2B28000A938C /* ReleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E7E200D2B28000A938C /* ReleaseViewController.m */; };
 		3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E81200DA45A000A938C /* UIIndicatorView.m */; };
 		3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E84200DACAF000A938C /* NSString+StringKit.m */; };
 		3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */; };
@@ -127,11 +133,21 @@
 		3C1960C0201E064C000A938C /* TubeLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960BF201E064C000A938C /* TubeLink.m */; };
 		3C1960C3201E0C26000A938C /* TubeAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960C2201E0C26000A938C /* TubeAddress.m */; };
 		3C1960C6201E1D7D000A938C /* TubeLinkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1960C5201E1D7D000A938C /* TubeLinkManager.m */; };
+		3C9B4D9820299EC90000608C /* BaseProtocolHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B4D9720299EC90000608C /* BaseProtocolHeader.m */; };
+		3C9B4D9B20299EE00000608C /* BaseProtocolContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B4D9A20299EE00000608C /* BaseProtocolContent.m */; };
+		3C9B4D9E2029AB690000608C /* BaseSocketPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B4D9D2029AB690000608C /* BaseSocketPackage.m */; };
+		3C9B4DA1202A05940000608C /* TubeServerDataSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B4DA0202A05940000608C /* TubeServerDataSDK.m */; };
 		3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF67200923C400793F3D /* AppDelegate.m */; };
 		3CA3BF70200923C400793F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3BF6F200923C400793F3D /* Assets.xcassets */; };
 		3CA3BF76200923C500793F3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF75200923C500793F3D /* main.m */; };
 		3CA3BF80200923C500793F3D /* TubeBook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF7F200923C500793F3D /* TubeBook_iOSTests.m */; };
 		3CA3BF8B200923C500793F3D /* TubeBook_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3BF8A200923C500793F3D /* TubeBook_iOSUITests.m */; };
+		3CBC3B63204062BD00C5C6CD /* TubeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B62204062BD00C5C6CD /* TubeSDK.m */; };
+		3CBC3B672041639C00C5C6CD /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B662041639C00C5C6CD /* SFHFKeychainUtils.m */; };
+		3CBC3B6A2041669200C5C6CD /* TubeGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B692041669200C5C6CD /* TubeGCDTimer.m */; };
+		3CBC3B6D20429C7600C5C6CD /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B6C20429C7600C5C6CD /* LoginManager.m */; };
+		3CBC3B702046832400C5C6CD /* TubeLoginSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B6F2046832400C5C6CD /* TubeLoginSDK.m */; };
+		3CBC3E3A204D300600C5C6CD /* AltertControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3E39204D300600C5C6CD /* AltertControllerUtil.m */; };
 		EDE84E122D529A6CB978A674 /* libPods-TubeBook_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +171,20 @@
 /* Begin PBXFileReference section */
 		1EA01C83617FF5AE12BB0DE8 /* Pods-TubeBook_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeBook_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TubeBook_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C09897120510E1600352F27 /* ReleaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReleaseViewController.m; sourceTree = "<group>"; };
+		3C09897220510E1600352F27 /* ReleaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseViewController.h; sourceTree = "<group>"; };
+		3C0989742051319500352F27 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		3C0989752051319500352F27 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		3C0989772051378300352F27 /* UITubeNavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITubeNavigationView.h; sourceTree = "<group>"; };
+		3C0989782051378300352F27 /* UITubeNavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITubeNavigationView.m; sourceTree = "<group>"; };
+		3C09897D205524AC00352F27 /* TimeUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtil.h; sourceTree = "<group>"; };
+		3C09897E205524AC00352F27 /* TimeUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtil.m; sourceTree = "<group>"; };
+		3C098980205524F100352F27 /* UploadImageUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadImageUtil.h; sourceTree = "<group>"; };
+		3C098981205524F100352F27 /* UploadImageUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageUtil.m; sourceTree = "<group>"; };
+		3C09898320562AF900352F27 /* UserInfoUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoUtil.h; sourceTree = "<group>"; };
+		3C09898420562AF900352F27 /* UserInfoUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoUtil.m; sourceTree = "<group>"; };
+		3C0989862056652600352F27 /* TagCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagCollectionView.h; sourceTree = "<group>"; };
+		3C0989872056652600352F27 /* TagCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagCollectionView.m; sourceTree = "<group>"; };
 		3C136503200A2C4200674726 /* CKMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMacros.h; sourceTree = "<group>"; };
 		3C136504200A2C4200674726 /* CKMacros.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMacros.m; sourceTree = "<group>"; };
 		3C136506200A4B7B00674726 /* LoginUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginUIViewController.h; sourceTree = "<group>"; };
@@ -221,8 +251,6 @@
 		3C195E78200D1DC8000A938C /* ReleaseTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleaseTabViewController.m; sourceTree = "<group>"; };
 		3C195E7A200D2681000A938C /* UIImage+ScaleToSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ScaleToSize.h"; sourceTree = "<group>"; };
 		3C195E7B200D2681000A938C /* UIImage+ScaleToSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ScaleToSize.m"; sourceTree = "<group>"; };
-		3C195E7D200D2B28000A938C /* ReleaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReleaseViewController.h; sourceTree = "<group>"; };
-		3C195E7E200D2B28000A938C /* ReleaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleaseViewController.m; sourceTree = "<group>"; };
 		3C195E80200DA45A000A938C /* UIIndicatorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIIndicatorView.h; sourceTree = "<group>"; };
 		3C195E81200DA45A000A938C /* UIIndicatorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIIndicatorView.m; sourceTree = "<group>"; };
 		3C195E83200DACAF000A938C /* NSString+StringKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+StringKit.h"; sourceTree = "<group>"; };
@@ -346,6 +374,15 @@
 		3C1960C2201E0C26000A938C /* TubeAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeAddress.m; sourceTree = "<group>"; };
 		3C1960C4201E1D7D000A938C /* TubeLinkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeLinkManager.h; sourceTree = "<group>"; };
 		3C1960C5201E1D7D000A938C /* TubeLinkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeLinkManager.m; sourceTree = "<group>"; };
+		3C9B4D9520299E4D0000608C /* ProtocolConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtocolConst.h; sourceTree = "<group>"; };
+		3C9B4D9620299EC90000608C /* BaseProtocolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseProtocolHeader.h; sourceTree = "<group>"; };
+		3C9B4D9720299EC90000608C /* BaseProtocolHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseProtocolHeader.m; sourceTree = "<group>"; };
+		3C9B4D9920299EE00000608C /* BaseProtocolContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseProtocolContent.h; sourceTree = "<group>"; };
+		3C9B4D9A20299EE00000608C /* BaseProtocolContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseProtocolContent.m; sourceTree = "<group>"; };
+		3C9B4D9C2029AB690000608C /* BaseSocketPackage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseSocketPackage.h; sourceTree = "<group>"; };
+		3C9B4D9D2029AB690000608C /* BaseSocketPackage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseSocketPackage.m; sourceTree = "<group>"; };
+		3C9B4D9F202A05940000608C /* TubeServerDataSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeServerDataSDK.h; sourceTree = "<group>"; };
+		3C9B4DA0202A05940000608C /* TubeServerDataSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeServerDataSDK.m; sourceTree = "<group>"; };
 		3CA3BF63200923C400793F3D /* TubeBook_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeBook_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF66200923C400793F3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CA3BF67200923C400793F3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -358,6 +395,18 @@
 		3CA3BF86200923C500793F3D /* TubeBook_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TubeBook_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA3BF8A200923C500793F3D /* TubeBook_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeBook_iOSUITests.m; sourceTree = "<group>"; };
 		3CA3BF8C200923C500793F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CBC3B61204062BD00C5C6CD /* TubeSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeSDK.h; sourceTree = "<group>"; };
+		3CBC3B62204062BD00C5C6CD /* TubeSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeSDK.m; sourceTree = "<group>"; };
+		3CBC3B652041639C00C5C6CD /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		3CBC3B662041639C00C5C6CD /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		3CBC3B682041669200C5C6CD /* TubeGCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeGCDTimer.h; sourceTree = "<group>"; };
+		3CBC3B692041669200C5C6CD /* TubeGCDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeGCDTimer.m; sourceTree = "<group>"; };
+		3CBC3B6B20429C7600C5C6CD /* LoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		3CBC3B6C20429C7600C5C6CD /* LoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		3CBC3B6E2046832400C5C6CD /* TubeLoginSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeLoginSDK.h; sourceTree = "<group>"; };
+		3CBC3B6F2046832400C5C6CD /* TubeLoginSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeLoginSDK.m; sourceTree = "<group>"; };
+		3CBC3E38204D300600C5C6CD /* AltertControllerUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AltertControllerUtil.h; sourceTree = "<group>"; };
+		3CBC3E39204D300600C5C6CD /* AltertControllerUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AltertControllerUtil.m; sourceTree = "<group>"; };
 		F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeBook_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +463,10 @@
 				3C1960392018BCE5000A938C /* UIRingScrollView.m */,
 				3C196058201AD0CE000A938C /* UIWaterfallCollectionViewLayout.h */,
 				3C196059201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m */,
+				3C0989772051378300352F27 /* UITubeNavigationView.h */,
+				3C0989782051378300352F27 /* UITubeNavigationView.m */,
+				3C0989862056652600352F27 /* TagCollectionView.h */,
+				3C0989872056652600352F27 /* TagCollectionView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -525,6 +578,8 @@
 				3C195E8A200E2196000A938C /* UINavigationBar+CustomHeight.m */,
 				3C195E92200E4C7B000A938C /* UIView+Layout.h */,
 				3C195E93200E4C7B000A938C /* UIView+Layout.m */,
+				3C0989742051319500352F27 /* UIImage+Extension.h */,
+				3C0989752051319500352F27 /* UIImage+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -532,10 +587,10 @@
 		3C195E75200D1D35000A938C /* Release */ = {
 			isa = PBXGroup;
 			children = (
+				3C09897220510E1600352F27 /* ReleaseViewController.h */,
+				3C09897120510E1600352F27 /* ReleaseViewController.m */,
 				3C195E77200D1DC8000A938C /* ReleaseTabViewController.h */,
 				3C195E78200D1DC8000A938C /* ReleaseTabViewController.m */,
-				3C195E7D200D2B28000A938C /* ReleaseViewController.h */,
-				3C195E7E200D2B28000A938C /* ReleaseViewController.m */,
 			);
 			path = Release;
 			sourceTree = "<group>";
@@ -698,6 +753,36 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
+		3C9B4D9420299DBF0000608C /* SocketModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C9B4D9520299E4D0000608C /* ProtocolConst.h */,
+				3C1960C1201E0C26000A938C /* TubeAddress.h */,
+				3C1960C2201E0C26000A938C /* TubeAddress.m */,
+				3C9B4D9620299EC90000608C /* BaseProtocolHeader.h */,
+				3C9B4D9720299EC90000608C /* BaseProtocolHeader.m */,
+				3C9B4D9920299EE00000608C /* BaseProtocolContent.h */,
+				3C9B4D9A20299EE00000608C /* BaseProtocolContent.m */,
+				3C9B4D9C2029AB690000608C /* BaseSocketPackage.h */,
+				3C9B4D9D2029AB690000608C /* BaseSocketPackage.m */,
+			);
+			path = SocketModel;
+			sourceTree = "<group>";
+		};
+		3C9B4DA2202A084F0000608C /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				3C9B4D9420299DBF0000608C /* SocketModel */,
+				3C1960BE201E064C000A938C /* TubeLink.h */,
+				3C1960BF201E064C000A938C /* TubeLink.m */,
+				3C1960C4201E1D7D000A938C /* TubeLinkManager.h */,
+				3C1960C5201E1D7D000A938C /* TubeLinkManager.m */,
+				3C9B4D9F202A05940000608C /* TubeServerDataSDK.h */,
+				3C9B4DA0202A05940000608C /* TubeServerDataSDK.m */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		3CA3BF5A200923C400793F3D = {
 			isa = PBXGroup;
 			children = (
@@ -819,6 +904,12 @@
 				3C136504200A2C4200674726 /* CKMacros.m */,
 				3C195E8F200E4AF3000A938C /* ChatKitSetting.h */,
 				3C195E90200E4AF3000A938C /* ChatKitSetting.m */,
+				3CBC3B682041669200C5C6CD /* TubeGCDTimer.h */,
+				3CBC3B692041669200C5C6CD /* TubeGCDTimer.m */,
+				3CBC3E38204D300600C5C6CD /* AltertControllerUtil.h */,
+				3CBC3E39204D300600C5C6CD /* AltertControllerUtil.m */,
+				3C09897D205524AC00352F27 /* TimeUtil.h */,
+				3C09897E205524AC00352F27 /* TimeUtil.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -844,14 +935,37 @@
 		3CA3BF9E2009283B00793F3D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3C1960BE201E064C000A938C /* TubeLink.h */,
-				3C1960BF201E064C000A938C /* TubeLink.m */,
-				3C1960C1201E0C26000A938C /* TubeAddress.h */,
-				3C1960C2201E0C26000A938C /* TubeAddress.m */,
-				3C1960C4201E1D7D000A938C /* TubeLinkManager.h */,
-				3C1960C5201E1D7D000A938C /* TubeLinkManager.m */,
+				3CBC3B602040628600C5C6CD /* LoginSDK */,
+				3C9B4DA2202A084F0000608C /* Socket */,
+				3CBC3B61204062BD00C5C6CD /* TubeSDK.h */,
+				3CBC3B62204062BD00C5C6CD /* TubeSDK.m */,
+				3C098980205524F100352F27 /* UploadImageUtil.h */,
+				3C098981205524F100352F27 /* UploadImageUtil.m */,
+				3C09898320562AF900352F27 /* UserInfoUtil.h */,
+				3C09898420562AF900352F27 /* UserInfoUtil.m */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		3CBC3B602040628600C5C6CD /* LoginSDK */ = {
+			isa = PBXGroup;
+			children = (
+				3CBC3B6E2046832400C5C6CD /* TubeLoginSDK.h */,
+				3CBC3B6F2046832400C5C6CD /* TubeLoginSDK.m */,
+				3CBC3B6B20429C7600C5C6CD /* LoginManager.h */,
+				3CBC3B6C20429C7600C5C6CD /* LoginManager.m */,
+				3CBC3B642041637800C5C6CD /* Util */,
+			);
+			path = LoginSDK;
+			sourceTree = "<group>";
+		};
+		3CBC3B642041637800C5C6CD /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3CBC3B652041639C00C5C6CD /* SFHFKeychainUtils.h */,
+				3CBC3B662041639C00C5C6CD /* SFHFKeychainUtils.m */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		8D18D2C767E3A1DF7BF531C7 /* Frameworks */ = {
@@ -1107,20 +1221,27 @@
 			files = (
 				3C19602E20175DDD000A938C /* UISerialTableCell.m in Sources */,
 				3C19603F2019BFCD000A938C /* TubePageViewController.m in Sources */,
+				3C09898520562AF900352F27 /* UserInfoUtil.m in Sources */,
 				3C19605D201AD43D000A938C /* TubeRefreshCollectionViewController.m in Sources */,
 				3C195FD320137B31000A938C /* TopicViewController.m in Sources */,
 				3C19600020159288000A938C /* CKDataType.m in Sources */,
 				3C13650C200A4D9E00674726 /* UIImageFieldView.m in Sources */,
 				3C1960092015C2E0000A938C /* NormalArticleContent.m in Sources */,
 				3C19601E20160673000A938C /* UITopicArticleCell.m in Sources */,
+				3C9B4D9B20299EE00000608C /* BaseProtocolContent.m in Sources */,
 				3C195FE92014D3A4000A938C /* UIHomeCellItemFootView.m in Sources */,
+				3C9B4D9820299EC90000608C /* BaseProtocolHeader.m in Sources */,
 				3C195E70200D0BE4000A938C /* UIView+TubeFrameMargin.m in Sources */,
 				3C195FCA20137B0D000A938C /* RecommendViewController.m in Sources */,
 				3C195FCD20137B1A000A938C /* AuthorViewController.m in Sources */,
 				3C195E4F200BC6A2000A938C /* MessageTabViewController.m in Sources */,
+				3C0989762051319500352F27 /* UIImage+Extension.m in Sources */,
+				3C0989882056652600352F27 /* TagCollectionView.m in Sources */,
 				3C19601B2015F2FA000A938C /* UISerialArticleCell.m in Sources */,
+				3C9B4DA1202A05940000608C /* TubeServerDataSDK.m in Sources */,
 				3C1960C0201E064C000A938C /* TubeLink.m in Sources */,
 				3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */,
+				3CBC3E3A204D300600C5C6CD /* AltertControllerUtil.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
 				3C1960C6201E1D7D000A938C /* TubeLinkManager.m in Sources */,
@@ -1135,12 +1256,17 @@
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
 				3C1960122015F1E8000A938C /* TopicArticleContent.m in Sources */,
 				3C19605A201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m in Sources */,
+				3C9B4D9E2029AB690000608C /* BaseSocketPackage.m in Sources */,
 				3C19600C2015D676000A938C /* UIHomeCellTopicOrSerialView.m in Sources */,
 				3C19602820174A74000A938C /* TopicTagContent.m in Sources */,
+				3CBC3B63204062BD00C5C6CD /* TubeSDK.m in Sources */,
 				3C1960482019C88A000A938C /* DescoverSerialViewController.m in Sources */,
 				3C19603120175E93000A938C /* SerialTagContent.m in Sources */,
+				3C0989792051378300352F27 /* UITubeNavigationView.m in Sources */,
 				3C19604B2019C8A1000A938C /* DescoverRecommendViewController.m in Sources */,
+				3C098982205524F100352F27 /* UploadImageUtil.m in Sources */,
 				3C1960152015F20D000A938C /* SerialArticleContent.m in Sources */,
+				3C09897320510E1600352F27 /* ReleaseViewController.m in Sources */,
 				3C195FDF2014A227000A938C /* UIHomeCellItemHeadView.m in Sources */,
 				3C195E85200DACAF000A938C /* NSString+StringKit.m in Sources */,
 				3C195E8B200E2196000A938C /* UINavigationBar+CustomHeight.m in Sources */,
@@ -1157,6 +1283,7 @@
 				3C195E18200B900C000A938C /* TubeNavigationUITool.m in Sources */,
 				3C1960BA201C9278000A938C /* SerialCollectionViewCell.m in Sources */,
 				3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */,
+				3CBC3B6D20429C7600C5C6CD /* LoginManager.m in Sources */,
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,
 				3C19604E2019D864000A938C /* CycleContent.m in Sources */,
 				3C195E94200E4C7B000A938C /* UIView+Layout.m in Sources */,
@@ -1171,12 +1298,15 @@
 				3C1960452019C86A000A938C /* DescoverTopicViewController.m in Sources */,
 				3C195E52200BC6B2000A938C /* DescoverTabViewController.m in Sources */,
 				3C196057201A1E72000A938C /* UIDescoverRecommendCell.m in Sources */,
+				3CBC3B702046832400C5C6CD /* TubeLoginSDK.m in Sources */,
 				3C195EC0200F2C16000A938C /* TubeToolBar.m in Sources */,
-				3C195E7F200D2B28000A938C /* ReleaseViewController.m in Sources */,
+				3CBC3B6A2041669200C5C6CD /* TubeGCDTimer.m in Sources */,
+				3CBC3B672041639C00C5C6CD /* SFHFKeychainUtils.m in Sources */,
 				3C19600F2015DCBF000A938C /* UITagView.m in Sources */,
 				3C195E91200E4AF3000A938C /* ChatKitSetting.m in Sources */,
 				3C1960062015958C000A938C /* CKTableCell.m in Sources */,
 				3C195E67200CF019000A938C /* TubeMainTabBarController.m in Sources */,
+				3C09897F205524AC00352F27 /* TimeUtil.m in Sources */,
 				3C1960512019D8E0000A938C /* CycleTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1322,7 +1452,7 @@
 			baseConfigurationReference = F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3G6Y674Y5K;
 				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";
@@ -1339,7 +1469,7 @@
 			baseConfigurationReference = 1EA01C83617FF5AE12BB0DE8 /* Pods-TubeBook_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3G6Y674Y5K;
 				INFOPLIST_FILE = "TubeBook_iOS/Supporting Files/Info.plist";

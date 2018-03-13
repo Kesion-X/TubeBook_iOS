@@ -121,7 +121,7 @@
 
 - (void)initNavigation
 {
-    [UIApplication sharedApplication].statusBarHidden = YES;
+    //[UIApplication sharedApplication].statusBarHidden = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [self.navigationController.navigationBar setBarTintColor:HEXCOLOR(0xf8f9f9)];
     [self.navigationController.navigationBar setTranslucent:NO];
