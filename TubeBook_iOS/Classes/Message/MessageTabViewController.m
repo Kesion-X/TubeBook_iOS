@@ -9,6 +9,9 @@
 #import "MessageTabViewController.h"
 #import "CKTextView.h"
 #import "Masonry.h"
+#import "TagCollectionView.h"
+#import "UITagView.h"
+#import "LCActionSheet.h"
 
 @interface MessageTabViewController ()
 
@@ -17,6 +20,9 @@
 @implementation MessageTabViewController
 CKTextView *ckTextView ;
 UIView *board;
+
+TagCollectionView *tagC;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     ckTextView = [[CKTextView alloc] init];
@@ -77,39 +83,56 @@ UIView *board;
     }];
     [input setBackgroundColor:[UIColor grayColor]];
     
+    tagC = [[TagCollectionView alloc] initWithFrame:CGRectMake(20, 200, 300, 100)];
+   // [tagC setBackgroundColor:[UIColor yellowColor]];
+    [self.view addSubview:tagC];
+    
 }
 
 - (IBAction)click:(id)sender
 {
-   // [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
-
-    if (board.hidden) {
-         [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
-        board.hidden = NO;
-
-        [board mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_bottom).offset(-210);
-        }];
-        [board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
-        [board updateConstraintsIfNeeded]; //
-        [UIView animateWithDuration:0.5f animations:^{
-            [self.view layoutIfNeeded];
-        }];
+    
+    [tagC addTagsObject:[[UITagView alloc] initUITagView:@"kesion" color:[UIColor grayColor]]];
+    LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"选择" cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
         
-    }else{
-        [ckTextView resignFirstResponder];
-        [board mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_bottom).offset(0);
-
-        }];
-        [board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
-        [board updateConstraintsIfNeeded]; //
-        [UIView animateWithDuration:0.5f animations:^{
-            [self.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-                    board.hidden = YES;
-        }];
-    }
+        if (buttonIndex == 1) {
+            NSLog(@"kkkk");
+        } else if (buttonIndex == 2){
+            NSLog(@"dddd");
+            
+        }
+        
+    } otherButtonTitleArray:@[@"K", @"D"] ];
+    [sheet show];
+   // [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
+//
+//    if (board.hidden) {
+//         [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
+//        board.hidden = NO;
+//
+//        [board mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.view.mas_bottom).offset(-210);
+//        }];
+//        [board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
+//        [board updateConstraintsIfNeeded]; //
+//        [UIView animateWithDuration:0.5f animations:^{
+//            [self.view layoutIfNeeded];
+//        }];
+//
+//    }else{
+//        [ckTextView resignFirstResponder];
+//        [board mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.view.mas_bottom).offset(0);
+//
+//        }];
+//        [board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
+//        [board updateConstraintsIfNeeded]; //
+//        [UIView animateWithDuration:0.5f animations:^{
+//            [self.view layoutIfNeeded];
+//        } completion:^(BOOL finished) {
+//                    board.hidden = YES;
+//        }];
+//    }
 
 }
 

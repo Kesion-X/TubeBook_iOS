@@ -175,6 +175,7 @@
     }
     return _releaseViewController;
 }
+
 #pragma mark - private
 - (void)configureViewController:(UIViewController *)viewController
                           title:(NSString *)title

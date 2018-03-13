@@ -13,8 +13,14 @@
 #import "CKMacros.h"
 #import "ReactiveObjC.h"
 #import "RegisterViewController.h"
+#import "TubeSDK.h"
+#import "TubeLink.h"
+#import "TubeRootViewController.h"
+#import "TubeMainTabBarController.h"
+#import "AltertControllerUtil.h"
+#import "UserInfoUtil.h"
 
-@interface LoginUIViewController ()
+@interface LoginUIViewController () <TubeLoginDelegate>
 
 @property (nonatomic, strong) UIImageFieldView *accountField;
 @property (nonatomic, strong) UIImageFieldView *passField;
@@ -26,7 +32,9 @@
 @property (nonatomic, strong) UILabel *descriptionLabel;
 @property (nonatomic, strong) UIButton *forgetButton;
 @property (nonatomic, strong) UILabel *myCopyRightLabel;
-
+@property (nonatomic, strong) NSString *account;
+@property (nonatomic, strong) NSString *pass;
+    
 @end
 
 @implementation LoginUIViewController
@@ -39,6 +47,11 @@
     [self addConstraint];
     [self loadData];
     
+}
+    
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 #pragma -mark private
@@ -139,19 +152,44 @@
 
 - (void)loadData
 {
+    [[TubeSDK sharedInstance].tubeLoginSDK addListener:self];
+   // weakify(self);
+    __block LoginUIViewController *blockSelf = self;
     [self.accountField setFieldBlock:^(NSString *text) {
-        
+        blockSelf.account = text;
     }];
     [self.passField setFieldBlock:^(NSString *text) {
-        
+        blockSelf.pass = text;
     }];
     [[self.registerButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
         [self.navigationController pushViewController:registerViewController animated:YES];
     }];
+    [[self.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [[TubeSDK sharedInstance].tubeLoginSDK login:self.account pass:self.pass];
+        //[UIApplication sharedApplication].keyWindow.rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+    }];
 }
 
-#pragma -mark get
+#pragma mark - TubeLoginDelegate
+- (void)loginSuccess:(NSDictionary *)message
+{
+    [[UserInfoUtil sharedInstance].userInfo setObject:self.account forKey:kAccountKey];
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+}
+    
+- (void)loginFail:(NSDictionary *)message
+{
+    [AltertControllerUtil showAlertTitle:nil
+                                 message:@"账号或密码错误!"
+                            confirmTitle:@"确定"
+                            confirmBlock:nil
+                             cancelTitle:nil
+                             cancelBlock:nil
+                           fromControler:self];
+}
+    
+#pragma mark - get
 - (UIImageFieldView *)accountField
 {
     if (!_accountField) {
@@ -250,7 +288,7 @@
 {
     if (!_myCopyRightLabel) {
         _myCopyRightLabel = [[UILabel alloc] init];
-        _myCopyRightLabel.text = @"Copyright(c)2017-2018 Kesion. All Right Reserved.";
+        _myCopyRightLabel.text = @"Copyright © 2017-2018 Kesion. All Right Reserved.";
         _myCopyRightLabel.font = Font(12);
         _myCopyRightLabel.textColor = kTEXTCOLOR;
     }

@@ -11,6 +11,13 @@
 
 #define kTIMEOUT 30
 
+typedef NS_ENUM(NSInteger, TubeLinkCode)
+{
+    TubeLinkCodeInitDataError = 1,
+    TubeLinkCodeTimeOut = 2,
+    TubeLinkCodeNotConnection = 3,
+};
+
 @protocol TubeLinkDelegate <NSObject>
 
 @optional
@@ -26,6 +33,7 @@
 
 @interface TubeLink : NSObject
 
+- (instancetype)initWithLinkID:(NSString *)linkID address:(TubeAddress *)address delegate:(id<TubeLinkDelegate>)delegate;
 - (BOOL)connect;
 - (void)disconnect;
 - (void)disconnectAndWait; // 推荐使用
