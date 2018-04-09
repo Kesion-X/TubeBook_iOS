@@ -52,6 +52,34 @@
     return [[UIBarButtonItem alloc] initWithCustomView:customButton];
 }
 
++ (UIBarButtonItem *)itemWithIconImage:(UIImage *)iconImage
+                         itemDirection:(ButtomItemDirection)itemDirection
+                                 title:(NSString *)title
+                            titleColor:(UIColor *)color
+                                target:(id)target action:(SEL)action
+{
+    UIBarButtonItem *item = nil;
+    if (itemDirection == LeftButtomItem) {
+        item = [TubeNavigationUITool itemWithIconImage:iconImage title:title titleColor:color target:target action:action];
+    } else {
+        UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        customButton.frame = CGRectMake(0.0f, 0.0f, 65, 32.0f);
+        [customButton setTitleColor:color forState:UIControlStateNormal];
+        customButton.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
+        customButton.titleLabel.font = Font(17);
+        [customButton setTitle:title forState:UIControlStateNormal];
+        customButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        customButton.titleLabel.minimumScaleFactor = 10.0;
+        customButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        customButton.titleLabel.textAlignment = NSTextAlignmentRight;
+        [customButton addTarget:target
+                         action:action
+               forControlEvents:UIControlEventTouchUpInside];
+        item = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    }
+    return item;
+}
+
 + (UIView *)itemTitleWithLableTitle:(NSString *)title titleColoe:(UIColor *)color
 {
     UILabel *titleLable = [[UILabel alloc] init];

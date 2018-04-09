@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "TubeServerDataSDK.h"
 #import "TubeLoginSDK.h"
+#import "TubeArticleSDK.h"
+#import "UserInfoUtil.h"
 
 @interface TubeSDK : NSObject
 
 @property (nonatomic, strong) TubeServerDataSDK *tubeServerDataSDK;
 @property (nonatomic, strong) TubeLoginSDK *tubeLoginSDK;
+@property (nonatomic, strong) TubeArticleSDK *tuebArticleSDK;
     
 + (instancetype)sharedInstance;
 - (void)connect;

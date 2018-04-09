@@ -11,6 +11,7 @@
 #import "Masonry.h"
 #import "CKContent.h"
 #import "CKTableCell.h"
+#import "CKMacros.h"
 
 @protocol RefreshTableViewControllerDelegate
 
@@ -20,7 +21,7 @@
 
 @end
 
-@interface TubeRefreshTableViewController : UIViewController
+@interface TubeRefreshTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) UIRefreshTableView *refreshTableView;
 @property(nonatomic, strong) NSMutableArray *contentData;

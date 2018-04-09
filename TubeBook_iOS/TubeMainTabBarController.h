@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIViewController *descoverTabViewController;
 @property (nonatomic, strong) UIViewController *messageTabViewController;
 @property (nonatomic, strong) UIViewController *myselfTabViewController;
+@property (nonatomic, strong) UIViewController *releaseViewController;
 @property (nonatomic, strong) UIViewController *releaseTabViewController;
 
 @end

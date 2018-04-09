@@ -1,0 +1,48 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - CocoaAsyncSocket (7.6.2)
+  - LCActionSheet (3.4.0):
+    - Masonry (~> 1.1.0)
+  - Masonry (1.1.0)
+  - ReactiveObjC (3.0.0)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - CocoaAsyncSocket (~> 7.6.2)
+  - LCActionSheet
+  - Masonry (~> 1.1.0)
+  - ReactiveObjC (~> 3.0.0)
+  - SDCycleScrollView (~> 1.75)
+  - SDWebImage (~> 4.2.3)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaAsyncSocket: 3541e024f48c54b251638ef72d51dd42808de932
+  LCActionSheet: af918d2f3f1c4c97f5f6f62cb099e745447aff96
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+
+PODFILE CHECKSUM: 746ade7b348b316d2e72afaea5493e670e48a72b
+
+COCOAPODS: 1.3.1

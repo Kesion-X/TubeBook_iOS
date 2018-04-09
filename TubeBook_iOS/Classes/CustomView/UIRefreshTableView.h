@@ -18,10 +18,12 @@ typedef void(^refreshState)(RefreshState state);
 
 @interface UIRefreshHeadView : UIView
 
-@property(nonatomic, strong) UIImageView *iconOrientationView;
-@property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
-@property(nonatomic, strong) UILabel *descriptionLabel;
-@property(nonatomic)CGFloat triggerHeight;
+@property (nonatomic, strong) UIImageView *iconOrientationView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) UILabel *descriptionLabel;
+@property (nonatomic, assign) CGFloat triggerHeight;
+@property (nonatomic, assign) RefreshState reStatus;
+
 - (void)listenerScrollViewAndChangeState:(UIScrollView *)scrollView refreshState:(refreshState)state;
 
 
