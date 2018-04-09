@@ -16,8 +16,6 @@
 
 @interface TubeMainTabBarController ()
 
-@property (nonatomic, strong) ReleaseViewController *releaseViewController;
-
 @end
 
 @implementation TubeMainTabBarController
@@ -171,7 +169,9 @@
 - (UIViewController *)releaseViewController
 {
     if (!_releaseViewController) {
-        _releaseViewController = [[ReleaseViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ReleaseViewController alloc] init]];
+
+        _releaseViewController = nav;
     }
     return _releaseViewController;
 }

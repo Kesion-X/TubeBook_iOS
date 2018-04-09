@@ -36,7 +36,8 @@
     }];
 }
 
-+ (UIImage *) imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth{
++ (UIImage *) imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth
+{
     
     UIImage *newImage = nil;
     CGSize imageSize = sourceImage.size;

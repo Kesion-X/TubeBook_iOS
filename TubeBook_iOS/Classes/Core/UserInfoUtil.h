@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define kAccountKey @"accountKey"
+#define kAccountKey @"accountKey" // 取账号
 
 @interface UserInfoUtil : NSObject
 // account

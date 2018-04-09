@@ -34,7 +34,7 @@
     
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
-    [[TubeSDK sharedInstance] connect];
+    [[TubeSDK sharedInstance] connect]; // 连接服务端
     return YES;
 }
     

@@ -12,6 +12,11 @@
 #import "TagCollectionView.h"
 #import "UITagView.h"
 #import "LCActionSheet.h"
+#import "TagManager.h"
+#import "TubeArticleManager.h"
+#import "TubeSDK.h"
+#import "AlterMessageViewController.h"
+#import "TubeAlterCenter.h"
 
 @interface MessageTabViewController ()
 
@@ -91,19 +96,34 @@ TagCollectionView *tagC;
 
 - (IBAction)click:(id)sender
 {
-    
-    [tagC addTagsObject:[[UITagView alloc] initUITagView:@"kesion" color:[UIColor grayColor]]];
-    LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"选择" cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-        
-        if (buttonIndex == 1) {
-            NSLog(@"kkkk");
-        } else if (buttonIndex == 2){
-            NSLog(@"dddd");
-            
-        }
-        
-    } otherButtonTitleArray:@[@"K", @"D"] ];
-    [sheet show];
+//    AlterMessageViewController *alter = [[AlterMessageViewController alloc] initAlterMessageViewControllerWithMessage:@"kk"];
+   // [TubeAlterCenter postAlterWithMessage:@"kesion" duration:1.0f fromeVC:self];
+    [[TubeAlterCenter sharedInstance] showAlterIndicatorWithMessage:@"正在上传图片" fromeVC:self];
+//    TagManager *tagm = [[TagManager alloc] initTagManagerWithSocket:[TubeSDK sharedInstance].tubeServerDataSDK];
+//    [tagm requestTagDataWithTagCount:10 tagDataCallBack:^(NSInteger status, NSDictionary *data) {
+//
+//    }];
+//    TubeArticleManager *m = [[TubeArticleManager alloc] initTubeArticleManagerWithSocket:[TubeSDK sharedInstance].tubeServerDataSDK];
+//    [m fetchedArticleTagListWithCount:10 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+//        NSDictionary *content = page.content.contentData;
+//        NSArray *list = [content objectForKey:@"tagList"];
+//        for (NSDictionary *d in list) {
+//            NSLog(@"%@",[d objectForKey:@"tag"]);
+//        }
+//        NSLog(@"%@",page.content.contentData);
+//    }];
+//    [tagC addTagsObject:[[UITagView alloc] initUITagView:@"kesion" color:[UIColor grayColor]]];
+//    LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"选择" cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
+//
+//        if (buttonIndex == 1) {
+//            NSLog(@"kkkk");
+//        } else if (buttonIndex == 2){
+//            NSLog(@"dddd");
+//
+//        }
+//
+//    } otherButtonTitleArray:@[@"K", @"D"] ];
+//    [sheet show];
    // [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
 //
 //    if (board.hidden) {

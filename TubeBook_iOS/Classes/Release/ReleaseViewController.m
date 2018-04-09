@@ -14,6 +14,9 @@
 #import "AltertControllerUtil.h"
 #import "AFNetworking.h"
 #import "UploadImageUtil.h"
+#import "TubeNavigationUITool.h"
+#import "ReleaseSetViewController.h"
+#import "TubeAlterCenter.h"
 #define MormalColor [UIColor whiteColor]
 #define LightColor kTUBEBOOK_THEME_NORMAL_COLOR
 #define h1 @"<span style=\" font: 28.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
@@ -67,17 +70,29 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self navigationLayout];
     [self setupLayout];
     [self configTextView];
     [self notificationKeyBoard];
-    NSLog(@"ddd");
 }
 
-- (void)navigationLayout
+- (void)viewWillAppear:(BOOL)animated
 {
-    UITubeNavigationView *view = [[UITubeNavigationView alloc] initUITubeNavigationView:self leftTitle:@"返回" leftBtCallback:nil rightTitle:@"发布" rightBtCallback:nil centerTitle:@"文章编辑"];
-    [self.view addSubview:view];
+    self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:LightColor target:self action:@selector(back)];
+    //self.navigationBar.hidden = NO;
+    self.navigationItem.rightBarButtonItem = [TubeNavigationUITool itemWithIconImage:nil itemDirection:RightButtomItem title:@"发布" titleColor:LightColor target:self action:@selector(releaseArticle)];
+    self.navigationItem.title = @"文章编辑";
+
+}
+
+- (void)releaseArticle
+{
+    ReleaseSetViewController *vc = [[ReleaseSetViewController alloc] initReleaseSetViewControllerWith:self.titleField.text articleBody:[self htmlStringByHtmlAttributeString:self.textView.attributedText]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)back
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)configTextView
@@ -241,21 +256,14 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [value CGRectValue];
     int height = keyboardRect.size.height;
-    
-    
     self.board.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - height - 40, [UIScreen mainScreen].bounds.size.width, height + 40);
     [self.board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
     [self.board updateConstraintsIfNeeded]; //
-    
-    
     self.textView.frame = CGRectMake(10, 105, [UIScreen mainScreen].bounds.size.width-20, [UIScreen mainScreen].bounds.size.height-105 - 330);
-    
     [UIView animateWithDuration:0.5f animations:^{
         self.board.hidden = NO;
         [self.view layoutIfNeeded];
     }];
-
-    
 }
 
 //当键退出
@@ -316,7 +324,8 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     [self changeSelectStyleButtonColor];
 }
 
-- (BOOL)isCanUsePhotos {
+- (BOOL)isCanUsePhotos
+{
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
         ALAuthorizationStatus author =[ALAssetsLibrary authorizationStatus];
@@ -335,7 +344,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     }
     return YES;
 }
-
 
 - (IBAction)imageClick:(id)sender
 {
@@ -358,6 +366,12 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 }
 
 #pragma mark - UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return YES;
+    
+}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
@@ -476,7 +490,9 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     [self.pickerController dismissViewControllerAnimated:YES completion:nil];
+    [[TubeAlterCenter sharedInstance] showAlterIndicatorWithMessage:@"正在上传图片" fromeVC:self];
     [UploadImageUtil uploadImage:[info objectForKey:UIImagePickerControllerOriginalImage] success:^(NSDictionary *dic) {
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
         NSLog(@"%@",dic);
         NSString *fileName = [dic objectForKey:@"fileName"];
         NSString *message = [dic objectForKey:@"message"];

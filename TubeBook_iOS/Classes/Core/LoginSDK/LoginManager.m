@@ -26,7 +26,7 @@
     self.delegate = nil;
 }
     
-- (instancetype)initLoginManager:(TubeServerDataSDK *)tubeServer;
+- (instancetype)initLoginManager:(TubeServerDataSDK *)tubeServer
 {
     self = [super init];
     if (self) {

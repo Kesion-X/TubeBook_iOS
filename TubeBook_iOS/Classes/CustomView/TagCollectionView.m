@@ -12,7 +12,7 @@
 
 @interface TagCollectionView ()
 
-// UITagView
+// item UITagView
 @property (nonatomic, strong) NSMutableArray *tags;
 @property (nonatomic, strong) NSMutableArray *selectTags;
 
@@ -50,7 +50,7 @@
     NSUInteger pointX = kMegin;
     NSUInteger pointY = kMegin;
     for (UITagView *tagV in self.tags) {
-        if ((pointX+kMegin+[tagV getUIWidht]) <= width) {
+        if ((pointX+kMegin+[tagV getUIWidht]) <= self.frame.size.width) {
             tagV.frame = CGRectMake(pointX, pointY, [tagV getUIWidht], [tagV getUIHeight]);
             pointX += ([tagV getUIWidht] + kMegin);
         } else {
@@ -58,9 +58,9 @@
             pointY += ([tagV getUIHeight] + kMegin);
             tagV.frame = CGRectMake(pointX, pointY, [tagV getUIWidht], [tagV getUIHeight]);
             pointX += ([tagV getUIWidht] + kMegin);
-            if ((pointY + [tagV getUIHeight] + kMegin) > height) {
-                self.contentSize = CGSizeMake(width , (pointY + [tagV getUIHeight] + kMegin));
-                [self setContentOffset:CGPointMake(0, self.contentSize.height - height)];
+            if ((pointY + [tagV getUIHeight] + kMegin) > self.frame.size.height) {
+                self.contentSize = CGSizeMake(self.frame.size.width , (pointY + [tagV getUIHeight] + kMegin));
+                [self setContentOffset:CGPointMake(0, self.contentSize.height - self.frame.size.height)];
             }
         }
     }
@@ -81,6 +81,16 @@
         [tagV setTagColor:kTUBEBOOK_THEME_NORMAL_COLOR];
     }
     //tagV setTagColor:<#(UIColor *)#>
+}
+
+- (NSArray *)getSelectesArray
+{
+    NSMutableArray *strArray = [[NSMutableArray alloc] init];
+    for (UITagView *v in self.selectTags) {
+        [strArray addObject:v.tagText];
+    }
+    NSArray *array = [[NSArray init] initWithArray:strArray];
+    return array;
 }
 
 @end

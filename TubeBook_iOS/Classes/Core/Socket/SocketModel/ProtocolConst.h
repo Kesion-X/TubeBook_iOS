@@ -14,6 +14,14 @@
 #define SOCKET_LENGTH_BYTE_SIZE 4
 #define CONTENT_LENGTH @"Content-Length"
 #define PROTOCOL_NAME @"Protocol-Name"
+#define PROTOCOL_METHOD @"method"
+#define TAG_PROTOCOL @"Tag-Protocol"
+#define ARTICLE_PROTOCOL @"Article_Protocol"
+#define ARTICLE_PROTOCOL_TAG @"ArticleTagList"
+#define ARTICLE_PROTOCOL_ADD_TAG @"Add_ArticleTag"
+#define ARTICLE_TOPIC_TITLE_LIST @"ArticleTopicTitleList"
+#define ArticleTopicTitleList @"ArticleTopicTitleList"
+
 
 
 #endif /* ProtocolConst_h */

@@ -8,7 +8,7 @@
 
 #import "TubeRefreshTableViewController.h"
 
-@interface TubeRefreshTableViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TubeRefreshTableViewController () 
 
 @end
 
@@ -21,9 +21,16 @@
 
 - (void)refreshLayout
 {
-    [self.refreshTableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.equalTo(self.view);
-    }];
+    if (self.navigationController.navigationBar.isHidden) {
+        [self.refreshTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.bottom.equalTo(self.view);
+        }];
+    } else {
+        [self.refreshTableView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(64);
+            make.left.right.bottom.equalTo(self.view);
+        }];
+    }
 }
 
 - (void)configTable
@@ -67,6 +74,7 @@
         cell = [[cellClass alloc] initWithDateType:content.dataType];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.content = content;
     return cell;
 }
 
@@ -74,8 +82,9 @@
 {
     //下拉刷新
     [self.refreshTableView.refreshHeadView listenerScrollViewAndChangeState:scrollView refreshState:^(RefreshState state) {
+        id delegate = self.refreshTableViewControllerDelegate;
         if (state==RefreshStateStateLoading) {
-            if (self.refreshTableViewControllerDelegate) {
+            if (delegate && [delegate respondsToSelector:@selector(refreshData)]) {
                 [self.refreshTableViewControllerDelegate refreshData];
             }
         }
@@ -83,7 +92,8 @@
     
     //加载更多
     [self.refreshTableView showLoadMoreIndicatorView:scrollView loadData:^{
-        if (self.refreshTableViewControllerDelegate) {
+        id delegate = self.refreshTableViewControllerDelegate;
+        if (delegate && [delegate respondsToSelector:@selector(loadMoreData)]) {
             [self.refreshTableViewControllerDelegate loadMoreData];
         }
     }];

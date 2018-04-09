@@ -9,6 +9,8 @@
 #import "UITopicTableCell.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import "TopicTagContent.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UITopicTableCell
 
@@ -70,16 +72,16 @@
     return 62;
 }
 
+#pragma mark - set
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setContent:(CKContent *)content
+{
+    TopicTagContent *topicContent = (TopicTagContent *)content;
+    if (topicContent) {
+        self.topicTitleLable.text = topicContent.topicTitle;
+        self.topicDescriptionLable.text = topicContent.topicDescription;
+        [self.topicImageView sd_setImageWithURL:[NSURL URLWithString:topicContent.topicImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+    }
 }
 
 #pragma mark - get

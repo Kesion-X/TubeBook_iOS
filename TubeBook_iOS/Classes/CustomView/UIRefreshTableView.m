@@ -61,7 +61,10 @@
 
 - (void)showLoadMoreIndicatorView:(UIScrollView *)scrollView loadData:(loadData)loadData;
 {
-    if (((scrollView.contentOffset.y + scrollView.frame.size.height) - (scrollView.contentSize.height)) > 72){
+    if (self.refreshHeadView.reStatus != RefreshStateNormal) { // 防止在下拉刷新的时候加载更多
+        return ; 
+    }
+    if (((scrollView.contentOffset.y + scrollView.frame.size.height + scrollView.frame.origin.y) - (scrollView.contentSize.height)) > 72){
         if (self.loadMoreIndicatorView.hidden) {
             [self.loadMoreIndicatorView startAnimating];
             self.loadMoreIndicatorView.hidden = NO;
@@ -154,19 +157,19 @@
 {
     if ((-scrollView.contentOffset.y) > self.triggerHeight) {
         if (preRefreshState == RefreshStateNormal) {
-            state(RefreshStatePulling);
             [self changeRefreshState:RefreshStatePulling];
+            state(RefreshStatePulling);
         }
     } else {
         if (scrollView.isDragging) {
             if (preRefreshState == RefreshStatePulling) {
-                state(RefreshStateNormal);
                 [self changeRefreshState:RefreshStateNormal];
+                state(RefreshStateNormal);
             }
         } else {
             if (preRefreshState == RefreshStatePulling) {
-                 state(RefreshStateStateLoading);
                 [self changeRefreshState:RefreshStateStateLoading];
+                state(RefreshStateStateLoading);
                 scrollView.contentInset = UIEdgeInsetsMake(self.triggerHeight, 0.0f, 0.0f, 0.0f);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:1 animations:^{
@@ -182,6 +185,7 @@
 
 - (void)changeRefreshState:(RefreshState)refreshState
 {
+    self.reStatus = refreshState;
     switch (refreshState) {
         case RefreshStateNormal:
             if (!self.activityIndicatorView.hidden) {

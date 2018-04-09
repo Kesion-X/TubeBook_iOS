@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// eg：message
+//{
+//    fileName = "1523202180.jpg";
+//    message = "{'state':1,'msg':'success'}\n";
+//}
 typedef void(^uploadSuccess)(NSDictionary *message);
 typedef void(^uploadFail)(NSError *error);
 
