@@ -86,6 +86,11 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 
 - (void)releaseArticle
 {
+    if (!self.titleField.text || (self.titleField.text && self.titleField.text.length == 0)) {
+        [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标题不可为空" duration:1.0f fromeVC:self];
+        return ;
+    }
+    
     ReleaseSetViewController *vc = [[ReleaseSetViewController alloc] initReleaseSetViewControllerWith:self.titleField.text articleBody:[self htmlStringByHtmlAttributeString:self.textView.attributedText]];
     [self.navigationController pushViewController:vc animated:YES];
 }

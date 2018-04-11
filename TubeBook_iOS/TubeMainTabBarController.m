@@ -176,6 +176,11 @@
     return _releaseViewController;
 }
 
+- (UIViewController *)getNewReleaseViewController
+{
+    return [[UINavigationController alloc] initWithRootViewController:[[ReleaseViewController alloc] init]];
+}
+
 #pragma mark - private
 - (void)configureViewController:(UIViewController *)viewController
                           title:(NSString *)title
@@ -210,7 +215,8 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     if (viewController==self.releaseTabViewController) {
-        [self presentViewController:self.releaseViewController animated:YES completion:nil];
+        
+        [self presentViewController:[self getNewReleaseViewController] animated:YES completion:nil];
         return NO;
     }
     return YES;

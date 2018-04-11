@@ -10,9 +10,10 @@
 
 @interface UITagView : UIView
 
-@property(nonatomic, strong) UIButton *tagButton;
-@property(nonatomic, strong) NSString *tagText;
-@property(nonatomic, strong) UIColor *color;
+@property (nonatomic, assign) NSInteger tagId;
+@property (nonatomic, strong) UIButton *tagButton;
+@property (nonatomic, strong) NSString *tagText;
+@property (nonatomic, strong) UIColor *color;
 
 - (instancetype)initUITagView:(NSString *)tagText color:(UIColor *)color;
 - (void)setTagColor:(UIColor *)color;

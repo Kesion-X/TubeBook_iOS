@@ -33,7 +33,7 @@
         self.vWidth = size.width + 20;
         self.vHeight = size.height + 20;
         self.frame = CGRectMake((SCREEN_WIDTH - self.vWidth)/2, (SCREEN_HEIGHT - self.vHeight)/2, self.vWidth, self.vHeight);
-        self.messageLable.frame = CGRectMake( 10, 5, self.vWidth-10, self.vHeight-10);
+        self.messageLable.frame = CGRectMake( 10, 10, size.width, size.height);
         [self layoutIfNeeded];
         [self addSubview:self.messageLable];
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f];

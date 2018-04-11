@@ -9,6 +9,7 @@
 #import "UISerialTableCell.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UISerialTableCell
 
@@ -82,6 +83,17 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - set
+
+- (void)setContent:(CKContent *)content
+{
+    SerialTagContent *serialContent = (SerialTagContent *)content;
+    if (serialContent) {
+        self.serialTitleLable.text = serialContent.serialTitle;
+        self.serialDescriptionLable.text = serialContent.serialDescription;
+        [self.serialImageView sd_setImageWithURL:[NSURL URLWithString:serialContent.serialImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+    }
+}
 
 #pragma mark - get
 - (UIImageView *)serialImageView

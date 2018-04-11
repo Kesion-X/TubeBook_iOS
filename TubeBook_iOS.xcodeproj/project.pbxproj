@@ -27,7 +27,6 @@
 		3C136528200A867200674726 /* icon_lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C136526200A867200674726 /* icon_lock@2x.png */; };
 		3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C136529200A86C400674726 /* LoginUIViewController.m */; };
 		3C1552F6206932F500C802AF /* icon_add_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C1552F5206932F500C802AF /* icon_add_pic@3x.png */; };
-		3C1552FA206935C300C802AF /* TagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1552F9206935C300C802AF /* TagManager.m */; };
 		3C195E0E200B3E92000A938C /* icon_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195E0C200B3E92000A938C /* icon_user@2x.png */; };
 		3C195E0F200B3E92000A938C /* icon_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C195E0D200B3E92000A938C /* icon_user@3x.png */; };
 		3C195E12200B3FDE000A938C /* UITubeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C195E11200B3FDE000A938C /* UITubeButton.m */; };
@@ -219,8 +218,6 @@
 		3C136526200A867200674726 /* icon_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_lock@2x.png"; sourceTree = "<group>"; };
 		3C136529200A86C400674726 /* LoginUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUIViewController.m; sourceTree = "<group>"; };
 		3C1552F5206932F500C802AF /* icon_add_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_pic@3x.png"; sourceTree = "<group>"; };
-		3C1552F8206935C300C802AF /* TagManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagManager.h; sourceTree = "<group>"; };
-		3C1552F9206935C300C802AF /* TagManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagManager.m; sourceTree = "<group>"; };
 		3C195E0C200B3E92000A938C /* icon_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_user@2x.png"; sourceTree = "<group>"; };
 		3C195E0D200B3E92000A938C /* icon_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_user@3x.png"; sourceTree = "<group>"; };
 		3C195E10200B3FDE000A938C /* UITubeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITubeButton.h; sourceTree = "<group>"; };
@@ -518,15 +515,6 @@
 				3C0989872056652600352F27 /* TagCollectionView.m */,
 			);
 			path = CustomView;
-			sourceTree = "<group>";
-		};
-		3C1552F7206935A500C802AF /* TagSDK */ = {
-			isa = PBXGroup;
-			children = (
-				3C1552F8206935C300C802AF /* TagManager.h */,
-				3C1552F9206935C300C802AF /* TagManager.m */,
-			);
-			path = TagSDK;
 			sourceTree = "<group>";
 		};
 		3C195E24200BC4D3000A938C /* tab */ = {
@@ -1028,7 +1016,6 @@
 			children = (
 				3C1E9E282070F4E100A96073 /* UserinfoSDK */,
 				3C1E9E0D206F858400A96073 /* TubeArticleSDK */,
-				3C1552F7206935A500C802AF /* TagSDK */,
 				3CBC3B602040628600C5C6CD /* LoginSDK */,
 				3C9B4DA2202A084F0000608C /* Socket */,
 				3CBC3B61204062BD00C5C6CD /* TubeSDK.h */,
@@ -1422,7 +1409,6 @@
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,
 				3C19604E2019D864000A938C /* CycleContent.m in Sources */,
 				3C195E94200E4C7B000A938C /* UIView+Layout.m in Sources */,
-				3C1552FA206935C300C802AF /* TagManager.m in Sources */,
 				3CB2E115207B96E000D7F3C6 /* TubePhotoUtil.m in Sources */,
 				3C1960C3201E0C26000A938C /* TubeAddress.m in Sources */,
 				3C195FD620146871000A938C /* UIRefreshTableView.m in Sources */,

@@ -89,8 +89,18 @@
     for (UITagView *v in self.selectTags) {
         [strArray addObject:v.tagText];
     }
-    NSArray *array = [[NSArray init] initWithArray:strArray];
-    return array;
+   // NSArray *array = [[NSArray init] initWithArray:strArray];
+    return strArray;
+}
+
+- (NSArray *)getSelectesArrayTagView
+{
+    NSMutableArray *strArray = [[NSMutableArray alloc] init];
+    for (UITagView *v in self.selectTags) {
+        [strArray addObject:v];
+    }
+    //NSArray *array = [[NSArray init] initWithArray:strArray];
+    return strArray;
 }
 
 @end

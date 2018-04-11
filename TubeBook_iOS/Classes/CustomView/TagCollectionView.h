@@ -12,6 +12,7 @@
 @interface TagCollectionView : UIScrollView
 
 - (void)addTagsObject:(UITagView *)tag;
-- (NSArray *)getSelectesArray;
+- (NSArray *)getSelectesArray; // string
+- (NSArray *)getSelectesArrayTagView; // tagview
 
 @end

@@ -12,7 +12,6 @@
 #import "TagCollectionView.h"
 #import "UITagView.h"
 #import "LCActionSheet.h"
-#import "TagManager.h"
 #import "TubeArticleManager.h"
 #import "TubeSDK.h"
 #import "AlterMessageViewController.h"

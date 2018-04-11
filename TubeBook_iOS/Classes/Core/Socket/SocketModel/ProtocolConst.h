@@ -20,6 +20,11 @@
 #define ARTICLE_PROTOCOL_TAG @"ArticleTagList"
 #define ARTICLE_PROTOCOL_ADD_TAG @"Add_ArticleTag"
 #define ARTICLE_TOPIC_TITLE_LIST @"ArticleTopicTitleList"
+#define ARTICLE_UPLOAD @"ArticleUpload"
+#define ARTICLE_SET_TAGS @"AtricleSetTags"
+#define ARTICLE_SET_TAB @"ArticleSetTab"
+#define ARTICLE_SERIAL_TITLE_LIST @"ArticleSerialTitleList"
+
 #define ArticleTopicTitleList @"ArticleTopicTitleList"
 
 

@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSInteger, FouseType)
 {
     FouseTypeAttrent,
-    FouseTypeAll
+    FouseTypeAll,
+    FouseTypeCreate
 };
 
 // 文章类型 普通 专题 连载
