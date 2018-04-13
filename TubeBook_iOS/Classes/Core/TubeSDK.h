@@ -12,12 +12,14 @@
 #import "TubeArticleSDK.h"
 #import "UserInfoUtil.h"
 #import "TimeUtil.H"
+#import "TubeUserSDK.h"
 
 @interface TubeSDK : NSObject
 
 @property (nonatomic, strong) TubeServerDataSDK *tubeServerDataSDK;
 @property (nonatomic, strong) TubeLoginSDK *tubeLoginSDK;
 @property (nonatomic, strong) TubeArticleSDK *tubeArticleSDK;
+@property (nonatomic, strong) TubeUserSDK *tubeUserSDK;
     
 + (instancetype)sharedInstance;
 - (void)connect;

@@ -158,6 +158,8 @@
 		3CB2E185207BB48A00D7F3C6 /* TubeAlterCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2E184207BB48A00D7F3C6 /* TubeAlterCenter.m */; };
 		3CB2E188207BB9FF00D7F3C6 /* CKIndicatorMessageCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2E187207BB9FF00D7F3C6 /* CKIndicatorMessageCenterView.m */; };
 		3CB2E18B207BBF8700D7F3C6 /* AlterIndicatorMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2E18A207BBF8700D7F3C6 /* AlterIndicatorMessageViewController.m */; };
+		3CB2E1A1207F407200D7F3C6 /* TubeUserConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2E1A0207F407200D7F3C6 /* TubeUserConst.m */; };
+		3CB2E1A4207F408600D7F3C6 /* TubeUserSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2E1A3207F408600D7F3C6 /* TubeUserSDK.m */; };
 		3CBC3B63204062BD00C5C6CD /* TubeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B62204062BD00C5C6CD /* TubeSDK.m */; };
 		3CBC3B672041639C00C5C6CD /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B662041639C00C5C6CD /* SFHFKeychainUtils.m */; };
 		3CBC3B6A2041669200C5C6CD /* TubeGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B692041669200C5C6CD /* TubeGCDTimer.m */; };
@@ -441,6 +443,10 @@
 		3CB2E187207BB9FF00D7F3C6 /* CKIndicatorMessageCenterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKIndicatorMessageCenterView.m; sourceTree = "<group>"; };
 		3CB2E189207BBF8700D7F3C6 /* AlterIndicatorMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterIndicatorMessageViewController.h; sourceTree = "<group>"; };
 		3CB2E18A207BBF8700D7F3C6 /* AlterIndicatorMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterIndicatorMessageViewController.m; sourceTree = "<group>"; };
+		3CB2E19F207F407200D7F3C6 /* TubeUserConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeUserConst.h; sourceTree = "<group>"; };
+		3CB2E1A0207F407200D7F3C6 /* TubeUserConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeUserConst.m; sourceTree = "<group>"; };
+		3CB2E1A2207F408600D7F3C6 /* TubeUserSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeUserSDK.h; sourceTree = "<group>"; };
+		3CB2E1A3207F408600D7F3C6 /* TubeUserSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeUserSDK.m; sourceTree = "<group>"; };
 		3CBC3B61204062BD00C5C6CD /* TubeSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeSDK.h; sourceTree = "<group>"; };
 		3CBC3B62204062BD00C5C6CD /* TubeSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeSDK.m; sourceTree = "<group>"; };
 		3CBC3B652041639C00C5C6CD /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
@@ -823,6 +829,10 @@
 			children = (
 				3C1E9E2C2070F59C00A96073 /* TubeUserInfoManager.h */,
 				3C1E9E2D2070F59C00A96073 /* TubeUserInfoManager.m */,
+				3CB2E19F207F407200D7F3C6 /* TubeUserConst.h */,
+				3CB2E1A0207F407200D7F3C6 /* TubeUserConst.m */,
+				3CB2E1A2207F408600D7F3C6 /* TubeUserSDK.h */,
+				3CB2E1A3207F408600D7F3C6 /* TubeUserSDK.m */,
 			);
 			path = UserinfoSDK;
 			sourceTree = "<group>";
@@ -843,7 +853,7 @@
 			path = SocketModel;
 			sourceTree = "<group>";
 		};
-		3C9B4DA2202A084F0000608C /* Socket */ = {
+		3C9B4DA2202A084F0000608C /* SocketSDK */ = {
 			isa = PBXGroup;
 			children = (
 				3C9B4D9420299DBF0000608C /* SocketModel */,
@@ -856,7 +866,7 @@
 				3C1E9E1820708D9000A96073 /* BaseTubeServerManager.h */,
 				3C1E9E1920708D9000A96073 /* BaseTubeServerManager.m */,
 			);
-			path = Socket;
+			path = SocketSDK;
 			sourceTree = "<group>";
 		};
 		3CA3BF5A200923C400793F3D = {
@@ -1017,7 +1027,7 @@
 				3C1E9E282070F4E100A96073 /* UserinfoSDK */,
 				3C1E9E0D206F858400A96073 /* TubeArticleSDK */,
 				3CBC3B602040628600C5C6CD /* LoginSDK */,
-				3C9B4DA2202A084F0000608C /* Socket */,
+				3C9B4DA2202A084F0000608C /* SocketSDK */,
 				3CBC3B61204062BD00C5C6CD /* TubeSDK.h */,
 				3CBC3B62204062BD00C5C6CD /* TubeSDK.m */,
 				3C098980205524F100352F27 /* UploadImageUtil.h */,
@@ -1369,6 +1379,7 @@
 				3C48CF4420752EE5009E5C2B /* TubeArticleSDK.m in Sources */,
 				3C1E9E17206F881400A96073 /* TubeArticleConst.m in Sources */,
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
+				3CB2E1A1207F407200D7F3C6 /* TubeUserConst.m in Sources */,
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
 				3C1960122015F1E8000A938C /* TopicArticleContent.m in Sources */,
 				3CB2E17C207BA10500D7F3C6 /* CKCenterView.m in Sources */,
@@ -1383,6 +1394,7 @@
 				3C1960482019C88A000A938C /* DescoverSerialViewController.m in Sources */,
 				3C19603120175E93000A938C /* SerialTagContent.m in Sources */,
 				3C0989792051378300352F27 /* UITubeNavigationView.m in Sources */,
+				3CB2E1A4207F408600D7F3C6 /* TubeUserSDK.m in Sources */,
 				3C19604B2019C8A1000A938C /* DescoverRecommendViewController.m in Sources */,
 				3C098982205524F100352F27 /* UploadImageUtil.m in Sources */,
 				3C1960152015F20D000A938C /* SerialArticleContent.m in Sources */,

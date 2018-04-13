@@ -37,6 +37,9 @@
 {
     self.refreshTableView.delegate = self;
     self.refreshTableView.dataSource = self;
+    self.refreshTableView.estimatedRowHeight = 0;
+    self.refreshTableView.estimatedSectionHeaderHeight = 0;
+    self.refreshTableView.estimatedSectionFooterHeight = 0;
     [self.view addSubview:self.refreshTableView];
     [self.refreshTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.equalTo(self.view);

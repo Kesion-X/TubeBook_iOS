@@ -10,10 +10,14 @@
 
 @interface TubeUserInfoManager : BaseTubeServerManager
 
+
+- (instancetype)initTubeUserInfoManagerWithSocket:(TubeServerDataSDK *)tubeServer;
+
 // 获取人物基本信息
-- (void)fetchedUserInfo:(NSString *)uid isSelf:(BOOL)isSelf;
-// 获取关注的用户列表
-- (void)fetchedAttentedUserList:(NSString *)uid;
+- (void)fetchedUserInfoWithUid:(NSString *)uid isSelf:(BOOL)isSelf callBack:(dataCallBackBlock)callBack;
+// 获取关注的用户列表 
+- (void)fetchedAttentedUserListWithUid:(NSString *)uid index:(NSInteger)index callBack:(dataCallBackBlock)callBlock;
+
 // 获取粉丝列表
 - (void)fetchedFansList:(NSString *)uid;
 // 获取自己写的文章列表

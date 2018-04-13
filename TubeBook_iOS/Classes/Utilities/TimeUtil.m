@@ -25,7 +25,7 @@
     return timeSp;
 }
 
-+ (NSInteger *)getNowTimeTimest
++ (NSInteger)getNowTimeTimest
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -36,6 +36,21 @@
     [formatter setTimeZone:timeZone];
     NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
     return (long)[datenow timeIntervalSince1970];
+}
+
++ (NSString *)getDateWithTime:(NSInteger)time
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:time];
+    NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+    return confromTimespStr;
 }
 
 @end

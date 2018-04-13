@@ -8,6 +8,7 @@
 
 #import "UINormalArticleCell.h"
 #import "Masonry.h"
+#import "NormalArticleContent.h"
 
 @implementation UINormalArticleCell
 
@@ -60,6 +61,13 @@
 + (CGFloat)getCellHeight:(CKContent *)content
 {
     return [UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:content.dataType.isHaveImage] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + 16;
+}
+
+- (void)setContent:(CKContent *)content
+{
+    NormalArticleContent *c = (NormalArticleContent *)content;
+    [self.homeCellItemHeadView setDataWithAvatarUrl:c.avatarUrl userName:c.userName time:c.time userState:c.dataType.userState];
+    [self.homeCellItemContentView setDataWithTitle:c.title contentDescription:c.contentDescription contentUrl:c.contentUrl];
 }
 
 @end

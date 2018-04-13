@@ -24,9 +24,14 @@
 #define ARTICLE_SET_TAGS @"AtricleSetTags"
 #define ARTICLE_SET_TAB @"ArticleSetTab"
 #define ARTICLE_SERIAL_TITLE_LIST @"ArticleSerialTitleList"
+#define ARTICLE_NEW_LIST @"ArticleNewList"
+#define ARTICLE_TOPIC_DETAIL_INFO @"ArticleTopicDetailInfo"
+#define ARTICLE_SERIAL_DETAIL_INFO @"ArticleSerialDetailInfo"
 
 #define ArticleTopicTitleList @"ArticleTopicTitleList"
 
-
+#define USER_PROTOCOL @"User_Protocol"
+#define USER_FETCH_INFO @"UserFetchInfo"
+#define USER_ATTENT_USERLIST @"UserAttentUserList"
 
 #endif /* ProtocolConst_h */

@@ -525,11 +525,22 @@ typedef NS_ENUM(NSInteger, FontStyle) {
             } @catch (NSException *error){
                 NSLog(@"%@",error);
             }
+        } else {
+            [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+            });
         }
         
         
     } fail:^(NSError *error) {
         NSLog(@"%@",error);
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           
+           [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+        });
     }];
     
    

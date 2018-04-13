@@ -9,6 +9,7 @@
 #import "UIHomeCellTopicOrSerialView.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIHomeCellTopicOrSerialView
 
@@ -40,7 +41,7 @@
     }
     [self addSubview:self.tagImageView];
     [self addSubview:self.titleLable];
-    [self addSubview:self.articleTagLable];
+    [self addSubview:self.articleDetailLable];
     [self addSubview:self.kindView];
     if (self.kind == TopicArticle) {
         [self.tagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,7 +62,7 @@
         make.left.equalTo(self.tagImageView.mas_right).offset(8);
         make.top.equalTo(self).offset(12);
     }];
-    [self.articleTagLable mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.articleDetailLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.tagImageView.mas_right).offset(8);
         make.top.equalTo(self.titleLable.mas_bottom).offset(4);
     }];
@@ -82,6 +83,28 @@
 + (CGFloat)getUIHeight:(ArticleKind)kind
 {
     return 64;
+}
+
+- (void)setDataWithTitle:(NSString *)title tagImageUrl:(NSString *)tagImageUrl detail:(NSString *)detail;
+{
+    self.title = title;
+    self.tagImageUrl = tagImageUrl;
+    self.detail = detail;
+}
+
+- (void)setDetail:(NSString *)detail
+{
+    [self.articleDetailLable setText:detail];
+}
+
+- (void)setTitle:(NSString *)title
+{
+    [self.titleLable setText:title];
+}
+
+- (void)setTagImageUrl:(NSString *)tagImageUrl
+{
+    [self.tagImageView sd_setImageWithURL:[NSURL URLWithString:tagImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
 }
 
 #pragma mark - get
@@ -105,15 +128,15 @@
     return _titleLable;
 }
 
-- (UILabel *)articleTagLable
+- (UILabel *)articleDetailLable
 {
-    if (!_articleTagLable) {
-        _articleTagLable = [[UILabel alloc] init];
-        _articleTagLable.font = Font(10);
-        _articleTagLable.textColor = HEXCOLOR(0x8492A6);
-        _articleTagLable.text = @"articleTagLable";
+    if (!_articleDetailLable) {
+        _articleDetailLable = [[UILabel alloc] init];
+        _articleDetailLable.font = Font(10);
+        _articleDetailLable.textColor = HEXCOLOR(0x8492A6);
+        _articleDetailLable.text = @"articleTagLable";
     }
-    return _articleTagLable;
+    return _articleDetailLable;
 }
 
 

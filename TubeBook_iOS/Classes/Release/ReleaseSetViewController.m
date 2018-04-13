@@ -54,6 +54,9 @@
 @end
 
 @implementation ReleaseSetViewController
+{
+    NSInteger createtime;
+}
 
 - (instancetype)initReleaseSetViewControllerWith:(NSString *)articleTitle articleBody:(NSString *)articleBody
 {
@@ -206,6 +209,9 @@
 
 - (void)loadData
 {
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedNewArticleListWithIndex:0 uid:@"123" articleType:ArticleTypeMornal|ArticleTypeTopic tabid:12 conditionDic:nil callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        
+    }];
     __weak typeof(self) weakSelf = self;
     [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTagListWithCount:10 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if (status == DataCallBackStatusSuccess) {
@@ -258,6 +264,7 @@
         switch (buttonIndex) {
             case 1:
             {
+                self.chioseContent = nil;
                 self.type = ArticleTypeMornal;
                 [self.articleTypeChioseButton setTitle:@"普通文章" forState:UIControlStateNormal];
                 [self.articleTypeChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
@@ -287,13 +294,24 @@
 
 - (IBAction)chioseTypeTitle:(id)sender
 {
-    TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeTopicTitle contentCallBack:^(CKContent *content) {
-        self.chioseContent = content;
-        [self.articleTypeTitleChioseButton setTitle:content.topicTitle forState:UIControlStateNormal];
-        [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
-    }];
-    //[self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ( self.type == ArticleTypeTopic ) {
+        TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeTopicTitle contentCallBack:^(CKContent *content) {
+            self.chioseContent = content;
+            [self.articleTypeTitleChioseButton setTitle:content.topicTitle forState:UIControlStateNormal];
+            [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
+        }];
+        //[self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ( self.type == ArticleTypeSerial ) {
+        TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeSerialTitle contentCallBack:^(CKContent *content) {
+            self.chioseContent = content;
+            [self.articleTypeTitleChioseButton setTitle:content.serialTitle forState:UIControlStateNormal];
+            [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
+        }];
+        //[self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 - (IBAction)addArticlePic:(id)sender
@@ -312,7 +330,11 @@
 
 - (IBAction)releaseArticle:(id)sender
 {
-    NSInteger time = [TimeUtil getNowTimeTimest];
+    if ( self.type != ArticleTypeMornal && !self.chioseContent ) {
+        [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"请选择文章类型" duration:2.0f fromeVC:self];
+        return ;
+    }
+    createtime = [TimeUtil getNowTimeTimest];
     self.uid = [[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey];
     self.uid = @"12345678";
     self.atid = [self.uid stringByAppendingString:[TimeUtil getNowTimeTimestamp3]];
@@ -322,8 +344,8 @@
                                                              detail:[[NSDictionary alloc] initWithObjectsAndKeys:
                                                                      self.articleBody, @"body",
                                                                      self.articleDescriptionTextView.text, @"description",
-                                                                     self.articlePic, @"articlepic",
-                                                                     @(time), @"cratetime",nil]
+                                                                     @(createtime), @"createtime",
+                                                                     self.articlePic, @"articlepic", nil]
                                                            callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
                                                                if ( status == DataCallBackStatusSuccess) {
                                                                    [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"发布成功" duration:2.0f fromeVC:self];
@@ -368,10 +390,21 @@
         if ([message containsString:@"success"]) {
            // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传成功" duration:1.0f fromeVC:self];
             self.articlePic = [NSString stringWithFormat:@"http://127.0.0.1:8084/TubeBook_Web/upload/%@",fileName];
+        } else {
+            [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+            });
         }
     } fail:^(NSError *error) {
        // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败" duration:1.0f fromeVC:self];
         NSLog(@"%@",error);
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+        });
     }];
 }
 

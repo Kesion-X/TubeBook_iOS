@@ -41,6 +41,14 @@
 }
 
 /*
+ * @brief 获取某专题详细信息
+ */
+- (void)fetchedArticleTopicDetailWithTabid:(NSInteger)tabid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedArticleTopicDetailWithTabid:tabid callBack:callBack];
+}
+
+/*
  * @brief 上传文章
  * @parme detailDic 为可设内容
  */
@@ -78,6 +86,14 @@
 }
 
 /*
+ * @brief 获取某连载详细信息
+ */
+- (void)fetchedArticleSerialDetailWithTabid:(NSInteger)tabid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedArticleSerialDetailWithTabid:tabid callBack:callBack];
+}
+
+/*
  * @brief 获取专题/连载标题信息列表
  */
 - (void)fetchedArticleTopicOrSerialTitleListWithType:(ArticleType)articleType
@@ -94,5 +110,20 @@
     }
 }
 
+/*
+ * @brief 获取最新文章(普通/专题/连载)列表,
+ * @parme tabid专题/连载某标题tabid的最新
+ * uid 为空代表全部
+ * tabid 当文章为普通文章时tabid不起作用
+ */
+- (void)fetchedNewArticleListWithIndex:(NSInteger)index
+                                   uid:(NSString *)uid
+                           articleType:(ArticleType)articleType
+                                 tabid:(NSInteger)tabid
+                          conditionDic:(NSDictionary *)conditionDic
+                              callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedNewArticleListWithIndex:index uid:uid articleType:articleType tabid:tabid conditionDic:conditionDic callBack:callBack];
+}
 
 @end

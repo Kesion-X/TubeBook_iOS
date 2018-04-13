@@ -75,15 +75,18 @@
 - (void)refreshTableData
 {
     __weak typeof(self) weakSelf = self;
+    
     if ( self.searchType == TubeSearchTypeTopicTitle || self.searchType == TubeSearchTypeSerialTitle ) {
         ArticleType type = ArticleTypeTopic;
+        FouseType fouseType = FouseTypeAttrent;
         if ( self.searchType == TubeSearchTypeSerialTitle ) {
             type = ArticleTypeSerial;
+            fouseType = FouseTypeCreate;
         }
         [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicOrSerialTitleListWithType:type
                                                                                         index:self.indexPage
                                                                                           uid:@"12345678"
-                                                                                    fouseType:FouseTypeAttrent
+                                                                                    fouseType:fouseType
                                                                                 conditionDic:[[NSDictionary alloc] initWithObjectsAndKeys:
                                                                                                 self.searchField.text,@"title", nil]
                                                                                     callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {

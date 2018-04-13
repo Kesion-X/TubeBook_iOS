@@ -15,14 +15,17 @@
 @property (nonatomic, strong) NSString *tagImageUrl;//专题/连载图片
 @property (nonatomic, strong) NSString *title;//专题/连载标题
 @property (nonatomic, strong) NSString *articleTag;//专题/连载标签
+@property (nonatomic, strong) NSString *detail;
 @property (nonatomic) ArticleKind kind;//普通/专题/连载
 
 @property (nonatomic, strong) UIImageView *tagImageView;
 @property (nonatomic, strong) UILabel *titleLable;
-@property (nonatomic, strong) UILabel *articleTagLable;
+@property (nonatomic, strong) UILabel *articleDetailLable;
 @property (nonatomic, strong) UITagView *kindView;
 
 - (instancetype)initUIHomeCellTopicOrSerialView:(ArticleKind)kind;
 - (CGFloat)getUIHeight;
 + (CGFloat)getUIHeight:(ArticleKind)kind;
+- (void)setDataWithTitle:(NSString *)title tagImageUrl:(NSString *)tagImageUrl detail:(NSString *)detail;
+
 @end

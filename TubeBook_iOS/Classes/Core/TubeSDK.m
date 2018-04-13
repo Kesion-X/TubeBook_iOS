@@ -21,6 +21,7 @@
         self.tubeServerDataSDK = [[TubeServerDataSDK alloc] init];
         self.tubeLoginSDK = [[TubeLoginSDK alloc] initTubeLoginSDK:self.tubeServerDataSDK];
         self.tubeArticleSDK = [[TubeArticleSDK alloc] initTubeArticleSDK:self.tubeServerDataSDK];
+        self.tubeUserSDK = [[TubeUserSDK alloc] initTubeUserSDK:self.tubeServerDataSDK];
     }
     return self;
 }

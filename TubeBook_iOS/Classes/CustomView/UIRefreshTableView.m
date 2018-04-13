@@ -64,7 +64,13 @@
     if (self.refreshHeadView.reStatus != RefreshStateNormal) { // 防止在下拉刷新的时候加载更多
         return ; 
     }
-    if (((scrollView.contentOffset.y + scrollView.frame.size.height + scrollView.frame.origin.y) - (scrollView.contentSize.height)) > 72){
+    
+    CGFloat y = scrollView.frame.size.height;
+    if (scrollView.contentSize.height < scrollView.frame.size.height ) {
+        y = scrollView.contentSize.height;
+    }
+    if (((scrollView.contentOffset.y + y) - (scrollView.contentSize.height)) > 72 && scrollView.isDragging) {
+
         if (self.loadMoreIndicatorView.hidden) {
             [self.loadMoreIndicatorView startAnimating];
             self.loadMoreIndicatorView.hidden = NO;
@@ -174,6 +180,7 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:1 animations:^{
                         scrollView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+                    } completion:^(BOOL finished) {
                         [self changeRefreshState:RefreshStateNormal];
                     }];
                 });

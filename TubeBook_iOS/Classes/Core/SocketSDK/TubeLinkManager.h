@@ -13,6 +13,13 @@
 #import "ProtocolConst.h"
 #import "BaseSocketPackage.h"
 
+typedef NS_ENUM(NSInteger, TubeSocketConnectionStatus)
+{
+    TubeSocketConnectionStatusNotConnection,
+    TubeSocketConnectionStatusConnectioning,
+    TubeSocketConnectionStatusConnectioned
+};
+
 @protocol TubeDateDelegate <NSObject>
 
 @optional

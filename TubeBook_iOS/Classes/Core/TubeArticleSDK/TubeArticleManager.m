@@ -17,6 +17,9 @@
 @end
 
 @implementation TubeArticleManager
+{
+    NSInteger tag;
+}
 
 
 - (instancetype)initTubeArticleManagerWithSocket:(TubeServerDataSDK *)tubeServer;
@@ -198,7 +201,7 @@
 {
     NSLog(@"%s protocol:%@ method:%@ index:%lu uid:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_SERIAL_TITLE_LIST, index, uid);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_SERIAL_TITLE_LIST]) {
-        NSLog(@"haved request fetchedArticleTopicTitleListWithIndex, wait after");
+        NSLog(@"haved request fetchedArticleSerialTitleListWithIndex, wait after");
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_SERIAL_TITLE_LIST];
@@ -227,19 +230,91 @@
 }
 
 /*
- * @brief 获取最新文章(普通/专题/连载)列表
+ * @brief 获取最新文章(普通/专题/连载)列表,
+ * @parme tabid专题/连载某标题tabid的最新
+ *  uid 为空代表全部
  */
-- (void)fetchedNewArticleListWithIndex:(NSInteger)index articleType:(ArticleType)articleType fouseType:(FouseType)fouseType
+- (void)fetchedNewArticleListWithIndex:(NSInteger)index
+                                   uid:(NSString *)uid
+                           articleType:(ArticleType)articleType
+                                 tabid:(NSInteger)tabid
+                          conditionDic:(NSDictionary *)conditionDic
+                              callBack:(dataCallBackBlock)callBack
 {
-    
+    NSLog(@"%s protocol:%@ method:%@ index:%lu uid:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_NEW_LIST, index, uid);
+    if ([self.requestCallBackBlockDir objectForKey:ARTICLE_NEW_LIST]) {
+        NSLog(@"haved request fetchedArticleTopicTitleListWithIndex, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_NEW_LIST];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tabid), @"tabid",
+                                       @(articleType), @"articleType",
+                                       @(index), @"index",
+                                       uid,@"uid",nil];
+    if (conditionDic) {
+        [contentDic addEntriesFromDictionary:conditionDic];
+    }
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_NEW_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+- (void)fetchedArticleTopicDetailWithTabid:(NSInteger)tabid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ tabid:%lu", __func__, ARTICLE_PROTOCOL, ARTICLE_TOPIC_DETAIL_INFO, tabid);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request fetchedArticleTopicDetailWithTabid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(tabid), @"tabid", nil];
+
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_TOPIC_DETAIL_INFO,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
 }
 
 /*
- * @brief 获取最新文章(普通/专题/连载)列表,tabid
+ * @brief 获取某连载详细信息
  */
-- (void)fetchedNewArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType tabid:(NSInteger)tabid fouseType:(FouseType)fouseType
+- (void)fetchedArticleSerialDetailWithTabid:(NSInteger)tabid callBack:(dataCallBackBlock)callBack
 {
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ tabid:%lu", __func__, ARTICLE_PROTOCOL, ARTICLE_SERIAL_DETAIL_INFO, tabid);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_SERIAL_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request fetchedArticleSerialDetailWithTabid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_SERIAL_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(tabid), @"tabid", nil];
     
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_SERIAL_DETAIL_INFO,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
 }
 
 /*
@@ -273,6 +348,8 @@
 
 - (void)connectionError:(NSError *)err
 {
+    NSLog(@"%s 链接失败，移除请求操作", __func__);
+    [self.requestCallBackBlockDir removeAllObjects];
     
 }
 
@@ -294,6 +371,14 @@
         [self callBackToMain:pg method:ARTICLE_SET_TAB];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SERIAL_TITLE_LIST] ) {
         [self callBackToMain:pg method:ARTICLE_SERIAL_TITLE_LIST];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_NEW_LIST] ) {
+        [self callBackToMain:pg method:ARTICLE_NEW_LIST];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_TOPIC_DETAIL_INFO] ) {
+        NSDictionary *contentDic = pg.content.contentData;
+        [self callBackToMain:pg method:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SERIAL_DETAIL_INFO] ) {
+        NSDictionary *contentDic = pg.content.contentData;
+        [self callBackToMain:pg method:[ARTICLE_SERIAL_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     }
 }
 
@@ -315,7 +400,8 @@
 
 - (void)disConnection
 {
-    
+    NSLog(@"%s 失去链接，移除请求操作", __func__);
+    [self.requestCallBackBlockDir removeAllObjects];
 }
 
 @end
