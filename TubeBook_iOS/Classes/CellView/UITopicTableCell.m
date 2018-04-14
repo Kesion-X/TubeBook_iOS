@@ -39,6 +39,7 @@
     [self.topicTitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.topicImageView.mas_right).offset(16);
         make.top.equalTo(self.topicImageView);
+        make.width.mas_equalTo(200);
     }];
     [self.topicRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-kCELL_MARGIN);

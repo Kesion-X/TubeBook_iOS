@@ -69,6 +69,7 @@
             make.height.mas_equalTo([self.indicator getUIHeight]);
         }];
         [self.indicator setShowIndicatorItem:0];
+        [self.tabBarController.navigationItem.titleView removeFromSuperview];
         self.tabBarController.navigationItem.titleView = self.indicator;
     }
 }

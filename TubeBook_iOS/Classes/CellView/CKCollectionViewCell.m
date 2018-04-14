@@ -19,7 +19,7 @@
     return self;
 }
 
-+ (NSString *)getDequeueId:(CKDataType *)type
++ (NSString *)getDequeueId:(CKDataType *)type // 暂时不要改动
 {
     return NSStringFromClass(self);
 }

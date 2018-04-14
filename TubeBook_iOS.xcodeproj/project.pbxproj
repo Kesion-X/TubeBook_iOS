@@ -166,6 +166,15 @@
 		3CBC3B6D20429C7600C5C6CD /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B6C20429C7600C5C6CD /* LoginManager.m */; };
 		3CBC3B702046832400C5C6CD /* TubeLoginSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3B6F2046832400C5C6CD /* TubeLoginSDK.m */; };
 		3CBC3E3A204D300600C5C6CD /* AltertControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC3E39204D300600C5C6CD /* AltertControllerUtil.m */; };
+		3CDFF519208097DD00E345E2 /* TubeWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF518208097DD00E345E2 /* TubeWebViewViewController.m */; };
+		3CDFF51D20809E9000E345E2 /* ShowArticleUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF51C20809E9000E345E2 /* ShowArticleUIViewController.m */; };
+		3CDFF52020809EDA00E345E2 /* CommentUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF51F20809EDA00E345E2 /* CommentUIViewController.m */; };
+		3CDFF5272080EBA700E345E2 /* InfoDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF5262080EBA700E345E2 /* InfoDescriptionView.m */; };
+		3CDFF52A2080F8BC00E345E2 /* ArticleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF5292080F8BC00E345E2 /* ArticleWebViewController.m */; };
+		3CDFF52D2081A6E400E345E2 /* TopicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF52C2081A6E400E345E2 /* TopicCollectionViewCell.m */; };
+		3CDFF5302081B70300E345E2 /* TopicTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF52F2081B70300E345E2 /* TopicTopCollectionViewCell.m */; };
+		3CDFF5332081E19900E345E2 /* DescoverTopicContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF5322081E19900E345E2 /* DescoverTopicContent.m */; };
+		3CDFF5362081E1BA00E345E2 /* DescoverTopicTopContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF5352081E1BA00E345E2 /* DescoverTopicTopContent.m */; };
 		EDE84E122D529A6CB978A674 /* libPods-TubeBook_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -459,6 +468,24 @@
 		3CBC3B6F2046832400C5C6CD /* TubeLoginSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeLoginSDK.m; sourceTree = "<group>"; };
 		3CBC3E38204D300600C5C6CD /* AltertControllerUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AltertControllerUtil.h; sourceTree = "<group>"; };
 		3CBC3E39204D300600C5C6CD /* AltertControllerUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AltertControllerUtil.m; sourceTree = "<group>"; };
+		3CDFF517208097DD00E345E2 /* TubeWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeWebViewViewController.h; sourceTree = "<group>"; };
+		3CDFF518208097DD00E345E2 /* TubeWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeWebViewViewController.m; sourceTree = "<group>"; };
+		3CDFF51B20809E9000E345E2 /* ShowArticleUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowArticleUIViewController.h; sourceTree = "<group>"; };
+		3CDFF51C20809E9000E345E2 /* ShowArticleUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowArticleUIViewController.m; sourceTree = "<group>"; };
+		3CDFF51E20809EDA00E345E2 /* CommentUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentUIViewController.h; sourceTree = "<group>"; };
+		3CDFF51F20809EDA00E345E2 /* CommentUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentUIViewController.m; sourceTree = "<group>"; };
+		3CDFF5252080EBA700E345E2 /* InfoDescriptionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoDescriptionView.h; sourceTree = "<group>"; };
+		3CDFF5262080EBA700E345E2 /* InfoDescriptionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoDescriptionView.m; sourceTree = "<group>"; };
+		3CDFF5282080F8BC00E345E2 /* ArticleWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleWebViewController.h; sourceTree = "<group>"; };
+		3CDFF5292080F8BC00E345E2 /* ArticleWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleWebViewController.m; sourceTree = "<group>"; };
+		3CDFF52B2081A6E400E345E2 /* TopicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCollectionViewCell.h; sourceTree = "<group>"; };
+		3CDFF52C2081A6E400E345E2 /* TopicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicCollectionViewCell.m; sourceTree = "<group>"; };
+		3CDFF52E2081B70300E345E2 /* TopicTopCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicTopCollectionViewCell.h; sourceTree = "<group>"; };
+		3CDFF52F2081B70300E345E2 /* TopicTopCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicTopCollectionViewCell.m; sourceTree = "<group>"; };
+		3CDFF5312081E19900E345E2 /* DescoverTopicContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescoverTopicContent.h; sourceTree = "<group>"; };
+		3CDFF5322081E19900E345E2 /* DescoverTopicContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverTopicContent.m; sourceTree = "<group>"; };
+		3CDFF5342081E1BA00E345E2 /* DescoverTopicTopContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescoverTopicTopContent.h; sourceTree = "<group>"; };
+		3CDFF5352081E1BA00E345E2 /* DescoverTopicTopContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverTopicTopContent.m; sourceTree = "<group>"; };
 		F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeBook_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -519,6 +546,8 @@
 				3C0989782051378300352F27 /* UITubeNavigationView.m */,
 				3C0989862056652600352F27 /* TagCollectionView.h */,
 				3C0989872056652600352F27 /* TagCollectionView.m */,
+				3CDFF5252080EBA700E345E2 /* InfoDescriptionView.h */,
+				3CDFF5262080EBA700E345E2 /* InfoDescriptionView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -617,6 +646,8 @@
 				3C19605C201AD43D000A938C /* TubeRefreshCollectionViewController.m */,
 				3CB2E10E207B1E9800D7F3C6 /* TubeSearchTableViewController.h */,
 				3CB2E10F207B1E9800D7F3C6 /* TubeSearchTableViewController.m */,
+				3CDFF517208097DD00E345E2 /* TubeWebViewViewController.h */,
+				3CDFF518208097DD00E345E2 /* TubeWebViewViewController.m */,
 			);
 			path = TubeUIKit;
 			sourceTree = "<group>";
@@ -751,6 +782,8 @@
 				3C1960B6201B78E2000A938C /* CKCollectionViewCell.m */,
 				3C1960B8201C9278000A938C /* SerialCollectionViewCell.h */,
 				3C1960B9201C9278000A938C /* SerialCollectionViewCell.m */,
+				3CDFF52B2081A6E400E345E2 /* TopicCollectionViewCell.h */,
+				3CDFF52C2081A6E400E345E2 /* TopicCollectionViewCell.m */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -780,6 +813,10 @@
 				3C196053201A1884000A938C /* DescoverRecommendContent.m */,
 				3C1960BB201C99D6000A938C /* DescoverSerialContent.h */,
 				3C1960BC201C99D6000A938C /* DescoverSerialContent.m */,
+				3CDFF5312081E19900E345E2 /* DescoverTopicContent.h */,
+				3CDFF5322081E19900E345E2 /* DescoverTopicContent.m */,
+				3CDFF5342081E1BA00E345E2 /* DescoverTopicTopContent.h */,
+				3CDFF5352081E1BA00E345E2 /* DescoverTopicTopContent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -789,6 +826,8 @@
 			children = (
 				3C1960432019C86A000A938C /* DescoverTopicViewController.h */,
 				3C1960442019C86A000A938C /* DescoverTopicViewController.m */,
+				3CDFF52E2081B70300E345E2 /* TopicTopCollectionViewCell.h */,
+				3CDFF52F2081B70300E345E2 /* TopicTopCollectionViewCell.m */,
 			);
 			path = Topic;
 			sourceTree = "<group>";
@@ -926,6 +965,8 @@
 		3CA3BF98200924A600793F3D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3CDFF51A20809E5000E345E2 /* ShowArticle */,
+				3CDFF52120809EEB00E345E2 /* Comment */,
 				3C195FDC2014A14D000A938C /* CellView */,
 				3C195FC4201371D1000A938C /* Topic */,
 				3C195FC3201371B4000A938C /* Serial */,
@@ -1084,6 +1125,26 @@
 				3CBC3B662041639C00C5C6CD /* SFHFKeychainUtils.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		3CDFF51A20809E5000E345E2 /* ShowArticle */ = {
+			isa = PBXGroup;
+			children = (
+				3CDFF51B20809E9000E345E2 /* ShowArticleUIViewController.h */,
+				3CDFF51C20809E9000E345E2 /* ShowArticleUIViewController.m */,
+				3CDFF5282080F8BC00E345E2 /* ArticleWebViewController.h */,
+				3CDFF5292080F8BC00E345E2 /* ArticleWebViewController.m */,
+			);
+			path = ShowArticle;
+			sourceTree = "<group>";
+		};
+		3CDFF52120809EEB00E345E2 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				3CDFF51E20809EDA00E345E2 /* CommentUIViewController.h */,
+				3CDFF51F20809EDA00E345E2 /* CommentUIViewController.m */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		8D18D2C767E3A1DF7BF531C7 /* Frameworks */ = {
@@ -1340,6 +1401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C19602E20175DDD000A938C /* UISerialTableCell.m in Sources */,
+				3CDFF5332081E19900E345E2 /* DescoverTopicContent.m in Sources */,
 				3C19603F2019BFCD000A938C /* TubePageViewController.m in Sources */,
 				3C09898520562AF900352F27 /* UserInfoUtil.m in Sources */,
 				3CB2E17F207BA12C00D7F3C6 /* CKMessageCenterView.m in Sources */,
@@ -1359,15 +1421,18 @@
 				3C0989762051319500352F27 /* UIImage+Extension.m in Sources */,
 				3C0989882056652600352F27 /* TagCollectionView.m in Sources */,
 				3C19601B2015F2FA000A938C /* UISerialArticleCell.m in Sources */,
+				3CDFF52A2080F8BC00E345E2 /* ArticleWebViewController.m in Sources */,
 				3C9B4DA1202A05940000608C /* TubeServerDataSDK.m in Sources */,
 				3C1960C0201E064C000A938C /* TubeLink.m in Sources */,
 				3CB2E188207BB9FF00D7F3C6 /* CKIndicatorMessageCenterView.m in Sources */,
 				3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */,
 				3CBC3E3A204D300600C5C6CD /* AltertControllerUtil.m in Sources */,
+				3CDFF5272080EBA700E345E2 /* InfoDescriptionView.m in Sources */,
 				3C136505200A2C4200674726 /* CKMacros.m in Sources */,
 				3CA3BF76200923C500793F3D /* main.m in Sources */,
 				3C1960C6201E1D7D000A938C /* TubeLinkManager.m in Sources */,
 				3C195FBA20133C03000A938C /* UITubeHomeNavigationView.m in Sources */,
+				3CDFF52D2081A6E400E345E2 /* TopicCollectionViewCell.m in Sources */,
 				3C13652A200A86C500674726 /* LoginUIViewController.m in Sources */,
 				3C195E4C200BC692000A938C /* MyselfTabViewController.m in Sources */,
 				3C1960372017801D000A938C /* UIUserTableCell.m in Sources */,
@@ -1375,12 +1440,14 @@
 				3CB2E18B207BBF8700D7F3C6 /* AlterIndicatorMessageViewController.m in Sources */,
 				3C195FE62014CCC9000A938C /* UIHomeCellItemContentView.m in Sources */,
 				3C195FD020137B25000A938C /* SerialViewController.m in Sources */,
+				3CDFF52020809EDA00E345E2 /* CommentUIViewController.m in Sources */,
 				3CB2E110207B1E9800D7F3C6 /* TubeSearchTableViewController.m in Sources */,
 				3C48CF4420752EE5009E5C2B /* TubeArticleSDK.m in Sources */,
 				3C1E9E17206F881400A96073 /* TubeArticleConst.m in Sources */,
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
 				3CB2E1A1207F407200D7F3C6 /* TubeUserConst.m in Sources */,
 				3C195E1F200B9C1E000A938C /* UIRectangleView.m in Sources */,
+				3CDFF51D20809E9000E345E2 /* ShowArticleUIViewController.m in Sources */,
 				3C1960122015F1E8000A938C /* TopicArticleContent.m in Sources */,
 				3CB2E17C207BA10500D7F3C6 /* CKCenterView.m in Sources */,
 				3C19605A201AD0CE000A938C /* UIWaterfallCollectionViewLayout.m in Sources */,
@@ -1411,10 +1478,13 @@
 				3C196003201592A0000A938C /* CKContent.m in Sources */,
 				3C195FC720137AFA000A938C /* NewestViewController.m in Sources */,
 				3C195E7C200D2681000A938C /* UIImage+ScaleToSize.m in Sources */,
+				3CDFF519208097DD00E345E2 /* TubeWebViewViewController.m in Sources */,
 				3C195E8E200E4A5F000A938C /* CKTextView.m in Sources */,
 				3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */,
+				3CDFF5302081B70300E345E2 /* TopicTopCollectionViewCell.m in Sources */,
 				3C19603A2018BCE5000A938C /* UIRingScrollView.m in Sources */,
 				3C195E18200B900C000A938C /* TubeNavigationUITool.m in Sources */,
+				3CDFF5362081E1BA00E345E2 /* DescoverTopicTopContent.m in Sources */,
 				3C1960BA201C9278000A938C /* SerialCollectionViewCell.m in Sources */,
 				3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */,
 				3CBC3B6D20429C7600C5C6CD /* LoginManager.m in Sources */,

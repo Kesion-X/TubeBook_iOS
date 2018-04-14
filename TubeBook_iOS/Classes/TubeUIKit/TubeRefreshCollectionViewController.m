@@ -74,7 +74,18 @@
 
 - (void)showLoadMoreIndicatorView:(UIScrollView *)scrollView loadData:(loadData)loadData;
 {
-    if (((scrollView.contentOffset.y + scrollView.frame.size.height) - (scrollView.contentSize.height)) > 72){
+    if (self.refreshHeadView.reStatus != RefreshStateNormal) { // 防止在下拉刷新的时候加载更多
+        return ;
+    }
+    if (scrollView.contentOffset.y<0) {
+        return ;
+    }
+    
+    CGFloat y = scrollView.frame.size.height;
+    if (scrollView.contentSize.height < scrollView.frame.size.height ) {
+        y = scrollView.contentSize.height;
+    }
+      if (((scrollView.contentOffset.y + y) - (scrollView.contentSize.height)) > 72 && scrollView.isDragging) {
         if (self.loadMoreIndicatorView.hidden) {
             [self.loadMoreIndicatorView startAnimating];
             self.loadMoreIndicatorView.hidden = NO;
@@ -110,7 +121,7 @@
     NSString *cellClassName = self.classMap[NSStringFromClass([content class])];
     Class cellClass = NSClassFromString(cellClassName);
     CKCollectionViewCell* cell = (CKCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:[cellClass getDequeueId:content.dataType] forIndexPath:indexPath];
-    
+    [cell setContent:content];
     return cell;
 }
 

@@ -22,6 +22,8 @@
 #import "UITopicArticleCell.h"
 #import "TubeSDK.h"
 #import "ReactiveObjC.h"
+#import "TubeWebViewViewController.h"
+#import "ShowArticleUIViewController.h"
 
 @interface NewestViewController () <RefreshTableViewControllerDelegate>
 
@@ -224,12 +226,12 @@
             content.topicTitle = topicTitle;
             content.topicImageUrl = pic;
             content.topicDescription  = description;
-            for (int i=0 ; i < self.contentData.count; ++i) {
-                if ( [self.contentData objectAtIndex:i] == content ) {
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }
+//            for (int i=0 ; i < self.contentData.count; ++i) {
+//                if ( [self.contentData objectAtIndex:i] == content ) {
+//                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//                }
+//            }
         }
     }];
 }
@@ -247,6 +249,15 @@
 
     [self requestData];
    NSLog(@"loadMoreData");
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CKContent *c = [self.contentData objectAtIndex:indexPath.row];
+    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body]];
+   // TubeWebViewViewController *vc = [[TubeWebViewViewController alloc] initTubeWebViewViewControllerWithHtml:c.body];
+  // [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body] animated:YES];
 }
 
 @end

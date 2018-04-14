@@ -64,6 +64,9 @@
     if (self.refreshHeadView.reStatus != RefreshStateNormal) { // 防止在下拉刷新的时候加载更多
         return ; 
     }
+    if (scrollView.contentOffset.y<0) {
+        return ;
+    }
     
     CGFloat y = scrollView.frame.size.height;
     if (scrollView.contentSize.height < scrollView.frame.size.height ) {

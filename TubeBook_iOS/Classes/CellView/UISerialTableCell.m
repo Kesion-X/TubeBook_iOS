@@ -38,6 +38,7 @@
     [self.serialTitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.serialImageView.mas_right).offset(16);
         make.top.equalTo(self.serialImageView);
+        make.width.mas_equalTo(200);
     }];
     [self.serialRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-kCELL_MARGIN);
