@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 @property (nonatomic, strong) NSString *infoTitle;
 @property (nonatomic, strong) NSString *infoDescription;
 
+@property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, assign) InfoDescriptionType infoType;
 @property (nonatomic, strong) UIImageView *infoImageView;
 @property (nonatomic, strong) UILabel *infoNameLable;
@@ -37,5 +38,7 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 - (instancetype)initInfoDescriptionViewWithFrame:(CGRect)frame infoType:(InfoDescriptionType)infoType;
 + (CGFloat)getViewHeightWithInfotype:(InfoDescriptionType)infoType;
 - (void)setSpaceColor:(UIColor *)color;
+- (void)setDetailBackImage:(UIImage *)image;
+- (void)setAllTitleLableWithColor:(UIColor *)color;
 
 @end

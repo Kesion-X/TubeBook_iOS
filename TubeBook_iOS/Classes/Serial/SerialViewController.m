@@ -10,6 +10,9 @@
 #import "SerialTagContent.h"
 #import "UISerialTableCell.h"
 #import "TubeSDK.h"
+#import "ReactiveObjC.h"
+#import "DetailViewController.h"
+#import "TubeRootViewController.h"
 
 @interface SerialViewController () <RefreshTableViewControllerDelegate>
 
@@ -74,6 +77,19 @@
                                                                           }];
 }
 
+#pragma mark - delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CKContent *content = self.contentData[indexPath.row];
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initSerialDetailViewControllerWithTabid:content.id uid:content.userUid]];
+        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+    });
+    
+}
 
 - (void)refreshData
 {

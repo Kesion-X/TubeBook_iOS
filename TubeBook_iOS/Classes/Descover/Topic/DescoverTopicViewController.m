@@ -14,6 +14,9 @@
 #import "DescoverTopicTopContent.h"
 #import "TopicTopCollectionViewCell.h"
 #import "TubeSDK.h"
+#import "ReactiveObjC.h"
+#import "DetailViewController.h"
+#import "TubeRootViewController.h"
 #define kCollectionMargin 10
 
 @interface DescoverTopicViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -32,6 +35,13 @@
 {
     NSInteger index;
 }
+
+- (void)dealloc
+{
+    self.collectionView.delegate = nil;
+    self.collectionView.dataSource = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -218,20 +228,41 @@
 #pragma mark  点击CollectionView触发事件
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger session = indexPath.section;
+    switch (session) {
+        case 0:
+        {
+            break;
+        }
+        case 1:
+        {
+            CKContent *content = self.contentList[indexPath.row];
+            @weakify(self);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
+                TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initTopicDetailViewControllerWithTabid:content.id uid:content.userUid]];
+                [self.tabBarController presentViewController:vc animated:YES completion:nil];
+            });
+            break;
+        }
+        default:
+            break;
+    }
+    
    // Medal *p = self.medals[indexPath.item];
     NSLog(@"---------------------");
 }
 
-#pragma mark  设置CollectionViewCell是否可以被点击
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
+//#pragma mark  设置CollectionViewCell是否可以被点击
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 
-#pragma mark - UICollectionViewDelegate
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    return NO;
-}
+//#pragma mark - UICollectionViewDelegate
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
+//    return NO;
+//}
 
 #pragma mark - get
 - (NSMutableArray *)topList

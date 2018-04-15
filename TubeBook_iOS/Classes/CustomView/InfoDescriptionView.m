@@ -33,7 +33,8 @@
     self = [self initWithFrame:frame];
     if ( self ) {
         self.infoType = infoType;
-        self.spaceV.frame = frame;
+//        self.spaceV.frame = frame;
+//        self.backImageView.frame = frame;
         [self setBackgroundColor:[UIColor whiteColor]];
     }
     return self;
@@ -41,6 +42,7 @@
 
 - (void)addView
 {
+    [self addSubview:self.backImageView];
     [self addSubview:self.spaceV];
     [self addSubview:self.infoImageView];
     [self addSubview:self.infoDescriptionLable];
@@ -52,6 +54,13 @@
 
 - (void)addConstraint
 {
+    [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.equalTo(self);
+    }];
+    [self.spaceV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.equalTo(self);
+    }];
+
     [self.infoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(8);
         make.left.equalTo(self).offset(8);
@@ -82,9 +91,9 @@
         make.width.mas_equalTo(200);
         make.height.mas_equalTo(30);
     }];
-    if (self.infoType == InfoDescriptionTypeArticle) {
+    if ( self.infoType == InfoDescriptionTypeArticle ) {
         
-    } else {
+    } else if ( self.infoType == InfoDescriptionTypeTopic ) {
         [self.infoDescriptionLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.infoTitleLable.mas_bottom).offset(4);
             make.left.equalTo(self).offset(8);
@@ -104,6 +113,10 @@
             height = 8 + 50 + 8 + 30 + 4;
             break;
         }
+        case InfoDescriptionTypeTopic:
+        {
+            height = 8 + 50 + 8 + 30 + 4 + 50 +4;
+        }
         default:
             break;
     }
@@ -114,6 +127,23 @@
 {
     [self.spaceV setBackgroundColor:color];
 }
+
+#pragma mark - publilc
+
+- (void)setDetailBackImage:(UIImage *)image
+{
+    [self.backImageView sd_setImageWithURL:nil placeholderImage:image];
+}
+
+- (void)setAllTitleLableWithColor:(UIColor *)color
+{
+    self.infoTitleLable.textColor = color;
+    self.infoMottoLable.textColor = color;
+    self.infoDescriptionLable.textColor = color;
+    self.infoTimeLable.textColor = color;
+    self.infoNameLable.textColor = color;
+}
+
 
 #pragma mark - set
 
@@ -225,6 +255,14 @@
         _spaceV = [[UIView alloc] init];
     }
     return _spaceV;
+}
+
+- (UIImageView *)backImageView
+{
+    if (!_backImageView) {
+        _backImageView = [[UIImageView alloc] init];
+    }
+    return _backImageView;
 }
 
 @end

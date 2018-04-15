@@ -175,6 +175,14 @@
 		3CDFF5302081B70300E345E2 /* TopicTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF52F2081B70300E345E2 /* TopicTopCollectionViewCell.m */; };
 		3CDFF5332081E19900E345E2 /* DescoverTopicContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF5322081E19900E345E2 /* DescoverTopicContent.m */; };
 		3CDFF5362081E1BA00E345E2 /* DescoverTopicTopContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF5352081E1BA00E345E2 /* DescoverTopicTopContent.m */; };
+		3CDFF53C2081EE2F00E345E2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF53B2081EE2F00E345E2 /* DetailViewController.m */; };
+		3CDFF54220824F3900E345E2 /* detail_back3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3CDFF54120824F3900E345E2 /* detail_back3.jpg */; };
+		3CDFF54520826AF700E345E2 /* DetialArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF54420826AF700E345E2 /* DetialArticleListViewController.m */; };
+		3CDFF54820826B2400E345E2 /* DetailMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF54720826B2400E345E2 /* DetailMemberViewController.m */; };
+		3CDFF54C208272CF00E345E2 /* DetailTopicArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF54B208272CF00E345E2 /* DetailTopicArticleTableViewCell.m */; };
+		3CDFF550208273F600E345E2 /* DetailTopicArticleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF54F208273F600E345E2 /* DetailTopicArticleContent.m */; };
+		3CDFF55920833F0E00E345E2 /* DetailSerialArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF55820833F0E00E345E2 /* DetailSerialArticleTableViewCell.m */; };
+		3CDFF55C20833FA200E345E2 /* DetailSerialArticleContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFF55B20833FA200E345E2 /* DetailSerialArticleContent.m */; };
 		EDE84E122D529A6CB978A674 /* libPods-TubeBook_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2567840B84BD0DEFDDB61B94 /* libPods-TubeBook_iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -486,6 +494,21 @@
 		3CDFF5322081E19900E345E2 /* DescoverTopicContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverTopicContent.m; sourceTree = "<group>"; };
 		3CDFF5342081E1BA00E345E2 /* DescoverTopicTopContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescoverTopicTopContent.h; sourceTree = "<group>"; };
 		3CDFF5352081E1BA00E345E2 /* DescoverTopicTopContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescoverTopicTopContent.m; sourceTree = "<group>"; };
+		3CDFF53A2081EE2F00E345E2 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		3CDFF53B2081EE2F00E345E2 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		3CDFF54120824F3900E345E2 /* detail_back3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_back3.jpg; sourceTree = "<group>"; };
+		3CDFF54320826AF700E345E2 /* DetialArticleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetialArticleListViewController.h; sourceTree = "<group>"; };
+		3CDFF54420826AF700E345E2 /* DetialArticleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetialArticleListViewController.m; sourceTree = "<group>"; };
+		3CDFF54620826B2400E345E2 /* DetailMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailMemberViewController.h; sourceTree = "<group>"; };
+		3CDFF54720826B2400E345E2 /* DetailMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailMemberViewController.m; sourceTree = "<group>"; };
+		3CDFF54A208272CF00E345E2 /* DetailTopicArticleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTopicArticleTableViewCell.h; sourceTree = "<group>"; };
+		3CDFF54B208272CF00E345E2 /* DetailTopicArticleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTopicArticleTableViewCell.m; sourceTree = "<group>"; };
+		3CDFF54E208273F600E345E2 /* DetailTopicArticleContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTopicArticleContent.h; sourceTree = "<group>"; };
+		3CDFF54F208273F600E345E2 /* DetailTopicArticleContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTopicArticleContent.m; sourceTree = "<group>"; };
+		3CDFF55720833F0E00E345E2 /* DetailSerialArticleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailSerialArticleTableViewCell.h; sourceTree = "<group>"; };
+		3CDFF55820833F0E00E345E2 /* DetailSerialArticleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailSerialArticleTableViewCell.m; sourceTree = "<group>"; };
+		3CDFF55A20833FA200E345E2 /* DetailSerialArticleContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailSerialArticleContent.h; sourceTree = "<group>"; };
+		3CDFF55B20833FA200E345E2 /* DetailSerialArticleContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailSerialArticleContent.m; sourceTree = "<group>"; };
 		F4DE45391D20C470D10392BD /* Pods-TubeBook_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TubeBook_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TubeBook_iOS/Pods-TubeBook_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -965,6 +988,7 @@
 		3CA3BF98200924A600793F3D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3CDFF5372081ED9600E345E2 /* Detial */,
 				3CDFF51A20809E5000E345E2 /* ShowArticle */,
 				3CDFF52120809EEB00E345E2 /* Comment */,
 				3C195FDC2014A14D000A938C /* CellView */,
@@ -1002,6 +1026,7 @@
 		3CA3BF9A2009251600793F3D /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				3CDFF54120824F3900E345E2 /* detail_back3.jpg */,
 				3CB2E111207B5BE900D7F3C6 /* default_loadimage@2x.png */,
 				3C19603B2019BA5E000A938C /* loading.gif */,
 				3C195FD720146C55000A938C /* custom */,
@@ -1145,6 +1170,43 @@
 				3CDFF51F20809EDA00E345E2 /* CommentUIViewController.m */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		3CDFF5372081ED9600E345E2 /* Detial */ = {
+			isa = PBXGroup;
+			children = (
+				3CDFF54D208273C500E345E2 /* DetailModel */,
+				3CDFF5492082728700E345E2 /* DetialCell */,
+				3CDFF53A2081EE2F00E345E2 /* DetailViewController.h */,
+				3CDFF53B2081EE2F00E345E2 /* DetailViewController.m */,
+				3CDFF54320826AF700E345E2 /* DetialArticleListViewController.h */,
+				3CDFF54420826AF700E345E2 /* DetialArticleListViewController.m */,
+				3CDFF54620826B2400E345E2 /* DetailMemberViewController.h */,
+				3CDFF54720826B2400E345E2 /* DetailMemberViewController.m */,
+			);
+			path = Detial;
+			sourceTree = "<group>";
+		};
+		3CDFF5492082728700E345E2 /* DetialCell */ = {
+			isa = PBXGroup;
+			children = (
+				3CDFF54A208272CF00E345E2 /* DetailTopicArticleTableViewCell.h */,
+				3CDFF54B208272CF00E345E2 /* DetailTopicArticleTableViewCell.m */,
+				3CDFF55720833F0E00E345E2 /* DetailSerialArticleTableViewCell.h */,
+				3CDFF55820833F0E00E345E2 /* DetailSerialArticleTableViewCell.m */,
+			);
+			path = DetialCell;
+			sourceTree = "<group>";
+		};
+		3CDFF54D208273C500E345E2 /* DetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				3CDFF54E208273F600E345E2 /* DetailTopicArticleContent.h */,
+				3CDFF54F208273F600E345E2 /* DetailTopicArticleContent.m */,
+				3CDFF55A20833FA200E345E2 /* DetailSerialArticleContent.h */,
+				3CDFF55B20833FA200E345E2 /* DetailSerialArticleContent.m */,
+			);
+			path = DetailModel;
 			sourceTree = "<group>";
 		};
 		8D18D2C767E3A1DF7BF531C7 /* Frameworks */ = {
@@ -1291,6 +1353,7 @@
 				3C13651B200A5F6C00674726 /* icon_delect@2x.png in Resources */,
 				3C195E3E200BC52B000A938C /* icon_normal_discover@3x.png in Resources */,
 				3C195E36200BC52B000A938C /* icon_light_discover@3x.png in Resources */,
+				3CDFF54220824F3900E345E2 /* detail_back3.jpg in Resources */,
 				3C195E3F200BC52B000A938C /* icon_light_message@3x.png in Resources */,
 				3C195E23200B9E50000A938C /* icon_nick@3x.png in Resources */,
 				3C1960242016DBF8000A938C /* icon_right@2x.png in Resources */,
@@ -1425,6 +1488,7 @@
 				3C9B4DA1202A05940000608C /* TubeServerDataSDK.m in Sources */,
 				3C1960C0201E064C000A938C /* TubeLink.m in Sources */,
 				3CB2E188207BB9FF00D7F3C6 /* CKIndicatorMessageCenterView.m in Sources */,
+				3CDFF53C2081EE2F00E345E2 /* DetailViewController.m in Sources */,
 				3C1960BD201C99D6000A938C /* DescoverSerialContent.m in Sources */,
 				3CBC3E3A204D300600C5C6CD /* AltertControllerUtil.m in Sources */,
 				3CDFF5272080EBA700E345E2 /* InfoDescriptionView.m in Sources */,
@@ -1442,6 +1506,7 @@
 				3C195FD020137B25000A938C /* SerialViewController.m in Sources */,
 				3CDFF52020809EDA00E345E2 /* CommentUIViewController.m in Sources */,
 				3CB2E110207B1E9800D7F3C6 /* TubeSearchTableViewController.m in Sources */,
+				3CDFF55C20833FA200E345E2 /* DetailSerialArticleContent.m in Sources */,
 				3C48CF4420752EE5009E5C2B /* TubeArticleSDK.m in Sources */,
 				3C1E9E17206F881400A96073 /* TubeArticleConst.m in Sources */,
 				3C195E5D200BD2F6000A938C /* TubeRootViewController.m in Sources */,
@@ -1474,6 +1539,7 @@
 				3C195FAE201320D7000A938C /* UITubeSearchView.m in Sources */,
 				3C19602120162EFF000A938C /* UITopicTableCell.m in Sources */,
 				3C1E9E1A20708D9000A96073 /* BaseTubeServerManager.m in Sources */,
+				3CDFF54C208272CF00E345E2 /* DetailTopicArticleTableViewCell.m in Sources */,
 				3C196054201A1884000A938C /* DescoverRecommendContent.m in Sources */,
 				3C196003201592A0000A938C /* CKContent.m in Sources */,
 				3C195FC720137AFA000A938C /* NewestViewController.m in Sources */,
@@ -1481,11 +1547,15 @@
 				3CDFF519208097DD00E345E2 /* TubeWebViewViewController.m in Sources */,
 				3C195E8E200E4A5F000A938C /* CKTextView.m in Sources */,
 				3C195E79200D1DC8000A938C /* ReleaseTabViewController.m in Sources */,
+				3CDFF55920833F0E00E345E2 /* DetailSerialArticleTableViewCell.m in Sources */,
+				3CDFF54520826AF700E345E2 /* DetialArticleListViewController.m in Sources */,
 				3CDFF5302081B70300E345E2 /* TopicTopCollectionViewCell.m in Sources */,
 				3C19603A2018BCE5000A938C /* UIRingScrollView.m in Sources */,
+				3CDFF550208273F600E345E2 /* DetailTopicArticleContent.m in Sources */,
 				3C195E18200B900C000A938C /* TubeNavigationUITool.m in Sources */,
 				3CDFF5362081E1BA00E345E2 /* DescoverTopicTopContent.m in Sources */,
 				3C1960BA201C9278000A938C /* SerialCollectionViewCell.m in Sources */,
+				3CDFF54820826B2400E345E2 /* DetailMemberViewController.m in Sources */,
 				3C195E82200DA45A000A938C /* UIIndicatorView.m in Sources */,
 				3CBC3B6D20429C7600C5C6CD /* LoginManager.m in Sources */,
 				3C195E55200BC6C0000A938C /* HomeTabViewController.m in Sources */,

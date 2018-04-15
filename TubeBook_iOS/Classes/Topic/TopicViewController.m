@@ -10,6 +10,9 @@
 #import "TopicTagContent.h"
 #import "UITopicTableCell.h"
 #import "TubeSDK.h"
+#import "ReactiveObjC.h"
+#import "DetailViewController.h"
+#import "TubeRootViewController.h"
 
 @interface TopicViewController () <RefreshTableViewControllerDelegate>
 
@@ -78,6 +81,8 @@
                                                                             }];
 }
 
+#pragma mark - delegate
+
 - (void)refreshData
 {
     index = 0;
@@ -89,6 +94,18 @@
 {
     [self requestData];
     NSLog(@"loadMoreData");
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CKContent *content = self.contentData[indexPath.row];
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initTopicDetailViewControllerWithTabid:content.id uid:content.userUid]];
+        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+    });
+
 }
 
 @end

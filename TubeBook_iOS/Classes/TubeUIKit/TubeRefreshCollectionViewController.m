@@ -9,7 +9,7 @@
 #import "TubeRefreshCollectionViewController.h"
 #import "CKMacros.h"
 
-@interface TubeRefreshCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIWaterfallCollectionViewLayoutDelegate>
+@interface TubeRefreshCollectionViewController () 
 
 
 @end
@@ -111,9 +111,9 @@
 }
 
 #pragma mark - UICollectionViewDelegate
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    return NO;
-}
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
+//    return NO;
+//}
 
 #pragma mark - UICollectionViewDataSource
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

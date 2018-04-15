@@ -114,7 +114,7 @@
  * @brief 获取最新文章(普通/专题/连载)列表,
  * @parme tabid专题/连载某标题tabid的最新
  * uid 为空代表全部
- * tabid 当文章为普通文章时tabid不起作用
+ * tabid 当文章为普通文章时tabid不起作用 articleType多个时tabid不起作用 
  */
 - (void)fetchedNewArticleListWithIndex:(NSInteger)index
                                    uid:(NSString *)uid

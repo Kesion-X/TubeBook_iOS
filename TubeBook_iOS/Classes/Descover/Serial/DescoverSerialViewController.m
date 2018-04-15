@@ -11,6 +11,8 @@
 #import "SerialCollectionViewCell.h"
 #import "TubeSDK.h"
 #import "ReactiveObjC.h"
+#import "DetailViewController.h"
+#import "TubeRootViewController.h"
 
 @interface DescoverSerialViewController () <RefreshTableViewControllerDelegate>
 
@@ -98,7 +100,8 @@
             NSDictionary *userinfo = [contentDic objectForKey:@"userinfo"];
             (content).avatarUrl = [userinfo objectForKey:@"avatar"];
             (content).userName = (content).userUid;
-            if (![userinfo objectForKey:@"nick"]) {
+            NSString *name = [userinfo objectForKey:@"nick"];
+            if ( name && name.length>0) {
                 (content).userName = [userinfo objectForKey:@"nick"];
             }
             (content).motto = [userinfo objectForKey:@"description"];
@@ -116,6 +119,18 @@
 }
 
 #pragma mark - delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CKContent *content = self.contentData[indexPath.row];
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initSerialDetailViewControllerWithTabid:content.id uid:content.userUid]];
+        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+    });
+}
+
 - (void)refreshData
 {
     index = 0;

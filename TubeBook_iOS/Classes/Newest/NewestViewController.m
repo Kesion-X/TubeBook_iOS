@@ -173,7 +173,7 @@
             NSDictionary *userinfo = [contentDic objectForKey:@"userinfo"];
             (content).avatarUrl = [userinfo objectForKey:@"avatar"];
             (content).userName = (content).userUid;
-            if (![userinfo objectForKey:@"nick"]) {
+            if ([userinfo objectForKey:@"nick"]) {
                 (content).userName = [userinfo objectForKey:@"nick"];
             }
             (content).motto = [userinfo objectForKey:@"description"];
@@ -226,12 +226,12 @@
             content.topicTitle = topicTitle;
             content.topicImageUrl = pic;
             content.topicDescription  = description;
-//            for (int i=0 ; i < self.contentData.count; ++i) {
-//                if ( [self.contentData objectAtIndex:i] == content ) {
-//                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-//                }
-//            }
+            for (int i=0 ; i < self.contentData.count; ++i) {
+                if ( [self.contentData objectAtIndex:i] == content ) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                }
+            }
         }
     }];
 }

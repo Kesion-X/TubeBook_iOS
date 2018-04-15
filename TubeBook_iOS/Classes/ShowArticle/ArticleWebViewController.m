@@ -38,7 +38,7 @@
     [super viewDidLoad];
     self.infoView = [[InfoDescriptionView alloc] initInfoDescriptionViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, [InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle]) infoType:InfoDescriptionTypeArticle];
     [self.view addSubview:self.infoView];
-    self.webView.frame = CGRectMake(0, [InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle], SCREEN_WIDTH, SCREEN_HEIGHT -[InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle]);
+    self.webView.frame = CGRectMake(0, [InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle] , SCREEN_WIDTH, SCREEN_HEIGHT -[InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle]);
     [self.view layoutIfNeeded];
 }
 

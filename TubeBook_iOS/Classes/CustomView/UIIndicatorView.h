@@ -28,9 +28,24 @@ typedef NS_ENUM(NSInteger, UIIndicatorViewStyle) {
 @property (nonatomic) UIIndicatorViewStyle style;
 @property (nonatomic, strong) id<UIIndicatorViewDelegate> delegate;
 
+- (instancetype)initUIIndicatorViewWithFrame:(CGRect)frame style:(UIIndicatorViewStyle)style arrays:(NSMutableArray *)arrays;
+
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor frame:(CGRect)frame arrays:(NSMutableArray *)arrays font:(UIFont *)font textNormalColor:(UIColor *)textNormalColor textLightColor:(UIColor *)textLightColor;
+
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor style:(UIIndicatorViewStyle)style arrays:(NSMutableArray *)arrays font:(UIFont *)font textNormalColor:(UIColor *)textNormalColor textLightColor:(UIColor *)textLightColor isEnableAutoScroll:(BOOL)isEnableAutoScroll;
+
 - (instancetype)initUIIndicatorView:(UIColor *)indicatorColor font:(UIFont *)font;
+
+- (instancetype)initUIIndicatorViewWithFrame:(CGRect)frame
+                              indicatorColor:(UIColor *)indicatorColor
+                                       style:(UIIndicatorViewStyle)style
+                                      arrays:(NSMutableArray *)arrays
+                                        font:(UIFont *)font
+                             textNormalColor:(UIColor *)textNormalColor
+                              textLightColor:(UIColor *)textLightColor
+                          isEnableAutoScroll:(BOOL)isEnableAutoScroll;
+
+
 - (void)addIndicatorItemByString:(NSString *)item;
 - (CGFloat)getUIHeight;
 - (CGFloat)getUIWidth;
