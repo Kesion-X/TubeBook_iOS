@@ -153,6 +153,13 @@
 - (void)loadData
 {
     [[TubeSDK sharedInstance].tubeLoginSDK addListener:self];
+    NSString *a = [[NSUserDefaults standardUserDefaults] objectForKey:kAccountKey];
+    NSString *p = [[NSUserDefaults standardUserDefaults] objectForKey:kPass];
+    if ( a && p ) {
+        self.account = a;
+        self.pass = p;
+        [[TubeSDK sharedInstance].tubeLoginSDK login:a pass:p];
+    }
    // weakify(self);
     __block LoginUIViewController *blockSelf = self;
     [self.accountField setFieldBlock:^(NSString *text) {
@@ -167,6 +174,8 @@
     }];
     [[self.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [[TubeSDK sharedInstance].tubeLoginSDK login:self.account pass:self.pass];
+        [[NSUserDefaults standardUserDefaults] setObject:self.account forKey:kAccountKey];
+        [[NSUserDefaults standardUserDefaults] setObject:self.pass forKey:kPass];
         //[UIApplication sharedApplication].keyWindow.rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
     }];
 }

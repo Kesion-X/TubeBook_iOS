@@ -16,143 +16,94 @@
 #import "TubeSDK.h"
 #import "AlterMessageViewController.h"
 #import "TubeAlterCenter.h"
+#import "TubeCollectionView.h"
+#import "UIImageWithLable.h"
 
-@interface MessageTabViewController ()
+@interface MessageTabViewController () <TubeCollectionViewDelegate>
+
+@property (nonatomic, strong) UILabel *navigationtitleLable;
+@property (nonatomic, strong) UIScrollView *backScrollView;
+@property (nonatomic, strong) TubeCollectionView *collectionView;
+@property (nonatomic, strong) UIImageWithLable *commentItem;
+@property (nonatomic, strong) UIImageWithLable *likeItem;
+@property (nonatomic, strong) UIImageWithLable *attentSerialItem;
+@property (nonatomic, strong) UIImageWithLable *attentUserItem;
 
 @end
 
 @implementation MessageTabViewController
-CKTextView *ckTextView ;
-UIView *board;
-
-TagCollectionView *tagC;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ckTextView = [[CKTextView alloc] init];
-    [self.view addSubview:ckTextView];
-    [ckTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(72);
-        make.left.equalTo(self.view).offset(32);
-        make.right.equalTo(self.view).offset(-32);
-        make.height.equalTo(@42);
-    }];
-    ckTextView.layer.borderWidth = 0.5;
-    ckTextView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.backScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,
+                                                                         SCREEN_HEIGHT)];
+    [self.view addSubview:self.backScrollView];
     
-    UITextView *textView = [[UITextView alloc] init];
-    [self.view addSubview:textView];
-    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(120);
-        make.left.equalTo(self.view).offset(32);
-        make.right.equalTo(self.view).offset(-32);
-        make.height.equalTo(@42);
-    }];
-    textView.layer.borderWidth = 0.5;
-    textView.layer.borderColor = [UIColor grayColor].CGColor;
-    //[ckTextView setBackgroundColor:[UIColor grayColor]];
+    self.collectionView = [[TubeCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    [self.backScrollView addSubview:self.collectionView];
+    self.collectionView.tubeCollectionDelegate = self;
     
-    UIButton *show = [[UIButton alloc] init];
-    [self.view addSubview:show];
-    [show setTitle:@"show" forState:UIControlStateNormal];
-    [show setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [show mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@140);
-        make.left.equalTo(self.view).offset(120);
-    }];
-    [show addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+    self.commentItem = [[UIImageWithLable alloc] initUIImageWithLableWithWidth:(SCREEN_WIDTH-5*kMegin)/4 height:((SCREEN_WIDTH-5*kMegin)/4+kIconMarginBottom) ];
+    self.commentItem.title = @"评论";
+    [self.commentItem setIconByImageName:@"icon_comment"];
+    [self.collectionView addItemView:self.commentItem];
     
-    board = [[UIView alloc] init];
-     [self.view addSubview:board];
-    [board mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_bottom);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.height.equalTo(@210);
-    }];
-    [board setBackgroundColor:[UIColor blueColor]];
-    board.hidden = YES;
-    UILabel *b = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 60, 34)];
-    b.text = @"ddad";
-    b.textColor = [UIColor blackColor];
-    [board addSubview:b];
+    self.likeItem = [[UIImageWithLable alloc] initUIImageWithLableWithWidth:(SCREEN_WIDTH-5*kMegin)/4 height:((SCREEN_WIDTH-5*kMegin)/4+kIconMarginBottom) ];
+    self.likeItem.title = @"喜欢";
+    [self.likeItem setIconByImageName:@"icon_like2"];
+    [self.collectionView addItemView:self.likeItem];
     
-    UIView *input = [[UIView alloc] init];
-    [self.view addSubview:input];
-    [input mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(board.mas_top);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.height.equalTo(@48);
-    }];
-    [input setBackgroundColor:[UIColor grayColor]];
+    self.attentSerialItem = [[UIImageWithLable alloc] initUIImageWithLableWithWidth:(SCREEN_WIDTH-5*kMegin)/4 height:((SCREEN_WIDTH-5*kMegin)/4+kIconMarginBottom) ];
+    self.attentSerialItem.title = @"连载";
+    [self.attentSerialItem setIconByImageName:@"icon_attent_serial"];
+    [self.collectionView addItemView:self.attentSerialItem];
     
-    tagC = [[TagCollectionView alloc] initWithFrame:CGRectMake(20, 200, 300, 100)];
-   // [tagC setBackgroundColor:[UIColor yellowColor]];
-    [self.view addSubview:tagC];
+    self.attentUserItem = [[UIImageWithLable alloc] initUIImageWithLableWithWidth:(SCREEN_WIDTH-5*kMegin)/4 height:((SCREEN_WIDTH-5*kMegin)/4+kIconMarginBottom) ];
+    self.attentUserItem.title = @"关注";
+    [self.attentUserItem setIconByImageName:@"icon_attent_user"];
+    [self.collectionView addItemView:self.attentUserItem];
     
+    [self requestLikeNotReviewCount];
 }
 
-- (IBAction)click:(id)sender
+- (void)viewWillAppear:(BOOL)animated
 {
-//    AlterMessageViewController *alter = [[AlterMessageViewController alloc] initAlterMessageViewControllerWithMessage:@"kk"];
-   // [TubeAlterCenter postAlterWithMessage:@"kesion" duration:1.0f fromeVC:self];
-    [[TubeAlterCenter sharedInstance] showAlterIndicatorWithMessage:@"正在上传图片" fromeVC:self];
-//    TagManager *tagm = [[TagManager alloc] initTagManagerWithSocket:[TubeSDK sharedInstance].tubeServerDataSDK];
-//    [tagm requestTagDataWithTagCount:10 tagDataCallBack:^(NSInteger status, NSDictionary *data) {
-//
-//    }];
-//    TubeArticleManager *m = [[TubeArticleManager alloc] initTubeArticleManagerWithSocket:[TubeSDK sharedInstance].tubeServerDataSDK];
-//    [m fetchedArticleTagListWithCount:10 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
-//        NSDictionary *content = page.content.contentData;
-//        NSArray *list = [content objectForKey:@"tagList"];
-//        for (NSDictionary *d in list) {
-//            NSLog(@"%@",[d objectForKey:@"tag"]);
-//        }
-//        NSLog(@"%@",page.content.contentData);
-//    }];
-//    [tagC addTagsObject:[[UITagView alloc] initUITagView:@"kesion" color:[UIColor grayColor]]];
-//    LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:@"选择" cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
-//
-//        if (buttonIndex == 1) {
-//            NSLog(@"kkkk");
-//        } else if (buttonIndex == 2){
-//            NSLog(@"dddd");
-//
-//        }
-//
-//    } otherButtonTitleArray:@[@"K", @"D"] ];
-//    [sheet show];
-   // [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
-//
-//    if (board.hidden) {
-//         [ckTextView performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0];
-//        board.hidden = NO;
-//
-//        [board mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.view.mas_bottom).offset(-210);
-//        }];
-//        [board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
-//        [board updateConstraintsIfNeeded]; //
-//        [UIView animateWithDuration:0.5f animations:^{
-//            [self.view layoutIfNeeded];
-//        }];
-//
-//    }else{
-//        [ckTextView resignFirstResponder];
-//        [board mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.view.mas_bottom).offset(0);
-//
-//        }];
-//        [board setNeedsUpdateConstraints]; //通知系统视图中的约束需要更新
-//        [board updateConstraintsIfNeeded]; //
-//        [UIView animateWithDuration:0.5f animations:^{
-//            [self.view layoutIfNeeded];
-//        } completion:^(BOOL finished) {
-//                    board.hidden = YES;
-//        }];
-//    }
+    if (self.navigationController.navigationBar.isHidden) {
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
+    if (!self.navigationtitleLable) {
+        self.navigationtitleLable =  [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
+        self.navigationtitleLable.text = @"Tube 消息";
+        [self.navigationController.navigationBar addSubview:self.navigationtitleLable];
+        [self.navigationtitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.navigationController.navigationBar);
+            make.centerY.equalTo(self.navigationController.navigationBar);
+        }];
+    }
+    self.navigationtitleLable.hidden = NO;
 
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.navigationtitleLable.hidden = YES;
+}
+
+- (void)collectionItemView:(UIView *)itemView index:(NSInteger)index
+{
+
+}
+
+- (void)requestLikeNotReviewCount
+{
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedLikeNotReviewCount:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]  callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *content = page.content.contentData;
+            NSInteger count = [[content objectForKey:@"count"] integerValue];
+            self.likeItem.countNotReview = count;
+        }
+    }];
+}
+
 
 @end

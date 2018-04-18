@@ -209,9 +209,6 @@
 
 - (void)loadData
 {
-    [[TubeSDK sharedInstance].tubeArticleSDK fetchedNewArticleListWithIndex:0 uid:@"123" articleType:ArticleTypeMornal|ArticleTypeTopic tabid:12 conditionDic:nil callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
-        
-    }];
     __weak typeof(self) weakSelf = self;
     [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTagListWithCount:10 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if (status == DataCallBackStatusSuccess) {
@@ -228,7 +225,7 @@
     }];
 }
 
-#pragma action
+#pragma mark - action
 
 - (IBAction)addTag:(id)sender
 {
@@ -336,7 +333,6 @@
     }
     createtime = [TimeUtil getNowTimeTimest];
     self.uid = [[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey];
-    self.uid = @"12345678";
     self.atid = [self.uid stringByAppendingString:[TimeUtil getNowTimeTimestamp3]];
     [[TubeSDK sharedInstance].tubeArticleSDK uploadArticleWithTitle:self.articleTitle
                                                                atid:self.atid
@@ -364,7 +360,7 @@
     }
     [[TubeSDK sharedInstance].tubeArticleSDK setArticleTagWithAtid:atid tags:tags callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if (status != DataCallBackStatusSuccess) {
-            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签设置失败" duration:1.0f fromeVC:self];
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签设置失败，请检查网络" duration:1.0f fromeVC:self];
         }
     }];
 }
@@ -372,7 +368,9 @@
 - (void)requestSetTab:(NSString *)atid
 {
     [[TubeSDK sharedInstance].tubeArticleSDK setArticleTabWithAtid:atid articleType:self.type tabid:self.chioseContent.id callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
-        
+        if (status != DataCallBackStatusSuccess) {
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签标题失败，请检查网络" duration:1.0f fromeVC:self];
+        }
     }];
 }
 

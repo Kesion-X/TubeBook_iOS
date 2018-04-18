@@ -114,7 +114,7 @@
  * @brief 获取最新文章(普通/专题/连载)列表,
  * @parme tabid专题/连载某标题tabid的最新
  * uid 为空代表全部
- * tabid 当文章为普通文章时tabid不起作用 articleType多个时tabid不起作用 
+ * tabid 当文章为普通文章时tabid不起作用 articleType多个时tabid不起作用
  */
 - (void)fetchedNewArticleListWithIndex:(NSInteger)index
                                    uid:(NSString *)uid
@@ -124,6 +124,30 @@
                               callBack:(dataCallBackBlock)callBack
 {
     [self.articleManager fetchedNewArticleListWithIndex:index uid:uid articleType:articleType tabid:tabid conditionDic:conditionDic callBack:callBack];
+}
+
+/*
+ * @brief 获取文章详细信息
+ */
+- (void)fetchedArticleContentWithAtid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedArticleContentWithAtid:atid uid:uid callBack:callBack];
+}
+
+/*
+ * @brief 设置文章为喜欢的
+ */
+- (void)setArticleToLikeWithLikeStatus:(BOOL)likeStatus atid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager setArticleToLikeWithLikeStatus:likeStatus atid:atid uid:uid callBack:callBack];
+}
+
+/*
+ * @brief 文章喜欢未读数
+ */
+- (void)fetchedLikeNotReviewCount:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedLikeNotReviewCount:uid callBack:callBack];
 }
 
 @end

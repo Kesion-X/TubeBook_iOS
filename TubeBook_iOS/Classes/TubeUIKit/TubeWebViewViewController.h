@@ -18,5 +18,6 @@
 - (instancetype)initTubeWebViewViewControllerWithHtml:(NSString *)html;
 - (instancetype)initTubeWebViewViewControllerWithUrl:(NSString *)url;
 - (void)loadWeb;
+- (void)loadWebWithHtml:(NSString *)html;
 
 @end

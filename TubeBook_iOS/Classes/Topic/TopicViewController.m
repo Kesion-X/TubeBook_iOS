@@ -42,7 +42,7 @@
 {
     __weak typeof(self) weakSelf = self;
     [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicTitleListWithIndex:index
-                                                                                    uid:@"12345678"
+                                                                                    uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]
                                                                             fouseType:FouseTypeAttrent
                                                                             conditionDic:nil
                                                                                 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {

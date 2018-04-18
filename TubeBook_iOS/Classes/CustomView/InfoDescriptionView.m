@@ -8,6 +8,7 @@
 
 #import "InfoDescriptionView.h"
 #import "Masonry.h"
+#import "CKMacros.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface InfoDescriptionView ()
@@ -50,6 +51,7 @@
     [self addSubview:self.infoMottoLable];
     [self addSubview:self.infoNameLable];
     [self addSubview:self.infoTitleLable];
+    [self addSubview:self.likeButton];
 }
 
 - (void)addConstraint
@@ -92,6 +94,13 @@
         make.height.mas_equalTo(30);
     }];
     if ( self.infoType == InfoDescriptionTypeArticle ) {
+        [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(4);
+            make.right.equalTo(self).offset(-8);
+            make.width.mas_equalTo(80);
+            make.height.mas_equalTo(30);
+        }];
+        
         
     } else if ( self.infoType == InfoDescriptionTypeTopic ) {
         [self.infoDescriptionLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -144,6 +153,10 @@
     self.infoNameLable.textColor = color;
 }
 
+- (void)setActionForLikeButtonWithTarget:(nullable id)target action:(SEL)action;
+{
+    [self.likeButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
 
 #pragma mark - set
 
@@ -178,6 +191,18 @@
 }
 
 #pragma  mark - get
+
+- (UIButton *)likeButton
+{
+    if (!_likeButton) {
+        _likeButton = [[UIButton alloc] init];
+        _likeButton.titleLabel.font = Font(14);
+        [_likeButton setTitle:@"未喜欢" forState:UIControlStateNormal];
+        [_likeButton setTitleColor:kTEXTCOLOR forState:UIControlStateNormal];
+        [_likeButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateHighlighted];
+    }
+    return _likeButton;
+}
 
 - (UIImageView *)infoImageView
 {

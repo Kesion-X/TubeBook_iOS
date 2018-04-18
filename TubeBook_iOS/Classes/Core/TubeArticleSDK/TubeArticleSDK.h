@@ -93,4 +93,19 @@
                           conditionDic:(NSDictionary *)conditionDic
                               callBack:(dataCallBackBlock)callBack;
 
+/*
+ * @brief 获取文章详细信息
+ */
+- (void)fetchedArticleContentWithAtid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 设置文章为喜欢的
+ */
+- (void)setArticleToLikeWithLikeStatus:(BOOL)likeStatus atid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 文章喜欢未读数
+ */
+- (void)fetchedLikeNotReviewCount:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
 @end

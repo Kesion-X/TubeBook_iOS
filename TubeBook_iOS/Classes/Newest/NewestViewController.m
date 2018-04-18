@@ -63,7 +63,7 @@
 - (void)requestData
 {
     @weakify(self);
-    [[TubeSDK sharedInstance].tubeArticleSDK fetchedNewArticleListWithIndex:index uid:@"123" articleType:ArticleTypeMornal|ArticleTypeTopic|ArticleTypeSerial tabid:12 conditionDic:nil callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedNewArticleListWithIndex:index uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] articleType:ArticleTypeMornal|ArticleTypeTopic|ArticleTypeSerial tabid:12 conditionDic:nil callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         @strongify(self);
         if ( status==DataCallBackStatusSuccess ) {
             if ( index == 0 && self.contentData.count>0 ) {
@@ -254,10 +254,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CKContent *c = [self.contentData objectAtIndex:indexPath.row];
-    UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body]];
+    //UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body]];
    // TubeWebViewViewController *vc = [[TubeWebViewViewController alloc] initTubeWebViewViewControllerWithHtml:c.body];
   // [self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body] animated:YES];
+    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:c.atid uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]] animated:YES];
 }
 
 @end

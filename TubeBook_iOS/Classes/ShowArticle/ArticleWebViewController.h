@@ -10,6 +10,10 @@
 
 @interface ArticleWebViewController : TubeWebViewViewController
 
+@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, strong) NSString *atid;
+
+- (instancetype)initArticleWebViewControllerWithHtml:(NSString *)html uid:(NSString *)uid atid:(NSString *)atid;
 - (instancetype)initArticleWebViewControllerWithHtml:(NSString *)html;
 - (instancetype)initArticleWebViewControllerWithUrl:(NSString *)url;
 

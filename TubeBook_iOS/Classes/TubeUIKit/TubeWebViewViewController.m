@@ -63,6 +63,14 @@
     }
 }
 
+- (void)loadWebWithHtml:(NSString *)html
+{
+    self.html = html;
+    self.html = [self.html stringByReplacingOccurrencesOfString:@"<span" withString:[NSString stringWithFormat:@"<div style=\"word-wrap:break-word; width:%fpx;\"><span",SCREEN_WIDTH - 10]];
+    self.html =  [self.html stringByReplacingOccurrencesOfString:@"/span>" withString:[NSString stringWithFormat:@"/span></div>"]];
+    [self.webView loadHTMLString:self.html baseURL:nil];
+}
+
 //- (void)didReceiveMemoryWarning {
 //    [super didReceiveMemoryWarning];
 //

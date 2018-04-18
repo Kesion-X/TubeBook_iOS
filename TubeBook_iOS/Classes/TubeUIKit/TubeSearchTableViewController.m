@@ -85,7 +85,7 @@
         }
         [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicOrSerialTitleListWithType:type
                                                                                         index:self.indexPage
-                                                                                          uid:@"12345678"
+                                                                                          uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]
                                                                                     fouseType:fouseType
                                                                                 conditionDic:[[NSDictionary alloc] initWithObjectsAndKeys:
                                                                                                 self.searchField.text,@"title", nil]

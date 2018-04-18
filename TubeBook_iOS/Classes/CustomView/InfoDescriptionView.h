@@ -25,9 +25,11 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 @property (nonatomic, strong) NSString *infoTime;
 @property (nonatomic, strong) NSString *infoTitle;
 @property (nonatomic, strong) NSString *infoDescription;
+@property (nonatomic, assign) BOOL isLike;
 
 @property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, assign) InfoDescriptionType infoType;
+@property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIImageView *infoImageView;
 @property (nonatomic, strong) UILabel *infoNameLable;
 @property (nonatomic, strong) UILabel *infoMottoLable;
@@ -40,5 +42,6 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 - (void)setSpaceColor:(UIColor *)color;
 - (void)setDetailBackImage:(UIImage *)image;
 - (void)setAllTitleLableWithColor:(UIColor *)color;
+- (void)setActionForLikeButtonWithTarget:(nullable id)target action:(SEL)action;
 
 @end

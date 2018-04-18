@@ -92,6 +92,21 @@
                                callBack:(dataCallBackBlock)callBack;
 
 /*
+ * @brief 获取文章详细信息
+ */
+- (void)fetchedArticleContentWithAtid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 设置文章为喜欢的
+ */
+- (void)setArticleToLikeWithLikeStatus:(BOOL)likeStatus atid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 文章喜欢未读数
+ */
+- (void)fetchedLikeNotReviewCount:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
  * @brief 获取推荐文章(普通/专题/连载)列表
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType fouseType:(FouseType)fouseType;
@@ -101,9 +116,6 @@
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType tabid:(NSInteger)tabid fouseType:(FouseType)fouseType;
 
-/*
- * @brief 获取文章详细信息
- */
-- (void)fetchedArticleContentWithAtid:(NSUInteger)atid;
+
 
 @end

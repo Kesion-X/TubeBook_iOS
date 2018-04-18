@@ -39,9 +39,10 @@
 }
     
 - (UIViewController *)getRootViewController{
-   UIViewController *root = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
     
-    //root = [[UINavigationController alloc] initWithRootViewController:[[LoginUIViewController alloc] init]];
+    //UIViewController *root = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+    
+    UIViewController *root = [[UINavigationController alloc] initWithRootViewController:[[LoginUIViewController alloc] init]];
     return root;
 }
 

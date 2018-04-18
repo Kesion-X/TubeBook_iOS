@@ -8,14 +8,26 @@
 
 #import "ArticleWebViewController.h"
 #import "InfoDescriptionView.h"
+#import "TubeSDK.h"
+#import "ReactiveObjC.h"
 
 @interface ArticleWebViewController ()
 
 @property (nonatomic, strong) InfoDescriptionView *infoView;
 
 @end
-
 @implementation ArticleWebViewController
+
+
+- (instancetype)initArticleWebViewControllerWithHtml:(NSString *)html uid:(NSString *)uid atid:(NSString *)atid
+{
+    self = [self initArticleWebViewControllerWithHtml:html];
+    if ( self ) {
+        self.uid = uid;
+        self.atid = atid;
+    }
+    return self;
+}
 
 - (instancetype)initArticleWebViewControllerWithHtml:(NSString *)html
 {
@@ -40,21 +52,28 @@
     [self.view addSubview:self.infoView];
     self.webView.frame = CGRectMake(0, [InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle] , SCREEN_WIDTH, SCREEN_HEIGHT -[InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeArticle]);
     [self.view layoutIfNeeded];
+    if ( !self.html ) {
+        @weakify(self);
+        [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleContentWithAtid:self.atid uid:self.uid callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+            @strongify(self);
+            if ( status == DataCallBackStatusSuccess ) {
+                NSDictionary *content = page.content.contentData;
+                NSDictionary *info = [content objectForKey:@"detailInfo"];
+                NSString *body = [info objectForKey:@"body"];
+                [self loadWebWithHtml:body];
+                [self.infoView.infoTitleLable setText:[info objectForKey:@"title"]];
+            }
+        }];
+    }
+    [self.infoView setActionForLikeButtonWithTarget:self action:@selector(likeClick)];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)likeClick
+{
+    [[TubeSDK sharedInstance].tubeArticleSDK setArticleToLikeWithLikeStatus:YES atid:self.atid uid:self.uid callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        
+    }];
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

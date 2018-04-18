@@ -34,7 +34,7 @@
 
 - (void)requestData
 {
-    [[TubeSDK sharedInstance].tubeUserSDK fetchedAttentedUserListWithUid:@"123" index:index callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+    [[TubeSDK sharedInstance].tubeUserSDK fetchedAttentedUserListWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] index:index callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if ( status == DataCallBackStatusSuccess ) {
             NSDictionary *contentDic = page.content.contentData;
             if ( index == 0 && self.contentData.count > 0 ) {

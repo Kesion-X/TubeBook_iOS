@@ -15,7 +15,10 @@
 
 @property (nonatomic, strong) TubeServerDataSDK *tubeServer;
 @property (nonatomic, weak) id<TubeLoginDelegate> delegate;
-    
+@property (nonatomic, strong) NSString *account;
+@property (nonatomic, strong) NSString *pass;
+@property (nonatomic, assign) BOOL isSuccess;
+
 @end
 
 @implementation LoginManager
@@ -38,6 +41,9 @@
 
 - (void)login:(NSString *)account pass:(NSString *)pass
 {
+    self.isSuccess = NO;
+    self.account = account;
+    self.pass = account;
     NSDictionary *contentDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 account, @"account",
                                 pass, @"pass", nil];
@@ -53,7 +59,11 @@
 }
     
 - (void)connectioned
-{}
+{
+    if (self.isSuccess) {
+        [self login:self.account pass:self.pass];
+    }
+}
     
 - (void)connectionError:(NSError *)err
 {}
@@ -63,6 +73,7 @@
     NSDictionary *dic =  pg.content.contentData;
     NSString *state = [dic objectForKey:@"State-Login"];
     if ([state isEqualToString:@"success"]) {
+        self.isSuccess = YES;
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginSuccess:)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
               [self.delegate loginSuccess:nil];

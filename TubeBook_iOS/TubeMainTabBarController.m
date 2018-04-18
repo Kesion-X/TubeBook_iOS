@@ -13,8 +13,10 @@
 #import "UIView+TubeFrameMargin.h"
 #import "UIImage+ScaleToSize.h"
 #import "ReleaseViewController.h"
+#import "TubeSDK.h"
+#import "ProtocolConst.h"
 
-@interface TubeMainTabBarController ()
+@interface TubeMainTabBarController () <TubeIMNotificationDelegate>
 
 @end
 
@@ -57,8 +59,25 @@
     self.tabBar.translucent = NO;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    [[TubeSDK sharedInstance].tubeIMSDK addNotificationListener:self];
+    
+    
+}
+#pragma mark - TubeIMNotificationDelegate
+- (void)imNotificationReceiveWithStatus:(DataCallBackStatus)status page:(BaseSocketPackage *)page
+{
+    if ( status == DataCallBackStatusSuccess ) {
+        NSDictionary *headDic = page.head.headData;
+        NSDictionary *contentDic = page.content.contentData;
+        if ( [[headDic objectForKey:PROTOCOL_NAME] isEqualToString:IM_PROTOCOL] ) {
+            if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:IM_NOTIFICATION_MESSAGE] ) {
+                NSLog(@"%s 收到通知：%@", __func__, contentDic);
+            }
+        }
+    }
 }
 
+#pragma mark - index
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"_view.frame"])

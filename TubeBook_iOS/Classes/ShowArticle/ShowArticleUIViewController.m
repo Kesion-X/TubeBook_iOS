@@ -11,7 +11,7 @@
 #import "CommentUIViewController.h"
 #import "TubeNavigationUITool.h"
 #import "ArticleWebViewController.h"
-
+#import "TubeSDK.h"
 
 @interface ShowArticleUIViewController ()
 
@@ -115,7 +115,7 @@
         if ( self.body ) {
             _articleWebViewController = [[ArticleWebViewController alloc] initArticleWebViewControllerWithHtml:self.body];
         } else {
-            _articleWebViewController = [[ArticleWebViewController alloc] init];
+            _articleWebViewController = [[ArticleWebViewController alloc] initArticleWebViewControllerWithHtml:nil uid:self.uid atid:self.atid];
         }
     }
     return _articleWebViewController;

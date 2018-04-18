@@ -70,6 +70,7 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setupLayout];
     [self configTextView];
     [self notificationKeyBoard];

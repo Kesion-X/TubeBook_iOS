@@ -197,7 +197,7 @@
     UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body]];
     // TubeWebViewViewController *vc = [[TubeWebViewViewController alloc] initTubeWebViewViewControllerWithHtml:c.body];
     // [self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body] animated:YES];
+    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:c.atid uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]] animated:YES];
 }
 
 - (void)refreshData

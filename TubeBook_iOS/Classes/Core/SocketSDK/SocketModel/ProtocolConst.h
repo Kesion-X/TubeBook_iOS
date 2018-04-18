@@ -27,11 +27,18 @@
 #define ARTICLE_NEW_LIST @"ArticleNewList"
 #define ARTICLE_TOPIC_DETAIL_INFO @"ArticleTopicDetailInfo"
 #define ARTICLE_SERIAL_DETAIL_INFO @"ArticleSerialDetailInfo"
+#define ARTICLE_ID_DETAIL_INFO @"ArticleIdDetailInfo"
+#define ARTICLE_SET_LIKE @"ArticleSetLike"
+#define ARTICLE_LIKE_NOT_REVIEW_COUNT @"ArticleLikeNotReviewCount"
 
 #define ArticleTopicTitleList @"ArticleTopicTitleList"
 
 #define USER_PROTOCOL @"User_Protocol"
 #define USER_FETCH_INFO @"UserFetchInfo"
 #define USER_ATTENT_USERLIST @"UserAttentUserList"
+
+#define IM_PROTOCOL @"IMProtocol"
+// reicve_uid send_uid procotol method title content time 
+#define IM_NOTIFICATION_MESSAGE @"IMNotificationMessage"
 
 #endif /* ProtocolConst_h */

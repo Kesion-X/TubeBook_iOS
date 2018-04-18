@@ -318,6 +318,91 @@
 }
 
 /*
+ * @brief 获取文章详细信息
+ */
+- (void)fetchedArticleContentWithAtid:(NSString *)atid uid:(NSString *)uid  callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_ID_DETAIL_INFO);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_ID_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request fetchedArticleContentWithAtid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_ID_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       atid, @"atid", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_ID_DETAIL_INFO,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+    
+}
+
+/*
+ * @brief 设置文章为喜欢的
+ */
+- (void)setArticleToLikeWithLikeStatus:(BOOL)likeStatus atid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_SET_LIKE);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request setArticleToLikeWithAtid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(likeStatus), @"likeStatus",
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       atid, @"atid", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_SET_LIKE,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 文章喜欢未读数
+ */
+- (void)fetchedLikeNotReviewCount:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_LIKE_NOT_REVIEW_COUNT);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_LIKE_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request setArticleToLikeWithAtid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_LIKE_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_LIKE_NOT_REVIEW_COUNT,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
  * @brief 获取推荐文章(普通/专题/连载)列表
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType fouseType:(FouseType)fouseType
@@ -329,14 +414,6 @@
  * @brief 获取推荐文章(普通/专题/连载)列表, tabid
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType tabid:(NSInteger)tabid fouseType:(FouseType)fouseType
-{
-    
-}
-
-/*
- * @brief 获取文章详细信息
- */
-- (void)fetchedArticleContentWithAtid:(NSUInteger)atid
 {
     
 }
@@ -357,6 +434,7 @@
 {
     NSLog(@"%s receiveData head:%@ content:%@", __func__, pg.head.headData,pg.content.contentData);
     NSDictionary *headDic = pg.head.headData;
+    NSDictionary *contentDic = pg.content.contentData;
     if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_PROTOCOL_TAG] ) {
         [self callBackToMain:pg method:ARTICLE_PROTOCOL_TAG];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_PROTOCOL_ADD_TAG] ) {
@@ -374,11 +452,15 @@
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_NEW_LIST] ) {
         [self callBackToMain:pg method:ARTICLE_NEW_LIST];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_TOPIC_DETAIL_INFO] ) {
-        NSDictionary *contentDic = pg.content.contentData;
         [self callBackToMain:pg method:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SERIAL_DETAIL_INFO] ) {
-        NSDictionary *contentDic = pg.content.contentData;
         [self callBackToMain:pg method:[ARTICLE_SERIAL_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_ID_DETAIL_INFO] ) {
+        [self callBackToMain:pg method:[ARTICLE_ID_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SET_LIKE] ) {
+        [self callBackToMain:pg method:[ARTICLE_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_LIKE_NOT_REVIEW_COUNT] ) {
+        [self callBackToMain:pg method:[ARTICLE_LIKE_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     }
 }
 
