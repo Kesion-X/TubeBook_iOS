@@ -60,10 +60,19 @@
 		3C19603C2019BA5F000A938C /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C19603B2019BA5E000A938C /* loading.gif */; };
 		3C3CF73020866AD50009E787 /* TubeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3CF72F20866AD50009E787 /* TubeCollectionView.m */; };
 		3C3CF739208784A00009E787 /* icon_like2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF7352087849F0009E787 /* icon_like2@2x.png */; };
-		3C3CF73A208784A00009E787 /* icon_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF736208784A00009E787 /* icon_comment@2x.png */; };
+		3C3CF73A208784A00009E787 /* icon_user_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF736208784A00009E787 /* icon_user_comment@2x.png */; };
 		3C3CF73B208784A00009E787 /* icon_attent_serial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF737208784A00009E787 /* icon_attent_serial@2x.png */; };
 		3C3CF73C208784A00009E787 /* icon_attent_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF738208784A00009E787 /* icon_attent_user@2x.png */; };
 		3C3CF73F208785100009E787 /* UIImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3CF73E208785100009E787 /* UIImageWithLable.m */; };
+		3C3CF7422089021A0009E787 /* TubeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3CF7412089021A0009E787 /* TubeTableView.m */; };
+		3C3CF7442089CB840009E787 /* icon_add_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF7432089CB830009E787 /* icon_add_tab.png */; };
+		3C3CF74A2089CF810009E787 /* UITableImageWithLableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3CF7492089CF810009E787 /* UITableImageWithLableCell.m */; };
+		3C3CF74C2089D3B20009E787 /* icon_my_like_article@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF74B2089D3B20009E787 /* icon_my_like_article@2x.png */; };
+		3C3CF74E2089D66D0009E787 /* icon_goto.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF74D2089D66D0009E787 /* icon_goto.png */; };
+		3C3CF7502089D7530009E787 /* icon_collecting.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF74F2089D7530009E787 /* icon_collecting.png */; };
+		3C3CF7522089D8290009E787 /* icon_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF7512089D8290009E787 /* icon_book.png */; };
+		3C3CF7542089D9BF0009E787 /* icon_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF7532089D9BE0009E787 /* icon_star.png */; };
+		3C3CF7572089E0B20009E787 /* CreateTopicOrSerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3CF7562089E0B20009E787 /* CreateTopicOrSerialViewController.m */; };
 		3C9501472085AE3500F089F5 /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95002B2085AE3300F089F5 /* RecommendViewController.m */; };
 		3C9501482085AE3500F089F5 /* SerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95002F2085AE3300F089F5 /* SerialViewController.m */; };
 		3C9501492085AE3500F089F5 /* ArticleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9500322085AE3400F089F5 /* ArticleWebViewController.m */; };
@@ -270,11 +279,23 @@
 		3C3CF72E20866AD50009E787 /* TubeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeCollectionView.h; sourceTree = "<group>"; };
 		3C3CF72F20866AD50009E787 /* TubeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeCollectionView.m; sourceTree = "<group>"; };
 		3C3CF7352087849F0009E787 /* icon_like2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_like2@2x.png"; sourceTree = "<group>"; };
-		3C3CF736208784A00009E787 /* icon_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_comment@2x.png"; sourceTree = "<group>"; };
+		3C3CF736208784A00009E787 /* icon_user_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_user_comment@2x.png"; sourceTree = "<group>"; };
 		3C3CF737208784A00009E787 /* icon_attent_serial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_attent_serial@2x.png"; sourceTree = "<group>"; };
 		3C3CF738208784A00009E787 /* icon_attent_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_attent_user@2x.png"; sourceTree = "<group>"; };
 		3C3CF73D208785100009E787 /* UIImageWithLable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageWithLable.h; sourceTree = "<group>"; };
 		3C3CF73E208785100009E787 /* UIImageWithLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageWithLable.m; sourceTree = "<group>"; };
+		3C3CF7402089021A0009E787 /* TubeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubeTableView.h; sourceTree = "<group>"; };
+		3C3CF7412089021A0009E787 /* TubeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TubeTableView.m; sourceTree = "<group>"; };
+		3C3CF7432089CB830009E787 /* icon_add_tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add_tab.png; sourceTree = "<group>"; };
+		3C3CF7482089CF810009E787 /* UITableImageWithLableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITableImageWithLableCell.h; sourceTree = "<group>"; };
+		3C3CF7492089CF810009E787 /* UITableImageWithLableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITableImageWithLableCell.m; sourceTree = "<group>"; };
+		3C3CF74B2089D3B20009E787 /* icon_my_like_article@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_my_like_article@2x.png"; sourceTree = "<group>"; };
+		3C3CF74D2089D66D0009E787 /* icon_goto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_goto.png; sourceTree = "<group>"; };
+		3C3CF74F2089D7530009E787 /* icon_collecting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_collecting.png; sourceTree = "<group>"; };
+		3C3CF7512089D8290009E787 /* icon_book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_book.png; sourceTree = "<group>"; };
+		3C3CF7532089D9BE0009E787 /* icon_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star.png; sourceTree = "<group>"; };
+		3C3CF7552089E0B20009E787 /* CreateTopicOrSerialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateTopicOrSerialViewController.h; sourceTree = "<group>"; };
+		3C3CF7562089E0B20009E787 /* CreateTopicOrSerialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateTopicOrSerialViewController.m; sourceTree = "<group>"; };
 		3C95002B2085AE3300F089F5 /* RecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendViewController.m; sourceTree = "<group>"; };
 		3C95002C2085AE3300F089F5 /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
 		3C95002E2085AE3300F089F5 /* SerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialViewController.h; sourceTree = "<group>"; };
@@ -672,8 +693,8 @@
 		3C9500372085AE3400F089F5 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				3C9500382085AE3400F089F5 /* DescoverRecommendViewController.m */,
 				3C9500392085AE3400F089F5 /* DescoverRecommendViewController.h */,
+				3C9500382085AE3400F089F5 /* DescoverRecommendViewController.m */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -682,9 +703,9 @@
 			isa = PBXGroup;
 			children = (
 				3C95003B2085AE3400F089F5 /* DescoverTopicViewController.h */,
-				3C95003C2085AE3400F089F5 /* TopicTopCollectionViewCell.m */,
 				3C95003D2085AE3400F089F5 /* DescoverTopicViewController.m */,
 				3C95003E2085AE3400F089F5 /* TopicTopCollectionViewCell.h */,
+				3C95003C2085AE3400F089F5 /* TopicTopCollectionViewCell.m */,
 			);
 			path = Topic;
 			sourceTree = "<group>";
@@ -711,8 +732,8 @@
 		3C9500462085AE3400F089F5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3C9500472085AE3400F089F5 /* LoginUIViewController.m */,
 				3C9500482085AE3400F089F5 /* LoginUIViewController.h */,
+				3C9500472085AE3400F089F5 /* LoginUIViewController.m */,
 			);
 			name = Login;
 			path = Classes/Login;
@@ -827,12 +848,14 @@
 		3C9500902085AE3400F089F5 /* Release */ = {
 			isa = PBXGroup;
 			children = (
-				3C9500912085AE3400F089F5 /* ReleaseTabViewController.m */,
 				3C9500922085AE3400F089F5 /* ReleaseViewController.h */,
-				3C9500932085AE3400F089F5 /* ReleaseSetViewController.h */,
-				3C9500942085AE3400F089F5 /* ReleaseTabViewController.h */,
-				3C9500952085AE3400F089F5 /* ReleaseSetViewController.m */,
 				3C9500962085AE3400F089F5 /* ReleaseViewController.m */,
+				3C9500932085AE3400F089F5 /* ReleaseSetViewController.h */,
+				3C9500952085AE3400F089F5 /* ReleaseSetViewController.m */,
+				3C9500942085AE3400F089F5 /* ReleaseTabViewController.h */,
+				3C9500912085AE3400F089F5 /* ReleaseTabViewController.m */,
+				3C3CF7552089E0B20009E787 /* CreateTopicOrSerialViewController.h */,
+				3C3CF7562089E0B20009E787 /* CreateTopicOrSerialViewController.m */,
 			);
 			name = Release;
 			path = Classes/Release;
@@ -963,8 +986,8 @@
 		3C9500D72085AE3400F089F5 /* Topic */ = {
 			isa = PBXGroup;
 			children = (
-				3C9500D82085AE3400F089F5 /* TopicViewController.m */,
 				3C9500D92085AE3400F089F5 /* TopicViewController.h */,
+				3C9500D82085AE3400F089F5 /* TopicViewController.m */,
 			);
 			name = Topic;
 			path = Classes/Topic;
@@ -1027,6 +1050,10 @@
 				3C3CF72F20866AD50009E787 /* TubeCollectionView.m */,
 				3C3CF73D208785100009E787 /* UIImageWithLable.h */,
 				3C3CF73E208785100009E787 /* UIImageWithLable.m */,
+				3C3CF7402089021A0009E787 /* TubeTableView.h */,
+				3C3CF7412089021A0009E787 /* TubeTableView.m */,
+				3C3CF7482089CF810009E787 /* UITableImageWithLableCell.h */,
+				3C3CF7492089CF810009E787 /* UITableImageWithLableCell.m */,
 			);
 			name = CustomView;
 			path = Classes/CustomView;
@@ -1035,8 +1062,8 @@
 		3C9501062085AE3400F089F5 /* Myself */ = {
 			isa = PBXGroup;
 			children = (
-				3C9501072085AE3400F089F5 /* MyselfTabViewController.m */,
 				3C9501082085AE3400F089F5 /* MyselfTabViewController.h */,
+				3C9501072085AE3400F089F5 /* MyselfTabViewController.m */,
 			);
 			name = Myself;
 			path = Classes/Myself;
@@ -1078,13 +1105,13 @@
 		3C9501122085AE3500F089F5 /* TubeAlter */ = {
 			isa = PBXGroup;
 			children = (
-				3C9501132085AE3500F089F5 /* TubeAlterCenter.h */,
-				3C9501142085AE3500F089F5 /* AlterIndicatorMessageViewController.h */,
-				3C9501152085AE3500F089F5 /* AlterMessageViewController.m */,
 				3C9501162085AE3500F089F5 /* CenterView */,
-				3C95011D2085AE3500F089F5 /* AlterIndicatorMessageViewController.m */,
+				3C9501132085AE3500F089F5 /* TubeAlterCenter.h */,
 				3C95011E2085AE3500F089F5 /* TubeAlterCenter.m */,
+				3C9501142085AE3500F089F5 /* AlterIndicatorMessageViewController.h */,
+				3C95011D2085AE3500F089F5 /* AlterIndicatorMessageViewController.m */,
 				3C95011F2085AE3500F089F5 /* AlterMessageViewController.h */,
+				3C9501152085AE3500F089F5 /* AlterMessageViewController.m */,
 			);
 			path = TubeAlter;
 			sourceTree = "<group>";
@@ -1093,10 +1120,10 @@
 			isa = PBXGroup;
 			children = (
 				3C9501172085AE3500F089F5 /* CKMessageCenterView.h */,
+				3C95011B2085AE3500F089F5 /* CKMessageCenterView.m */,
+				3C95011A2085AE3500F089F5 /* CKIndicatorMessageCenterView.h */,
 				3C9501182085AE3500F089F5 /* CKIndicatorMessageCenterView.m */,
 				3C9501192085AE3500F089F5 /* CKCenterView.h */,
-				3C95011A2085AE3500F089F5 /* CKIndicatorMessageCenterView.h */,
-				3C95011B2085AE3500F089F5 /* CKMessageCenterView.m */,
 				3C95011C2085AE3500F089F5 /* CKCenterView.m */,
 			);
 			path = CenterView;
@@ -1189,7 +1216,6 @@
 				3CA3BF67200923C400793F3D /* AppDelegate.m */,
 				3C195E65200CF019000A938C /* TubeMainTabBarController.h */,
 				3C195E66200CF019000A938C /* TubeMainTabBarController.m */,
-				3CA3BF6F200923C400793F3D /* Assets.xcassets */,
 				3C95008D2085AE3400F089F5 /* Author */,
 				3C9501292085AE3500F089F5 /* Category */,
 				3C9500512085AE3400F089F5 /* CellView */,
@@ -1212,6 +1238,7 @@
 				3C95010C2085AE3500F089F5 /* TubeUIKit */,
 				3C9500DA2085AE3400F089F5 /* Utilities */,
 				3CA3BF99200924EC00793F3D /* Supporting Files */,
+				3CA3BF6F200923C400793F3D /* Assets.xcassets */,
 			);
 			path = TubeBook_iOS;
 			sourceTree = "<group>";
@@ -1247,9 +1274,15 @@
 		3CA3BF9A2009251600793F3D /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				3C3CF7532089D9BE0009E787 /* icon_star.png */,
+				3C3CF74D2089D66D0009E787 /* icon_goto.png */,
+				3C3CF7512089D8290009E787 /* icon_book.png */,
+				3C3CF74F2089D7530009E787 /* icon_collecting.png */,
+				3C3CF74B2089D3B20009E787 /* icon_my_like_article@2x.png */,
+				3C3CF7432089CB830009E787 /* icon_add_tab.png */,
 				3C3CF737208784A00009E787 /* icon_attent_serial@2x.png */,
 				3C3CF738208784A00009E787 /* icon_attent_user@2x.png */,
-				3C3CF736208784A00009E787 /* icon_comment@2x.png */,
+				3C3CF736208784A00009E787 /* icon_user_comment@2x.png */,
 				3C3CF7352087849F0009E787 /* icon_like2@2x.png */,
 				3CDFF54120824F3900E345E2 /* detail_back3.jpg */,
 				3CB2E111207B5BE900D7F3C6 /* default_loadimage@2x.png */,
@@ -1411,18 +1444,21 @@
 				3C195E42200BC52B000A938C /* icon_normal_home@2x.png in Resources */,
 				3C195FF52014DDD5000A938C /* icon_like@2x.png in Resources */,
 				3C195E74200D1D08000A938C /* icon_add@2x.png in Resources */,
+				3C3CF7502089D7530009E787 /* icon_collecting.png in Resources */,
 				3C195FF92014E0E0000A938C /* icon_more@3x.png in Resources */,
 				3C195FB5201323D5000A938C /* icon_search@2x.png in Resources */,
 				3C195E1B200B9311000A938C /* icon_back@2x.png in Resources */,
 				3C195E3C200BC52B000A938C /* icon_normal_discover@2x.png in Resources */,
 				3C195E0E200B3E92000A938C /* icon_user@2x.png in Resources */,
 				3C13651B200A5F6C00674726 /* icon_delect@2x.png in Resources */,
+				3C3CF7442089CB840009E787 /* icon_add_tab.png in Resources */,
 				3C195E3E200BC52B000A938C /* icon_normal_discover@3x.png in Resources */,
 				3C195E36200BC52B000A938C /* icon_light_discover@3x.png in Resources */,
 				3CDFF54220824F3900E345E2 /* detail_back3.jpg in Resources */,
-				3C3CF73A208784A00009E787 /* icon_comment@2x.png in Resources */,
+				3C3CF73A208784A00009E787 /* icon_user_comment@2x.png in Resources */,
 				3C195E3F200BC52B000A938C /* icon_light_message@3x.png in Resources */,
 				3C195E23200B9E50000A938C /* icon_nick@3x.png in Resources */,
+				3C3CF7542089D9BF0009E787 /* icon_star.png in Resources */,
 				3C1960242016DBF8000A938C /* icon_right@2x.png in Resources */,
 				3C195E38200BC52B000A938C /* icon_light_message@2x.png in Resources */,
 				3C195E0F200B3E92000A938C /* icon_user@3x.png in Resources */,
@@ -1434,7 +1470,9 @@
 				3C3CF73B208784A00009E787 /* icon_attent_serial@2x.png in Resources */,
 				3C195FF42014DDD5000A938C /* icon_comment@3x.png in Resources */,
 				3C195FF82014E0E0000A938C /* icon_more@2x.png in Resources */,
+				3C3CF74C2089D3B20009E787 /* icon_my_like_article@2x.png in Resources */,
 				3C195FF32014DDD5000A938C /* icon_share@3x.png in Resources */,
+				3C3CF7522089D8290009E787 /* icon_book.png in Resources */,
 				3C136528200A867200674726 /* icon_lock@2x.png in Resources */,
 				3C195FF22014DDD5000A938C /* icon_like@3x.png in Resources */,
 				3CB2E112207B5BE900D7F3C6 /* default_loadimage@2x.png in Resources */,
@@ -1456,6 +1494,7 @@
 				3C195FBD20134DFF000A938C /* icon_add_ attention@2x.png in Resources */,
 				3C1960252016DBF8000A938C /* icon_right@3x.png in Resources */,
 				3C19603C2019BA5F000A938C /* loading.gif in Resources */,
+				3C3CF74E2089D66D0009E787 /* icon_goto.png in Resources */,
 				3C195E73200D1D08000A938C /* icon_add@3x.png in Resources */,
 				3C136523200A605A00674726 /* icon_open_see@3x.png in Resources */,
 			);
@@ -1560,6 +1599,7 @@
 				3C95018E2085AE3500F089F5 /* TopicViewController.m in Sources */,
 				3C95019E2085AE3500F089F5 /* UIWaterfallCollectionViewLayout.m in Sources */,
 				3C9501882085AE3500F089F5 /* TubeUserInfoManager.m in Sources */,
+				3C3CF74A2089CF810009E787 /* UITableImageWithLableCell.m in Sources */,
 				3C9501B72085AE3500F089F5 /* UINavigationBar+CustomHeight.m in Sources */,
 				3C95014D2085AE3500F089F5 /* TopicTopCollectionViewCell.m in Sources */,
 				3C9501BC2085AE3500F089F5 /* DetailViewController.m in Sources */,
@@ -1638,6 +1678,7 @@
 				3C9501BE2085AE3500F089F5 /* DetailSerialArticleContent.m in Sources */,
 				3C9501A72085AE3500F089F5 /* TubeRefreshCollectionViewController.m in Sources */,
 				3C9501B22085AE3500F089F5 /* TubeRefreshTableViewController.m in Sources */,
+				3C3CF7422089021A0009E787 /* TubeTableView.m in Sources */,
 				3CA3BF68200923C400793F3D /* AppDelegate.m in Sources */,
 				3C9501552085AE3500F089F5 /* UISerialTableCell.m in Sources */,
 				3C9501662085AE3500F089F5 /* SerialTagContent.m in Sources */,
@@ -1657,6 +1698,7 @@
 				3C95015A2085AE3500F089F5 /* UIHomeCellTopicOrSerialView.m in Sources */,
 				3C95014B2085AE3500F089F5 /* DescoverTabViewController.m in Sources */,
 				3C9501822085AE3500F089F5 /* TubeIMManager.m in Sources */,
+				3C3CF7572089E0B20009E787 /* CreateTopicOrSerialViewController.m in Sources */,
 				3C95016C2085AE3500F089F5 /* UITopicArticleCell.m in Sources */,
 				3C9501542085AE3500F089F5 /* HomeTabViewController.m in Sources */,
 			);

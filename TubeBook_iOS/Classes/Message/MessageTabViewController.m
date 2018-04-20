@@ -9,6 +9,7 @@
 #import "MessageTabViewController.h"
 #import "CKTextView.h"
 #import "Masonry.h"
+#import "CKMacros.h"
 #import "TagCollectionView.h"
 #import "UITagView.h"
 #import "LCActionSheet.h"
@@ -38,14 +39,25 @@
     self.backScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,
                                                                          SCREEN_HEIGHT)];
     [self.view addSubview:self.backScrollView];
+    self.backScrollView.scrollEnabled = YES;
+    self.backScrollView.alwaysBounceVertical = YES;
     
     self.collectionView = [[TubeCollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
     [self.backScrollView addSubview:self.collectionView];
     self.collectionView.tubeCollectionDelegate = self;
+    UIView *spaceLineDownCollectionView = [[UIView alloc] init];
+    [self.backScrollView addSubview:spaceLineDownCollectionView];
+    [spaceLineDownCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.collectionView.mas_bottom);
+        make.height.mas_equalTo(0.5);
+    }];
+    spaceLineDownCollectionView.backgroundColor = HEXCOLOR(0xcdcdcd);
+    
     
     self.commentItem = [[UIImageWithLable alloc] initUIImageWithLableWithWidth:(SCREEN_WIDTH-5*kMegin)/4 height:((SCREEN_WIDTH-5*kMegin)/4+kIconMarginBottom) ];
     self.commentItem.title = @"评论";
-    [self.commentItem setIconByImageName:@"icon_comment"];
+    [self.commentItem setIconByImageName:@"icon_user_comment"];
     [self.collectionView addItemView:self.commentItem];
     
     self.likeItem = [[UIImageWithLable alloc] initUIImageWithLableWithWidth:(SCREEN_WIDTH-5*kMegin)/4 height:((SCREEN_WIDTH-5*kMegin)/4+kIconMarginBottom) ];

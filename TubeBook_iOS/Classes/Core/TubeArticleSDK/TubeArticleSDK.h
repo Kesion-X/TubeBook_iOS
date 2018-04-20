@@ -108,4 +108,19 @@
  */
 - (void)fetchedLikeNotReviewCount:(NSString *)uid callBack:(dataCallBackBlock)callBack;
 
+/*
+ * @brief 创建专题/连载
+ */
+- (void)createTopicOrSerialTabWithUid:(NSString *)uid
+                                 type:(ArticleType)type
+                                title:(NSString *)title
+                          description:(NSString *)description
+                                  pic:(NSString *)pic
+                              allBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 按热度获取推荐文章(普通/专题/连载)列表
+ */
+- (void)fetchedRecommendByHotArticleListtWithIndex:(NSInteger)index uid:(NSString *)uid articleType:(ArticleType)articleType fouseType:(FouseType)fouseType callBack:(dataCallBackBlock)callBack;
+
 @end

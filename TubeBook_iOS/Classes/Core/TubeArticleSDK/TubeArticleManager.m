@@ -403,6 +403,74 @@
 }
 
 /*
+ * @brief 创建专题/连载
+ */
+- (void)createTopicOrSerialTabWithUid:(NSString *)uid
+                                 type:(ArticleType)type
+                                title:(NSString *)title
+                          description:(NSString *)description
+                                  pic:(NSString *)pic
+                              allBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request createTopicOrSerialTabWithUid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(type), @"type",
+                                       title, @"title",
+                                       description, @"description",
+                                       pic, @"pic",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 按热度获取推荐文章(普通/专题/连载)列表
+ */
+- (void)fetchedRecommendByHotArticleListtWithIndex:(NSInteger)index uid:(NSString *)uid articleType:(ArticleType)articleType fouseType:(FouseType)fouseType callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_RECOMMEND_BY_HOT_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_RECOMMEND_BY_HOT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request fetchedRecommendByHotArticleListtWithIndex, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_RECOMMEND_BY_HOT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(articleType), @"articleType",
+                                       @(index), @"index",
+                                       @(fouseType), @"fouseType",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_RECOMMEND_BY_HOT_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
  * @brief 获取推荐文章(普通/专题/连载)列表
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType fouseType:(FouseType)fouseType
@@ -461,6 +529,10 @@
         [self callBackToMain:pg method:[ARTICLE_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_LIKE_NOT_REVIEW_COUNT] ) {
         [self callBackToMain:pg method:[ARTICLE_LIKE_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB] ) {
+        [self callBackToMain:pg method:[ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_RECOMMEND_BY_HOT_LIST] ) {
+        [self callBackToMain:pg method:[ARTICLE_RECOMMEND_BY_HOT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     }
 }
 

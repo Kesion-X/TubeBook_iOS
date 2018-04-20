@@ -183,8 +183,10 @@
 #pragma mark - TubeLoginDelegate
 - (void)loginSuccess:(NSDictionary *)message
 {
-    [[UserInfoUtil sharedInstance].userInfo setObject:self.account forKey:kAccountKey];
-    [UIApplication sharedApplication].keyWindow.rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+    if (self.navigationController.topViewController == self) {
+        [[UserInfoUtil sharedInstance].userInfo setObject:self.account forKey:kAccountKey];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[TubeRootViewController alloc] initWithRootViewController:[[TubeMainTabBarController alloc] init]];
+    }
 }
     
 - (void)loginFail:(NSDictionary *)message

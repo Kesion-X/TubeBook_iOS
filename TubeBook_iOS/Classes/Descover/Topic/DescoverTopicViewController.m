@@ -25,9 +25,9 @@
 @property (nonatomic, strong) NSMutableArray *topList;
 @property (nonatomic, strong) NSMutableArray *contentList;
 
-@property(nonatomic, strong) UIRefreshHeadView *refreshHeadView;
-@property(nonatomic, strong) UIActivityIndicatorView *loadMoreIndicatorView;
-@property(nonatomic, strong) NSMutableDictionary *classMap;
+@property (nonatomic, strong) UIRefreshHeadView *refreshHeadView;
+@property (nonatomic, strong) UIActivityIndicatorView *loadMoreIndicatorView;
+@property (nonatomic, strong) NSMutableDictionary *classMap;
 
 @end
 
@@ -44,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     //设置CollectionView的属性

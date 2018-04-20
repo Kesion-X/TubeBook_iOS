@@ -150,4 +150,25 @@
     [self.articleManager fetchedLikeNotReviewCount:uid callBack:callBack];
 }
 
+/*
+ * @brief 创建专题/连载
+ */
+- (void)createTopicOrSerialTabWithUid:(NSString *)uid
+                                 type:(ArticleType)type
+                                title:(NSString *)title
+                          description:(NSString *)description
+                                  pic:(NSString *)pic
+                              allBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager createTopicOrSerialTabWithUid:uid type:type title:title description:description pic:pic allBack:callBack];
+}
+
+/*
+ * @brief 按热度获取推荐文章(普通/专题/连载)列表
+ */
+- (void)fetchedRecommendByHotArticleListtWithIndex:(NSInteger)index uid:(NSString *)uid articleType:(ArticleType)articleType fouseType:(FouseType)fouseType callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedRecommendByHotArticleListtWithIndex:index uid:uid articleType:articleType fouseType:fouseType callBack:callBack];
+}
+
 @end

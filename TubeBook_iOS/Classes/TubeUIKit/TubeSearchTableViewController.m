@@ -83,9 +83,13 @@
             type = ArticleTypeSerial;
             fouseType = FouseTypeCreate;
         }
+        NSString *uid = [[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey];
+        if (type == ArticleTypeTopic) {
+            uid = nil;
+        }
         [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicOrSerialTitleListWithType:type
                                                                                         index:self.indexPage
-                                                                                          uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]
+                                                                                          uid:uid
                                                                                     fouseType:fouseType
                                                                                 conditionDic:[[NSDictionary alloc] initWithObjectsAndKeys:
                                                                                                 self.searchField.text,@"title", nil]

@@ -52,6 +52,10 @@
     });
 }
 
+- (void)postAlterWithMessage:(NSString *)message duration:(CGFloat)duration {
+    [self postAlterWithMessage:message duration:duration fromeVC:[self getRootVC]];
+}
+
 - (void)showAlterIndicatorWithMessage:(NSString *)message fromeVC:(UIViewController *)sourceController
 {
     __weak typeof(self) weakSelf = self;
@@ -71,6 +75,13 @@
             weakSelf.postViewController = nil;
         });
     });
+}
+
+- (UIViewController *)getRootVC
+{
+    UIViewController *result = nil;
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    return  window.rootViewController;;
 }
 
 @end
