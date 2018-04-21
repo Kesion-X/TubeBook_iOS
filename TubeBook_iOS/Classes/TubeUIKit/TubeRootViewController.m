@@ -9,6 +9,7 @@
 #import "TubeRootViewController.h"
 #import "CKMacros.h"
 #import "ReactiveObjC.h"
+#import "Masonry.h"
 
 @interface TubeRootViewController ()
 
@@ -42,6 +43,16 @@
         }];
     }];
     return self;
+}
+
+- (void)setNavigationControllerTitleView:(UIView *)view
+{
+    [self.navigationController.navigationBar addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.navigationController.navigationBar);
+        make.centerY.equalTo(self.navigationController.navigationBar);
+    }];
+    self.navigationController.navigationItem.titleView = view;
 }
 
 #pragma mark - UINavigationControllerDelegate

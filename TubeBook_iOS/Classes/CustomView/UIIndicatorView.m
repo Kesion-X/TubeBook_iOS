@@ -45,9 +45,9 @@
     CGFloat currentIndicatorWidth;
 }
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         self.showsHorizontalScrollIndicator = FALSE;
         self.isEnableAutoScroll = YES;
@@ -56,6 +56,21 @@
         self.itemArrays = [[NSMutableArray alloc] init];
         self.height = [NSString getSizeWithAttributes:@"K" font:self.contentFont].height+kITEM_MARGIN_TB*2+kINDICATOR_MARGIN_TB*2;//设定高度为item控件高度+边距
         [self setBackgroundColor:[UIColor whiteColor]];
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+//        self.showsHorizontalScrollIndicator = FALSE;
+//        self.isEnableAutoScroll = YES;
+//        self.leftPointDraw = kINDICATOR_MARGIN_LR;
+//        self.topPointDraw = kINDICATOR_MARGIN_TB;
+//        self.itemArrays = [[NSMutableArray alloc] init];
+//        self.height = [NSString getSizeWithAttributes:@"K" font:self.contentFont].height+kITEM_MARGIN_TB*2+kINDICATOR_MARGIN_TB*2;//设定高度为item控件高度+边距
+//        [self setBackgroundColor:[UIColor whiteColor]];
     }
     return self;
 }
@@ -94,7 +109,7 @@
                                font:(UIFont *)font
                     textNormalColor:(UIColor *)textNormalColor
                      textLightColor:(UIColor *)textLightColor
-                 isEnableAutoScroll:(BOOL)isEnableAutoScroll;
+                 isEnableAutoScroll:(BOOL)isEnableAutoScroll
 {
     self = [self init];
     if (self) {
@@ -109,6 +124,50 @@
         self.isEnableAutoScroll = isEnableAutoScroll;
         [self initIndicator];
     }
+    return self;
+}
+
+- (instancetype)initUIIndicatorViewWithFrame:(CGRect)frame
+                              indicatorColor:(UIColor *)indicatorColor
+                                       style:(UIIndicatorViewStyle)style
+                                      arrays:(NSMutableArray *)arrays
+                                        font:(UIFont *)font
+                             textNormalColor:(UIColor *)textNormalColor
+                              textLightColor:(UIColor *)textLightColor
+                          isEnableAutoScroll:(BOOL)isEnableAutoScroll
+{
+    self = [self initWithFrame:frame];
+    if (self) {
+        self.indicatorColor = indicatorColor;
+        self.style = style;
+        self.contentFont = font;
+        self.textNormalColor = textNormalColor;
+        self.textLightColor = textLightColor;
+        for (NSString *str in arrays) {
+            [self addIndicatorItemByString:str];
+        }
+        self.isEnableAutoScroll = isEnableAutoScroll;
+        [self initIndicator];
+    }
+    return self;
+}
+
+
+
+- (instancetype)initUIIndicatorViewWithFrame:(CGRect)frame style:(UIIndicatorViewStyle)style arrays:(NSMutableArray *)arrays
+{
+    self = [self initUIIndicatorViewWithFrame:frame
+                               indicatorColor:kTUBEBOOK_THEME_NORMAL_COLOR
+                                       style:style
+                                      arrays:arrays
+                                        font:Font(18)
+                             textNormalColor:kTEXTCOLOR
+                              textLightColor:kTUBEBOOK_THEME_NORMAL_COLOR
+                          isEnableAutoScroll:NO];
+    if (self) {
+       // [self setCurrentIndicator:0];
+    }
+
     return self;
 }
 
@@ -135,6 +194,7 @@
             break;
     }
     [self addSubview:self.indicatorView];
+    [self setShowIndicatorItem:0];
 }
 
 - (void)addIndicatorItemByString:(NSString *)item
@@ -268,6 +328,9 @@
 
 - (void)setShowIndicatorItem:(NSUInteger)index
 {
+    if ( !self.itemArrays || self.itemArrays.count <= 0 ) {
+        return ; 
+    }
     self.currentIndicator = index;
     UIButton *bt =  [self.itemArrays objectAtIndex:index];
     CGFloat width = bt.frame.size.width;
@@ -286,14 +349,24 @@
 - (void)setCurrentIndicator:(NSUInteger)currentIndicator
 {
     _currentIndicator = currentIndicator;
-    UIView *v = [self.itemArrays objectAtIndex:self.currentIndicator];
-    if (self.style == UIIndicatorViewLineStyle) {
-        currentIndicatorOfferX = v.frame.origin.x + kITEM_MARGIN_LR;
-        currentIndicatorWidth = v.frame.size.width - (kITEM_MARGIN_LR*2);
-    } else {
-        currentIndicatorOfferX = v.frame.origin.x;
-        currentIndicatorWidth = v.frame.size.width;
+    if (self.itemArrays && self.itemArrays.count>0 ) {
+        UIView *v = [self.itemArrays objectAtIndex:self.currentIndicator];
+        if (self.style == UIIndicatorViewLineStyle) {
+            currentIndicatorOfferX = v.frame.origin.x + kITEM_MARGIN_LR;
+            currentIndicatorWidth = v.frame.size.width - (kITEM_MARGIN_LR*2);
+        } else {
+            currentIndicatorOfferX = v.frame.origin.x;
+            currentIndicatorWidth = v.frame.size.width;
+        }
     }
+}
+
+- (NSMutableArray *)itemArrays
+{
+    if (!_itemArrays) {
+        _itemArrays = [[NSMutableArray alloc] init];
+    }
+    return _itemArrays;
 }
 
 @end

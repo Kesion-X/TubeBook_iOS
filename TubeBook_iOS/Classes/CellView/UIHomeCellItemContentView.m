@@ -9,6 +9,7 @@
 #import "UIHomeCellItemContentView.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIHomeCellItemContentView
 
@@ -155,6 +156,31 @@
         }
     }
     return 60;
+}
+
+- (void)setDataWithTitle:(NSString *)title contentDescription:(NSString *)contentDescription contentUrl:(NSString *)contentUrl
+{
+    self.title = title;
+    self.contentDescription = contentDescription;
+    self.contentUrl = contentUrl;
+}
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    [self.titleLable setText:title];
+}
+
+- (void)setContentDescription:(NSString *)contentDescription
+{
+    _contentDescription = contentDescription;
+    [self.descriptionLable setText:contentDescription];
+}
+
+- (void)setContentUrl:(NSString *)contentUrl
+{
+    _contentUrl = contentUrl;
+    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:contentUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
 }
 
 #pragma mark - get

@@ -10,6 +10,8 @@
 #import "Masonry.h"
 #import "CKMacros.h"
 #import "NSString+StringKit.h"
+#import "DescoverSerialContent.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #define colMargin 16
 
 @implementation SerialCollectionViewCell
@@ -55,8 +57,8 @@
     gradient.startPoint = CGPointMake(0, 1);
     gradient.endPoint = CGPointMake(0, 0);
     gradient.colors = [NSArray arrayWithObjects:
-                       (id)HEXACOLOR(0x000000, 0.3).CGColor,
-                        (id)HEXACOLOR(0x000000, 0.1).CGColor,
+                       (id)HEXACOLOR(0x000000, 0.5).CGColor,
+                        (id)HEXACOLOR(0x000000, 0.2).CGColor,
                        (id)HEXACOLOR(0x000000, 0.05), nil];
     [v.layer addSublayer:gradient];
     [v addSubview:self.serialDescriptionLable];
@@ -91,7 +93,41 @@
 }
 + (CGFloat)getCellHeight:(CKContent *)content
 {
-    return 200+16+8+[NSString getSizeWithAttributes:content.serialTitle width:([UIScreen mainScreen].bounds.size.width-3*colMargin)/2 font:Font(14)].height;
+    return 200+16+8+[NSString getSizeWithAttributes:content.serialTitle width:([UIScreen mainScreen].bounds.size.width-3*colMargin)/2 font:Font(16)].height;
+}
+
+- (void)setContent:(CKContent *)content
+{
+    self.avatarUrl = content.avatarUrl;
+    self.userName = content.userName;
+    self.serialTitle = content.serialTitle;
+    self.serialImageUrl = content.serialImageUrl;
+    self.serialDescription = content.serialDescription;
+}
+
+- (void)setAvatarUrl:(NSString *)avatarUrl
+{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+}
+
+- (void)setUserName:(NSString *)userName
+{
+    [self.userTitleLable setText:userName];
+}
+
+- (void)setSerialTitle:(NSString *)serialTitle
+{
+    [self.serialTitleLable setText:serialTitle];
+}
+
+- (void)setSerialDescription:(NSString *)serialDescription
+{
+    [self.serialDescriptionLable setText:serialDescription];
+}
+
+- (void)setSerialImageUrl:(NSString *)serialImageUrl
+{
+    [self.serialImageView sd_setImageWithURL:[NSURL URLWithString:serialImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
 }
 
 #pragma mark - get
@@ -102,6 +138,7 @@
         _userImageView.layer.cornerRadius = 8;
         _userImageView.layer.borderWidth = 0.5;
         _userImageView.layer.borderColor = kTAB_TEXT_COLOR.CGColor;
+        _userImageView.layer.masksToBounds = YES;
     }
     return _userImageView;
 }
@@ -131,8 +168,10 @@
     if (!_serialTitleLable) {
         _serialTitleLable = [[UILabel alloc] init];
         _serialTitleLable.textColor = kTEXTCOLOR;
-        _serialTitleLable.font = Font(14);
+        _serialTitleLable.font = Font(16);
         _serialTitleLable.text = @"title";
+        _serialTitleLable.numberOfLines = 0;
+        _serialTitleLable.lineBreakMode = NSLineBreakByCharWrapping;
     }
     return _serialTitleLable;
 }

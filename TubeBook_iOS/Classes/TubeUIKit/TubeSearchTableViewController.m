@@ -9,6 +9,8 @@
 #import "TubeSearchTableViewController.h"
 #import "TopicTagContent.h"
 #import "UITopicTableCell.h"
+#import "UISerialTableCell.h"
+#import "SerialTagContent.h"
 #import "TubeSDK.h"
 
 @interface TubeSearchTableViewController ()  <RefreshTableViewControllerDelegate, UITextFieldDelegate>
@@ -43,6 +45,7 @@
     self.refreshTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[UITopicTableCell class] forKeyContent:[TopicTagContent class]];
+    [self registerCell:[UISerialTableCell class] forKeyContent:[SerialTagContent class]];
 //    for (int i=0; i<10; ++i) {
 //        [self.contentData addObject:[[TopicTagContent alloc] init]];
 //    }
@@ -72,43 +75,73 @@
 - (void)refreshTableData
 {
     __weak typeof(self) weakSelf = self;
-    [[TubeSDK sharedInstance].tuebArticleSDK fetchedArticleTopicTitleListWithIndex:self.indexPage
-                                                                               uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]
-                                                                      conditionDic:[[NSDictionary alloc] initWithObjectsAndKeys:
-                                                                                    self.searchField.text,@"title", nil]
-                                                                          callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
-                                                                              
-                                                                              if ( weakSelf.indexPage==0 && weakSelf.contentData.count>0) {
-                                                                                  [weakSelf.contentData removeAllObjects];
-                                                                                  [weakSelf.refreshTableView reloadData];
-                                                                              }
-                                                                              
-                                                                              if ( status==DataCallBackStatusSuccess ) {
-                                                                                  NSDictionary *content = page.content.contentData;
-                                                                                  NSArray *array = [content objectForKey:@"tabTapList"];
-                                                                                  if (array.count == 0) {
-                                                                                      return ;
-                                                                                  }
-                                                                                  for (NSDictionary *dic in array) {
-                                                                                      NSString *time = [dic objectForKey:@"create_time"];
-                                                                                      NSString *create_uid = [dic objectForKey:@"create_userid"];
-                                                                                      NSString *description = [dic objectForKey:@"description"];
-                                                                                      NSString *pic = [dic objectForKey:@"pic"];
-                                                                                      NSString *title = [dic objectForKey:@"title"];
-                                                                                      NSInteger id = [[dic objectForKey:@"id"] integerValue];
-                                                                                      TopicTagContent *topicContent = [[TopicTagContent alloc] init];
-                                                                                      topicContent.topicTitle = title;
-                                                                                      topicContent.topicImageUrl = pic;
-                                                                                      topicContent.topicDescription = description;
-                                                                                      topicContent.userUid = create_uid;
-                                                                                      topicContent.time = time;
-                                                                                      topicContent.id = id;
-                                                                                      [weakSelf.contentData addObject:topicContent];
-                                                                                  }
-                                                                                  self.indexPage ++;
-                                                                                  [weakSelf.refreshTableView reloadData];
-                                                                              }
-                                                                          }];
+    
+    if ( self.searchType == TubeSearchTypeTopicTitle || self.searchType == TubeSearchTypeSerialTitle ) {
+        ArticleType type = ArticleTypeTopic;
+        FouseType fouseType = FouseTypeAttrent;
+        if ( self.searchType == TubeSearchTypeSerialTitle ) {
+            type = ArticleTypeSerial;
+            fouseType = FouseTypeCreate;
+        }
+        NSString *uid = [[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey];
+        if (type == ArticleTypeTopic) {
+            uid = nil;
+        }
+        [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicOrSerialTitleListWithType:type
+                                                                                        index:self.indexPage
+                                                                                          uid:uid
+                                                                                    fouseType:fouseType
+                                                                                conditionDic:[[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                                                self.searchField.text,@"title", nil]
+                                                                                    callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+                                                                                          
+                                                                                          if ( weakSelf.indexPage==0 && weakSelf.contentData.count>0) {
+                                                                                              [weakSelf.contentData removeAllObjects];
+                                                                                              [weakSelf.refreshTableView reloadData];
+                                                                                          }
+                                                                                          
+                                                                                          if ( status==DataCallBackStatusSuccess ) {
+                                                                                              NSDictionary *content = page.content.contentData;
+                                                                                              NSArray *array = [content objectForKey:@"tabTapList"];
+                                                                                              if (array.count == 0) {
+                                                                                                  return ;
+                                                                                              }
+                                                                                              for (NSDictionary *dic in array) {
+                                                                                                  NSString *time = [dic objectForKey:@"create_time"];
+                                                                                                  NSString *create_uid = [dic objectForKey:@"create_userid"];
+                                                                                                  NSString *description = [dic objectForKey:@"description"];
+                                                                                                  NSString *pic = [dic objectForKey:@"pic"];
+                                                                                                  NSString *title = [dic objectForKey:@"title"];
+                                                                                                  NSInteger id = [[dic objectForKey:@"id"] integerValue];
+                                                                                                  
+                                                                                                  CKContent *ckContent = nil;
+                                                                                                  if ( self.searchType == TubeSearchTypeTopicTitle ) {
+                                                                                                      ckContent = [[TopicTagContent alloc] init];
+                                                                                                      ckContent.topicTitle = title;
+                                                                                                      ckContent.topicImageUrl = pic;
+                                                                                                      ckContent.topicDescription = description;
+                                                                                                      ckContent.userUid = create_uid;
+                                                                                                      ckContent.time = time;
+                                                                                                      ckContent.id = id;
+                                                                                                      [weakSelf.contentData addObject:ckContent];
+                                                                                                  } else if ( self.searchType == TubeSearchTypeSerialTitle ) {
+                                                                                                      ckContent = [[SerialTagContent alloc] init];
+                                                                                                      ckContent.serialTitle = title;
+                                                                                                      ckContent.serialImageUrl = pic;
+                                                                                                      ckContent.serialDescription = description;
+                                                                                                      ckContent.userUid = create_uid;
+                                                                                                      ckContent.time = time;
+                                                                                                      ckContent.id = id;
+                                                                                                      [weakSelf.contentData addObject:ckContent];
+                                                                                                  }
+                                                                                                  
+                                                                                              }
+                                                                                              self.indexPage ++;
+                                                                                              [weakSelf.refreshTableView reloadData];
+                                                                                          }
+                                                                                      }];
+    }
+ 
 }
 
 

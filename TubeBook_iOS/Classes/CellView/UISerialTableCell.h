@@ -7,6 +7,7 @@
 //
 
 #import "CKTableCell.h"
+#import "SerialTagContent.h"
 
 @interface UISerialTableCell : CKTableCell
 

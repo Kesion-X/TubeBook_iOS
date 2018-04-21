@@ -38,4 +38,9 @@
     // Configure the view for the selected state
 }
 
+- (void)setContent:(CKContent *)content
+{
+    _content = content;
+}
+
 @end

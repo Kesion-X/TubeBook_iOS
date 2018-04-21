@@ -70,6 +70,7 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setupLayout];
     [self configTextView];
     [self notificationKeyBoard];
@@ -86,6 +87,11 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 
 - (void)releaseArticle
 {
+    if (!self.titleField.text || (self.titleField.text && self.titleField.text.length == 0)) {
+        [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标题不可为空" duration:1.0f fromeVC:self];
+        return ;
+    }
+    
     ReleaseSetViewController *vc = [[ReleaseSetViewController alloc] initReleaseSetViewControllerWith:self.titleField.text articleBody:[self htmlStringByHtmlAttributeString:self.textView.attributedText]];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -520,11 +526,22 @@ typedef NS_ENUM(NSInteger, FontStyle) {
             } @catch (NSException *error){
                 NSLog(@"%@",error);
             }
+        } else {
+            [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+            });
         }
         
         
     } fail:^(NSError *error) {
         NSLog(@"%@",error);
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           
+           [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+        });
     }];
     
    

@@ -20,7 +20,9 @@
     if (self) {
         self.tubeServerDataSDK = [[TubeServerDataSDK alloc] init];
         self.tubeLoginSDK = [[TubeLoginSDK alloc] initTubeLoginSDK:self.tubeServerDataSDK];
-        self.tuebArticleSDK = [[TubeArticleSDK alloc] initTubeArticleSDK:self.tubeServerDataSDK];
+        self.tubeArticleSDK = [[TubeArticleSDK alloc] initTubeArticleSDK:self.tubeServerDataSDK];
+        self.tubeUserSDK = [[TubeUserSDK alloc] initTubeUserSDK:self.tubeServerDataSDK];
+        self.tubeIMSDK = [[TubeIMSDK alloc] initTubeIMSDK:self.tubeServerDataSDK];
     }
     return self;
 }

@@ -9,6 +9,7 @@
 #import "UISerialTableCell.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UISerialTableCell
 
@@ -37,6 +38,7 @@
     [self.serialTitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.serialImageView.mas_right).offset(16);
         make.top.equalTo(self.serialImageView);
+        make.width.mas_equalTo(200);
     }];
     [self.serialRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-kCELL_MARGIN);
@@ -82,6 +84,17 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - set
+
+- (void)setContent:(CKContent *)content
+{
+    SerialTagContent *serialContent = (SerialTagContent *)content;
+    if (serialContent) {
+        self.serialTitleLable.text = serialContent.serialTitle;
+        self.serialDescriptionLable.text = serialContent.serialDescription;
+        [self.serialImageView sd_setImageWithURL:[NSURL URLWithString:serialContent.serialImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+    }
+}
 
 #pragma mark - get
 - (UIImageView *)serialImageView

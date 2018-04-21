@@ -60,6 +60,15 @@
     [self.tagButton setTitleColor:self.color forState:UIControlStateNormal];
 }
 
+- (void)setTagName:(NSString *)tagName
+{
+    size = [NSString getSizeWithAttributes:tagName font:self.tagButton.titleLabel.font];
+    [self.tagButton setTitle:tagName forState:UIControlStateNormal];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width+8*2, size.height+4*2);
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
 #pragma mark - get
 - (UIButton *)tagButton
 {

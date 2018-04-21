@@ -13,6 +13,7 @@
 @implementation UploadImageUtil
 
 + (void)uploadImage:(UIImage *)mImage success:(uploadSuccess)successCallback fail:(uploadFail)failCallback{
+    NSLog(@"%s uploadImage:%@", __func__, @"http://127.0.0.1:8084/TubeBook_Web/UploadImage");
     NSString *fileName = [[TimeUtil getNowTimeTimestamp3] stringByAppendingString:@".jpg"];
     //创建manager
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -25,7 +26,7 @@
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];//转utf-8
-        NSLog(@"success %@",result);
+        NSLog(@"%s success %@",__func__, result);
         NSDictionary *dic = @{
                               @"message":result,
                               @"fileName":fileName

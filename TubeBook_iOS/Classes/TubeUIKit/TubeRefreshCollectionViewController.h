@@ -13,7 +13,7 @@
 #import "UIRefreshTableView.h"
 #import "TubeRefreshTableViewController.h"
 
-@interface TubeRefreshCollectionViewController : UIViewController
+@interface TubeRefreshCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIWaterfallCollectionViewLayoutDelegate>
 
 @property(nonatomic, strong) NSMutableArray *contentData;
 @property(nonatomic, strong) NSMutableDictionary *classMap;

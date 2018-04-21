@@ -10,6 +10,7 @@
 #import "UIHomeCellItemContentView.h"
 #import "UIHomeCellItemFootView.h"
 #import "UIHomeCellItemHeadView.h"
+#import "DescoverRecommendContent.h"
 
 @interface UIDescoverRecommendCell : CKTableCell
 

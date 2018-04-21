@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #define kAccountKey @"accountKey" // 取账号
+#define kPass @"pass" //不存
 
 @interface UserInfoUtil : NSObject
 // account

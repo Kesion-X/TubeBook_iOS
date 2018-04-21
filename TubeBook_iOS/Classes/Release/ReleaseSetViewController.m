@@ -17,6 +17,9 @@
 #import "TubePhotoUtil.h"
 #import "AltertControllerUtil.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "TubeAlterCenter.h"
+#import "UploadImageUtil.h"
+#import "UITubeButton.h"
 
 @interface ReleaseSetViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -35,16 +38,25 @@
 @property (nonatomic, strong) UIButton *articleTagButton;
 @property (nonatomic, strong) UILabel *articlePicLable;
 @property (nonatomic, strong) UIButton *addArticlePicButton;
+@property (nonatomic, strong) UITubeButton *releaseButton;
 
-@property (nonatomic, weak) NSString *articleTitle;
-@property (nonatomic, weak) NSString *articleBody;
-@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, strong) NSString *atid;
+@property (nonatomic, strong) NSString *articleTitle;
+@property (nonatomic, strong) NSString *articleBody;
+@property (nonatomic, assign) ArticleType type;
+@property (nonatomic, strong) NSString *articlePic;
+@property (nonatomic, strong) CKContent *chioseContent;
+
 
 @property (nonatomic, strong) UIImagePickerController *pickerController;
 
 @end
 
 @implementation ReleaseSetViewController
+{
+    NSInteger createtime;
+}
 
 - (instancetype)initReleaseSetViewControllerWith:(NSString *)articleTitle articleBody:(NSString *)articleBody
 {
@@ -53,6 +65,7 @@
         self.articleTitle = articleTitle;
         self.articleBody = articleBody;
         self.title = @"文章发布";
+        self.type = ArticleTypeMornal;
     }
     return self;
 }
@@ -87,6 +100,7 @@
     [self.contentView addSubview:self.articleTagFiled];
     [self.contentView addSubview:self.articlePicLable];
     [self.contentView addSubview:self.addArticlePicButton];
+    [self.contentView addSubview:self.releaseButton];
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(64);
         make.left.equalTo(self.view);
@@ -182,6 +196,12 @@
         make.height.mas_equalTo(100);
         make.width.mas_equalTo(100);
     }];
+    [self.releaseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottom).offset(-40);
+        make.left.equalTo(self.contentView).offset(100);
+        make.right.equalTo(self.view).offset(-100);
+        make.height.mas_equalTo(40);
+    }];
 
     [self.titleContentLable setText:self.articleTitle];
     self.articleTypeTitleChioseButton.hidden = YES;
@@ -190,12 +210,14 @@
 - (void)loadData
 {
     __weak typeof(self) weakSelf = self;
-    [[TubeSDK sharedInstance].tuebArticleSDK fetchedArticleTagListWithCount:10 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTagListWithCount:10 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if (status == DataCallBackStatusSuccess) {
             NSDictionary *content = page.content.contentData;
             NSArray *list = [content objectForKey:@"tagList"];
             for (NSDictionary *dic in list) {
-                [weakSelf.tagCollectionView addTagsObject:[[UITagView alloc] initUITagView:[dic objectForKey:@"tag"] color:[UIColor grayColor]]];
+                UITagView *tagV = [[UITagView alloc] initUITagView:[dic objectForKey:@"tag"] color:[UIColor grayColor]];
+                tagV.tagId = [[dic objectForKey:@"id"] integerValue];
+                [weakSelf.tagCollectionView addTagsObject:tagV];
             }
         } else {
             
@@ -203,12 +225,12 @@
     }];
 }
 
-#pragma action
+#pragma mark - action
 
 - (IBAction)addTag:(id)sender
 {
     if (self.articleTagFiled.text && self.articleTagFiled.text.length > 0) {
-        [[TubeSDK sharedInstance].tuebArticleSDK addArticleTag:self.articleTagFiled.text callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        [[TubeSDK sharedInstance].tubeArticleSDK addArticleTag:self.articleTagFiled.text callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
             if (status == DataCallBackStatusSuccess) {
                 [self.tagCollectionView addTagsObject:[[UITagView alloc] initUITagView:self.articleTagFiled.text color:[UIColor grayColor]]];
             }
@@ -231,27 +253,30 @@
         if (buttonIndex == 0) {
             buttonIndex = 1;
         }
-        self.type = buttonIndex;
-        if (self.type == 1) {
+        if (buttonIndex == 1) {
             self.articleTypeTitleChioseButton.hidden = YES;
         } else {
             self.articleTypeTitleChioseButton.hidden = NO;
         }
-        switch (self.type) {
+        switch (buttonIndex) {
             case 1:
             {
+                self.chioseContent = nil;
+                self.type = ArticleTypeMornal;
                 [self.articleTypeChioseButton setTitle:@"普通文章" forState:UIControlStateNormal];
                 [self.articleTypeChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
                 break;
             }
             case 2:
             {
+                self.type = ArticleTypeTopic;
                 [self.articleTypeChioseButton setTitle:@"专题文章" forState:UIControlStateNormal];
                 [self.articleTypeChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
                 break;
             }
             case 3:
             {
+                self.type = ArticleTypeSerial;
                 [self.articleTypeChioseButton setTitle:@"连载文章" forState:UIControlStateNormal];
                 [self.articleTypeChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
                 break;
@@ -259,25 +284,37 @@
             default:
                 break;
         }
-        NSLog(@"type %lu",self.type);
+        NSLog(@"type %lu",buttonIndex);
     } otherButtonTitleArray:@[@"普通文章", @"专题文章", @"连载文章"] ];
     [sheet show];
 }
 
 - (IBAction)chioseTypeTitle:(id)sender
 {
-    TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeTopicTitle contentCallBack:^(CKContent *content) {
-        [self.articleTypeTitleChioseButton setTitle:content.topicTitle forState:UIControlStateNormal];
-        [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
-    }];
-    //[self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ( self.type == ArticleTypeTopic ) {
+        TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeTopicTitle contentCallBack:^(CKContent *content) {
+            self.chioseContent = content;
+            [self.articleTypeTitleChioseButton setTitle:content.topicTitle forState:UIControlStateNormal];
+            [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
+        }];
+        //[self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ( self.type == ArticleTypeSerial ) {
+        TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeSerialTitle contentCallBack:^(CKContent *content) {
+            self.chioseContent = content;
+            [self.articleTypeTitleChioseButton setTitle:content.serialTitle forState:UIControlStateNormal];
+            [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
+        }];
+        //[self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 - (IBAction)addArticlePic:(id)sender
 {
     if ([TubePhotoUtil isCanUsePhotos]) {
-        NSLog(@"primary yes");
+        NSLog(@"%s primary yes", __func__);
         self.pickerController = [[UIImagePickerController alloc] init];
         self.pickerController.delegate = self;
         self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -286,6 +323,87 @@
     } else {
         [AltertControllerUtil showAlertTitle:@"警告" message:@"没有访问相册的权限！请到设置中设置权限！" confirmTitle:@"确定" confirmBlock:nil cancelTitle:nil cancelBlock:nil fromControler:self];
     }
+}
+
+- (IBAction)releaseArticle:(id)sender
+{
+    if ( self.type != ArticleTypeMornal && !self.chioseContent ) {
+        [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"请选择文章类型" duration:2.0f fromeVC:self];
+        return ;
+    }
+    createtime = [TimeUtil getNowTimeTimest];
+    self.uid = [[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey];
+    self.atid = [self.uid stringByAppendingString:[TimeUtil getNowTimeTimestamp3]];
+    [[TubeSDK sharedInstance].tubeArticleSDK uploadArticleWithTitle:self.articleTitle
+                                                               atid:self.atid
+                                                                uid:self.uid
+                                                             detail:[[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                     self.articleBody, @"body",
+                                                                     self.articleDescriptionTextView.text, @"description",
+                                                                     @(createtime), @"createtime",
+                                                                     self.articlePic, @"articlepic", nil]
+                                                           callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+                                                               if ( status == DataCallBackStatusSuccess) {
+                                                                   [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"发布成功" duration:2.0f fromeVC:self];
+                                                                   [self requestSetTag:self.atid];
+                                                                   [self requestSetTab:self.atid];
+                                                               }
+    }];
+}
+
+
+- (void)requestSetTag:(NSString *)atid
+{
+    NSMutableArray *tags = [[NSMutableArray alloc] init];
+    for (UITagView *v in [self.tagCollectionView getSelectesArrayTagView]) {
+        [tags addObject:@(v.tagId)];
+    }
+    [[TubeSDK sharedInstance].tubeArticleSDK setArticleTagWithAtid:atid tags:tags callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status != DataCallBackStatusSuccess) {
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签设置失败，请检查网络" duration:1.0f fromeVC:self];
+        }
+    }];
+}
+
+- (void)requestSetTab:(NSString *)atid
+{
+    [[TubeSDK sharedInstance].tubeArticleSDK setArticleTabWithAtid:atid articleType:self.type tabid:self.chioseContent.id callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status != DataCallBackStatusSuccess) {
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签标题失败，请检查网络" duration:1.0f fromeVC:self];
+        }
+    }];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [self.pickerController dismissViewControllerAnimated:YES completion:nil];
+    //[[TubeAlterCenter sharedInstance] showAlterIndicatorWithMessage:@"正在上传图片" fromeVC:self];
+    [_addArticlePicButton setBackgroundImage:[info objectForKey:UIImagePickerControllerOriginalImage] forState:UIControlStateNormal];
+    [UploadImageUtil uploadImage:[info objectForKey:UIImagePickerControllerOriginalImage] success:^(NSDictionary *dic) {
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+        NSLog(@"%@",dic);
+        NSString *fileName = [dic objectForKey:@"fileName"];
+        NSString *message = [dic objectForKey:@"message"];
+        if ([message containsString:@"success"]) {
+           // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传成功" duration:1.0f fromeVC:self];
+            self.articlePic = [NSString stringWithFormat:@"http://127.0.0.1:8084/TubeBook_Web/upload/%@",fileName];
+        } else {
+            [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+            });
+        }
+    } fail:^(NSError *error) {
+       // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败" duration:1.0f fromeVC:self];
+        NSLog(@"%@",error);
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+        });
+    }];
 }
 
 #pragma mark - get
@@ -367,8 +485,8 @@
 {
     if (!_articleTypeChioseButton) {
         _articleTypeChioseButton = [[UIButton alloc] init];
-        [_articleTypeChioseButton setTitle:@"选择类型" forState:UIControlStateNormal];
-        [_articleTypeChioseButton setTitleColor:kTEXTCOLOR forState:UIControlStateNormal];
+        [_articleTypeChioseButton setTitle:@"普通文章" forState:UIControlStateNormal];
+        [_articleTypeChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
         _articleTypeChioseButton.titleLabel.font = CKTextViewFont;
         [_articleTypeChioseButton addTarget:self action:@selector(chioseType:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -454,6 +572,16 @@
         [_addArticlePicButton addTarget:self action:@selector(addArticlePic:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addArticlePicButton;
+}
+
+- (UITubeButton *)releaseButton
+{
+    if (!_releaseButton) {
+        _releaseButton = [[UITubeButton alloc] initUITubeButton:@"发布" normalColor:kTUBEBOOK_THEME_NORMAL_COLOR lightColor:kTUBEBOOK_THEME_ALPHA_COLOR];
+        [_releaseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_releaseButton addTarget:self action:@selector(releaseArticle:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _releaseButton;
 }
 
 @end

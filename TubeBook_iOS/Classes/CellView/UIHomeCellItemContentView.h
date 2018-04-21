@@ -29,4 +29,6 @@
 - (CGFloat)getUIHeight;
 + (CGFloat)getUIHeight:(BOOL)isHaveImage;
 + (CGFloat)getUIHeight:(BOOL)isHaveImage contentStyle:(UIContentCellStyle)contentStyle;
+- (void)setDataWithTitle:(NSString *)title contentDescription:(NSString *)contentDescription contentUrl:(NSString *)contentUrl;
+
 @end

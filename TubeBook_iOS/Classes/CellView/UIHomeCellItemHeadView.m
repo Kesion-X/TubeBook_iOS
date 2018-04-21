@@ -9,6 +9,7 @@
 #import "UIHomeCellItemHeadView.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface UIHomeCellItemHeadView ()
 
@@ -83,7 +84,7 @@
         make.height.mas_equalTo(32);
         make.centerY.equalTo(self);
     }];
-    if (self.userState == UserLikeArticle) {
+    if ( self.userState == UserLikeArticle ) {
         self.likeOrPublishLable.text = @"喜欢了文章";
     } else {
         self.likeOrPublishLable.text = @"发表了文章";
@@ -98,6 +99,50 @@
 + (CGFloat)getUIHeight:(UserState)userState
 {
     return 40;
+}
+
+- (void)setDataWithAvatarUrl:(NSString *)avatarUrl
+       userName:(NSString *)userName
+           time:(NSString *)time
+      userState:(UserState)userState
+{
+    self.avatarUrl = avatarUrl;
+    self.userName = userName;
+    self.time = time;
+    self.userState = userState;
+}
+
+- (void)setAvatarUrl:(NSString *)avatarUrl
+{
+    _avatarUrl = avatarUrl;
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+}
+
+- (void)setUserName:(NSString *)userName
+{
+    _userName = userName;
+    [self.userNameLable setText:userName];
+}
+
+- (void)setTime:(NSString *)time
+{
+    _time = time;
+    [self.timeLable setText:time];
+}
+
+- (void)setIslike:(BOOL)islike
+{
+    _islike = islike;
+}
+
+- (void)setUserState:(UserState)userState
+{
+    _userState = userState;
+    if ( self.userState == UserLikeArticle ) {
+        self.likeOrPublishLable.text = @"喜欢了文章";
+    } else {
+        self.likeOrPublishLable.text = @"发表了文章";
+    }
 }
 
 #pragma mark - get

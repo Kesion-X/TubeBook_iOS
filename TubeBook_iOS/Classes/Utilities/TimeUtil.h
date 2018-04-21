@@ -11,5 +11,7 @@
 @interface TimeUtil : NSObject
 
 + (NSString *)getNowTimeTimestamp3;
++ (NSInteger)getNowTimeTimest;
++ (NSString *)getDateWithTime:(NSInteger)time;
 
 @end

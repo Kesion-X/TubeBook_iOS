@@ -24,6 +24,15 @@
 @property (nonatomic) NSUInteger commentCount; // 评论数
 @property (nonatomic) NSUInteger likeCount; // 喜欢数
 
+@property (nonatomic, strong) NSString *atid;
+@property (nonatomic, strong) NSString *body;
+@property (nonatomic, strong) NSString *articleTitle;
+@property (nonatomic, strong) NSString *articleDescription;
+@property (nonatomic, strong) NSString *articlePic;
+@property (nonatomic, assign) NSInteger tabType;
+@property (nonatomic, assign) NSInteger tabid;
+
+
 @property (nonatomic, strong) NSString *topicImageUrl;//专题图片
 @property (nonatomic, strong) NSString *topicTitle;//专题标题
 @property (nonatomic, strong) NSString *topicDescription;//专题描述

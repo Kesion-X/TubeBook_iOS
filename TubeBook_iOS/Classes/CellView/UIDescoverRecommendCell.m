@@ -73,5 +73,18 @@
     return [UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:content.dataType.isHaveImage contentStyle:UIContentCellImageRightStyle] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + 16;
 }
 
+- (void)setContent:(CKContent *)content
+{
+    DescoverRecommendContent *atContent = (DescoverRecommendContent *)content;
+    [self.homeCellItemHeadView setDataWithAvatarUrl:atContent.avatarUrl userName:atContent.userName time:atContent.time userState:atContent.dataType.userState];
+    [self.homeCellItemContentView setDataWithTitle:atContent.articleTitle contentDescription:atContent.articleDescription contentUrl:atContent.articlePic];
+    NSString *kind = @"普通";
+    if (atContent.dataType.articleKind == TopicArticle) {
+        kind = @"专题";
+    } else if (atContent.dataType.articleKind == SerialArticle) {
+        kind = @"连载";
+    }
+    [self.homeCellItemFootView setTagName:kind];
+}
 
 @end

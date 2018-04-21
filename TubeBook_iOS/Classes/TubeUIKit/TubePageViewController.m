@@ -99,6 +99,9 @@
         offsetDistance +=(x - preOffsetX);
         preOffsetX = x;
         //向右偏移
+        if ( !self.indicatorView ) {
+            return;
+        }
         if (offsetDistance>0) {
             if (self.indicatorView.currentIndicator==self.indicatorView.itemArrays.count-1) {
                 self.scrollerView.bounces = NO;

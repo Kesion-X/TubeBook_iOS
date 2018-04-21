@@ -11,5 +11,6 @@
 @interface TubeRootViewController : UINavigationController <UINavigationControllerDelegate>
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController;
+- (void)setNavigationControllerTitleView:(UIView *)view;
 
 @end

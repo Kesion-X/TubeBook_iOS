@@ -26,5 +26,8 @@
 - (instancetype)initUIHomeCellItemHeadView:(NSString *)avatarUrl username:(NSString *)username time:(NSString *)time islike:(BOOL)islike;
 - (CGFloat)getUIHeight;
 + (CGFloat)getUIHeight:(UserState)userState;
-
+- (void)setDataWithAvatarUrl:(NSString *)avatarUrl
+       userName:(NSString *)userName
+           time:(NSString *)time
+      userState:(UserState)userState;
 @end

@@ -9,6 +9,8 @@
 #import "UIUserTableCell.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import "UserContent.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIUserTableCell
 
@@ -83,6 +85,29 @@
     // Configure the view for the selected state
 }
 
+- (void)setContent:(CKContent *)content
+{
+    UserContent *ucontent = (UserContent *)content;
+    self.userName = ucontent.userName;
+    self.avatarUrl = ucontent.avatarUrl;
+    self.motto = ucontent.motto;
+}
+
+- (void)setUserName:(NSString *)userName
+{
+    [self.userTitleLable setText:userName];
+}
+
+- (void)setAvatarUrl:(NSString *)avatarUrl
+{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+}
+
+- (void)setMotto:(NSString *)motto
+{
+    [self.userDescriptionLable setText:motto];
+}
+
 #pragma mark - get
 - (UIImageView *)userImageView
 {
@@ -91,6 +116,7 @@
         _userImageView.layer.cornerRadius = 24;
         _userImageView.layer.borderWidth = 0.5;
         _userImageView.layer.borderColor = kTAB_TEXT_COLOR.CGColor;
+        _userImageView.layer.masksToBounds = YES;
     }
     return _userImageView;
 }

@@ -9,6 +9,8 @@
 #import "UISerialArticleCell.h"
 #import "CKMacros.h"
 #import "Masonry.h"
+#import "TopicArticleContent.h"
+#import "SerialArticleContent.h"
 
 @implementation UISerialArticleCell
 
@@ -17,7 +19,7 @@
     self = [super initWithDateType:type];
     if (self) {
         self.homeCellItemHeadView = [[UIHomeCellItemHeadView alloc] initUIHomeCellItemHeadView:type.userState];
-        self.homeCellItemContentView = [[UIHomeCellItemContentView alloc] initUIHomeCellItemContentView:NO];
+        self.homeCellItemContentView = [[UIHomeCellItemContentView alloc] initUIHomeCellItemContentView:type.isHaveImage];
         self.homeCellItemFootView = [[UIHomeCellItemFootView alloc] initUIHomeCellItemFootView:type.userState];
         self.homeCellTopicOrSerialView = [[UIHomeCellTopicOrSerialView alloc] initUIHomeCellTopicOrSerialView:SerialArticle];
         
@@ -66,9 +68,26 @@
 + (CGFloat)getCellHeight:(CKContent *)content
 {
     //NSLog(@"Height %f",[UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:NO] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + [UIHomeCellTopicOrSerialView getUIHeight:content.dataType.articleKind]);
-    return [UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:NO] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + [UIHomeCellTopicOrSerialView getUIHeight:content.dataType.articleKind] + 16;
+    return [UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:content.dataType.isHaveImage] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + [UIHomeCellTopicOrSerialView getUIHeight:content.dataType.articleKind] + 16;
 }
 
+- (void)setContent:(CKContent *)content
+{
+    if ([content isKindOfClass:[SerialArticleContent class]]) {
+        SerialArticleContent *atContent =  (SerialArticleContent *)content;
+        [self.homeCellItemHeadView setDataWithAvatarUrl:atContent.avatarUrl userName:atContent.userName time:atContent.time userState:atContent.dataType.userState];
+        [self.homeCellItemContentView setDataWithTitle:atContent.articleTitle contentDescription:atContent.articleDescription contentUrl:atContent.articlePic];
+        [self.homeCellTopicOrSerialView setDataWithTitle:atContent.serialTitle tagImageUrl:atContent.serialImageUrl detail:content.serialDescription];
+
+    }
+//    else {
+//        
+//        TopicArticleContent *atContent = (TopicArticleContent *)content;
+//        [self.homeCellItemHeadView setDataWithAvatarUrl:atContent.avatarUrl userName:atContent.userName time:atContent.time userState:atContent.dataType.userState];
+//        [self.homeCellItemContentView setDataWithTitle:atContent.articleTitle contentDescription:atContent.articleDescription contentUrl:atContent.articlePic];
+//        [self.homeCellTopicOrSerialView setDataWithTitle:atContent.topicTitle tagImageUrl:atContent.topicImageUrl detail:content.topicDescription];
+//    }
+}
 
 
 @end

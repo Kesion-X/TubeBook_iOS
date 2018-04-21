@@ -86,11 +86,14 @@
 
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     NSMutableArray* array = [NSMutableArray array];
-    NSInteger items = [self.collectionView numberOfItemsInSection:0];
-    for (int i = 0; i<items;i++) {
-        UICollectionViewLayoutAttributes* attr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        [array addObject:attr];
-    }
+//    NSInteger sessions = [self.collectionView numberOfSections];
+//    for (int j=0; j<sessions; ++j) {
+        NSInteger items = [self.collectionView numberOfItemsInSection:0];
+        for (int i = 0; i<items;i++) {
+            UICollectionViewLayoutAttributes* attr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
+            [array addObject:attr];
+        }
+//    }
     return array;
 }
 
