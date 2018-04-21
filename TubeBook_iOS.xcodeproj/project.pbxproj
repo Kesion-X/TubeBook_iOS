@@ -73,6 +73,7 @@
 		3C3CF7522089D8290009E787 /* icon_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF7512089D8290009E787 /* icon_book.png */; };
 		3C3CF7542089D9BF0009E787 /* icon_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF7532089D9BE0009E787 /* icon_star.png */; };
 		3C3CF7572089E0B20009E787 /* CreateTopicOrSerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3CF7562089E0B20009E787 /* CreateTopicOrSerialViewController.m */; };
+		3C3CF75D208A4AAD0009E787 /* detail_back2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C3CF75C208A4AAD0009E787 /* detail_back2.jpg */; };
 		3C9501472085AE3500F089F5 /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95002B2085AE3300F089F5 /* RecommendViewController.m */; };
 		3C9501482085AE3500F089F5 /* SerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95002F2085AE3300F089F5 /* SerialViewController.m */; };
 		3C9501492085AE3500F089F5 /* ArticleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9500322085AE3400F089F5 /* ArticleWebViewController.m */; };
@@ -296,6 +297,7 @@
 		3C3CF7532089D9BE0009E787 /* icon_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star.png; sourceTree = "<group>"; };
 		3C3CF7552089E0B20009E787 /* CreateTopicOrSerialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateTopicOrSerialViewController.h; sourceTree = "<group>"; };
 		3C3CF7562089E0B20009E787 /* CreateTopicOrSerialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateTopicOrSerialViewController.m; sourceTree = "<group>"; };
+		3C3CF75C208A4AAD0009E787 /* detail_back2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_back2.jpg; sourceTree = "<group>"; };
 		3C95002B2085AE3300F089F5 /* RecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendViewController.m; sourceTree = "<group>"; };
 		3C95002C2085AE3300F089F5 /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
 		3C95002E2085AE3300F089F5 /* SerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialViewController.h; sourceTree = "<group>"; };
@@ -669,9 +671,9 @@
 			isa = PBXGroup;
 			children = (
 				3C9500312085AE3400F089F5 /* ShowArticleUIViewController.h */,
-				3C9500322085AE3400F089F5 /* ArticleWebViewController.m */,
 				3C9500332085AE3400F089F5 /* ShowArticleUIViewController.m */,
 				3C9500342085AE3400F089F5 /* ArticleWebViewController.h */,
+				3C9500322085AE3400F089F5 /* ArticleWebViewController.m */,
 			);
 			name = ShowArticle;
 			path = Classes/ShowArticle;
@@ -766,37 +768,37 @@
 			children = (
 				3C9500642085AE3400F089F5 /* Model */,
 				3C9500522085AE3400F089F5 /* SerialCollectionViewCell.h */,
+				3C9500622085AE3400F089F5 /* SerialCollectionViewCell.m */,
 				3C9500532085AE3400F089F5 /* UITopicArticleCell.h */,
+				3C9500822085AE3400F089F5 /* UITopicArticleCell.m */,
+				3C95008C2085AE3400F089F5 /* UITopicTableCell.h */,
+				3C95005E2085AE3400F089F5 /* UITopicTableCell.m */,
+				3C9500812085AE3400F089F5 /* UISerialTableCell.h */,
 				3C9500542085AE3400F089F5 /* UISerialTableCell.m */,
 				3C9500552085AE3400F089F5 /* UINormalArticleCell.h */,
-				3C9500562085AE3400F089F5 /* TopicCollectionViewCell.h */,
-				3C9500572085AE3400F089F5 /* CKCollectionViewCell.h */,
-				3C9500582085AE3400F089F5 /* CycleTableCell.h */,
-				3C9500592085AE3400F089F5 /* UIHomeCellItemContentView.m */,
-				3C95005A2085AE3400F089F5 /* UISerialArticleCell.h */,
-				3C95005B2085AE3400F089F5 /* CKTableCell.m */,
-				3C95005C2085AE3400F089F5 /* UIHomeCellItemFootView.h */,
-				3C95005D2085AE3400F089F5 /* UIDescoverRecommendCell.h */,
-				3C95005E2085AE3400F089F5 /* UITopicTableCell.m */,
-				3C95005F2085AE3400F089F5 /* UIHomeCellItemHeadView.h */,
-				3C9500602085AE3400F089F5 /* UIUserTableCell.m */,
-				3C9500612085AE3400F089F5 /* UIHomeCellTopicOrSerialView.m */,
-				3C9500622085AE3400F089F5 /* SerialCollectionViewCell.m */,
-				3C9500632085AE3400F089F5 /* CKCollectionViewCell.m */,
-				3C95007F2085AE3400F089F5 /* TopicCollectionViewCell.m */,
 				3C9500802085AE3400F089F5 /* UINormalArticleCell.m */,
-				3C9500812085AE3400F089F5 /* UISerialTableCell.h */,
-				3C9500822085AE3400F089F5 /* UITopicArticleCell.m */,
-				3C9500832085AE3400F089F5 /* UIDescoverRecommendCell.m */,
-				3C9500842085AE3400F089F5 /* UIHomeCellItemFootView.m */,
-				3C9500852085AE3400F089F5 /* CKTableCell.h */,
-				3C9500862085AE3400F089F5 /* UISerialArticleCell.m */,
-				3C9500872085AE3400F089F5 /* UIHomeCellItemContentView.h */,
+				3C9500562085AE3400F089F5 /* TopicCollectionViewCell.h */,
+				3C95007F2085AE3400F089F5 /* TopicCollectionViewCell.m */,
+				3C9500572085AE3400F089F5 /* CKCollectionViewCell.h */,
+				3C9500632085AE3400F089F5 /* CKCollectionViewCell.m */,
+				3C9500582085AE3400F089F5 /* CycleTableCell.h */,
 				3C9500882085AE3400F089F5 /* CycleTableCell.m */,
+				3C9500872085AE3400F089F5 /* UIHomeCellItemContentView.h */,
+				3C9500592085AE3400F089F5 /* UIHomeCellItemContentView.m */,
 				3C9500892085AE3400F089F5 /* UIHomeCellTopicOrSerialView.h */,
-				3C95008A2085AE3400F089F5 /* UIUserTableCell.h */,
+				3C9500612085AE3400F089F5 /* UIHomeCellTopicOrSerialView.m */,
+				3C95005F2085AE3400F089F5 /* UIHomeCellItemHeadView.h */,
 				3C95008B2085AE3400F089F5 /* UIHomeCellItemHeadView.m */,
-				3C95008C2085AE3400F089F5 /* UITopicTableCell.h */,
+				3C95005C2085AE3400F089F5 /* UIHomeCellItemFootView.h */,
+				3C9500842085AE3400F089F5 /* UIHomeCellItemFootView.m */,
+				3C95005A2085AE3400F089F5 /* UISerialArticleCell.h */,
+				3C9500862085AE3400F089F5 /* UISerialArticleCell.m */,
+				3C9500852085AE3400F089F5 /* CKTableCell.h */,
+				3C95005B2085AE3400F089F5 /* CKTableCell.m */,
+				3C95005D2085AE3400F089F5 /* UIDescoverRecommendCell.h */,
+				3C9500832085AE3400F089F5 /* UIDescoverRecommendCell.m */,
+				3C95008A2085AE3400F089F5 /* UIUserTableCell.h */,
+				3C9500602085AE3400F089F5 /* UIUserTableCell.m */,
 			);
 			name = CellView;
 			path = Classes/CellView;
@@ -1016,44 +1018,44 @@
 		3C9500E72085AE3400F089F5 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				3C9500F12085AE3400F089F5 /* CKTextView.h */,
+				3C3CF7412089021A0009E787 /* TubeTableView.m */,
+				3C9500F42085AE3400F089F5 /* InfoDescriptionView.h */,
+				3C9501042085AE3400F089F5 /* InfoDescriptionView.m */,
+				3C9500FA2085AE3400F089F5 /* TagCollectionView.h */,
 				3C9500E82085AE3400F089F5 /* TagCollectionView.m */,
-				3C9500E92085AE3400F089F5 /* UIRingScrollView.m */,
+				3C3CF72E20866AD50009E787 /* TubeCollectionView.h */,
+				3C9500FC2085AE3400F089F5 /* TubeNavigationUITool.h */,
+				3C3CF7402089021A0009E787 /* TubeTableView.h */,
+				3C9500F72085AE3400F089F5 /* TubeToolBar.h */,
+				3C9500F02085AE3400F089F5 /* UIImageFieldView.h */,
+				3C3CF73D208785100009E787 /* UIImageWithLable.h */,
+				3C9500F62085AE3400F089F5 /* UIIndicatorView.h */,
+				3C9501032085AE3400F089F5 /* UIRectangleView.h */,
 				3C9500EA2085AE3400F089F5 /* UIRefreshTableView.h */,
+				3C9500F82085AE3400F089F5 /* UIRingScrollView.h */,
+				3C3CF7482089CF810009E787 /* UITableImageWithLableCell.h */,
+				3C9500F22085AE3400F089F5 /* UITagView.h */,
+				3C9501052085AE3400F089F5 /* UITubeButton.h */,
+				3C9500FE2085AE3400F089F5 /* UITubeNavigationView.h */,
+				3C9500FB2085AE3400F089F5 /* UITubeSearchView.h */,
+				3C9500EF2085AE3400F089F5 /* UIWaterfallCollectionViewLayout.h */,
+				3C9500FF2085AE3400F089F5 /* CKTextView.m */,
+				3C3CF72F20866AD50009E787 /* TubeCollectionView.m */,
+				3C9500EE2085AE3400F089F5 /* TubeNavigationUITool.m */,
 				3C9500EB2085AE3400F089F5 /* TubeToolBar.m */,
+				3C9501012085AE3400F089F5 /* UIImageFieldView.m */,
+				3C3CF73E208785100009E787 /* UIImageWithLable.m */,
+				3C9501022085AE3400F089F5 /* UIIndicatorView.m */,
+				3C9500F52085AE3400F089F5 /* UIRectangleView.m */,
+				3C9500F92085AE3400F089F5 /* UIRefreshTableView.m */,
+				3C9500E92085AE3400F089F5 /* UIRingScrollView.m */,
+				3C3CF7492089CF810009E787 /* UITableImageWithLableCell.m */,
+				3C9501002085AE3400F089F5 /* UITagView.m */,
+				3C9500F32085AE3400F089F5 /* UITubeButton.m */,
 				3C9500EC2085AE3400F089F5 /* UITubeNavigationView.m */,
 				3C9500ED2085AE3400F089F5 /* UITubeSearchView.m */,
-				3C9500EE2085AE3400F089F5 /* TubeNavigationUITool.m */,
-				3C9500EF2085AE3400F089F5 /* UIWaterfallCollectionViewLayout.h */,
-				3C9500F02085AE3400F089F5 /* UIImageFieldView.h */,
-				3C9500F12085AE3400F089F5 /* CKTextView.h */,
-				3C9500F22085AE3400F089F5 /* UITagView.h */,
-				3C9500F32085AE3400F089F5 /* UITubeButton.m */,
-				3C9500F42085AE3400F089F5 /* InfoDescriptionView.h */,
-				3C9500F52085AE3400F089F5 /* UIRectangleView.m */,
-				3C9500F62085AE3400F089F5 /* UIIndicatorView.h */,
-				3C9500F72085AE3400F089F5 /* TubeToolBar.h */,
-				3C9500F82085AE3400F089F5 /* UIRingScrollView.h */,
-				3C9500F92085AE3400F089F5 /* UIRefreshTableView.m */,
-				3C9500FA2085AE3400F089F5 /* TagCollectionView.h */,
-				3C9500FB2085AE3400F089F5 /* UITubeSearchView.h */,
-				3C9500FC2085AE3400F089F5 /* TubeNavigationUITool.h */,
 				3C9500FD2085AE3400F089F5 /* UIWaterfallCollectionViewLayout.m */,
-				3C9500FE2085AE3400F089F5 /* UITubeNavigationView.h */,
-				3C9500FF2085AE3400F089F5 /* CKTextView.m */,
-				3C9501002085AE3400F089F5 /* UITagView.m */,
-				3C9501012085AE3400F089F5 /* UIImageFieldView.m */,
-				3C9501022085AE3400F089F5 /* UIIndicatorView.m */,
-				3C9501032085AE3400F089F5 /* UIRectangleView.h */,
-				3C9501042085AE3400F089F5 /* InfoDescriptionView.m */,
-				3C9501052085AE3400F089F5 /* UITubeButton.h */,
-				3C3CF72E20866AD50009E787 /* TubeCollectionView.h */,
-				3C3CF72F20866AD50009E787 /* TubeCollectionView.m */,
-				3C3CF73D208785100009E787 /* UIImageWithLable.h */,
-				3C3CF73E208785100009E787 /* UIImageWithLable.m */,
-				3C3CF7402089021A0009E787 /* TubeTableView.h */,
-				3C3CF7412089021A0009E787 /* TubeTableView.m */,
-				3C3CF7482089CF810009E787 /* UITableImageWithLableCell.h */,
-				3C3CF7492089CF810009E787 /* UITableImageWithLableCell.m */,
 			);
 			name = CustomView;
 			path = Classes/CustomView;
@@ -1284,6 +1286,7 @@
 				3C3CF738208784A00009E787 /* icon_attent_user@2x.png */,
 				3C3CF736208784A00009E787 /* icon_user_comment@2x.png */,
 				3C3CF7352087849F0009E787 /* icon_like2@2x.png */,
+				3C3CF75C208A4AAD0009E787 /* detail_back2.jpg */,
 				3CDFF54120824F3900E345E2 /* detail_back3.jpg */,
 				3CB2E111207B5BE900D7F3C6 /* default_loadimage@2x.png */,
 				3C19603B2019BA5E000A938C /* loading.gif */,
@@ -1454,6 +1457,7 @@
 				3C3CF7442089CB840009E787 /* icon_add_tab.png in Resources */,
 				3C195E3E200BC52B000A938C /* icon_normal_discover@3x.png in Resources */,
 				3C195E36200BC52B000A938C /* icon_light_discover@3x.png in Resources */,
+				3C3CF75D208A4AAD0009E787 /* detail_back2.jpg in Resources */,
 				3CDFF54220824F3900E345E2 /* detail_back3.jpg in Resources */,
 				3C3CF73A208784A00009E787 /* icon_user_comment@2x.png in Resources */,
 				3C195E3F200BC52B000A938C /* icon_light_message@3x.png in Resources */,

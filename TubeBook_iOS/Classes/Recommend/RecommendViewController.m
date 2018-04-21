@@ -47,7 +47,7 @@
 - (void)requestData
 {
     @weakify(self);
-    [[TubeSDK sharedInstance].tubeArticleSDK fetchedRecommendByHotArticleListtWithIndex:0 uid:@"123" articleType:ArticleTypeMornal|ArticleTypeTopic|ArticleTypeSerial fouseType:FouseTypeAttrent callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedRecommendByHotArticleListtWithIndex:index uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] articleType:ArticleTypeMornal|ArticleTypeTopic|ArticleTypeSerial fouseType:FouseTypeAttrent callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         @strongify(self);
         if ( status==DataCallBackStatusSuccess ) {
             if ( index == 0 && self.contentData.count>0 ) {
@@ -55,7 +55,8 @@
                 [self.refreshTableView reloadData];
             }
             NSDictionary *contentDicary = page.content.contentData;
-            for ( NSDictionary *contentDic in [contentDicary objectForKey:@"list"] ) {
+            NSArray *list = [contentDicary objectForKey:@"list"];
+            for ( NSDictionary *contentDic in list ) {
                 
                 ArticleType articleType = [[contentDic objectForKey:@"tabtype"] integerValue];
                 NSString *articlepic = [contentDic objectForKey:@"articlepic"];
@@ -141,8 +142,10 @@
                 }
                 
             }
-            [self.refreshTableView reloadData];
-            index ++;
+            if (list.count>0) {
+                [self.refreshTableView reloadData];
+                index ++;
+            }
         }
     }];
 }

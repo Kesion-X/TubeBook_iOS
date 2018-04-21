@@ -32,6 +32,8 @@
 #define ARTICLE_LIKE_NOT_REVIEW_COUNT @"ArticleLikeNotReviewCount"
 #define ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB @"ArticleCreateTopicOrSerial"
 #define ARTICLE_RECOMMEND_BY_HOT_LIST @"ArticleRecommendByHotList"
+#define ARTICLE_RECOMMEND_BY_USERCF_LIST @"ArticleRecommendByUserCFList"
+#define ARTICLE_LIKE_STATUS @"ArticleLikeStatus" 
 
 #define ArticleTopicTitleList @"ArticleTopicTitleList"
 

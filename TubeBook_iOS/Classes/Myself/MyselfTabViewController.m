@@ -206,7 +206,8 @@
             NSDictionary *userinfo = [contentDic objectForKey:@"userinfo"];
             NSString *avatar = [userinfo objectForKey:@"avatar"];
             NSString *userName = [userinfo objectForKey:@"account"];
-            if ([userinfo objectForKey:@"nick"]) {
+            NSString *nick = [userinfo objectForKey:@"nick"];
+            if ( nick && nick.length>0 ) {
                 userName = [userinfo objectForKey:@"nick"];
             }
             NSString *motto = [userinfo objectForKey:@"description"];

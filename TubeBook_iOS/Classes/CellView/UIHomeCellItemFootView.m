@@ -174,8 +174,8 @@
         self.tagView = [[UITagView alloc] initUITagView:self.tagName color:kTAG_COLOR];
         [self addSubview:self.tagView];
         [self.tagView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo([self.tagView getUIWidht]);
-            make.height.mas_equalTo([self.tagView getUIHeight]);
+            make.width.mas_equalTo([self.tagView getUIWidht] + 8*2);
+            make.height.mas_equalTo([self.tagView getUIHeight] + 4*2);
             make.centerY.equalTo(self);
             make.left.equalTo(self).offset(kCELL_MARGIN);
         }];
@@ -221,6 +221,12 @@
     return 26;
 }
 
+- (void)setTagName:(NSString *)tagName
+{
+    _tagName = tagName;
+    [self.tagView setTagName:tagName];
+}
+
 #pragma mark - get
 - (UILabel *)pulibshUserNameLable
 {
@@ -255,13 +261,6 @@
     return _likeCountLable;
 }
 
-- (NSString *)tagName
-{
-    if (!_tagName) {
-        _tagName = @"tag";
-    }
-    return _tagName;
-}
 
 
 @end

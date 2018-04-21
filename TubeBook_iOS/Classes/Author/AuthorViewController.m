@@ -56,8 +56,10 @@
                 userContent.motto = description;
                 [self.contentData addObject:userContent];
             }
-            index ++;
-            [self.refreshTableView reloadData];
+            if (list.count>0) {
+                [self.refreshTableView reloadData];
+                index ++;
+            }
         }
     }];
 }

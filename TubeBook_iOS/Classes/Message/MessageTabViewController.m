@@ -74,12 +74,11 @@
     self.attentUserItem.title = @"关注";
     [self.attentUserItem setIconByImageName:@"icon_attent_user"];
     [self.collectionView addItemView:self.attentUserItem];
-    
-    [self requestLikeNotReviewCount];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self requestLikeNotReviewCount];
     if (self.navigationController.navigationBar.isHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     }

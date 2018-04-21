@@ -165,7 +165,7 @@
 {
     self.infoView = [[InfoDescriptionView alloc] initInfoDescriptionViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, [InfoDescriptionView getViewHeightWithInfotype:InfoDescriptionTypeTopic]) infoType:InfoDescriptionTypeTopic];
     [self.view addSubview:self.infoView];
-    [self.infoView setDetailBackImage:[UIImage imageNamed:@"detail_back3.jpg"]];
+    [self.infoView setDetailBackImage:[UIImage imageNamed:@"detail_back2.jpg"]];
     [self.infoView setSpaceColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.2f]];
     [self.infoView setAllTitleLableWithColor:[UIColor whiteColor]];
     

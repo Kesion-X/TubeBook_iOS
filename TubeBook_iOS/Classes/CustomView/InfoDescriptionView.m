@@ -162,32 +162,53 @@
 
 - (void)setInfoName:(NSString *)infoName
 {
+    _infoName = infoName;
     [self.infoNameLable setText:infoName];
 }
 
 - (void)setInfoTime:(NSString *)infoTime
 {
+    _infoTime = infoTime;
     [self.infoTimeLable setText:infoTime];
 }
 
 - (void)setInfomotto:(NSString *)infomotto
 {
+    _infomotto = infomotto;
     [self.infoMottoLable setText:infomotto];
 }
 
 - (void)setInfoTitle:(NSString *)infoTitle
 {
+    _infoTitle = infoTitle;
     [self.infoTitleLable setText:infoTitle];
 }
 
 - (void)setInfoDescription:(NSString *)infoDescription
 {
+    _infoDescription = infoDescription;
     [self.infoDescriptionLable setText:infoDescription];
 }
 
 - (void)setInfoImageUrl:(NSString *)infoImageUrl
 {
+    _infoImageUrl = infoImageUrl;
     [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:infoImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+}
+
+- (void)setIsLike:(BOOL)isLike
+{
+    _isLike = isLike;
+    if (isLike) {
+        [_likeButton setTitle:@"喜欢" forState:UIControlStateNormal];
+        [_likeButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
+        [_likeButton setTitleColor:kTEXTCOLOR forState:UIControlStateHighlighted];
+    } else {
+        [_likeButton setTitle:@"未喜欢" forState:UIControlStateNormal];
+        [_likeButton setTitleColor:kTEXTCOLOR forState:UIControlStateNormal];
+        [_likeButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateHighlighted];
+    }
+
 }
 
 #pragma  mark - get

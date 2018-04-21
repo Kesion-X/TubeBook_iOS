@@ -24,6 +24,7 @@
 #import "ReactiveObjC.h"
 #import "TubeWebViewViewController.h"
 #import "ShowArticleUIViewController.h"
+#import "TubeAlterCenter.h"
 
 @interface NewestViewController () <RefreshTableViewControllerDelegate>
 
@@ -71,7 +72,8 @@
                 [self.refreshTableView reloadData];
             }
             NSDictionary *contentDicary = page.content.contentData;
-            for ( NSDictionary *contentDic in [contentDicary objectForKey:@"list"] ) {
+            NSArray *list = [contentDicary objectForKey:@"list"];
+            for ( NSDictionary *contentDic in list ) {
                 
                 ArticleType articleType = [[contentDic objectForKey:@"tabtype"] integerValue];
                 NSString *articlepic = [contentDic objectForKey:@"articlepic"];
@@ -157,8 +159,15 @@
                 }
                 
             }
-            [self.refreshTableView reloadData];
-            index ++;
+            
+            if ( index==0 && list.count==0 ) {
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"暂无关注者最新内容" duration:1.0f];
+            }
+            
+            if (list.count>0) {
+                [self.refreshTableView reloadData];
+                index ++;
+            }
         }
     }];
 }
@@ -173,8 +182,9 @@
             NSDictionary *userinfo = [contentDic objectForKey:@"userinfo"];
             (content).avatarUrl = [userinfo objectForKey:@"avatar"];
             (content).userName = (content).userUid;
-            if ([userinfo objectForKey:@"nick"]) {
-                (content).userName = [userinfo objectForKey:@"nick"];
+            NSString *nick = [userinfo objectForKey:@"nick"];
+            if ( nick && nick.length>0 ) {
+                content.userName = [userinfo objectForKey:@"nick"];
             }
             (content).motto = [userinfo objectForKey:@"description"];
             //[self.refreshTableView reload]

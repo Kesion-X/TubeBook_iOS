@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIColor *color;
 
 - (instancetype)initUITagView:(NSString *)tagText color:(UIColor *)color;
+- (void)setTagName:(NSString *)tagName;
 - (void)setTagColor:(UIColor *)color;
 - (CGFloat)getUIHeight;
 - (CGFloat)getUIWidht;

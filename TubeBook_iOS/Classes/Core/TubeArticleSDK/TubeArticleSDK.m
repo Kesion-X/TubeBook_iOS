@@ -171,4 +171,20 @@
     [self.articleManager fetchedRecommendByHotArticleListtWithIndex:index uid:uid articleType:articleType fouseType:fouseType callBack:callBack];
 }
 
+/*
+ * @brief 按基于用户推荐算法获取推荐文章(普通/专题/连载)列表
+ */
+- (void)fetchedRecommendByUserCFArticleListtWithIndex:(NSInteger)index uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedRecommendByUserCFArticleListtWithIndex:index uid:uid articleType:articleType callBack:callBack];
+}
+
+/*
+ * @brief 获取文章是否喜欢
+ */
+- (void)fetchedArticleLikeStatusWithAtid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedArticleLikeStatusWithAtid:atid uid:uid callBack:callBack];
+}
+
 @end
