@@ -134,6 +134,17 @@
 - (void)fetchedRecommendByUserCFArticleListtWithIndex:(NSInteger)index uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack;
 
 /*
+ * @brief 获取用户对某专题/连载的关注状态
+ */
+- (void)fetchedTabLikeStatusWithTabid:(NSInteger)tabid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 设置某个专题/连载为关注
+ */
+- (void)setArticleTabWithLikeStatus:(BOOL)likeStatus tabid:(NSInteger)tabid uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack;
+
+
+/*
  * @brief 获取推荐文章(普通/专题/连载)列表
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType fouseType:(FouseType)fouseType;

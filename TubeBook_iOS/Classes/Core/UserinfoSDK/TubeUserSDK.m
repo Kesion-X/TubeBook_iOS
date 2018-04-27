@@ -37,4 +37,15 @@
     [self.userManager fetchedAttentedUserListWithUid:uid index:index callBack:callBlock];
 }
 
+// 获取关注状态
+- (void)fetchedUserAttentStatusWithUid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedUserAttentStatusWithUid:uid attentUid:attentUid callBack:callBlock];
+}
+// 设置关注/取消关注
+- (void)setUserAttentWithStatus:(BOOL)isAttent uid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager setUserAttentWithStatus:isAttent uid:uid attentUid:attentUid callBack:callBlock];
+}
+
 @end

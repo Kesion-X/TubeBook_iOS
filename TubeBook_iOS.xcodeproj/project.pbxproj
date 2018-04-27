@@ -962,12 +962,12 @@
 		3C9500C12085AE3400F089F5 /* UserinfoSDK */ = {
 			isa = PBXGroup;
 			children = (
-				3C9500C22085AE3400F089F5 /* TubeUserSDK.m */,
-				3C9500C32085AE3400F089F5 /* TubeUserConst.m */,
-				3C9500C42085AE3400F089F5 /* TubeUserInfoManager.m */,
 				3C9500C52085AE3400F089F5 /* TubeUserSDK.h */,
+				3C9500C22085AE3400F089F5 /* TubeUserSDK.m */,
 				3C9500C62085AE3400F089F5 /* TubeUserConst.h */,
+				3C9500C32085AE3400F089F5 /* TubeUserConst.m */,
 				3C9500C72085AE3400F089F5 /* TubeUserInfoManager.h */,
+				3C9500C42085AE3400F089F5 /* TubeUserInfoManager.m */,
 			);
 			path = UserinfoSDK;
 			sourceTree = "<group>";

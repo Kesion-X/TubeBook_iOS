@@ -84,6 +84,56 @@
     [self.tubeServer writeData:pg.data];
 }
 
+// 设置关注/取消关注
+- (void)setUserAttentWithStatus:(BOOL)isAttent uid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@", __func__, USER_PROTOCOL, USER_SET_ATTENT_STATUS);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_SET_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"haved request setUserAttentWithStatus, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_SET_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       attentUid, @"attentUid",
+                                       isAttent, @"isAttent", nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_SET_ATTENT_STATUS,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+- (void)fetchedUserAttentStatusWithUid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@", __func__, USER_PROTOCOL, USER_ATTENT_STATUS);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"haved request fetchedUserAttentStatusWithUid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       attentUid, @"attentUid", nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_ATTENT_STATUS,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
 
 #pragma mark - delegate
 
@@ -108,7 +158,15 @@
         [self callBackToMain:pg method:[USER_FETCH_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_ATTENT_USERLIST] ) {
         [self callBackToMain:pg method:[USER_ATTENT_USERLIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_SET_ATTENT_STATUS] ) {
+        [self callBackToMain:pg method:[USER_SET_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_ATTENT_STATUS] ) {
+        [self callBackToMain:pg method:[USER_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
     }
+    
+    
+    
+    
 }
 
 - (void)callBackToMain:(BaseSocketPackage *)pg method:(NSString *)method

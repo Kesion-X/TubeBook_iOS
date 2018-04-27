@@ -530,6 +530,64 @@
 }
 
 /*
+ * @brief 获取用户对某专题/连载的关注状态
+ */
+- (void)fetchedTabLikeStatusWithTabid:(NSInteger)tabid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_TAB_LIKE_STATUS);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_TAB_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request fetchedTabAttentStatusWithTabid, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_TAB_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(tabid), @"tabid", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_TAB_LIKE_STATUS,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 设置某个专题/连载为关注
+ */
+- (void)setArticleTabWithLikeStatus:(BOOL)likeStatus tabid:(NSInteger)tabid uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_TAB_SET_LIKE);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_TAB_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"haved request setArticleTabWithLikeStatus, wait after");
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_TAB_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(tabid), @"tabid",
+                                       @(likeStatus), @"likeStatus",
+                                       @(articleType), @"articleType", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_TAB_SET_LIKE,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
  * @brief 获取推荐文章(普通/专题/连载)列表
  */
 - (void)fetchedRecommendArticleListtWithIndex:(NSInteger)index articleType:(ArticleType)articleType fouseType:(FouseType)fouseType
@@ -596,6 +654,8 @@
         [self callBackToMain:pg method:[ARTICLE_RECOMMEND_BY_USERCF_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_LIKE_STATUS] ) {
         [self callBackToMain:pg method:[ARTICLE_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_TAB_LIKE_STATUS] ) {
+        [self callBackToMain:pg method:[ARTICLE_TAB_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     }
 }
 

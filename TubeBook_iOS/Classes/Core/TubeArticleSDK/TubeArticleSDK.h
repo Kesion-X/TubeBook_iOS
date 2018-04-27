@@ -133,4 +133,14 @@
  */
 - (void)fetchedArticleLikeStatusWithAtid:(NSString *)atid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
 
+/*
+ * @brief 获取用户对某专题/连载的关注状态
+ */
+- (void)fetchedTabLikeStatusWithTabid:(NSInteger)tabid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 设置某个专题/连载为关注
+ */
+- (void)setArticleTabWithLikeStatus:(BOOL)likeStatus tabid:(NSInteger)tabid uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack;
+
 @end

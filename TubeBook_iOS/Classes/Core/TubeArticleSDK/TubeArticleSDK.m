@@ -187,4 +187,20 @@
     [self.articleManager fetchedArticleLikeStatusWithAtid:atid uid:uid callBack:callBack];
 }
 
+/*
+ * @brief 获取用户对某专题/连载的关注状态
+ */
+- (void)fetchedTabLikeStatusWithTabid:(NSInteger)tabid uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedTabLikeStatusWithTabid:tabid uid:uid callBack:callBack];
+}
+
+/*
+ * @brief 设置某个专题/连载为关注
+ */
+- (void)setArticleTabWithLikeStatus:(BOOL)likeStatus tabid:(NSInteger)tabid uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager setArticleTabWithLikeStatus:likeStatus tabid:tabid uid:uid articleType:articleType callBack:callBack];
+}
+
 @end

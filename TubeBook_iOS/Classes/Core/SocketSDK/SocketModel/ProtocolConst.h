@@ -33,13 +33,17 @@
 #define ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB @"ArticleCreateTopicOrSerial"
 #define ARTICLE_RECOMMEND_BY_HOT_LIST @"ArticleRecommendByHotList"
 #define ARTICLE_RECOMMEND_BY_USERCF_LIST @"ArticleRecommendByUserCFList"
-#define ARTICLE_LIKE_STATUS @"ArticleLikeStatus" 
+#define ARTICLE_LIKE_STATUS @"ArticleLikeStatus"
+#define ARTICLE_TAB_LIKE_STATUS @"ArticleTabLikeStatus"
+#define ARTICLE_TAB_SET_LIKE @"ArticleTabSetLike"
 
 #define ArticleTopicTitleList @"ArticleTopicTitleList"
 
 #define USER_PROTOCOL @"User_Protocol"
 #define USER_FETCH_INFO @"UserFetchInfo"
 #define USER_ATTENT_USERLIST @"UserAttentUserList"
+#define USER_SET_ATTENT_STATUS @"UserSetAttentStatus"
+#define USER_ATTENT_STATUS @"UserAttentStatus"
 
 #define IM_PROTOCOL @"IMProtocol"
 // reicve_uid send_uid procotol method title content time 
