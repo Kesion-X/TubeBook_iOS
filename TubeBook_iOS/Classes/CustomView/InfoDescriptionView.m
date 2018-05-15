@@ -31,9 +31,9 @@
 
 - (instancetype)initInfoDescriptionViewWithFrame:(CGRect)frame infoType:(InfoDescriptionType)infoType
 {
+    self.infoType = infoType;
     self = [self initWithFrame:frame];
     if ( self ) {
-        self.infoType = infoType;
 //        self.spaceV.frame = frame;
 //        self.backImageView.frame = frame;
         [self setBackgroundColor:[UIColor whiteColor]];
@@ -72,37 +72,35 @@
     [self.infoNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.infoImageView.mas_right).offset(8);
         make.top.equalTo(self);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(200);
         make.height.mas_equalTo(30);
     }];
     [self.infoMottoLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.infoImageView.mas_right).offset(8);
         make.top.equalTo(self.infoNameLable.mas_bottom);
-        make.width.mas_equalTo(150);
+        make.right.equalTo(self).offset(-16);
         make.height.mas_equalTo(20);
     }];
     [self.infoTimeLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-8);
         make.top.equalTo(self.infoMottoLable);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(150);
         make.height.mas_equalTo(20);
     }];
     [self.infoTitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.infoImageView.mas_bottom).offset(8);
         make.left.equalTo(self).offset(8);
-        make.width.mas_equalTo(200);
+        make.right.equalTo(self).offset(-16);
         make.height.mas_equalTo(30);
     }];
-    if ( self.infoType == InfoDescriptionTypeArticle ) {
-        [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(4);
-            make.right.equalTo(self).offset(-8);
-            make.width.mas_equalTo(80);
-            make.height.mas_equalTo(30);
-        }];
-        
-        
-    } else if ( self.infoType == InfoDescriptionTypeTopic ) {
+
+    [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(4);
+        make.right.equalTo(self).offset(-8);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(30);
+    }];
+    if (self.infoType == InfoDescriptionTypeTopic || self.infoType == InfoDescriptionTypeSerial) {
         [self.infoDescriptionLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.infoTitleLable.mas_bottom).offset(4);
             make.left.equalTo(self).offset(8);
@@ -111,6 +109,13 @@
         }];
     }
 
+}
+
+- (void)setActionInfoImageWithTarget:(nullable id)target action:(nullable SEL)action
+{
+    UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:target action:action];
+    [self.infoImageView addGestureRecognizer:tapGesturRecognizer];
+    [self.infoImageView setUserInteractionEnabled:YES];
 }
 
 + (CGFloat)getViewHeightWithInfotype:(InfoDescriptionType)infoType;
@@ -125,6 +130,17 @@
         case InfoDescriptionTypeTopic:
         {
             height = 8 + 50 + 8 + 30 + 4 + 50 +4;
+            break;
+        }
+        case InfoDescriptionTypeSerial:
+        {
+            height = 8 + 50 + 8 + 30 + 4 + 50 +4;
+            break;
+        }
+        case InfoDescriptionTypeUser:
+        {
+            height = 8 + 50 + 8 + 30 + 4;
+            break;
         }
         default:
             break;
@@ -159,6 +175,11 @@
 }
 
 #pragma mark - set
+- (void)setUid:(NSString *)uid
+{
+    _uid = uid;
+    self.infoImageView.uid = uid;
+}
 
 - (void)setInfoName:(NSString *)infoName
 {
@@ -228,7 +249,7 @@
 - (UIImageView *)infoImageView
 {
     if (!_infoImageView) {
-        _infoImageView = [[UIImageView alloc] init];
+        _infoImageView = [[TubeUIImageView alloc] init];
         _infoImageView.layer.cornerRadius = 5;
         _infoImageView.layer.borderWidth = 0.5;
         _infoImageView.layer.borderColor = kTAB_TEXT_COLOR.CGColor;

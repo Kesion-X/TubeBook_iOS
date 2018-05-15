@@ -30,7 +30,7 @@
     [self.articleTitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(8);
         make.top.equalTo(self.contentView).offset (8);
-        make.width.mas_equalTo(200);
+        make.right.equalTo(self.contentView).offset(-16);
     }];
     [self.articleTimeLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(-kCELL_MARGIN);

@@ -9,8 +9,9 @@
 #import "CycleTableCell.h"
 #import "Masonry.h"
 #include "CKMacros.h"
+#import "CycleContent.h"
 
-@implementation CycleTableCell
+@implementation CycleTableCell 
 
 - (instancetype)initWithDateType:(CKDataType *)type
 {
@@ -56,6 +57,20 @@
     // Configure the view for the selected state
 }
 
+- (void)setContent:(CKContent *)content
+{
+    if ([content isKindOfClass:[CycleContent class]]) {
+        CycleContent *c = (CycleContent *)content;
+        [self loadData:c.titles imageUrls:c.imageUrls];
+    }
+}
+
+- (void)loadData:(NSArray *)titles imageUrls:(NSArray *)imagesURLs
+{
+    self.cycleScrollView.titlesGroup = titles;
+    self.cycleScrollView.imageURLStringsGroup = imagesURLs;
+}
+
 #pragma mark - get
 - (SDCycleScrollView *)cycleScrollView
 {
@@ -79,8 +94,20 @@
                             ];
         _cycleScrollView.titlesGroup = titles;
         _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+        _cycleScrollView.delegate = self;
     }
     return _cycleScrollView;
+}
+
+#pragma mark - delegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    TubeRefreshTableViewController *controller = self.viewController;
+    if ([controller.keyForIndexBlockDictionary objectForKey:kCycleTableCellCycleImageTap]) {
+        tapBlock block = [controller.keyForIndexBlockDictionary objectForKey:kCycleTableCellCycleImageTap];
+        NSDictionary *dic = @{@"index":@(index)};
+        block([controller.refreshTableView indexPathForCell:self], dic);
+    }
 }
 
 @end

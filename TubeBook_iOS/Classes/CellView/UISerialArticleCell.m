@@ -52,8 +52,20 @@
             make.right.equalTo(self.contentView);
             make.height.mas_equalTo([self.homeCellItemFootView getUIHeight]);
         }];
+        UITapGestureRecognizer *tapAvatarGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapSerialTab)];
+        [self.homeCellTopicOrSerialView addGestureRecognizer:tapAvatarGesturRecognizer];
+        [self.homeCellTopicOrSerialView setUserInteractionEnabled:YES];
     }
     return self;
+}
+
+- (void)tapSerialTab
+{
+    TubeRefreshTableViewController *controller = self.viewController;
+    if ([controller.keyForIndexBlockDictionary objectForKey:kSerialTabViewTap]) {
+        tapForIndexBlock block = [controller.keyForIndexBlockDictionary objectForKey:kSerialTabViewTap];
+        block([controller.refreshTableView indexPathForCell:self]);
+    }
 }
 
 - (CGFloat)getCellHeight
@@ -67,7 +79,6 @@
 
 + (CGFloat)getCellHeight:(CKContent *)content
 {
-    //NSLog(@"Height %f",[UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:NO] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + [UIHomeCellTopicOrSerialView getUIHeight:content.dataType.articleKind]);
     return [UIHomeCellItemHeadView getUIHeight:content.dataType.userState] + [UIHomeCellItemContentView getUIHeight:content.dataType.isHaveImage] + [UIHomeCellItemFootView getUIHeight:content.dataType.userState] + [UIHomeCellTopicOrSerialView getUIHeight:content.dataType.articleKind] + 16;
 }
 
@@ -80,13 +91,6 @@
         [self.homeCellTopicOrSerialView setDataWithTitle:atContent.serialTitle tagImageUrl:atContent.serialImageUrl detail:content.serialDescription];
 
     }
-//    else {
-//        
-//        TopicArticleContent *atContent = (TopicArticleContent *)content;
-//        [self.homeCellItemHeadView setDataWithAvatarUrl:atContent.avatarUrl userName:atContent.userName time:atContent.time userState:atContent.dataType.userState];
-//        [self.homeCellItemContentView setDataWithTitle:atContent.articleTitle contentDescription:atContent.articleDescription contentUrl:atContent.articlePic];
-//        [self.homeCellTopicOrSerialView setDataWithTitle:atContent.topicTitle tagImageUrl:atContent.topicImageUrl detail:content.topicDescription];
-//    }
 }
 
 

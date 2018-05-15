@@ -28,7 +28,7 @@
 
 - (void)dealloc
 {
-    [self.indicator removeFromSuperview];
+
 }
 
 - (instancetype)initShowArticleUIViewControllerWithAtid:(NSString *)atid uid:(NSString *)uid
@@ -55,16 +55,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:kTUBEBOOK_THEME_NORMAL_COLOR target:self action:@selector(back)];
-    [self createIndicator];
-    [self configIndicator:self.indicator];
+
     [self configPageView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) arrayControllers:[NSMutableArray arrayWithObjects:self.articleWebViewController,self.articleCommentViewController, nil]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
+    [self createIndicator];
+    [self configIndicator:self.indicator];
     [self configNavigation];
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    NSLog(@"%s ",__func__);
+    [self.indicator removeFromSuperview];
 }
 
 - (void)configNavigation
@@ -85,25 +94,28 @@
                                                       textNormalColor:kTEXTCOLOR
                                                        textLightColor:kTUBEBOOK_THEME_NORMAL_COLOR
                                                    isEnableAutoScroll:NO];
-        [self.navigationController.navigationBar addSubview:self.indicator];
-        [self.indicator mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.navigationController.navigationBar);
-            make.centerY.equalTo(self.navigationController.navigationBar);
-            make.width.mas_equalTo([self.indicator getUIWidth]);
-            make.height.mas_equalTo([self.indicator getUIHeight]);
-        }];
-        [self.indicator setShowIndicatorItem:0];
-        [self.navigationController.navigationItem.titleView removeFromSuperview];
-        
-        self.navigationController.navigationItem.titleView = self.indicator;
+
     }
+    [self.navigationController.navigationBar addSubview:self.indicator];
+    [self.indicator mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.navigationController.navigationBar);
+        make.centerY.equalTo(self.navigationController.navigationBar);
+        make.width.mas_equalTo([self.indicator getUIWidth]);
+        make.height.mas_equalTo([self.indicator getUIHeight] - 2);
+    }];
 }
 
 #pragma mark - action
 
 - (void)back
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController.viewControllers.count > 1) {
+        NSLog(@"%s pop view controller",__func__);
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        NSLog(@"%s dismiss view controller",__func__);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 
@@ -124,7 +136,7 @@
 - (CommentUIViewController *)articleCommentViewController
 {
     if (!_articleCommentViewController) {
-        _articleCommentViewController = [[CommentUIViewController alloc] init];
+        _articleCommentViewController = [[CommentUIViewController alloc] initCommentUIViewControllerWithAutorUid:self.uid atid:self.atid commentType:CommentTypeArticle];
     }
     return _articleCommentViewController;
 }

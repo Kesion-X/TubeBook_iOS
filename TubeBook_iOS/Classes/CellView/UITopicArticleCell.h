@@ -12,6 +12,7 @@
 #import "UIHomeCellItemFootView.h"
 #import "UIHomeCellItemHeadView.h"
 #import "UIHomeCellTopicOrSerialView.h"
+#define kTopicTabViewTap [NSStringFromClass([UITopicArticleCell class]) stringByAppendingString:@"tabViewTap"]
 
 @interface UITopicArticleCell : CKTableCell
 

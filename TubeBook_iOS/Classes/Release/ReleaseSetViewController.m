@@ -300,7 +300,7 @@
         //[self presentViewController:vc animated:YES completion:nil];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ( self.type == ArticleTypeSerial ) {
-        TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeSerialTitle contentCallBack:^(CKContent *content) {
+        TubeSearchTableViewController *vc = [[TubeSearchTableViewController alloc] initTubeSearchTableViewControllerWithType:TubeSearchTypeSerialTitle fouseType:FouseTypeCreate  contentCallBack:^(CKContent *content) {
             self.chioseContent = content;
             [self.articleTypeTitleChioseButton setTitle:content.serialTitle forState:UIControlStateNormal];
             [self.articleTypeTitleChioseButton setTitleColor:kTUBEBOOK_THEME_NORMAL_COLOR forState:UIControlStateNormal];
@@ -314,13 +314,14 @@
 - (IBAction)addArticlePic:(id)sender
 {
     if ([TubePhotoUtil isCanUsePhotos]) {
-        NSLog(@"%s primary yes", __func__);
+        NSLog(@"%s primary success", __func__);
         self.pickerController = [[UIImagePickerController alloc] init];
         self.pickerController.delegate = self;
         self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:self.pickerController animated:YES completion:nil];
         
     } else {
+        NSLog(@"%s primary fail",__func__);
         [AltertControllerUtil showAlertTitle:@"警告" message:@"没有访问相册的权限！请到设置中设置权限！" confirmTitle:@"确定" confirmBlock:nil cancelTitle:nil cancelBlock:nil fromControler:self];
     }
 }
@@ -344,9 +345,8 @@
                                                                      self.articlePic, @"articlepic", nil]
                                                            callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
                                                                if ( status == DataCallBackStatusSuccess) {
-                                                                   [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"发布成功" duration:2.0f fromeVC:self];
+                                                                   [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"发布成功" duration:1.0f];
                                                                    [self requestSetTag:self.atid];
-                                                                   [self requestSetTab:self.atid];
                                                                }
     }];
 }
@@ -360,8 +360,9 @@
     }
     [[TubeSDK sharedInstance].tubeArticleSDK setArticleTagWithAtid:atid tags:tags callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if (status != DataCallBackStatusSuccess) {
-            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签设置失败，请检查网络" duration:1.0f fromeVC:self];
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签设置失败，请检查网络" duration:1.0f];
         }
+        [self requestSetTab:self.atid];
     }];
 }
 
@@ -369,8 +370,11 @@
 {
     [[TubeSDK sharedInstance].tubeArticleSDK setArticleTabWithAtid:atid articleType:self.type tabid:self.chioseContent.id callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if (status != DataCallBackStatusSuccess) {
-            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签标题失败，请检查网络" duration:1.0f fromeVC:self];
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"标签标题失败，请检查网络" duration:1.0f];
         }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
     }];
 }
 

@@ -8,6 +8,7 @@
 
 #import "TubeRefreshTableViewController.h"
 #import "CKContent.h"
+#import "TubeArticleConst.h"
 
 typedef NS_ENUM(NSInteger, TubeSearchType)
 {
@@ -20,6 +21,8 @@ typedef void(^callBackSelectedContentBlock)(CKContent *content);
 @interface TubeSearchTableViewController : TubeRefreshTableViewController
 
 @property (nonatomic, assign) TubeSearchType searchType;
+@property (nonatomic, assign) FouseType fouseType;
 - (instancetype)initTubeSearchTableViewControllerWithType:(TubeSearchType)searchType contentCallBack:(callBackSelectedContentBlock)contentCallBackBlock;
+- (instancetype)initTubeSearchTableViewControllerWithType:(TubeSearchType)searchType fouseType:(FouseType)fouse contentCallBack:(callBackSelectedContentBlock)contentCallBackBlock;
 
 @end

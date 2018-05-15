@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%s",__func__);
     [self setupSelfView];
     [self addSubViews];
     [self addConstraint];
@@ -51,6 +52,8 @@
     
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     [self.navigationController.navigationBar setHidden:YES];
 }
 

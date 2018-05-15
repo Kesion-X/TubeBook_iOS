@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TubeRefreshTableViewController.h"
+#import "TubeArticleConst.h"
 
 @interface SerialViewController :TubeRefreshTableViewController
+
+@property (nonatomic, assign) FouseType fouseType;
+@property (nonatomic, assign) NSString *uid;
+- (instancetype)initSerialViewControllerWithFouseType:(FouseType)fouseType uid:(NSString *)uid;
 
 @end

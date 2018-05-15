@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CKCenterView.h"
 #import "CKMessageCenterView.h"
+#import "AlterBaseViewController.h"
 
-@interface AlterMessageViewController : UIViewController
+@interface AlterMessageViewController : AlterBaseViewController
 
 - (instancetype)initAlterMessageViewControllerWithMessage:(NSString *)message;
 - (instancetype)initAlterMessageViewControllerWithMessage:(NSString *)message duration:(CGFloat)duration;

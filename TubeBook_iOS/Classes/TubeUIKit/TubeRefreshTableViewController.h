@@ -13,6 +13,9 @@
 #import "CKTableCell.h"
 #import "CKMacros.h"
 
+typedef void(^tapForIndexBlock)(NSIndexPath *indexPath);
+typedef void(^tapBlock)(NSIndexPath *indexPath, NSDictionary *dic);
+
 @protocol RefreshTableViewControllerDelegate
 
 @optional
@@ -23,11 +26,15 @@
 
 @interface TubeRefreshTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, strong) UIRefreshTableView *refreshTableView;
-@property(nonatomic, strong) NSMutableArray *contentData;
-@property(nonatomic, strong) NSMutableDictionary *classMap;
-@property(nonatomic, strong) id<RefreshTableViewControllerDelegate> refreshTableViewControllerDelegate;
+@property (nonatomic, strong) UIRefreshTableView *refreshTableView;
+@property (nonatomic, strong) NSMutableArray *contentData;
+@property (nonatomic, strong) NSMutableDictionary *classMap;
+@property (nonatomic, strong) NSMutableDictionary *keyForIndexBlockDictionary;
+@property (nonatomic, strong) id<RefreshTableViewControllerDelegate> refreshTableViewControllerDelegate;
 
 - (void)registerCell:(Class)cellClass forKeyContent:(Class)contentClass;
 - (void)refreshLayout;
+- (void)registerActionKey:(NSString *)actionKey forKeyBlock:(tapForIndexBlock)indexBlock;
+- (void)registertapBlockKey:(NSString *)actionKey forKeyBlock:(tapBlock)block;
+
 @end

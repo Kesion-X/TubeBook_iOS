@@ -19,6 +19,7 @@
 #include "AuthorViewController.h"
 #include "SerialViewController.h"
 #include "TopicViewController.h"
+#import "UserInfoUtil.h"
 
 @interface HomeTabViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIIndicatorViewDelegate, UIScrollViewDelegate>
 
@@ -109,6 +110,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     [self configNavigation];
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
 }
@@ -226,9 +228,10 @@
         _arrayControllers = [[NSMutableArray alloc] init];
         [_arrayControllers addObject:[[NewestViewController alloc] init]];
         [_arrayControllers addObject:[[RecommendViewController alloc] init]];
-        [_arrayControllers addObject:[[TopicViewController alloc] init]];
-        [_arrayControllers addObject:[[SerialViewController alloc] init]];
-        [_arrayControllers addObject:[[AuthorViewController alloc] init]];
+        [_arrayControllers addObject:[[TopicViewController alloc] initTopicViewControllerWithFouseType:FouseTypeAttrent
+                                      uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]]];
+        [_arrayControllers addObject:[[SerialViewController alloc] initSerialViewControllerWithFouseType:FouseTypeAttrent uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]]];
+        [_arrayControllers addObject:[[AuthorViewController alloc] initAuthorViewControllerWithAutorType:AuthorTypeAttent]];
     }
     return _arrayControllers;
 }

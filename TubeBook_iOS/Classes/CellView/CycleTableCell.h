@@ -8,9 +8,12 @@
 
 #import "CKTableCell.h"
 #import "SDCycleScrollView.h"
+#define kCycleTableCellCycleImageTap [NSStringFromClass([CycleTableCell class]) stringByAppendingString:@"cycleImageTap"]
 
-@interface CycleTableCell : CKTableCell
+@interface CycleTableCell : CKTableCell <SDCycleScrollViewDelegate>
 
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
+
+- (void)loadData:(NSArray *)titles imageUrls:(NSArray *)imagesURLs;
 
 @end

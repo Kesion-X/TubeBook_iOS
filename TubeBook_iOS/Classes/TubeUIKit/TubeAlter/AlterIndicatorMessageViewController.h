@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CKIndicatorMessageCenterView.h"
+#import "AlterBaseViewController.h"
 
-@interface AlterIndicatorMessageViewController : UIViewController
+@interface AlterIndicatorMessageViewController : AlterBaseViewController
 
 - (instancetype)initAlterIndicatorMessageViewControllerWithMessage:(NSString *)message;
 

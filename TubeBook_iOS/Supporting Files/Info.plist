@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>为了更好的服务，TubeBook可能需要访问的相机</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>为了更好的服务，TubeBook可能需要访问的相册</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleExecutable</key>
@@ -35,6 +31,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>为了更好的服务，TubeBook可能需要访问的相机</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>为了更好的服务，TubeBook可能需要访问的相册</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

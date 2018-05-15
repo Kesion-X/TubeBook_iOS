@@ -37,4 +37,66 @@
     [self.userManager fetchedAttentedUserListWithUid:uid index:index callBack:callBlock];
 }
 
+// 获取用户关注用户数
+- (void)fetchedUserAttenteUserCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedUserAttenteUserCountWithUid:uid callBack:callBlock];
+}
+
+// 获取用户粉丝数
+- (void)fetchedUserAttentedCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedUserAttentedCountWithUid:uid callBack:callBlock];
+}
+
+// 获取关注状态
+- (void)fetchedUserAttentStatusWithUid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedUserAttentStatusWithUid:uid attentUid:attentUid callBack:callBlock];
+}
+// 设置关注/取消关注
+- (void)setUserAttentWithStatus:(BOOL)isAttent uid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager setUserAttentWithStatus:isAttent uid:uid attentUid:attentUid callBack:callBlock];
+}
+
+// 获取用户写的文章列表
+- (void)fetchedSelfArticleListWithIndex:(NSInteger)index
+                                    uid:(NSString *)uid
+                            articleType:(UserArticleType)articleType
+                               callback:(dataCallBackBlock)callback
+{
+    [self.userManager fetchedSelfArticleListWithIndex:index uid:uid articleType:articleType callback:callback];
+}
+
+// 获取粉丝列表
+- (void)fetchedFansListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedFansListWithIndex:index uid:uid callBack:callBlock];
+}
+
+// 获取自己喜欢的文章列表
+- (void)fetchedLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedLikeArticleListWithIndex:index uid:uid callBack:callBlock];
+}
+
+// 设置头像
+- (void)setUserAvaterWithUid:(NSString *)uid imageUrl:(NSString *)imageUrl callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager setUserAvaterWithUid:uid imageUrl:imageUrl callBack:callBlock];
+}
+
+// 设置第三方文章收藏状态
+- (void)setThirdCollectionStatus:(BOOL)collectStatus url:(NSString *)url uid:(NSString *)uid title:(NSString *)title callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager setThirdCollectionStatus:collectStatus url:url uid:uid title:title callBack:callBlock];
+}
+
+- (void)fetchedThirdCollectionListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    [self.userManager fetchedThirdCollectionListWithIndex:index uid:uid callBack:callBlock];
+}
+
+
 @end

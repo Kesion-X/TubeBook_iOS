@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CKMacros.h"
+#import "TubeUIImageView.h"
 
 typedef NS_ENUM(NSInteger, InfoDescriptionType)
 {
@@ -19,6 +20,7 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 
 @interface InfoDescriptionView : UIView
 
+@property (nonatomic, strong) NSString *uid;
 @property (nonatomic, strong) NSString *infoImageUrl;
 @property (nonatomic, strong) NSString *infoName;
 @property (nonatomic, strong) NSString *infomotto;
@@ -30,7 +32,7 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 @property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, assign) InfoDescriptionType infoType;
 @property (nonatomic, strong) UIButton *likeButton;
-@property (nonatomic, strong) UIImageView *infoImageView;
+@property (nonatomic, strong) TubeUIImageView *infoImageView;
 @property (nonatomic, strong) UILabel *infoNameLable;
 @property (nonatomic, strong) UILabel *infoMottoLable;
 @property (nonatomic, strong) UILabel *infoTimeLable;
@@ -43,5 +45,6 @@ typedef NS_ENUM(NSInteger, InfoDescriptionType)
 - (void)setDetailBackImage:(UIImage *)image;
 - (void)setAllTitleLableWithColor:(UIColor *)color;
 - (void)setActionForLikeButtonWithTarget:(nullable id)target action:(SEL)action;
+- (void)setActionInfoImageWithTarget:(nullable id)target action:(nullable SEL)action;
 
 @end

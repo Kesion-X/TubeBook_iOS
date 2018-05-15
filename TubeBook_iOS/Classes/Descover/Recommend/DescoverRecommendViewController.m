@@ -20,6 +20,8 @@
 
 @interface DescoverRecommendViewController () <RefreshTableViewControllerDelegate>
 
+@property (nonatomic, strong) CycleContent *topCycContent;
+
 @end
 
 @implementation DescoverRecommendViewController
@@ -31,14 +33,58 @@
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[CycleTableCell class] forKeyContent:[CycleContent class]];
     [self registerCell:[UIDescoverRecommendCell class] forKeyContent:[DescoverRecommendContent class]];
-    [self.contentData addObject:[[CycleContent alloc] init]];
-
+    self.topCycContent = [[CycleContent alloc] init];
+    [self.contentData addObject:self.topCycContent];
+    [self requestTop5];
     [self requestData];
+    [self registertapBlockKey:kCycleTableCellCycleImageTap forKeyBlock:^(NSIndexPath *indexPath, NSDictionary *dic) {
+        NSInteger index = [[dic objectForKey:@"index"] integerValue];
+        NSString *atid = [self.topCycContent.atidList objectAtIndex:index];
+        NSString *uid = [self.topCycContent.userIdList objectAtIndex:index];
+        [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:atid uid:uid] animated:YES];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    NSLog(@"%s",__func__);
+}
 
+#pragma mark - request
+
+- (void)requestTop5
+{
+    NSLog(@"%s requestTop5",__func__);
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedRecommendByHotArticleListtWithIndex:0 uid:nil articleType:ArticleTypeTopic|ArticleTypeMornal|ArticleTypeSerial fouseType:FouseTypeAll callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *contentDicary = page.content.contentData;
+            NSArray *list = [contentDicary objectForKey:@"list"];
+            NSMutableArray *imageUrls = [[NSMutableArray alloc] init];
+            NSMutableArray *titles = [[NSMutableArray alloc] init];
+            NSMutableArray *atids = [[NSMutableArray alloc] init];
+            NSMutableArray *useridList = [[NSMutableArray alloc] init];
+            for ( NSDictionary *contentDic in list ) {
+                ArticleType articleType = [[contentDic objectForKey:@"tabtype"] integerValue];
+                NSString *articlepic = [contentDic objectForKey:@"articlepic"];
+                NSString *atid = [contentDic objectForKey:@"atid"];
+                NSString *userid = [contentDic objectForKey:@"userid"];
+                NSString *title = [contentDic objectForKey:@"title"];
+                NSInteger tabid = [[contentDic objectForKey:@"tabid"] integerValue];
+                if (articlepic && articlepic.length > 0) {
+                    [imageUrls addObject:articlepic];
+                    [titles addObject:title];
+                    [atids addObject:atid];
+                    [useridList addObject:userid];
+                }
+            }
+            self.topCycContent.titles = titles;
+            self.topCycContent.imageUrls = imageUrls;
+            self.topCycContent.atidList = atids;
+            self.topCycContent.userIdList = useridList;
+            [self.refreshTableView reloadData];
+        }
+    }];
 }
 
 
@@ -52,19 +98,29 @@
                 NSRange rang = NSMakeRange(1, self.contentData.count - 1);
                 [self.contentData removeObjectsInRange:(rang)];
                 [self.refreshTableView reloadData];
+                [self requestTop5];
             }
             NSDictionary *contentDicary = page.content.contentData;
             NSArray *list = [contentDicary objectForKey:@"list"];
             for ( NSDictionary *contentDic in list ) {
+                NSString *atid = [contentDic objectForKey:@"atid"];
                 
+                BOOL ishave = NO;
+                for (CKContent *c in self.contentData) {
+                    if ([c.atid isEqualToString:atid]) {
+                        ishave = YES;
+                        break;
+                    }
+                }
+                if (ishave) {
+                    continue;
+                }
                 ArticleType articleType = [[contentDic objectForKey:@"tabtype"] integerValue];
                 NSString *articlepic = [contentDic objectForKey:@"articlepic"];
-                NSString *atid = [contentDic objectForKey:@"atid"];
                 NSInteger time = [[contentDic objectForKey:@"createtime"] integerValue];
                 NSString *description = [contentDic objectForKey:@"description"];
                 NSString *userid = [contentDic objectForKey:@"userid"];
                 NSString *title = [contentDic objectForKey:@"title"];
-                
                 NSInteger tabtype = [[contentDic objectForKey:@"tabtype"] integerValue];
                 NSInteger tabid = [[contentDic objectForKey:@"tabid"] integerValue];
                 switch (articleType) {
@@ -158,40 +214,32 @@
                 content.userName = [userinfo objectForKey:@"nick"];
             }
             (content).motto = [userinfo objectForKey:@"description"];
-            //[self.refreshTableView reload]
-            for (int i=0 ; i < self.contentData.count; ++i) {
-                if ([self.contentData objectAtIndex:i] == content) {
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }
+            [self.refreshTableView reloadData];
         }
     }];
 }
-
 
 #pragma mark - delegate
 - (void)refreshData
 {
     index = 0 ;
     [self requestData];
-    NSLog(@"refreshData");
+    NSLog(@"%s refreshData, index = %lu",__func__, index);
 }
 
 - (void)loadMoreData
 {
     
     [self requestData];
-    NSLog(@"loadMoreData");
+    NSLog(@"%s loadMoreData, index = %lu",__func__, index);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CKContent *c = [self.contentData objectAtIndex:indexPath.row];
-    //UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body]];
-    // TubeWebViewViewController *vc = [[TubeWebViewViewController alloc] initTubeWebViewViewControllerWithHtml:c.body];
-    // [self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:c.atid uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]] animated:YES];
+    NSString *userid = c.userUid;
+    NSLog(@"%s select item %@",__func__, c);
+    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:c.atid uid:userid] animated:YES];
 }
 
 

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *userName; //用户名称
 @property (nonatomic, strong) NSString *motto;//用户座右铭
 @property (nonatomic, strong) NSString *time; //动态时间
+@property (nonatomic, assign) NSInteger t_time;
 @property (nonatomic, strong) NSString *pulibshUserid; //发布者id
 @property (nonatomic, strong) NSString *pulibshUserName; //发布者名称
 @property (nonatomic) NSUInteger commentCount; // 评论数
@@ -31,6 +32,7 @@
 @property (nonatomic, strong) NSString *articlePic;
 @property (nonatomic, assign) NSInteger tabType;
 @property (nonatomic, assign) NSInteger tabid;
+@property (nonatomic, strong) NSString *articleUrl;
 
 
 @property (nonatomic, strong) NSString *topicImageUrl;//专题图片

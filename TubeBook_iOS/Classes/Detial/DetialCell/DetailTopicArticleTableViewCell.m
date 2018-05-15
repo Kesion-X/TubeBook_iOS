@@ -32,7 +32,7 @@
     
     [self.articleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(kCELL_MARGIN);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
         make.width.mas_equalTo(48);
         make.height.mas_equalTo(48);
     }];
@@ -47,7 +47,7 @@
         make.height.mas_equalTo(24);
     }];
     [self.articleUserNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.articleImageView.mas_right).offset(16);
+        make.left.equalTo(self.articleTitleLable);
         make.top.equalTo(self.articleTitleLable.mas_bottom).offset(8);
 
     }];
@@ -86,22 +86,47 @@
 
 - (void)setArticleTime:(NSString *)articleTime
 {
+    _articleTime = articleTime;
     [self.articleTimeLable setText:articleTime];
 }
 
 - (void)setArticleTitle:(NSString *)articleTitle
 {
+    _articleTitle = articleTitle;
     [self.articleTitleLable setText:articleTitle];
 }
 
 - (void)setArticleUserName:(NSString *)articleUserName
 {
+    _articleUserName = articleUserName;
     [self.articleUserNameLable setText:articleUserName];
 }
 
 - (void)setArticleImageUrl:(NSString *)articleImageUrl
 {
-    [self.articleImageView sd_setImageWithURL:[NSURL URLWithString:articleImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+    _articleImageUrl = articleImageUrl;
+    if (!articleImageUrl || articleImageUrl.length==0) {
+        self.articleImageView.hidden = YES;
+        [self.articleTitleLable mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(kCELL_MARGIN);
+            make.top.equalTo(self.contentView).offset(8);
+        }];
+    } else {
+        self.articleImageView.hidden = NO;
+        [self.articleImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(kCELL_MARGIN);
+            make.centerY.equalTo(self.contentView);
+            make.width.mas_equalTo(48);
+            make.height.mas_equalTo(48);
+        }];
+        [self.articleTitleLable mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.articleImageView.mas_right).offset(16);
+            make.top.equalTo(self.articleImageView);
+            make.width.mas_equalTo(200);
+        }];
+        
+        [self.articleImageView sd_setImageWithURL:[NSURL URLWithString:articleImageUrl] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+    }
 }
 
 #pragma mark - get

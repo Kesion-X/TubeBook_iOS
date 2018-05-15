@@ -28,21 +28,13 @@
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[SerialCollectionViewCell class] forKeyContent:[DescoverSerialContent class]];
     [self registerClass:[SerialCollectionViewCell class] forCellWithReuseIdentifier:[SerialCollectionViewCell getDequeueId:nil]];
-//    DescoverSerialContent *c = [[DescoverSerialContent alloc] init];
-//    c.serialTitle = @"KEKKKEKKEEEKKEKEKKbkwabdkjwadbkawbdkjawbdkjbawkdjbawkdadnwaldnlwawdaw";
-//    [self.contentData addObject:c];
-//    for (int i=0; i<10; ++i) {
-//        DescoverSerialContent *c = [[DescoverSerialContent alloc] init];
-//        c.userName = @"kesion";
-//        c.serialTitle = @"adnwaldnlwawdaw";
-//        [self.contentData addObject:c];
-//    }
     [self requestData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     self.collectionView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-49);
 }
 
@@ -105,15 +97,7 @@
                 (content).userName = [userinfo objectForKey:@"nick"];
             }
             (content).motto = [userinfo objectForKey:@"description"];
-            //[self.refreshTableView reload]
-//            for (int i=0 ; i < self.contentData.count; ++i) {
-//                if ([self.contentData objectAtIndex:i] == content) {
-//                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//                    [UIView performWithoutAnimation:^{
-//                        [self.collectionView reloadItemsAtIndexPaths:indexPath];
-//                    }];
-//                }
-//            }
+            [self.collectionView reloadData];
         }
     }];
 }
@@ -123,6 +107,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CKContent *content = self.contentData[indexPath.row];
+    NSLog(@"%s didSelectItem %@",__func__, content);
     @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
         @strongify(self);
@@ -135,13 +120,13 @@
 {
     index = 0;
     [self requestData];
-    NSLog(@"refreshData");
+    NSLog(@"%s refreshData, index = %lu",__func__, index);
 }
 
 - (void)loadMoreData
 {
     [self requestData];
-    NSLog(@"loadMoreData");
+    NSLog(@"%s loadMoreData, index = %lu",__func__, index);
 }
 
 @end

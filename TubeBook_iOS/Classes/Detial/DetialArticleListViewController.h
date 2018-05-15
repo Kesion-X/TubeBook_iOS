@@ -14,6 +14,8 @@
 
 @property (nonatomic, assign) TubeDetailType type;
 @property (nonatomic, assign) NSInteger tabid;
+@property (nonatomic, strong) NSString *uid;
+- (instancetype)initDetialArticleListViewControllerWithDetailType:(TubeDetailType)type uid:(NSString *)uid;
 - (instancetype)initDetialArticleListViewControllerWithDetailType:(TubeDetailType)type tabid:(NSInteger)tabid;
 
 @end

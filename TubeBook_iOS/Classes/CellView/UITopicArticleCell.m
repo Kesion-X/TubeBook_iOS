@@ -65,8 +65,20 @@
             make.height.mas_equalTo([self.homeCellItemFootView getUIHeight]);
             
         }];
+        UITapGestureRecognizer *tapAvatarGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapTabView)];
+        [self.homeCellTopicOrSerialView addGestureRecognizer:tapAvatarGesturRecognizer];
+        [self.homeCellTopicOrSerialView setUserInteractionEnabled:YES];
     }
     return self;
+}
+
+- (void)tapTabView
+{
+    TubeRefreshTableViewController *controller = self.viewController;
+    if ([controller.keyForIndexBlockDictionary objectForKey:kTopicTabViewTap]) {
+        tapForIndexBlock block = [controller.keyForIndexBlockDictionary objectForKey:kTopicTabViewTap];
+        block([controller.refreshTableView indexPathForCell:self]);
+    }
 }
 
 - (CGFloat)getCellHeight

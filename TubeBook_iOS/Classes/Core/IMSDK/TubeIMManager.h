@@ -22,5 +22,6 @@
 // notification message
 // reicve_uid send_uid procotol method title content time
 - (void)addNotificationListener:(id <TubeIMNotificationDelegate>)delegate;
+- (void)removeNotificationListener:(id <TubeIMNotificationDelegate>)delegate;
 
 @end

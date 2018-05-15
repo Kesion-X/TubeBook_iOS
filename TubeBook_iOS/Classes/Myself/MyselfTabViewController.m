@@ -15,8 +15,20 @@
 #import "ReactiveObjC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CreateTopicOrSerialViewController.h"
+#import "DetialArticleListViewController.h"
+#import "AuthorViewController.h"
+#import "UserLikeArticleViewController.h"
+#import "TopicViewController.h"
+#import "SerialViewController.h"
+#import "AltertControllerUtil.h"
+#import "TubeAlterCenter.h"
+#import "TubePhotoUtil.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+#import "UploadImageUtil.h"
+#import "MyThirdCollectionController.h"
 
-@interface MyselfTabViewController () <TubeTableViewDelegate>
+@interface MyselfTabViewController () <TubeTableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UILabel *navigationtitleLable;
 @property (nonatomic, strong) UIScrollView *spaceBackScrollView;
@@ -32,6 +44,13 @@
 @property (nonatomic, strong) UITableImageWithLableCell *createSerialCell;
 @property (nonatomic, strong) UITableImageWithLableCell *attenSerialCell;
 @property (nonatomic, strong) UITableImageWithLableCell *createTopicOrSerialCell;
+
+@property (nonatomic,assign) NSInteger countArticle;
+@property (nonatomic,assign) NSInteger countAttentUser;
+@property (nonatomic,assign) NSInteger countAttentedUser;
+
+@property (nonatomic, strong) UIImagePickerController *pickerController;
+@property (nonatomic, strong) NSString *avaterUrl;
 
 @end
 
@@ -164,15 +183,19 @@
     [self.tableView addItemView:self.createSerialCell];
     [self.tableView addItemView:self.attenSerialCell];
     [self.tableView addItemView:self.createTopicOrSerialCell];
+    UITableImageWithLableCell *thridArticleCell = [[UITableImageWithLableCell alloc] initUITableImageWithLableCellWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40) title:@"我的外文收藏" iconName:@"icon_hezi"];
+    [self.tableView addItemView:thridArticleCell];
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     [self.spaceBackScrollView addSubview:self.tableView];
     
-    [self requestUserinfo];
+    [self setAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     if (self.navigationController.navigationBar.isHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
@@ -186,15 +209,82 @@
         }];
     }
     self.navigationtitleLable.hidden = NO;
-    
+    [self requestData];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     self.navigationtitleLable.hidden = YES;
+    NSLog(@"%s ",__func__);
 }
 
-#pragma mark - loadData
+#pragma mark - private
+
+- (void)setAction
+{
+    UITapGestureRecognizer *tapCountArticleLableGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCountArticleLable)];
+    [self.countArticleLable addGestureRecognizer:tapCountArticleLableGesturRecognizer];
+    [self.countArticleLable setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *tapcountAttentLableGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCountAttentLable)];
+    [self.countAttentLable addGestureRecognizer:tapcountAttentLableGesturRecognizer];
+    [self.countAttentLable setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *tapCountAttentedLableGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCountAttentedLable)];
+    [self.countAttentedLable addGestureRecognizer:tapCountAttentedLableGesturRecognizer];
+    [self.countAttentedLable setUserInteractionEnabled:YES];
+
+    UITapGestureRecognizer *tapAvaterImageViewGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapUserImageView)];
+    [self.userImageView addGestureRecognizer:tapAvaterImageViewGesturRecognizer];
+    [self.userImageView setUserInteractionEnabled:YES];
+}
+
+- (void)requestData
+{
+    [self requestUserinfo];
+    [self requestArticleCount];
+    [self requestUserAttentCount];
+    [self requestUserAttentedCount];
+}
+
+#pragma mark - action
+- (void)tapCountArticleLable
+{
+    UIViewController *c = [[DetialArticleListViewController alloc] initDetialArticleListViewControllerWithDetailType:TubeDetailTypeUser uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]];
+    c.title = @"我的文章";
+    [self.navigationController pushViewController:c animated:YES] ;
+}
+
+- (void)tapCountAttentLable
+{
+    UIViewController *c = [[AuthorViewController alloc] initAuthorViewControllerWithAutorType:AuthorTypeAttent];
+    c.title = @"我关注的";
+    [self.navigationController pushViewController:c animated:YES] ;
+}
+
+- (void)tapCountAttentedLable
+{
+    UIViewController *c = [[AuthorViewController alloc] initAuthorViewControllerWithAutorType:AuthorTypeAttented];
+    c.title = @"我的粉丝";
+    [self.navigationController pushViewController:c animated:YES] ;
+}
+
+- (void)tapUserImageView
+{
+    if ([TubePhotoUtil isCanUsePhotos]) {
+        NSLog(@"%s primary yes", __func__);
+        self.pickerController = [[UIImagePickerController alloc] init];
+        self.pickerController.delegate = self;
+        self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:self.pickerController animated:YES completion:nil];
+        
+    } else {
+        [AltertControllerUtil showAlertTitle:@"警告" message:@"没有访问相册的权限！请到设置中设置权限！" confirmTitle:@"确定" confirmBlock:nil cancelTitle:nil cancelBlock:nil fromControler:self];
+    }
+}
+
+#pragma mark - request
 
 - (void)requestUserinfo
 {
@@ -216,8 +306,43 @@
             }
             self.userTitleLable.text = userName;
             self.userDescriptionLable.text = motto;
-            [self.userImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+            if (!self.avaterUrl && ![self.avaterUrl isEqualToString:avatar]) {
+                self.avaterUrl = avatar;
+                [self.userImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"default_loadimage"]];
+            }
+        }
+    }];
+}
 
+- (void)requestArticleCount
+{
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedUserCreateArticleCountWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *content = page.content.contentData;
+            NSInteger count = [[content objectForKey:@"count"] integerValue];
+            self.countArticle = count;
+        }
+    }];
+}
+
+- (void)requestUserAttentCount
+{
+    [[TubeSDK sharedInstance].tubeUserSDK fetchedUserAttenteUserCountWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *content = page.content.contentData;
+            NSInteger count = [[content objectForKey:@"count"] integerValue];
+            self.countAttentUser = count;
+        }
+    }];
+}
+
+- (void)requestUserAttentedCount
+{
+    [[TubeSDK sharedInstance].tubeUserSDK fetchedUserAttentedCountWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *content = page.content.contentData;
+            NSInteger count = [[content objectForKey:@"count"] integerValue];
+            self.countAttentedUser = count;
         }
     }];
 }
@@ -229,6 +354,33 @@
     switch (index) {
         case 0:
         {
+            UIViewController *c = [[UserLikeArticleViewController alloc] initUserLikeArticleViewControllerWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]];
+            c.title = @"我喜欢的文章";
+            [self.navigationController pushViewController:c animated:YES] ;
+            break;
+        }
+        case 1:
+        {
+            UIViewController *c = [[TopicViewController alloc] initTopicViewControllerWithFouseType:FouseTypeAttrent
+                                                                                                uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]];
+            c.title = @"我关注的专题";
+            [self.navigationController pushViewController:c animated:YES] ;
+            break;
+        }
+        case 2:
+        {
+            UIViewController *c = [[SerialViewController alloc] initSerialViewControllerWithFouseType:FouseTypeCreate
+                                                                                                uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]];
+            c.title = @"我的连载";
+            [self.navigationController pushViewController:c animated:YES];
+            break;
+        }
+        case 3:
+        {
+            UIViewController *c = [[SerialViewController alloc] initSerialViewControllerWithFouseType:FouseTypeAttrent
+                                                                                                  uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]];
+            c.title = @"我关注的连载";
+            [self.navigationController pushViewController:c animated:YES] ;
             break;
         }
         case 4:
@@ -237,9 +389,77 @@
             [self presentViewController:vc animated:YES completion:nil];
             break;
         }
+        case 5:
+        {
+            UIViewController *c = [[MyThirdCollectionController alloc] initMyThirdCollectionControllerWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]];
+            c.title = @"我的收藏";
+            [self.navigationController pushViewController:c animated:YES] ;
+            break;
+        }
         default:
             break;
     }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [self.pickerController dismissViewControllerAnimated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self.userImageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+    });
+    [UploadImageUtil uploadImage:[info objectForKey:UIImagePickerControllerOriginalImage] success:^(NSDictionary *dic) {
+
+
+        NSString *fileName = [dic objectForKey:@"fileName"];
+        NSString *message = [dic objectForKey:@"message"];
+        if ([message containsString:@"success"]) {
+            // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传成功" duration:1.0f fromeVC:self];
+            self.avaterUrl = [NSString stringWithFormat:@"http://127.0.0.1:8084/TubeBook_Web/upload/%@",fileName];
+            [[TubeSDK sharedInstance].tubeUserSDK setUserAvaterWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] imageUrl:self.avaterUrl callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+                if (status == DataCallBackStatusSuccess) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"修改成功" duration:1.0f completion:nil];
+                    });
+                }
+            }];
+            
+        } else {
+            [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+            });
+        }
+    } fail:^(NSError *error) {
+        // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败" duration:1.0f fromeVC:self];
+        NSLog(@"%@",error);
+        [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+        });
+    }];
+}
+
+#pragma mark - set
+- (void)setCountArticle:(NSInteger)countArticle
+{
+    _countArticle = countArticle;
+    self.countArticleLable.text = [NSString stringWithFormat:@"%lu",countArticle];
+}
+
+- (void)setCountAttentUser:(NSInteger)countAttentUser
+{
+    _countAttentUser = countAttentUser;
+    self.countAttentLable.text = [NSString stringWithFormat:@"%lu",countAttentUser];
+}
+
+- (void)setCountAttentedUser:(NSInteger)countAttentedUser
+{
+    _countAttentedUser = countAttentedUser;
+    self.countAttentedLable.text = [NSString stringWithFormat:@"%lu",countAttentedUser];
 }
 
 #pragma mark - get

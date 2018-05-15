@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CKDataType.h"
 #import "CKContent.h"
+#import "TubeRefreshTableViewController.h"
 
 @interface CKTableCell : UITableViewCell
 
-@property(nonatomic, strong) CKContent *content;
+@property (nonatomic, strong) CKContent *content;
+@property (nonatomic, strong) UIViewController *viewController;
 
 //需要实现
 - (instancetype)initWithDateType:(CKDataType *)type;

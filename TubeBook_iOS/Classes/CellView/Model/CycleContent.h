@@ -11,5 +11,9 @@
 @interface CycleContent : CKContent
 
 @property (nonatomic, strong) NSMutableArray *cycleUrls;
+@property (nonatomic, strong) NSMutableArray *imageUrls;
+@property (nonatomic, strong) NSMutableArray *titles;
+@property (nonatomic, strong) NSMutableArray *atidList;
+@property (nonatomic, strong) NSMutableArray *userIdList;
 
 @end

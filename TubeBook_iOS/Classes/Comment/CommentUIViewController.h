@@ -8,6 +8,18 @@
 
 #import "TubeRefreshTableViewController.h"
 
+typedef NS_ENUM(NSInteger, CommentType)
+{
+    CommentTypeArticle = 1,
+    CommentTypeUser,
+};
+
 @interface CommentUIViewController : TubeRefreshTableViewController
+
+@property (nonatomic, assign) CommentType commentType;
+@property (nonatomic, strong) NSString *autorUid;
+@property (nonatomic, strong) NSString *atid;
+
+- (instancetype)initCommentUIViewControllerWithAutorUid:(NSString *)uid atid:(NSString *)atid commentType:(CommentType)commentType;
 
 @end

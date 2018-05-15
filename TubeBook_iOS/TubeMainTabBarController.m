@@ -15,8 +15,12 @@
 #import "ReleaseViewController.h"
 #import "TubeSDK.h"
 #import "ProtocolConst.h"
+#import "TubeAlterCenter.h"
 
 @interface TubeMainTabBarController () <TubeIMNotificationDelegate>
+
+@property (nonatomic, assign) NSInteger likeCount;
+@property (nonatomic, assign) NSInteger commentCount;
 
 @end
 
@@ -39,6 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     self.navigationController.toolbar.hidden = YES;
@@ -61,7 +66,9 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [[TubeSDK sharedInstance].tubeIMSDK addNotificationListener:self];
     
-    
+    [self requestLikeNotReviewCount];
+    [self requestCommentNotReviewCount];
+
 }
 #pragma mark - TubeIMNotificationDelegate
 - (void)imNotificationReceiveWithStatus:(DataCallBackStatus)status page:(BaseSocketPackage *)page
@@ -72,6 +79,10 @@
         if ( [[headDic objectForKey:PROTOCOL_NAME] isEqualToString:IM_PROTOCOL] ) {
             if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:IM_NOTIFICATION_MESSAGE] ) {
                 NSLog(@"%s 收到通知：%@", __func__, contentDic);
+                NSString *title = [contentDic objectForKey:@"title"];
+                NSString *content = [contentDic objectForKey:@"content"];
+                NSString *time = [TimeUtil getDateWithTime:[[contentDic objectForKey:@"time"] integerValue]];
+                [[TubeAlterCenter sharedInstance] postAlterNotificationWithTitle:title content:content time:time duration:2.0f];
             }
         }
     }
@@ -233,6 +244,7 @@
 #pragma mark - UITabBarControllerDelegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+    NSLog(@"%s tab select controller %@",__func__, viewController);
     if (viewController==self.releaseTabViewController) {
         
         [self presentViewController:[self getNewReleaseViewController] animated:YES completion:nil];
@@ -245,5 +257,40 @@
 {
 
 }
+#pragma mark - request
+- (void)requestLikeNotReviewCount
+{
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedLikeNotReviewCount:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]  callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *content = page.content.contentData;
+            NSInteger count = [[content objectForKey:@"count"] integerValue];
+            self.likeCount = count;
+            [self updatebadgeValue];
+        }
+    }];
+}
+
+- (void)requestCommentNotReviewCount
+{
+    [[TubeSDK sharedInstance].tubeArticleSDK fetchedCommentNotReviewCountWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
+        if (status == DataCallBackStatusSuccess) {
+            NSDictionary *content = page.content.contentData;
+            NSInteger count = [[content objectForKey:@"count"] integerValue];
+            self.commentCount = count;
+            [self updatebadgeValue];
+        }
+    }];
+}
+
+#pragma mark - private
+- (void)updatebadgeValue
+{
+    if (self.likeCount + self.commentCount == 0){
+        self.messageTabViewController.tabBarItem.badgeValue = nil;
+    } else {
+        self.messageTabViewController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", self.likeCount + self.commentCount];
+    }
+}
+
 
 @end
