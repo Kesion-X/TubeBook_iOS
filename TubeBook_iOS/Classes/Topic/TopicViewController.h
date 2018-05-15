@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TubeRefreshTableViewController.h"
+#import "TubeArticleConst.h"
 
 @interface TopicViewController : TubeRefreshTableViewController
+
+@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, assign) FouseType fouseType;
+- (instancetype)initTopicViewControllerWithFouseType:(FouseType)fouseType uid:(NSString *)uid;
 
 @end

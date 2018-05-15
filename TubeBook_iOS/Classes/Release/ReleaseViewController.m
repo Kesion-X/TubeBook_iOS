@@ -19,9 +19,9 @@
 #import "TubeAlterCenter.h"
 #define MormalColor [UIColor whiteColor]
 #define LightColor kTUBEBOOK_THEME_NORMAL_COLOR
-#define h1 @"<span style=\" font: 28.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
-#define h2 @"<span style=\" font: 24.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
-#define h3 @"<span style=\" font: 18.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
+#define h1 @"<span style=\" font: 20.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
+#define h2 @"<span style=\" font: 16.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
+#define h3 @"<span style=\" font: 14.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\"><b>"
 #define span @"<span style=\" font: 14.0px 'Times New Roman'; color: #000000; -webkit-text-stroke: #000000\">"
 
 typedef NS_ENUM(NSInteger, FontStyle) {
@@ -78,6 +78,8 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:LightColor target:self action:@selector(back)];
     //self.navigationBar.hidden = NO;
     self.navigationItem.rightBarButtonItem = [TubeNavigationUITool itemWithIconImage:nil itemDirection:RightButtomItem title:@"发布" titleColor:LightColor target:self action:@selector(releaseArticle)];
@@ -98,7 +100,13 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 
 - (void)back
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    if (self.navigationController.viewControllers.count > 1) {
+        NSLog(@"%s pop view controller",__func__);
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        NSLog(@"%s dismiss view controller",__func__);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)configTextView
@@ -306,7 +314,7 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     currentFontStyle = SpanStyle;
     currentStyle = span;
     [self changeSelectStyleButtonColor];
-    NSLog(@"%@",[self htmlStringByHtmlAttributeString:self.textView.attributedText]);
+   // NSLog(@"%@",[self htmlStringByHtmlAttributeString:self.textView.attributedText]);
 }
     
 - (IBAction)h1click:(id)sender
@@ -381,14 +389,13 @@ typedef NS_ENUM(NSInteger, FontStyle) {
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    NSLog(@"select %@",self.textView.text);
-    NSLog(@"shouldChangeTextInRange %ld %ld %@",range.location,range.length,text);
+  //  NSLog(@"select %@",self.textView.text);
+  //  NSLog(@"shouldChangeTextInRange %ld %ld %@",range.location,range.length,text);
     if ([text isEqualToString:@""] && range.length>0) { // 删除
-        NSLog(@"contentAttributedString %ld",contentAttributedString.length);
+   //     NSLog(@"contentAttributedString %ld",contentAttributedString.length);
         if (contentAttributedString.length < range.location || contentAttributedString.length < range.location+range.length) {
             return YES;
         }
-        NSLog(@"delect");
         isDelect = YES;
         @try {
             [contentAttributedString replaceCharactersInRange:range withString:@""];
@@ -399,7 +406,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     }else if ([text isEqualToString:@" "]) {
         isDelect = NO;
         isComplete = NO;
-        NSLog(@"add &nbsp");
         NSString *str = @"";
         text = @"&nbsp";
         location = range.location;
@@ -418,7 +424,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
         currentAttributedString = [self showAttributedToHtml:str withWidth:0];
     }else if (text.length>=1 && range.length>0){ // 增加 可能增加一个字符，也可能是多个字符（因为自动输入法的关系）
         if ([[[self textInputMode] primaryLanguage] isEqualToString:@"zh-Hans"]) {
-            NSLog(@"add");
             isDelect = NO;
             isComplete = NO;
             NSString *str = @"";
@@ -431,7 +436,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
             currentAttributedString = [self showAttributedToHtml:str withWidth:0];
         } else if ([[[self textInputMode] primaryLanguage] isEqualToString:@"en-US"]){
             [contentAttributedString replaceCharactersInRange:range withString:@""];
-            NSLog(@"add");
             isDelect = NO;
             isComplete = NO;
             NSString *str = @"";
@@ -446,7 +450,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     } else if (text.length>=1 && range.length==0){
         int c =(int)[text characterAtIndex:0];
         if (c>256 && [[[self textInputMode] primaryLanguage] isEqualToString:@"zh-Hans"]) { //中文
-            NSLog(@"add");
             isDelect = NO;
             isComplete = NO;
             NSString *str = @"";
@@ -458,7 +461,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
             }
             currentAttributedString = [self showAttributedToHtml:str withWidth:0];
         } else if ([[[self textInputMode] primaryLanguage] isEqualToString:@"en-US"]) {
-            NSLog(@"add");
             isDelect = NO;
             isComplete = NO;
             NSString *str = @"";
@@ -499,7 +501,6 @@ typedef NS_ENUM(NSInteger, FontStyle) {
     [[TubeAlterCenter sharedInstance] showAlterIndicatorWithMessage:@"正在上传图片" fromeVC:self];
     [UploadImageUtil uploadImage:[info objectForKey:UIImagePickerControllerOriginalImage] success:^(NSDictionary *dic) {
         [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
-        NSLog(@"%@",dic);
         NSString *fileName = [dic objectForKey:@"fileName"];
         NSString *message = [dic objectForKey:@"message"];
         
@@ -529,14 +530,14 @@ typedef NS_ENUM(NSInteger, FontStyle) {
         } else {
             [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络！" duration:1.0f fromeVC:self];
+                NSLog(@"%s 上传失败，请查看网络",__func__);
+                [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败，请查看网络" duration:1.0f fromeVC:self];
             });
         }
         
         
     } fail:^(NSError *error) {
-        NSLog(@"%@",error);
+        NSLog(@"%s error: %@",__func__, error);
         [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            

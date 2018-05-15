@@ -20,7 +20,7 @@
 + (CGSize)getSizeWithAttributes:(NSString *)content width:(CGFloat)width font:(UIFont *)font
 {
     CGSize size = CGSizeMake(width, CGFLOAT_MAX);
-    return [content boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : font} context:nil].size;
+    return [content boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine |NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : font} context:nil].size;
 }
 
 @end

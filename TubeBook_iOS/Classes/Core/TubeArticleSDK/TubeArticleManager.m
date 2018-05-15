@@ -43,17 +43,19 @@
 {
     NSLog(@"%s protocol:%@ method:%@ count:%ld", __func__, ARTICLE_PROTOCOL, ARTICLE_PROTOCOL_TAG, count);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_PROTOCOL_TAG]) {
-        NSLog(@"%s haved request fetchedArticleTagListWithCount, wait after", __func__);
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_PROTOCOL_TAG];
     }
     NSDictionary *contentDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 @(count), @"tagCount",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
     NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_PROTOCOL_TAG,PROTOCOL_METHOD,
                              nil];
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -62,17 +64,19 @@
 {
     NSLog(@"%s protocol:%@ method:%@ tag:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_PROTOCOL_ADD_TAG, tag);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_PROTOCOL_ADD_TAG]) {
-        NSLog(@"%s haved request addArticleTag, wait after", __func__);
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_PROTOCOL_ADD_TAG];
     }
     NSDictionary *contentDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 tag, @"tag",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
     NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_PROTOCOL_ADD_TAG,PROTOCOL_METHOD,
                              nil];
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -88,7 +92,7 @@
 {
     NSLog(@"%s protocol:%@ method:%@ index:%lu uid:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_TOPIC_TITLE_LIST, index, uid);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_TOPIC_TITLE_LIST]) {
-        NSLog(@"haved request fetchedArticleTopicTitleListWithIndex, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_TOPIC_TITLE_LIST];
@@ -104,6 +108,8 @@
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_TOPIC_TITLE_LIST,PROTOCOL_METHOD,
                              nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -120,7 +126,7 @@
 {
     NSLog(@"%s protocol:%@ method:%@ title:%@ uid:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_UPLOAD, title, uid);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_UPLOAD]) {
-        NSLog(@"%s haved request uploadArticleWithTitle, wait after",__func__);
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_UPLOAD];
@@ -136,6 +142,8 @@
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_UPLOAD,PROTOCOL_METHOD,
                              nil];
+    NSLog(@"%s upload article atid:%@ title:%@ uid:%@",__func__,atid ,title, uid);
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -147,7 +155,7 @@
 {
     NSLog(@"%s protocol:%@ method:%@ atid:%@ tags:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_SET_TAGS, atid, tags);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_SET_TAGS]) {
-        NSLog(@"%s haved request setArticleTagWithAtid, wait after",__func__);
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_SET_TAGS];
@@ -159,6 +167,8 @@
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_SET_TAGS,PROTOCOL_METHOD,
                              nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -173,7 +183,7 @@
 {
     NSLog(@"%s protocol:%@ method:%@ atid:%@ tabid:%lu", __func__, ARTICLE_PROTOCOL, ARTICLE_SET_TAB, atid, tabid);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_SET_TAB]) {
-        NSLog(@"%s haved request setArticleTabWithAtid, wait after",__func__);
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_SET_TAB];
@@ -186,6 +196,8 @@
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_SET_TAB,PROTOCOL_METHOD,
                              nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -201,7 +213,7 @@
 {
     NSLog(@"%s protocol:%@ method:%@ index:%lu uid:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_SERIAL_TITLE_LIST, index, uid);
     if ([self.requestCallBackBlockDir objectForKey:ARTICLE_SERIAL_TITLE_LIST]) {
-        NSLog(@"haved request fetchedArticleSerialTitleListWithIndex, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_SERIAL_TITLE_LIST];
@@ -217,6 +229,8 @@
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_SERIAL_TITLE_LIST,PROTOCOL_METHOD,
                              nil];
+   NSLog(@"%s content:%@",__func__,contentDic);
+    NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -241,17 +255,19 @@
                           conditionDic:(NSDictionary *)conditionDic
                               callBack:(dataCallBackBlock)callBack
 {
-    NSLog(@"%s protocol:%@ method:%@ index:%lu uid:%@", __func__, ARTICLE_PROTOCOL, ARTICLE_NEW_LIST, index, uid);
-    if ([self.requestCallBackBlockDir objectForKey:ARTICLE_NEW_LIST]) {
-        NSLog(@"haved request fetchedArticleTopicTitleListWithIndex, wait after");
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ tabid:%lu", __func__, ARTICLE_PROTOCOL, ARTICLE_NEW_LIST, tabid);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_NEW_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
-        [self.requestCallBackBlockDir setValue:callBack forKey:ARTICLE_NEW_LIST];
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_NEW_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
     }
     NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                        @(tabid), @"tabid",
                                        @(articleType), @"articleType",
                                        @(index), @"index",
+                                       @(tag), @"tag",
                                        uid,@"uid",nil];
     if (conditionDic) {
         [contentDic addEntriesFromDictionary:conditionDic];
@@ -271,7 +287,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ tabid:%lu", __func__, ARTICLE_PROTOCOL, ARTICLE_TOPIC_DETAIL_INFO, tabid);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedArticleTopicDetailWithTabid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -298,7 +314,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ tabid:%lu", __func__, ARTICLE_PROTOCOL, ARTICLE_SERIAL_DETAIL_INFO, tabid);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_SERIAL_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedArticleSerialDetailWithTabid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_SERIAL_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -325,7 +341,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_ID_DETAIL_INFO);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_ID_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedArticleContentWithAtid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_ID_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -354,7 +370,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_SET_LIKE);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request setArticleToLikeWithAtid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -383,7 +399,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_LIKE_NOT_REVIEW_COUNT);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_LIKE_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request setArticleToLikeWithAtid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_LIKE_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -415,7 +431,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request createTopicOrSerialTabWithUid, wait after");
+          NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_CREATE_TOPIC_OR_SERIAL_TAB stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -447,17 +463,17 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_RECOMMEND_BY_HOT_LIST);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_RECOMMEND_BY_HOT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedRecommendByHotArticleListtWithIndex, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_RECOMMEND_BY_HOT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
     }
     NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                        @(tag), @"tag",
-                                       uid, @"uid",
                                        @(articleType), @"articleType",
                                        @(index), @"index",
                                        @(fouseType), @"fouseType",
+                                       uid, @"uid",
                                        nil];
     
     NSLog(@"%s content:%@",__func__,contentDic);
@@ -478,7 +494,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_RECOMMEND_BY_USERCF_LIST);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_RECOMMEND_BY_USERCF_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedRecommendByUserCFArticleListtWithIndex, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_RECOMMEND_BY_USERCF_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -508,7 +524,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_LIKE_STATUS);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedArticleLikeStatusWithAtid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -537,7 +553,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_TAB_LIKE_STATUS);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_TAB_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request fetchedTabAttentStatusWithTabid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_TAB_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -565,7 +581,7 @@
     tag++;
     NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_TAB_SET_LIKE);
     if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_TAB_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
-        NSLog(@"haved request setArticleTabWithLikeStatus, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_TAB_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -581,6 +597,349 @@
     NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                              ARTICLE_PROTOCOL, PROTOCOL_NAME,
                              ARTICLE_TAB_SET_LIKE,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取喜欢的文章列表
+ */
+- (void)fetchedUserLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARITCLE_USER_LIKE_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARITCLE_USER_LIKE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARITCLE_USER_LIKE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(index), @"index", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARITCLE_USER_LIKE_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 评论文章
+ */
+- (void)commentArticleWithAtid:(NSString *)atid fromUid:(NSString *)fromUid toUid:(NSString *)toUid message:(NSString *)message callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_COMMENT_TO_USER);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_COMMENT_TO_USER stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_COMMENT_TO_USER stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       atid, @"atid",
+                                       fromUid, @"fromUid",
+                                       toUid, @"toUid",
+                                       message, @"message",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_COMMENT_TO_USER,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取评论列表
+ */
+- (void)fetchedArticleCommentListWithAtid:(NSString *)atid index:(NSInteger)index allBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_COMMENT_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_COMMENT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_COMMENT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       atid, @"atid",
+                                       @(index), @"index",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_COMMENT_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 评论回复
+ */
+- (void)commmentUserWithAtid:(NSString *)atid cid:(NSInteger)cid fromeUid:(NSString *)fromUid toUid:(NSString *)toUid message:(NSString *)message commentId:(NSInteger)commentId callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_USER_COMMENT_TO_USER);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_USER_COMMENT_TO_USER stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_USER_COMMENT_TO_USER stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(cid), @"cid",
+                                       atid, @"atid",
+                                       fromUid, @"fromUid",
+                                       toUid, @"toUid",
+                                       message, @"message",
+                                       @(commentId), @"commentId",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_USER_COMMENT_TO_USER,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取评论回复列表
+ */
+- (void)fetchedUserCommentToUserListWithCid:(NSInteger)cid index:(NSInteger)index allBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_USER_COMMENT_TO_USER_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_USER_COMMENT_TO_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_USER_COMMENT_TO_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(cid), @"cid",
+                                       @(index), @"index",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_USER_COMMENT_TO_USER_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取某两个人评论回复列表
+ */
+- (void)fetchedUserCommentToUserListWithCid:(NSInteger)cid fromeUid:(NSString *)fromUid toUid:(NSString *)toUid tid:(NSInteger)tid commentId:(NSInteger)commentId commentType:(NSInteger)commentType allBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_COMMENT_FROM_USER_TO_USER_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_COMMENT_FROM_USER_TO_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_COMMENT_FROM_USER_TO_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(cid), @"cid",
+                                       fromUid, @"fromUid",
+                                       toUid, @"toUid",
+                                       @(tid), @"tid",
+                                       @(commentId), @"commentId",
+                                       @(commentType), @"commentType",
+                                       nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_COMMENT_FROM_USER_TO_USER_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取评论未读数
+ */
+- (void)fetchedCommentNotReviewCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_COMMENT_NOT_REVIEW_COUNT);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_COMMENT_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_COMMENT_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_COMMENT_NOT_REVIEW_COUNT,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取收到评论列表
+ */
+- (void)fetchedReceiveCommentListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_RECEIVE_COMMENT_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_RECEIVE_COMMENT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_RECEIVE_COMMENT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(index), @"index", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_RECEIVE_COMMENT_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取针对cid的一条文章评论
+ */
+- (void)fetchedArticleCommentByCid:(NSInteger)cid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_COMMENT_BY_CID);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_COMMENT_BY_CID stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_COMMENT_BY_CID stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(cid), @"cid", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_COMMENT_BY_CID,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+- (void)setCommentReviewStatusWithId:(NSInteger)tid commentType:(NSInteger)commentType callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_SET_COMMENT_REVIEW_STATUS);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_SET_COMMENT_REVIEW_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_SET_COMMENT_REVIEW_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(tid), @"tid",
+                                       @(commentType), @"commentType", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_SET_COMMENT_REVIEW_STATUS,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+/*
+ * @brief 获取收到用户喜欢自己文章列表
+ */
+- (void)fetchedReceiveUserLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       @(index), @"index", nil];
+    
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+    
+}
+
+/*
+ * @brief 获取用户写的文章个数
+ */
+- (void)fetchedUserCreateArticleCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    tag++;
+    NSLog(@"%s protocol:%@ method:%@ ", __func__, ARTICLE_PROTOCOL, ARTICLE_USER_CREATE_ARTICLE_COUNT);
+    if ( [self.requestCallBackBlockDir objectForKey:[ARTICLE_USER_CREATE_ARTICLE_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]] ) {
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBack forKey:[ARTICLE_USER_CREATE_ARTICLE_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid, @"uid",
+                                       nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             ARTICLE_PROTOCOL, PROTOCOL_NAME,
+                             ARTICLE_USER_CREATE_ARTICLE_COUNT,PROTOCOL_METHOD,
                              nil];
     NSLog(@"%s head:%@",__func__,headDic);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
@@ -617,9 +976,9 @@
 
 - (void)receiveData:(BaseSocketPackage *)pg
 {
-    NSLog(@"%s receiveData head:%@ content:%@", __func__, pg.head.headData,pg.content.contentData);
     NSDictionary *headDic = pg.head.headData;
     NSDictionary *contentDic = pg.content.contentData;
+    NSLog(@"%s reveiveData head: %@ tag: %lu",__func__ ,headDic ,[[contentDic objectForKey:@"tag"] integerValue]);
     if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_PROTOCOL_TAG] ) {
         [self callBackToMain:pg method:ARTICLE_PROTOCOL_TAG];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_PROTOCOL_ADD_TAG] ) {
@@ -635,7 +994,7 @@
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SERIAL_TITLE_LIST] ) {
         [self callBackToMain:pg method:ARTICLE_SERIAL_TITLE_LIST];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_NEW_LIST] ) {
-        [self callBackToMain:pg method:ARTICLE_NEW_LIST];
+        [self callBackToMain:pg method:[ARTICLE_NEW_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_TOPIC_DETAIL_INFO] ) {
         [self callBackToMain:pg method:[ARTICLE_TOPIC_DETAIL_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SERIAL_DETAIL_INFO] ) {
@@ -656,6 +1015,34 @@
         [self callBackToMain:pg method:[ARTICLE_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_TAB_LIKE_STATUS] ) {
         [self callBackToMain:pg method:[ARTICLE_TAB_LIKE_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_TAB_SET_LIKE] ) {
+        [self callBackToMain:pg method:[ARTICLE_TAB_SET_LIKE stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARITCLE_USER_LIKE_LIST] ) {
+        [self callBackToMain:pg method:[ARITCLE_USER_LIKE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_COMMENT_TO_USER] ) {
+        [self callBackToMain:pg method:[ARTICLE_COMMENT_TO_USER stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_COMMENT_LIST] ) {
+        [self callBackToMain:pg method:[ARTICLE_COMMENT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_USER_COMMENT_TO_USER] ) {
+        [self callBackToMain:pg method:[ARTICLE_USER_COMMENT_TO_USER stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_USER_COMMENT_TO_USER_LIST] ) {
+        [self callBackToMain:pg method:[ARTICLE_USER_COMMENT_TO_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_COMMENT_NOT_REVIEW_COUNT] ) {
+        [self callBackToMain:pg method:[ARTICLE_COMMENT_NOT_REVIEW_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_RECEIVE_COMMENT_LIST] ) {
+        [self callBackToMain:pg method:[ARTICLE_RECEIVE_COMMENT_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_COMMENT_FROM_USER_TO_USER_LIST] ) {
+        [self callBackToMain:pg method:[ARTICLE_COMMENT_FROM_USER_TO_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_COMMENT_BY_CID] ) {
+        [self callBackToMain:pg method:[ARTICLE_COMMENT_BY_CID stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_SET_COMMENT_REVIEW_STATUS] ) {
+        [self callBackToMain:pg method:[ARTICLE_SET_COMMENT_REVIEW_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST] ) {
+        [self callBackToMain:pg method:[ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:ARTICLE_USER_CREATE_ARTICLE_COUNT] ) {
+        [self callBackToMain:pg method:[ARTICLE_USER_CREATE_ARTICLE_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",[[contentDic objectForKey:@"tag"] integerValue]]]];
+    } else {
+        NSLog(@"%s not head method work",__func__);
     }
 }
 
@@ -663,8 +1050,10 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         dataCallBackBlock callback =[self.requestCallBackBlockDir objectForKey:method];
+        NSDictionary *headDic = pg.head.headData;
         NSDictionary *contentDic = pg.content.contentData;
         DataCallBackStatus status = DataCallBackStatusFail;
+        NSLog(@"%s dispatch data block, status:%lu, head: %@ tag: %lu.",__func__,status, headDic,[[contentDic objectForKey:@"tag"] integerValue]);
         if ([[contentDic objectForKey:@"status"] isEqualToString:@"success"]) {
             status = DataCallBackStatusSuccess;
         }

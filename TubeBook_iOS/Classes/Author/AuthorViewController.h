@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "TubeRefreshTableViewController.h"
 
+typedef NS_ENUM(NSInteger, AuthorType)
+{
+    AuthorTypeAttent,
+    AuthorTypeAttented
+};
 
 @interface AuthorViewController : TubeRefreshTableViewController
+
+@property (nonatomic, assign) AuthorType autorType;
+
+- (instancetype)initAuthorViewControllerWithAutorType:(AuthorType)autorType;
+
+
 
 @end

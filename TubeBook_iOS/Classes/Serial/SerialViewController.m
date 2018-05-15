@@ -13,8 +13,12 @@
 #import "ReactiveObjC.h"
 #import "DetailViewController.h"
 #import "TubeRootViewController.h"
+#import "TubeNavigationUITool.h"
+#import "Masonry.h"
 
 @interface SerialViewController () <RefreshTableViewControllerDelegate>
+
+@property (nonatomic, strong) UILabel *titleLable;
 
 @end
 
@@ -23,23 +27,64 @@
     NSInteger index;
 }
 
+- (instancetype)initSerialViewControllerWithFouseType:(FouseType)fouseType uid:(NSString *)uid
+{
+    self = [super init];
+    if (self) {
+        self.fouseType = fouseType;
+        self.uid = uid;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.refreshTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[UISerialTableCell class] forKeyContent:[SerialTagContent class]];
-//    for (int i=0; i<10; ++i) {
-//        [self.contentData addObject:[[SerialTagContent alloc] init]];
-//    }
     [self requestData];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    NSLog(@"%s ",__func__);
+    [self.titleLable removeFromSuperview];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
+    if (self.navigationController.viewControllers.count > 1){
+        self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:kTUBEBOOK_THEME_NORMAL_COLOR target:self action:@selector(back)];
+        
+        [self.navigationController.navigationBar addSubview:self.titleLable];
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.navigationController.navigationBar);
+            make.centerY.equalTo(self.navigationController.navigationBar);
+        }];
+    }
+}
+
+- (void)back
+{
+    if (self.navigationController.viewControllers.count > 1) {
+        NSLog(@"%s pop view controller",__func__);
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        NSLog(@"%s dismiss view controller",__func__);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)requestData
 {
     __weak typeof(self) weakSelf = self;
     [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleSerialTitleListWithIndex:index
-                                                                               uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]
-                                                                         fouseType:FouseTypeAttrent
+                                                                               uid:self.uid
+                                                                         fouseType:self.fouseType
                                                                       conditionDic:nil
                                                                           callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
                                                                               
@@ -82,11 +127,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CKContent *content = self.contentData[indexPath.row];
+    NSLog(@"%s select item %@",__func__, content);
     @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
         @strongify(self);
         TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initSerialDetailViewControllerWithTabid:content.id uid:content.userUid]];
-        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:vc animated:YES completion:nil];
     });
     
 }
@@ -95,13 +141,24 @@
 {
     index = 0;
     [self requestData];
-    NSLog(@"refreshData");
+    NSLog(@"%s refreshData, index = %lu",__func__, index);
 }
 
 - (void)loadMoreData
 {
     [self requestData];
-    NSLog(@"loadMoreData");
+    NSLog(@"%s loadMoreData, index = %lu",__func__, index);
 }
+
+#pragma mark - get
+- (UILabel *)titleLable
+{
+    if (!_titleLable) {
+        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
+        _titleLable.text = self.title;
+    }
+    return _titleLable;
+}
+
 
 @end

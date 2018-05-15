@@ -58,7 +58,6 @@
     self.scrollerView.delegate = self;
 }
 
-
 - (void)initOffset
 {
     preOffsetX = [UIScreen mainScreen].bounds.size.width;

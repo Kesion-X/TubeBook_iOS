@@ -39,13 +39,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     [self configNavigation];
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-49);
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     self.indicator.hidden = YES;
+    NSLog(@"%s ",__func__);
 }
 
 - (void)configNavigation
@@ -72,11 +75,10 @@
             make.centerX.equalTo(self.navigationController.navigationBar);
             make.centerY.equalTo(self.navigationController.navigationBar);
             make.width.mas_equalTo([self.indicator getUIWidth]);
-            make.height.mas_equalTo([self.indicator getUIHeight]);
+            make.height.mas_equalTo([self.indicator getUIHeight] - 2);
         }];
         [self.indicator setShowIndicatorItem:0];
         [self.tabBarController.navigationItem.titleView removeFromSuperview];
-       //self.tabBarController.navigationItem.titleView = self.indicator;
     }
 }
 

@@ -51,6 +51,16 @@
     self.classMap[NSStringFromClass(contentClass)] = NSStringFromClass(cellClass);
 }
 
+- (void)registerActionKey:(NSString *)actionKey forKeyBlock:(tapForIndexBlock)indexBlock
+{
+    [self.keyForIndexBlockDictionary setObject:indexBlock forKey:actionKey];
+}
+
+- (void)registertapBlockKey:(NSString *)actionKey forKeyBlock:(tapBlock)block
+{
+    [self.keyForIndexBlockDictionary setObject:block forKey:actionKey];
+}
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -76,6 +86,7 @@
     if (!cell) {
         cell = [[cellClass alloc] initWithDateType:content.dataType];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.viewController = self;
     }
     cell.content = content;
     return cell;
@@ -125,6 +136,14 @@
         _classMap = [[NSMutableDictionary alloc] init];
     }
     return _classMap;
+}
+
+- (NSMutableDictionary *)keyForIndexBlockDictionary
+{
+    if (!_keyForIndexBlockDictionary) {
+        _keyForIndexBlockDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return _keyForIndexBlockDictionary;
 }
 
 @end

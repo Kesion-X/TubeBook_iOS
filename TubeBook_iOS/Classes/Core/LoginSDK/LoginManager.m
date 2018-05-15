@@ -50,6 +50,7 @@
     NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                          @"Login", PROTOCOL_NAME,
                           nil];
+    NSLog(@"%s account : %@",__func__, account);
     BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
     [self.tubeServer writeData:pg.data];
 }
@@ -66,12 +67,15 @@
 }
     
 - (void)connectionError:(NSError *)err
-{}
+{
+    
+}
     
 - (void)receiveData:(BaseSocketPackage *)pg
 {
     NSDictionary *dic =  pg.content.contentData;
     NSString *state = [dic objectForKey:@"State-Login"];
+    NSLog(@"%s %@",__func__, dic);
     if ([state isEqualToString:@"success"]) {
         self.isSuccess = YES;
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginSuccess:)]) {
@@ -89,6 +93,8 @@
 }
     
 - (void)disConnection
-{}
+{
+    
+}
 
 @end

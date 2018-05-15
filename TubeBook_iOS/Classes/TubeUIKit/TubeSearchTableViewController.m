@@ -29,12 +29,22 @@
     NSInteger loadCount;
 }
 
-- (instancetype)initTubeSearchTableViewControllerWithType:(TubeSearchType)searchType contentCallBack:(callBackSelectedContentBlock)contentCallBackBlock;
+- (instancetype)initTubeSearchTableViewControllerWithType:(TubeSearchType)searchType fouseType:(FouseType)fouse contentCallBack:(callBackSelectedContentBlock)contentCallBackBlock
+{
+    self = [self initTubeSearchTableViewControllerWithType:searchType contentCallBack:contentCallBackBlock];
+    if (self) {
+        self.fouseType = fouse;
+    }
+    return self;
+}
+
+- (instancetype)initTubeSearchTableViewControllerWithType:(TubeSearchType)searchType contentCallBack:(callBackSelectedContentBlock)contentCallBackBlock
 {
     self = [super init];
     if (self) {
         self.searchType = searchType;
         self.contentCallBackBlock = contentCallBackBlock;
+        self.fouseType = FouseTypeAll;
     }
     return self;
 }
@@ -46,15 +56,13 @@
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[UITopicTableCell class] forKeyContent:[TopicTagContent class]];
     [self registerCell:[UISerialTableCell class] forKeyContent:[SerialTagContent class]];
-//    for (int i=0; i<10; ++i) {
-//        [self.contentData addObject:[[TopicTagContent alloc] init]];
-//    }
-    
     [self refreshTableData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     [self configNavigation];
 }
 
@@ -90,7 +98,7 @@
         [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicOrSerialTitleListWithType:type
                                                                                         index:self.indexPage
                                                                                           uid:uid
-                                                                                    fouseType:fouseType
+                                                                                    fouseType:self.fouseType
                                                                                 conditionDic:[[NSDictionary alloc] initWithObjectsAndKeys:
                                                                                                 self.searchField.text,@"title", nil]
                                                                                     callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
@@ -150,6 +158,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.contentCallBackBlock) {
+        NSLog(@"%s select item %@",__func__, self.contentData[indexPath.row]);
         self.contentCallBackBlock(self.contentData[indexPath.row]);
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -167,6 +176,7 @@
 //    }
     self.indexPage = 0;
     [self refreshTableData];
+
 }
 
 - (void)loadMoreData

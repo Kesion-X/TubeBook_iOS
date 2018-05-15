@@ -53,10 +53,9 @@
 
 - (void)receiveData:(BaseSocketPackage *)pg
 {
-    NSLog(@"%s receiveData head:%@ content:%@", __func__, pg.head.headData,pg.content.contentData);
     NSDictionary *headDic = pg.head.headData;
     NSDictionary *content = pg.content.contentData;
-    // reicve_uid send_uid procotol method title content time
+    NSLog(@"%s reveiveData head: %@ tag: %lu",__func__ ,headDic ,[[content objectForKey:@"tag"] integerValue]);
     if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:IM_NOTIFICATION_MESSAGE] ) {
         if (self.delegate) {
             DataCallBackStatus status = DataCallBackStatusFail;
@@ -67,6 +66,8 @@
                 [self.delegate imNotificationReceiveWithStatus:status page:pg];
             }
         }
+    } else {
+        NSLog(@"%s not head method work",__func__);
     }
 }
 
@@ -74,8 +75,10 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         dataCallBackBlock callback =[self.requestCallBackBlockDir objectForKey:method];
+        NSDictionary *headDic = pg.head.headData;
         NSDictionary *contentDic = pg.content.contentData;
         DataCallBackStatus status = DataCallBackStatusFail;
+        NSLog(@"%s dispatch data block, status:%lu, head: %@ tag: %lu.",__func__,status, headDic,[[contentDic objectForKey:@"tag"] integerValue]);
         if ([[contentDic objectForKey:@"status"] isEqualToString:@"success"]) {
             status = DataCallBackStatusSuccess;
         }

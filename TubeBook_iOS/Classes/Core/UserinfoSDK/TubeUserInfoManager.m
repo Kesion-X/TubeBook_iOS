@@ -39,7 +39,7 @@
     tag ++;
     NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_FETCH_INFO, uid);
     if ([self.requestCallBackBlockDir objectForKey:[USER_FETCH_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
-        NSLog(@"haved request fetchedUserInfoWithUid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBack forKey:[USER_FETCH_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -65,7 +65,7 @@
     tag ++;
     NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_FETCH_INFO, uid);
     if ([self.requestCallBackBlockDir objectForKey:[USER_ATTENT_USERLIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
-        NSLog(@"haved request fetchedUserInfoWithUid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_ATTENT_USERLIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -84,13 +84,59 @@
     [self.tubeServer writeData:pg.data];
 }
 
+// 获取用户关注用户数
+- (void)fetchedUserAttenteUserCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_USER_ATTENT_USER_COUNT, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_USER_ATTENT_USER_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_USER_ATTENT_USER_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid,@"uid",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_USER_ATTENT_USER_COUNT,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+// 获取用户粉丝数
+- (void)fetchedUserAttentedCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_USER_ATTENTED_COUNT, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_USER_ATTENTED_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_USER_ATTENTED_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid,@"uid",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_USER_ATTENTED_COUNT,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
 // 设置关注/取消关注
 - (void)setUserAttentWithStatus:(BOOL)isAttent uid:(NSString *)uid attentUid:(NSString *)attentUid callBack:(dataCallBackBlock)callBlock
 {
     tag ++;
     NSLog(@"%s protocol:%@ method:%@", __func__, USER_PROTOCOL, USER_SET_ATTENT_STATUS);
     if ([self.requestCallBackBlockDir objectForKey:[USER_SET_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
-        NSLog(@"haved request setUserAttentWithStatus, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_SET_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -99,7 +145,7 @@
                                        @(tag), @"tag",
                                        uid, @"uid",
                                        attentUid, @"attentUid",
-                                       isAttent, @"isAttent", nil];
+                                       @(isAttent), @"isAttent", nil];
     NSLog(@"%s content:%@",__func__,contentDic);
     NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
                              USER_PROTOCOL, PROTOCOL_NAME,
@@ -115,7 +161,7 @@
     tag ++;
     NSLog(@"%s protocol:%@ method:%@", __func__, USER_PROTOCOL, USER_ATTENT_STATUS);
     if ([self.requestCallBackBlockDir objectForKey:[USER_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
-        NSLog(@"haved request fetchedUserAttentStatusWithUid, wait after");
+        NSLog(@"%s haved request, wait after",__func__);
         return ;
     } else {
         [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
@@ -134,6 +180,160 @@
     [self.tubeServer writeData:pg.data];
 }
 
+// 获取用户写的文章列表
+- (void)fetchedSelfArticleListWithIndex:(NSInteger)index
+                                    uid:(NSString *)uid
+                            articleType:(UserArticleType)articleType
+                               callback:(dataCallBackBlock)callback
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ index:%lu uid:%@", __func__, USER_PROTOCOL, USER_ARTICLE_LIST, index, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callback forKey:[USER_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(articleType), @"articleType",
+                                       @(index), @"index",
+                                       uid,@"uid",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_ARTICLE_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+// 获取粉丝列表
+- (void)fetchedFansListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_ATTENTED_USER_LIST, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_ATTENTED_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_ATTENTED_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(index), @"index",
+                                       uid,@"uid",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_ATTENTED_USER_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+// 获取自己喜欢的文章列表
+- (void)fetchedLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_LIKE_ARTICLE_LIST, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_LIKE_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_LIKE_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(index), @"index",
+                                       uid,@"uid",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_LIKE_ARTICLE_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+- (void)setUserAvaterWithUid:(NSString *)uid imageUrl:(NSString *)imageUrl callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_SET_AVATER, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_SET_AVATER stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_SET_AVATER stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       uid,@"uid",
+                                       imageUrl, @"avater",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_SET_AVATER,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+// 设置第三方文章收藏状态
+- (void)setThirdCollectionStatus:(BOOL)collectStatus url:(NSString *)url uid:(NSString *)uid title:(NSString *)title callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_SET_THIRD_URL_COLLECTION_STATUS, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_SET_THIRD_URL_COLLECTION_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_SET_THIRD_URL_COLLECTION_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(collectStatus), @"collectStatus",
+                                        title, @"title",
+                                        uid, @"uid",
+                                        url, @"url",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_SET_THIRD_URL_COLLECTION_STATUS, PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
+
+// 获取收藏第三方文章列表
+- (void)fetchedThirdCollectionListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBlock
+{
+    tag ++;
+    NSLog(@"%s protocol:%@ method:%@ uid:%@", __func__, USER_PROTOCOL, USER_THIRD_COLLECTION_LIST, uid);
+    if ([self.requestCallBackBlockDir objectForKey:[USER_THIRD_COLLECTION_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]]) {
+        NSLog(@"%s haved request, wait after",__func__);
+        return ;
+    } else {
+        [self.requestCallBackBlockDir setValue:callBlock forKey:[USER_THIRD_COLLECTION_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",tag]]];
+    }
+    NSMutableDictionary *contentDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @(tag), @"tag",
+                                       @(index), @"index",
+                                       uid,@"uid",nil];
+    NSLog(@"%s content:%@",__func__,contentDic);
+    NSDictionary *headDic = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             USER_PROTOCOL, PROTOCOL_NAME,
+                             USER_THIRD_COLLECTION_LIST,PROTOCOL_METHOD,
+                             nil];
+    NSLog(@"%s head:%@",__func__,headDic);
+    BaseSocketPackage *pg = [[BaseSocketPackage alloc] initWithHeadDic:headDic contentDic:contentDic];
+    [self.tubeServer writeData:pg.data];
+}
 
 #pragma mark - delegate
 
@@ -151,9 +351,9 @@
 
 - (void)receiveData:(BaseSocketPackage *)pg
 {
-    NSLog(@"%s receiveData head:%@ content:%@", __func__, pg.head.headData,pg.content.contentData);
     NSDictionary *headDic = pg.head.headData;
     NSDictionary *content = pg.content.contentData;
+    NSLog(@"%s reveiveData head: %@ tag: %lu",__func__ ,headDic ,[[content objectForKey:@"tag"] integerValue]);
     if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_FETCH_INFO] ) {
         [self callBackToMain:pg method:[USER_FETCH_INFO stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_ATTENT_USERLIST] ) {
@@ -162,19 +362,36 @@
         [self callBackToMain:pg method:[USER_SET_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
     } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_ATTENT_STATUS] ) {
         [self callBackToMain:pg method:[USER_ATTENT_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_ARTICLE_LIST] ) {
+        [self callBackToMain:pg method:[USER_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_USER_ATTENT_USER_COUNT] ) {
+        [self callBackToMain:pg method:[USER_USER_ATTENT_USER_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_USER_ATTENTED_COUNT] ) {
+        [self callBackToMain:pg method:[USER_USER_ATTENTED_COUNT stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_ATTENTED_USER_LIST] ) {
+        [self callBackToMain:pg method:[USER_ATTENTED_USER_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_LIKE_ARTICLE_LIST] ) {
+        [self callBackToMain:pg method:[USER_LIKE_ARTICLE_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_SET_AVATER] ) {
+        [self callBackToMain:pg method:[USER_SET_AVATER stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_SET_THIRD_URL_COLLECTION_STATUS] ) {
+        [self callBackToMain:pg method:[USER_SET_THIRD_URL_COLLECTION_STATUS stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else if ( [[headDic objectForKey:PROTOCOL_METHOD] isEqualToString:USER_THIRD_COLLECTION_LIST] ) {
+        [self callBackToMain:pg method:[USER_THIRD_COLLECTION_LIST stringByAppendingString:[NSString stringWithFormat:@"%lu",[[content objectForKey:@"tag"] integerValue]]]];
+    } else {
+        NSLog(@"%s not head method work",__func__);
     }
-    
-    
-    
-    
+
 }
 
 - (void)callBackToMain:(BaseSocketPackage *)pg method:(NSString *)method
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         dataCallBackBlock callback =[self.requestCallBackBlockDir objectForKey:method];
+        NSDictionary *headDic = pg.head.headData;
         NSDictionary *contentDic = pg.content.contentData;
         DataCallBackStatus status = DataCallBackStatusFail;
+        NSLog(@"%s dispatch data block, status:%lu, head: %@ tag: %lu.",__func__,status, headDic,[[contentDic objectForKey:@"tag"] integerValue]);
         if ([[contentDic objectForKey:@"status"] isEqualToString:@"success"]) {
             status = DataCallBackStatusSuccess;
         }

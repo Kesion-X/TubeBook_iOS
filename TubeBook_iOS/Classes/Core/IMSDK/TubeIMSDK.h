@@ -14,5 +14,6 @@
 - (instancetype)initTubeIMSDK:(TubeServerDataSDK *)tubeServer;
 
 - (void)addNotificationListener:(id <TubeIMNotificationDelegate>)delegate;
+- (void)removeNotificationListener:(id <TubeIMNotificationDelegate>)delegate;
 
 @end

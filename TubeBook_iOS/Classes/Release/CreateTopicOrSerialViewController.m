@@ -145,6 +145,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:kTUBEBOOK_THEME_NORMAL_COLOR target:self action:@selector(back)];
     self.navigationItem.title = @"专题/连载 创建";
     
@@ -153,7 +155,13 @@
 #pragma mark - action
 - (void)back
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.navigationController.viewControllers.count > 1) {
+        NSLog(@"%s pop view controller",__func__);
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        NSLog(@"%s dismiss view controller",__func__);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)chioseType:(id)sender
@@ -195,8 +203,10 @@
     [[TubeSDK sharedInstance].tubeArticleSDK createTopicOrSerialTabWithUid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey] type:self.type title:self.titleField.text description:self.descriptionTextView.text pic:self.tabPic allBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
         if ( status == DataCallBackStatusSuccess ) {
             //[[TubeAlterCenter sharedInstance] postAlterWithMessage:@"创建成功" duration:2.0f fromeVC:self];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"创建成功" duration:2.0f];
+
+            [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"创建成功" duration:2.0f completion:^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
 
         } else {
             [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"创建失败" duration:2.0f fromeVC:self];
@@ -208,13 +218,14 @@
 - (IBAction)addPic:(id)sender
 {
     if ([TubePhotoUtil isCanUsePhotos]) {
-        NSLog(@"%s primary yes", __func__);
+        NSLog(@"%s primary success", __func__);
         self.pickerController = [[UIImagePickerController alloc] init];
         self.pickerController.delegate = self;
         self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:self.pickerController animated:YES completion:nil];
         
     } else {
+        NSLog(@"%s primary fail",__func__);
         [AltertControllerUtil showAlertTitle:@"警告" message:@"没有访问相册的权限！请到设置中设置权限！" confirmTitle:@"确定" confirmBlock:nil cancelTitle:nil cancelBlock:nil fromControler:self];
     }
 }
@@ -227,7 +238,7 @@
     [self.addPicButton setBackgroundImage:[info objectForKey:UIImagePickerControllerOriginalImage] forState:UIControlStateNormal];
     [UploadImageUtil uploadImage:[info objectForKey:UIImagePickerControllerOriginalImage] success:^(NSDictionary *dic) {
         [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
-        NSLog(@"%@",dic);
+        NSLog(@"%s picker image success: %@",__func__, dic);
         NSString *fileName = [dic objectForKey:@"fileName"];
         NSString *message = [dic objectForKey:@"message"];
         if ([message containsString:@"success"]) {
@@ -242,7 +253,7 @@
         }
     } fail:^(NSError *error) {
         // [[TubeAlterCenter sharedInstance] postAlterWithMessage:@"上传失败" duration:1.0f fromeVC:self];
-        NSLog(@"%@",error);
+        NSLog(@"%s picker image fail: %@",__func__, error);
         [[TubeAlterCenter sharedInstance] dismissAlterIndicatorViewController];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             

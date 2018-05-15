@@ -203,4 +203,99 @@
     [self.articleManager setArticleTabWithLikeStatus:likeStatus tabid:tabid uid:uid articleType:articleType callBack:callBack];
 }
 
+/*
+ * @brief 获取喜欢的文章列表
+ */
+- (void)fetchedUserLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedUserLikeArticleListWithIndex:index uid:uid callBack:callBack];
+}
+
+/*
+ * @brief 评论文章
+ */
+- (void)commentArticleWithAtid:(NSString *)atid fromUid:(NSString *)fromUid toUid:(NSString *)toUid message:(NSString *)message callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager commentArticleWithAtid:atid fromUid:fromUid toUid:toUid message:message callBack:callBack];
+}
+
+/*
+ * @brief 获取评论列表
+ */
+- (void)fetchedArticleCommentListWithAtid:(NSString *)atid index:(NSInteger)index allBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedArticleCommentListWithAtid:atid index:index allBack:callBack];
+}
+
+/*
+ * @brief 评论回复
+ */
+- (void)commmentUserWithAtid:(NSString *)atid cid:(NSInteger)cid fromeUid:(NSString *)fromUid toUid:(NSString *)toUid message:(NSString *)message  commentId:(NSInteger)commentId callBack:(dataCallBackBlock)callBack{
+    [self.articleManager commmentUserWithAtid:atid cid:cid fromeUid:fromUid toUid:toUid message:message commentId:commentId callBack:callBack];
+}
+
+/*
+ * @brief 获取评论回复列表
+ */
+- (void)fetchedUserCommentToUserListWithCid:(NSInteger)cid index:(NSInteger)index allBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedUserCommentToUserListWithCid:cid index:index allBack:callBack];
+}
+
+/*
+ * @brief 获取某两个人评论回复列表
+ */
+- (void)fetchedUserCommentToUserListWithCid:(NSInteger)cid fromeUid:(NSString *)fromUid toUid:(NSString *)toUid tid:(NSInteger)tid commentId:(NSInteger)commentId commentType:(NSInteger)commentType allBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedUserCommentToUserListWithCid:cid fromeUid:fromUid toUid:toUid tid:tid commentId:commentId commentType:commentType allBack:callBack];
+}
+
+/*
+ * @brief 获取评论未读数
+ */
+- (void)fetchedCommentNotReviewCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedCommentNotReviewCountWithUid:uid callBack:callBack];
+}
+
+/*
+ * @brief 获取收到评论列表
+ */
+- (void)fetchedReceiveCommentListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedReceiveCommentListWithIndex:index uid:uid callBack:callBack];
+}
+
+/*
+ * @brief 获取针对cid的一条文章评论
+ */
+- (void)fetchedArticleCommentByCid:(NSInteger)cid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedArticleCommentByCid:cid callBack:callBack];
+}
+
+/*
+ * @brief 设置评论查看状态
+ */
+- (void)setCommentReviewStatusWithId:(NSInteger)tid commentType:(NSInteger)commentType callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager setCommentReviewStatusWithId:tid commentType:commentType callBack:callBack];
+}
+
+/*
+ * @brief 获取收到用户喜欢自己文章列表
+ */
+- (void)fetchedReceiveUserLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedReceiveUserLikeArticleListWithIndex:index uid:uid callBack:callBack];
+}
+
+/*
+ * @brief 获取用户写的文章个数
+ */
+- (void)fetchedUserCreateArticleCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBack
+{
+    [self.articleManager fetchedUserCreateArticleCountWithUid:uid callBack:callBack];
+}
+
 @end

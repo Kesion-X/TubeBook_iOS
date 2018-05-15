@@ -143,4 +143,64 @@
  */
 - (void)setArticleTabWithLikeStatus:(BOOL)likeStatus tabid:(NSInteger)tabid uid:(NSString *)uid articleType:(ArticleType)articleType callBack:(dataCallBackBlock)callBack;
 
+/*
+ * @brief 获取喜欢的文章列表
+ */
+- (void)fetchedUserLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 评论文章
+ */
+- (void)commentArticleWithAtid:(NSString *)atid fromUid:(NSString *)fromUid toUid:(NSString *)toUid message:(NSString *)message callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取评论列表
+ */
+- (void)fetchedArticleCommentListWithAtid:(NSString *)atid index:(NSInteger)index allBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 评论回复
+ */
+- (void)commmentUserWithAtid:(NSString *)atid cid:(NSInteger)cid fromeUid:(NSString *)fromUid toUid:(NSString *)toUid message:(NSString *)message  commentId:(NSInteger)commentId callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取评论回复列表
+ */
+- (void)fetchedUserCommentToUserListWithCid:(NSInteger)cid index:(NSInteger)index allBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取某两个人评论回复列表
+ */
+- (void)fetchedUserCommentToUserListWithCid:(NSInteger)cid fromeUid:(NSString *)fromUid toUid:(NSString *)toUid tid:(NSInteger)tid commentId:(NSInteger)commentId commentType:(NSInteger)commentType allBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取评论未读数
+ */
+- (void)fetchedCommentNotReviewCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取收到评论列表
+ */
+- (void)fetchedReceiveCommentListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取针对cid的一条文章评论
+ */
+- (void)fetchedArticleCommentByCid:(NSInteger)cid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 设置评论查看状态
+ */
+- (void)setCommentReviewStatusWithId:(NSInteger)tid commentType:(NSInteger)commentType callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取收到用户喜欢自己文章列表
+ */
+- (void)fetchedReceiveUserLikeArticleListWithIndex:(NSInteger)index uid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
+/*
+ * @brief 获取用户写的文章个数
+ */
+- (void)fetchedUserCreateArticleCountWithUid:(NSString *)uid callBack:(dataCallBackBlock)callBack;
+
 @end

@@ -9,12 +9,16 @@
 #import "TopicViewController.h"
 #import "TopicTagContent.h"
 #import "UITopicTableCell.h"
+#import "Masonry.h"
 #import "TubeSDK.h"
 #import "ReactiveObjC.h"
 #import "DetailViewController.h"
 #import "TubeRootViewController.h"
+#import "TubeNavigationUITool.h"
 
 @interface TopicViewController () <RefreshTableViewControllerDelegate>
+
+@property (nonatomic, strong) UILabel *titleLable;
 
 @end
 
@@ -22,28 +26,66 @@
 {
     NSInteger index;
 }
+
+- (instancetype)initTopicViewControllerWithFouseType:(FouseType)fouseType uid:(NSString *)uid
+{
+    self = [super init];
+    if (self) {
+        self.uid = uid;
+        self.fouseType = fouseType;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.refreshTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.refreshTableViewControllerDelegate = self;
     [self registerCell:[UITopicTableCell class] forKeyContent:[TopicTagContent class]];
-//    for (int i=0; i<5; ++i) {
-//        [self.contentData addObject:[[TopicTagContent alloc] init]];
-//    }
     [self requestData];
 }
 
-- (void)loadData
+- (void)viewDidDisappear:(BOOL)animated
 {
-    
+    [super viewDidDisappear:animated];
+    NSLog(@"%s ",__func__);
+    [self.titleLable removeFromSuperview];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
+    if (self.navigationController.viewControllers.count > 1){
+        self.navigationItem.leftBarButtonItem = [TubeNavigationUITool itemWithIconImage:[UIImage imageNamed:@"icon_back"] title:@"返回" titleColor:kTUBEBOOK_THEME_NORMAL_COLOR target:self action:@selector(back)];
+        
+        [self.navigationController.navigationBar addSubview:self.titleLable];
+        [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.navigationController.navigationBar);
+            make.centerY.equalTo(self.navigationController.navigationBar);
+        }];
+    }
+}
+
+- (void)back
+{
+    if (self.navigationController.viewControllers.count > 1) {
+        NSLog(@"%s pop view controller",__func__);
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        NSLog(@"%s dismiss view controller",__func__);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+#pragma mark - request
 
 - (void)requestData
 {
     __weak typeof(self) weakSelf = self;
     [[TubeSDK sharedInstance].tubeArticleSDK fetchedArticleTopicTitleListWithIndex:index
-                                                                                    uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]
-                                                                            fouseType:FouseTypeAttrent
+                                                                                    uid:self.uid
+                                                                            fouseType:self.fouseType
                                                                             conditionDic:nil
                                                                                 callBack:^(DataCallBackStatus status, BaseSocketPackage *page) {
                                                                                      
@@ -87,25 +129,37 @@
 {
     index = 0;
     [self requestData];
-    NSLog(@"refreshData");
+    NSLog(@"%s refreshData, index = %lu",__func__, index);
 }
 
 - (void)loadMoreData
 {
     [self requestData];
-    NSLog(@"loadMoreData");
+    NSLog(@"%s loadMoreData, index = %lu",__func__, index);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CKContent *content = self.contentData[indexPath.row];
+    NSLog(@"%s select item %@",__func__, content);
     @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
         @strongify(self);
         TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initTopicDetailViewControllerWithTabid:content.id uid:content.userUid]];
-        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:vc animated:YES completion:nil];
     });
 
 }
+
+#pragma mark - get
+- (UILabel *)titleLable
+{
+    if (!_titleLable) {
+        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
+        _titleLable.text = self.title;
+    }
+    return _titleLable;
+}
+
 
 @end

@@ -60,7 +60,7 @@
     [self registerCell:[TopicCollectionViewCell class] forKeyContent:[DescoverTopicContent class]];
     
     [self.collectionView registerClass:[TopicTopCollectionViewCell class] forCellWithReuseIdentifier:[TopicTopCollectionViewCell getDequeueId:nil]];
-     [self registerCell:[TopicTopCollectionViewCell class] forKeyContent:[DescoverTopicTopContent class]];
+    [self registerCell:[TopicTopCollectionViewCell class] forKeyContent:[DescoverTopicTopContent class]];
     
     [self.collectionView addSubview:self.refreshHeadView];
     [self.collectionView addSubview:self.loadMoreIndicatorView];
@@ -70,6 +70,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     self.collectionView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-49);
 }
 
@@ -238,6 +239,7 @@
         case 1:
         {
             CKContent *content = self.contentList[indexPath.row];
+            NSLog(@"%s didSelectItem %@",__func__, content);
             @weakify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 @strongify(self);
@@ -249,21 +251,7 @@
         default:
             break;
     }
-    
-   // Medal *p = self.medals[indexPath.item];
-    NSLog(@"---------------------");
 }
-
-//#pragma mark  设置CollectionViewCell是否可以被点击
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return YES;
-//}
-
-//#pragma mark - UICollectionViewDelegate
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-//    return NO;
-//}
 
 #pragma mark - get
 - (NSMutableArray *)topList

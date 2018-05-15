@@ -10,7 +10,7 @@
 #ifndef ProtocolConst_h
 #define ProtocolConst_h
 
-#define kMaxPacketSize 64*1024
+#define kMaxPacketSize 128*1024
 #define SOCKET_LENGTH_BYTE_SIZE 4
 #define CONTENT_LENGTH @"Content-Length"
 #define PROTOCOL_NAME @"Protocol-Name"
@@ -36,6 +36,18 @@
 #define ARTICLE_LIKE_STATUS @"ArticleLikeStatus"
 #define ARTICLE_TAB_LIKE_STATUS @"ArticleTabLikeStatus"
 #define ARTICLE_TAB_SET_LIKE @"ArticleTabSetLike"
+#define ARITCLE_USER_LIKE_LIST @"ArticleUserLikeList"
+#define ARTICLE_COMMENT_TO_USER @"ArticleCommentToUser"
+#define ARTICLE_COMMENT_LIST @"AricleCommentList"
+#define ARTICLE_USER_COMMENT_TO_USER @"ArticleUserCommentToUser"
+#define ARTICLE_USER_COMMENT_TO_USER_LIST @"ArticleUserCommentToUserList"
+#define ARTICLE_COMMENT_NOT_REVIEW_COUNT @"ArticleCommentNotReviewCount"
+#define ARTICLE_RECEIVE_COMMENT_LIST @"ArticleReceiveCommentList"
+#define ARTICLE_COMMENT_FROM_USER_TO_USER_LIST @"ArticleCommentFromUserToUserList"
+#define ARTICLE_COMMENT_BY_CID @"ArticleCommentByCid"
+#define ARTICLE_SET_COMMENT_REVIEW_STATUS @"ArticleSetCommentReviewStatus"
+#define ARTICLE_RECEIVE_USER_LIKE_ARTICLE_LIST @"ArticleReceiveUserLikeArticleList"
+#define ARTICLE_USER_CREATE_ARTICLE_COUNT @"ArticleUserCreateArticleCount"
 
 #define ArticleTopicTitleList @"ArticleTopicTitleList"
 
@@ -44,6 +56,15 @@
 #define USER_ATTENT_USERLIST @"UserAttentUserList"
 #define USER_SET_ATTENT_STATUS @"UserSetAttentStatus"
 #define USER_ATTENT_STATUS @"UserAttentStatus"
+#define USER_ARTICLE_LIST @"UserArticleList"
+#define USER_USER_ATTENT_USER_COUNT @"UserUserAttentUserCount"
+#define USER_USER_ATTENTED_COUNT @"UserUserAttentedCount"
+#define USER_ATTENTED_USER_LIST @"UserAttentedUserList"
+#define USER_LIKE_ARTICLE_LIST @"UserLikeArticleList"
+#define USER_SET_AVATER @"UserSetAvater"
+#define USER_SET_THIRD_URL_COLLECTION_STATUS @"UserSetThirdUrlCollectionStatus"
+#define USER_THIRD_COLLECTION_LIST @"UserThirdCollectionList"
+
 
 #define IM_PROTOCOL @"IMProtocol"
 // reicve_uid send_uid procotol method title content time 

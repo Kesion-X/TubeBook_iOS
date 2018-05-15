@@ -17,5 +17,7 @@
 - (void)showAlterIndicatorWithMessage:(NSString *)message fromeVC:(UIViewController *)sourceController;
 - (void)dismissAlterIndicatorViewController;
 - (void)postAlterWithMessage:(NSString *)message duration:(CGFloat)duration;
+- (void)postAlterNotificationWithTitle:(NSString *)title content:(NSString *)content time:(NSString *)time duration:(CGFloat)duration;
+- (void)postAlterWithMessage:(NSString *)message duration:(CGFloat)duration completion: (void (^ __nullable)(void))completion;
 
 @end

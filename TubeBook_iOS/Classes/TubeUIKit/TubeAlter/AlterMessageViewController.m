@@ -24,7 +24,6 @@
 {
     self = [super init];
     if (self) {
-        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         self.message = message;
     }
     return self;
@@ -32,13 +31,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0f]];
     self.messageCenterView = [[CKMessageCenterView alloc] initCKMessageCenterViewWithMessage:self.message frame:CGRectMake(0, SCREEN_HEIGHT, 0, 0)];
     [self.view addSubview:self.messageCenterView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
   //  self.view.frame = CGRectMake(0, SCREEN_HEIGHT,SCREEN_WIDTH, SCREEN_HEIGHT);
     CGRect frame = self.messageCenterView.frame;
     self.messageCenterView.frame = CGRectMake( -10, frame.origin.y-80, SCREEN_WIDTH+20, frame.size.height+160);

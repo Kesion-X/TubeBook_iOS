@@ -23,6 +23,8 @@
 #import "TubeWebViewViewController.h"
 #import "ShowArticleUIViewController.h"
 #import "TubeSDK.h"
+#import "TubeRootViewController.h"
+#import "DetailViewController.h"
 
 @interface RecommendViewController () <RefreshTableViewControllerDelegate>
 
@@ -40,7 +42,16 @@
     [self registerCell:[UINormalArticleCell class] forKeyContent:[NormalArticleContent class]];
     [self registerCell:[UISerialArticleCell class] forKeyContent:[SerialArticleContent class]];
     [self registerCell:[UITopicArticleCell class] forKeyContent:[TopicArticleContent class]];
-    
+    [self registerActionKey:kSerialTabViewTap forKeyBlock:^(NSIndexPath *indexPath) {
+        CKContent *content = self.contentData[indexPath.row];
+        TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initSerialDetailViewControllerWithTabid:content.tabid uid:content.userUid]];
+        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+    }];
+    [self registerActionKey:kTopicTabViewTap forKeyBlock:^(NSIndexPath *indexPath) {
+        CKContent *content = self.contentData[indexPath.row];
+        TubeRootViewController *vc = [[TubeRootViewController alloc] initWithRootViewController:[[DetailViewController alloc] initTopicDetailViewControllerWithTabid:content.tabid uid:content.userUid]];
+        [self.tabBarController presentViewController:vc animated:YES completion:nil];
+    }];
     [self requestData];
 }
 
@@ -165,13 +176,7 @@
                 (content).userName = [userinfo objectForKey:@"nick"];
             }
             (content).motto = [userinfo objectForKey:@"description"];
-            //[self.refreshTableView reload]
-            for (int i=0 ; i < self.contentData.count; ++i) {
-                if ([self.contentData objectAtIndex:i] == content) {
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }
+            [self.refreshTableView reloadData];
         }
     }];
 }
@@ -190,12 +195,7 @@
             content.serialTitle = topicTitle;
             content.serialImageUrl = pic;
             content.serialDescription  = description;
-            for (int i=0 ; i < self.contentData.count; ++i) {
-                if ( [self.contentData objectAtIndex:i] == content ) {
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }
+            [self.refreshTableView reloadData];
         }
     }];
 }
@@ -214,12 +214,7 @@
             content.topicTitle = topicTitle;
             content.topicImageUrl = pic;
             content.topicDescription  = description;
-            for (int i=0 ; i < self.contentData.count; ++i) {
-                if ( [self.contentData objectAtIndex:i] == content ) {
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.refreshTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }
+            [self.refreshTableView reloadData];
         }
     }];
 }
@@ -230,23 +225,21 @@
 {
     index = 0 ;
     [self requestData];
-    NSLog(@"refreshData");
+    NSLog(@"%s refreshData, index = %lu",__func__, index);
 }
 
 - (void)loadMoreData
 {
     
     [self requestData];
-    NSLog(@"loadMoreData");
+    NSLog(@"%s loadMoreData, index = %lu",__func__, index);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CKContent *c = [self.contentData objectAtIndex:indexPath.row];
-    //UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:@"" uid:@"" body:c.body]];
-    // TubeWebViewViewController *vc = [[TubeWebViewViewController alloc] initTubeWebViewViewControllerWithHtml:c.body];
-    // [self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:c.atid uid:[[UserInfoUtil sharedInstance].userInfo objectForKey:kAccountKey]] animated:YES];
+    NSLog(@"%s select item %@",__func__, c);
+    [self.navigationController pushViewController:[[ShowArticleUIViewController alloc] initShowArticleUIViewControllerWithAtid:c.atid uid:c.userUid] animated:YES];
 }
 
 @end

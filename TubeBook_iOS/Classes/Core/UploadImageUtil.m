@@ -13,8 +13,9 @@
 @implementation UploadImageUtil
 
 + (void)uploadImage:(UIImage *)mImage success:(uploadSuccess)successCallback fail:(uploadFail)failCallback{
-    NSLog(@"%s uploadImage:%@", __func__, @"http://127.0.0.1:8084/TubeBook_Web/UploadImage");
+
     NSString *fileName = [[TimeUtil getNowTimeTimestamp3] stringByAppendingString:@".jpg"];
+    NSLog(@"%s uploadImage:%@", __func__, [@"http://127.0.0.1:8084/TubeBook_Web/UploadImage" stringByAppendingString:fileName]);
     //创建manager
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];//序列化操作
@@ -26,13 +27,14 @@
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];//转utf-8
-        NSLog(@"%s success %@",__func__, result);
+        NSLog(@"%s upload image success result: %@",__func__, result);
         NSDictionary *dic = @{
                               @"message":result,
                               @"fileName":fileName
                               };
         successCallback(dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%s upload image fail error: %@",__func__, error);
         failCallback(error);
     }];
 }
@@ -88,8 +90,7 @@
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     
     if(newImage == nil){
-        
-        NSLog(@"scale image fail");
+        NSLog(@"%s scale image fail",__func__);
     }
     UIGraphicsEndImageContext();
     return newImage;

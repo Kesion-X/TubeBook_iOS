@@ -21,7 +21,6 @@
 {
     self = [super init];
     if (self) {
-        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         self.message = message;
     }
     return self;
@@ -36,6 +35,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    NSLog(@"%s ",__func__);
     //  self.view.frame = CGRectMake(0, SCREEN_HEIGHT,SCREEN_WIDTH, SCREEN_HEIGHT);
     CGRect frame = self.centerView.frame;
     self.centerView.frame = CGRectMake( -10, frame.origin.y-80, SCREEN_WIDTH+20, frame.size.height+160);

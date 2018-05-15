@@ -1,0 +1,30 @@
+//
+//  UserReveiveCommentTableViewCell.h
+//  TubeBook_iOS
+//
+//  Created by 柯建芳 on 2018/5/5.
+//  Copyright © 2018年 柯建芳. All rights reserved.
+//
+
+#import "CKTableCell.h"
+#define kUserReveiveCommentTableViewCellAvatarImageViewTap [NSStringFromClass([UserReveiveCommentTableViewCell class]) stringByAppendingString:@"avatarImageViewTap"]
+#define kUserReveiveCommentTableViewCellArtilceTitleLableViewTap [NSStringFromClass([UserReveiveCommentTableViewCell class]) stringByAppendingString:@"ArticleTitleViewTap"]
+
+@interface UserReveiveCommentTableViewCell : CKTableCell
+
+@property (nonatomic, strong) NSString *avatarUrl;
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *toUserName;
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) NSString *articleTitle;
+@property (nonatomic, assign) BOOL isReview;
+
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *userNameLable;
+@property (nonatomic, strong) UILabel *timeLable;
+@property (nonatomic, strong) UILabel *commentLable;
+@property (nonatomic, strong) UILabel *articleTitleLable;
+@property (nonatomic, strong) UIView *isReviewView;
+
+@end
