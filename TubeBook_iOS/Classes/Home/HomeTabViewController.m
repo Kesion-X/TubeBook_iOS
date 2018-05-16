@@ -37,7 +37,7 @@
 {
     self.pageViewController.delegate = nil;
     self.pageViewController.dataSource = nil;
-    self.tubeNavigationView.indicatorView.delegate = nil;
+    self.tubeNavigationView.indicatorView.indicatorDelegate = nil;
     self.scrollerView.delegate = nil;
 }
 
@@ -73,7 +73,7 @@
         make.right.equalTo(self.view);
         make.height.mas_equalTo([self.tubeNavigationView.searchView getUITubeSearchViewHeight]+[self.tubeNavigationView.indicatorView getUIHeight]+12);
     }];
-    self.tubeNavigationView.indicatorView.delegate = self;
+    self.tubeNavigationView.indicatorView.indicatorDelegate = self;
 }
 
 - (void)configPageView

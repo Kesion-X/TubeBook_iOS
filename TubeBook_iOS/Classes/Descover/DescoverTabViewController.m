@@ -63,13 +63,13 @@
 - (void)createIndicator
 {
     if (!self.indicator) {
-        self.indicator = [[UIIndicatorView alloc] initUIIndicatorView:kTUBEBOOK_THEME_NORMAL_COLOR
-                                                                style:UIIndicatorViewLineStyle
-                                                               arrays:[NSMutableArray arrayWithObjects:@"推荐",@"连载",@"专题", nil]
-                                                                 font:Font(18)
-                                                      textNormalColor:kTEXTCOLOR
-                                                       textLightColor:kTUBEBOOK_THEME_NORMAL_COLOR
-                                                   isEnableAutoScroll:NO];
+        self.indicator = [[UIIndicatorView alloc] initUIIndicatorViewWithIndicatorColor:kTUBEBOOK_THEME_NORMAL_COLOR
+                                                                                  style:UIIndicatorViewLineStyle
+                                                                                 arrays:[NSMutableArray arrayWithObjects:@"推荐",@"连载",@"专题", nil]
+                                                                                   font:Font(18)
+                                                                        textNormalColor:kTEXTCOLOR
+                                                                         textLightColor:kTUBEBOOK_THEME_NORMAL_COLOR
+                                                                     isEnableAutoScroll:NO];
         [self.navigationController.navigationBar addSubview:self.indicator];
         [self.indicator mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.navigationController.navigationBar);

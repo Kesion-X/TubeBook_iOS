@@ -87,7 +87,7 @@
 - (void)createIndicator
 {
     if (!self.indicator) {
-        self.indicator = [[UIIndicatorView alloc] initUIIndicatorView:kTUBEBOOK_THEME_NORMAL_COLOR
+        self.indicator = [[UIIndicatorView alloc] initUIIndicatorViewWithIndicatorColor:kTUBEBOOK_THEME_NORMAL_COLOR
                                                                 style:UIIndicatorViewLineStyle
                                                                arrays:[NSMutableArray arrayWithObjects:@"文章", @"评论", nil]
                                                                  font:Font(18)

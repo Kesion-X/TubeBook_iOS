@@ -27,7 +27,7 @@
     self.pageViewController.delegate = nil;
     self.pageViewController.dataSource = nil;
     self.scrollerView.delegate = nil;
-    self.indicatorView.delegate = nil;
+    self.indicatorView.indicatorDelegate = nil;
 }
 
 - (void)viewDidLoad {
@@ -38,7 +38,7 @@
 - (void)configIndicator:(UIIndicatorView *)indicator
 {
     self.indicatorView = indicator;
-    self.indicatorView.delegate = self;
+    self.indicatorView.indicatorDelegate = self;
 }
 
 - (void)configPageView:(CGRect)frame arrayControllers:(NSMutableArray *)arrayControllers

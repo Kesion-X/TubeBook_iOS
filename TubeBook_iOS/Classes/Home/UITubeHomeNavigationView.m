@@ -90,7 +90,7 @@
 - (UIIndicatorView *)indicatorView
 {
     if (!_indicatorView) {
-        _indicatorView = [[UIIndicatorView alloc] initUIIndicatorView:kTUBEBOOK_THEME_NORMAL_COLOR font:Font(12)];
+        _indicatorView = [[UIIndicatorView alloc] initUIIndicatorViewWithIndicatorColor:kTUBEBOOK_THEME_NORMAL_COLOR font:Font(12)];
     }
     return _indicatorView;
 }
